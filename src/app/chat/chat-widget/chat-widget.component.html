@@ -14,16 +14,22 @@
       </div>
     </div>
     <div class="chat-box-main">
-      <div class="chat-message-bottom" #bottom></div>
+      <div class="chat-message-bottom" #scrollMe style="overflow: scroll; height: xyz;"></div>
       <ng-container *ngFor="let message of messages">
         <div class="chat-message" [class.chat-message-received]="message.type === 'received'"
              [@fadeIn]
              [class.chat-message-sent]="message.type === 'sent'">
           <div >
             <chat-avatar [image]="message.from.avatar" class="chat-message-from-avatar"></chat-avatar>
-            <div class="chat-message-text">
+            <div class="chat-message-text" *ngIf="message.tipo==1" >
               {{message.text}}
             </div>
+
+            <div class="chat-message-img" *ngIf="message.tipo==2" >
+                <img src="{{message.text}}"  class="mimg" />
+          
+            </div>
+
           </div>
           <div class="chat-message-date">
             {{message.date | date: 'short'}}
@@ -36,7 +42,11 @@
     </div>
   </div>
   <button class="chat-button" (click)="toggleChat()">
-    <span [@fadeIn] *ngIf="visible">✕</span>
-    <span [@fadeIn] *ngIf="!visible">?</span>
+      <img src="http://municipios360.com/descargas/icono-hojas3.png"  class="chat-boton-silice" />
+
+   
   </button>
+
+ 
 </div>
+ 

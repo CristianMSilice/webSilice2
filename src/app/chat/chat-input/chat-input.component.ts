@@ -3,7 +3,7 @@ import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild, 
 @Component({
   selector: 'chat-input',
   template: `
-    <textarea type="text" class="chat-input-text" placeholder="Type message..."
+    <textarea type="text" class="chat-input-text" placeholder="Indica tu mensaje..."
               #message (keydown.enter)="onSubmit()" (keyup.enter)="message.value = ''" (keyup.escape)="dismiss.emit()"></textarea>
     <button type="submit" class="chat-input-submit" (click)="onSubmit()">
       {{buttonText}}

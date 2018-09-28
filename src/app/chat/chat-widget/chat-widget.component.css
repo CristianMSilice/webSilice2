@@ -19,26 +19,31 @@
   position: absolute;
   bottom: 20px;
   right: 40px;
-  box-shadow: 0 5px 40px rgba(0, 0, 0, 0.16);
-  background: #1976d2;
+   
   border-radius: 50%;
   border: none;
   outline: none;
-  color: #fff;
+   
   font-size: 32px;
 }
 .chat-button-header {
   z-index: 1;
   font-weight: bold;
-  color: #fff;
+   
   border: 1px solid #fff;
   background-color: inherit;
-  padding: 5px 9px;
-  margin-left: 5px;
+  
 }
 
 .chat-button:focus {
   border: 2px solid white;
+}
+.chat-boton-silice{
+  height: 60px;
+  width: 60px;
+  border-radius: 50%;
+  float: left;
+   
 }
 
 .chat-box {
@@ -79,6 +84,7 @@
 .operator-name {
   margin: 0;
   padding: 1px;
+  color:white;
 }
 
 .operator-status {
@@ -131,6 +137,17 @@
   border-radius: 3px;
 }
 
+.chat-message-img {
+  margin-left: 15px;
+  padding: 10px;
+  
+  border-radius: 3px;
+}
+.mimg{
+  max-height: 190px;
+  max-width: 175fpx;
+}
+
 /**
 Received message style
  */
@@ -141,6 +158,14 @@ Received message style
 .chat-message-received .chat-message-text {
   background: #B9D6F2;
   margin-left: 50px;
+  border-bottom-left-radius: 0;
+}
+
+.chat-message-received .chat-message-img {
+  background: #B9D6F2;
+  margin-left: 50px;
+  max-height: 200px;
+  max-width: 200px;
   border-bottom-left-radius: 0;
 }
 
@@ -203,9 +228,7 @@ Sent message style
 }
 
 
-.blue .chat-button {
-  background: #1976d2;
-}
+ 
 .blue .chat-box {
   background: #1976d2;
 }

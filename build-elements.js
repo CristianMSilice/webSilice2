@@ -15,6 +15,8 @@ const concat = require('concat');
 
   await fs.copy('./demo.html', './dist/elements/index.html')
   await fs.copy('./angular-elements-logo.png', './dist/elements/angular-elements-logo.png')
+  await fs.copy('./iconobanco.png', './dist/elements/iconobanco.png')
+  await fs.copy('./src/assets/config.json', './dist/elements/assets/config.json')
 
   console.info('Elements created successfully!')
 
