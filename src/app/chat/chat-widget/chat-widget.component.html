@@ -21,8 +21,9 @@
              [class.chat-message-sent]="message.type === 'sent'">
           <div >
             <chat-avatar [image]="message.from.avatar" class="chat-message-from-avatar"></chat-avatar>
-            <div class="chat-message-text" *ngIf="message.tipo==1" >
-              {{message.text}}
+            <div class="chat-message-text" *ngIf="message.tipo==1"    >
+              <div style="white-space: pre-wrap"> {{message.text}} </div>
+               
             </div>
 
             <div class="chat-message-img" *ngIf="message.tipo==2" >
@@ -42,8 +43,8 @@
     </div>
   </div>
   <button class="chat-button" (click)="toggleChat()">
-      <img src="http://municipios360.com/descargas/icono-hojas3.png"  class="chat-boton-silice" />
-
+     <!-- <img src="http://municipios360.com/descargas/icono-hojas3.png"  class="chat-boton-silice" />-->
+     <img src="./assets/pau-2.png"  class="chat-boton-silice" />
    
   </button>
 

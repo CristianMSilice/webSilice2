@@ -19,7 +19,7 @@
   position: absolute;
   bottom: 20px;
   right: 40px;
-   
+  background-color: transparent;
   border-radius: 50%;
   border: none;
   outline: none;
@@ -229,21 +229,21 @@ Sent message style
 
 
  
-.blue .chat-box {
+.blueno .chat-box {
   background: #1976d2;
 }
 
-.grey .chat-button {
+.greyno .chat-button {
   background: #454549;
 }
-.grey .chat-box {
+.greyno .chat-box {
   background: #454549;
 }
 
-.red .chat-button {
+.redno .chat-button {
   background: #DD0031;
 }
-.red .chat-box {
+.redno .chat-box {
   background: #DD0031;
 }
 

@@ -4,22 +4,22 @@ import { Observer } from 'rxjs/Observer';
 import { Message } from '../model/message';
 import { Event } from '../model/event';
 import { Http, Response, } from '@angular/http';
- 
+import { GlobalService } from '../../shared/globals';
 import { HttpClient } from '@angular/common/http';
 import { HttpHeaders, HttpParams } from '@angular/common/http';
 
 
 
-import * as socketIo from 'socket.io-client';
-  
-const SERVER_URL = 'http://18.228.36.237:3000';
-const SERVER_URL2 = 'http://18.228.36.237:3000/api/login/';
-
- /*
+import * as socketIo from 'socket.io-client'; 
  
+   
+const    SERVER_URL = GlobalService.SOCKET_ENDPOINT;
+const    SERVER_URL2 = GlobalService.API_ENDPOINT;
+ /*
+  
 const SERVER_URL = 'http://localhost:3000';
 const SERVER_URL2 = '/api/login/';
-*/
+ */
 @Injectable()
 export class SocketService {
     private socket;
@@ -38,10 +38,13 @@ export class SocketService {
           "token":token
     
         });
-        return this.http.post<any>(SERVER_URL2, ntarjeta, options);
+        return this.http.post<any>(SERVER_URL2+'login/', ntarjeta, options);
     }
   
     public initSocket(): void {
+        var coption={
+            "transports":["websocket"]
+        }
         this.socket = socketIo(SERVER_URL);
     }
 

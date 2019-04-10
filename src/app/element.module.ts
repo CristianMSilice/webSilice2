@@ -11,7 +11,7 @@ import { HttpModule } from '@angular/http';
   imports: [BrowserModule, BrowserAnimationsModule, ChatModule,HttpClientModule,HttpModule],
   providers: [
     ConfigService,
-    { provide: 'CONFIGPATH', useValue: '/assets/config.json' },
+    { provide: 'CONFIGPATH', useValue: 'config.json' },
     { provide: 'APIURL-VAR', useValue: 'TOKEN' },
     {
       provide: TOKEN, useFactory: ConfigFactory,

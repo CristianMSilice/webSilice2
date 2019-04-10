@@ -8,26 +8,9 @@ import { Action } from '../shared/model/action';
 import { Event } from '../shared/model/event';
 import { TOKEN } from '../shared/services/config';
 
+  
 
-const randomMessages = [
-  'Nice to meet you',
-  'How are you?',
-  'Not too bad, thanks',
-  'What do you do?',
-  'Is there anything else I can help you with?',
-  'That\'s awesome',
-  'Angular Elements is the bomb 💣 ',
-  'Can you explain in more detail?',
-  'Anyway I\'ve gotta go now',
-  'It was a pleasure to chat with you',
-  'We are happy to make you a custom offer!',
-  'Bye',
-  ':)',
-]
-
-const rand = max => Math.floor(Math.random() * max)
-
-const getRandomMessage = () => randomMessages[rand(randomMessages.length)]
+const rand = max => Math.floor(Math.random() * max) 
 
 @Component({
   selector: 'chat-widget',
@@ -38,16 +21,16 @@ const getRandomMessage = () => randomMessages[rand(randomMessages.length)]
 export class ChatWidgetComponent implements OnInit {
   //@ViewChild('bottom') bottom: ElementRef
   @ViewChild('scrollMe') private myScrollContainer: ElementRef;
-  @Input() public theme: 'blue' | 'grey' | 'red' = 'blue'
+  @Input() public theme: 'blueno' | 'greyno' | 'redno' = 'blueno'
 
   valido: boolean = false;
   action = Action;
-
-
+ 
   messageContent: string;
   ioConnection: any;
 
   constructor(private socketService: SocketService, @Inject(TOKEN) public _token?: string) { }
+
 
   public _visible = false
 
@@ -57,7 +40,7 @@ export class ChatWidgetComponent implements OnInit {
 
 
   @Input() public set visible(visible) {
-    this._visible = visible
+    this._visible = visible 
     if (this._visible) {
       setTimeout(() => {
         this.scrollToBottom()
@@ -69,9 +52,9 @@ export class ChatWidgetComponent implements OnInit {
   public focus = new Subject()
 
   public operator = {
-    name: 'Multibank',
+    name: 'Operador',
     status: 'online',
-    avatar: `http://municipios360.com/descargas/icono-hojas3.png`,
+    avatar: `./assets/pau-2.png`,
   }
 
   public client = {
@@ -106,12 +89,11 @@ export class ChatWidgetComponent implements OnInit {
   public focusMessage() {
     this.focus.next(true)
   }
-
-  public randomMessage() {
-    this.addMessage(this.operator, getRandomMessage(), 'received', 1)
-  }
+ 
+  
 
   ngOnInit() {
+    //this._token='Apfee6R+yalDdomE3Oo/ejzxzmMhSr8HMFn8qqeWkA8=';
     setTimeout(() => this.visible = false, 1000)
     setTimeout(() => {
       this.addMessage(this.operator, 'Hola, indica tu email para comenzar', 'received', 1)
@@ -199,12 +181,13 @@ export class ChatWidgetComponent implements OnInit {
 
 
   private initIoConnection(): void {
-    this.socketService.initSocket();
+    this.socketService.initSocket(); 
 
     this.ioConnection = this.socketService.onMessage()
       .subscribe((respuesta: any) => {
         // this.operator.name=respuesta.usuario.name;
         //this.operator.avatar=respuesta.usuario.avatar;
+        console.log("llega "+respuesta.message)
 
         if (respuesta.tipo == 1)
           this.addMessage(this.operator, respuesta.message, 'received', 1)
