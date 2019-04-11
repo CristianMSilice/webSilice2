@@ -1,18 +1,39 @@
-<div class="wrapper {{theme}}">
-  <div class="chat-box" *ngIf="visible" [@fadeInOut]="visible">
-    <div class="chat-box-header">
+<div class="wrapper {{theme}} " >
+  <div class="chat-box aivochat-container" *ngIf="visible" [@fadeInOut]="visible">
+   <!-- <div class="chat-box-header">
       <div class="">
         <div class="operator-status">
           {{operator.status}}
           <span class="operator-status-online">●</span>
           <button class="chat-button-header" (click)="toggleChat()">✕</button>
         </div>
-        <chat-avatar [image]="operator.avatar"></chat-avatar>
+     
         <h3 class="operator-name">
-          {{operator.name}}
+            <img src="/assets/logo-adiper.png"  class="mimg" />
+        
+          
         </h3>
       </div>
     </div>
+-->
+
+
+    <div class="aivochat-header custom-background ">
+      <div class="aivochat-header-title brand-text">
+        <span class="aivochat-title-brand">
+          <img src="assets/logopau.png">
+        </span>
+        <span class="aivochat-title-text">Asistente Virtual</span>
+        <a class="aivochat-header-close" (click)="toggleChat()"><i class="material-icons">close</i></a>
+        
+      </div>
+    </div>
+
+
+
+
+ 
+    
     <div class="chat-box-main">
       <div class="chat-message-bottom" #scrollMe style="overflow: scroll; height: xyz;"></div>
       <ng-container *ngFor="let message of messages">
@@ -20,7 +41,7 @@
              [@fadeIn]
              [class.chat-message-sent]="message.type === 'sent'">
           <div >
-            <chat-avatar [image]="message.from.avatar" class="chat-message-from-avatar"></chat-avatar>
+            <chat-avatar [image]="message.from.avatar" class="chat-message-from-avatar"  *ngIf="message.type === 'received'"></chat-avatar>
             <div class="chat-message-text" *ngIf="message.tipo==1"    >
               <div style="white-space: pre-wrap"> {{message.text}} </div>
                
@@ -38,16 +59,29 @@
         </div>
       </ng-container>
     </div>
-    <div class="chat-box-footer">
-      <chat-input (send)="sendMessage($event)" (dismiss)="toggleChat()" [focus]="focus"></chat-input>
+   
+    <div class="aivochat-controls custom-border">
+      <div class="aivochat-hasnt-message aivochat-send-enabled">
+             
+            <span class="aivochat-input-button-container">
+              <div class="aivochat-input-button aivochat-input-faqs-button" (click)="ocultarTarjetas()"  >
+                <i class="material-icons custom-color" >menu</i>
+                <app-chat-preguntas [@slideInOut]="menuStatet"   > </app-chat-preguntas>
+              </div>
+            </span>
+         
+          
+                
+                  <chat-input (send)="sendMessage($event)" (dismiss)="toggleChat()" [focus]="focus"></chat-input>
+               
+               
+                 
+      </div>
+      <!--<chat-input (send)="sendMessage($event)" (dismiss)="toggleChat()" [focus]="focus"></chat-input>-->
     </div>
   </div>
-  <button class="chat-button" (click)="toggleChat()">
-     <!-- <img src="http://municipios360.com/descargas/icono-hojas3.png"  class="chat-boton-silice" />-->
-     <img src="./assets/pau-2.png"  class="chat-boton-silice" />
    
-  </button>
-
+  <div class="avibubble agent-launcher"  (click)="toggleChat()"></div>
  
 </div>
  

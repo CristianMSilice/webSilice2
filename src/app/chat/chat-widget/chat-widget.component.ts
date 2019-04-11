@@ -7,7 +7,7 @@ import { SocketService } from '../shared/services/socket.service';
 import { Action } from '../shared/model/action';
 import { Event } from '../shared/model/event';
 import { TOKEN } from '../shared/services/config';
-
+import { SlideInOutAnimation } from './animations';
   
 
 const rand = max => Math.floor(Math.random() * max) 
@@ -16,7 +16,8 @@ const rand = max => Math.floor(Math.random() * max)
   selector: 'chat-widget',
   templateUrl: './chat-widget.component.html',
   styleUrls: ['./chat-widget.component.css'],
-  animations: [fadeInOut, fadeIn],
+  
+  animations: [fadeInOut, fadeIn,SlideInOutAnimation],
 })
 export class ChatWidgetComponent implements OnInit {
   //@ViewChild('bottom') bottom: ElementRef
@@ -28,7 +29,7 @@ export class ChatWidgetComponent implements OnInit {
  
   messageContent: string;
   ioConnection: any;
-
+  menuStatet: string = 'out';
   constructor(private socketService: SocketService, @Inject(TOKEN) public _token?: string) { }
 
 
@@ -54,7 +55,7 @@ export class ChatWidgetComponent implements OnInit {
   public operator = {
     name: 'Operador',
     status: 'online',
-    avatar: `./assets/pau-2.png`,
+    avatar: `./assets/logochat_red.svg`,
   }
 
   public client = {
@@ -238,6 +239,11 @@ export class ChatWidgetComponent implements OnInit {
     }
 
 
+  }
+
+  ocultarTarjetas = () => {
+console.log("llega")
+    this.menuStatet = this.menuStatet === 'out' ? 'in' : 'out';
   }
 
 }

@@ -7,8 +7,8 @@ import { Component, Input } from '@angular/core'
   `,
   styles: [`
     .avatar {
-      height: 30px;
-      width: 30px;
+      height: 23px;
+      width: 23px;
       border-radius: 50%;
       float: left;
       margin-right: 10px;

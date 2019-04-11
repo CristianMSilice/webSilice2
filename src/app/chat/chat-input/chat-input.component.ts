@@ -3,11 +3,14 @@ import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild, 
 @Component({
   selector: 'chat-input',
   template: `
+  <div class="aivochat-input">
     <textarea type="text" class="chat-input-text" placeholder="Indica tu mensaje..."
               #message (keydown.enter)="onSubmit()" (keyup.enter)="message.value = ''" (keyup.escape)="dismiss.emit()"></textarea>
-    <button type="submit" class="chat-input-submit" (click)="onSubmit()">
-      {{buttonText}}
-    </button>
+              <button class="aivochat-send custom-color" type="submit" (click)="onSubmit()">
+              <i class="material-icons">send</i> 
+              </button>           
+   </div>
+                   
   `,
   encapsulation: ViewEncapsulation.None,
   styleUrls: ['./chat-input.component.css'],
