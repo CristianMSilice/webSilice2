@@ -34,11 +34,11 @@ export class SocketService {
           headers: httpHeaders
         };
         const ntarjeta = ({
-          "email": user,
+          "username": user,
           "token":token
     
         });
-        return this.http.post<any>(SERVER_URL2+'login/', ntarjeta, options);
+        return this.http.post<any>(SERVER_URL2+'newUser/', ntarjeta, options);
     }
   
     public initSocket(): void {

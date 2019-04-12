@@ -1,38 +1,15 @@
 <div class="wrapper {{theme}} " >
-  <div class="chat-box aivochat-container" *ngIf="visible" [@fadeInOut]="visible">
-   <!-- <div class="chat-box-header">
-      <div class="">
-        <div class="operator-status">
-          {{operator.status}}
-          <span class="operator-status-online">●</span>
-          <button class="chat-button-header" (click)="toggleChat()">✕</button>
-        </div>
-     
-        <h3 class="operator-name">
-            <img src="/assets/logo-adiper.png"  class="mimg" />
-        
-          
-        </h3>
-      </div>
-    </div>
--->
-
-
+  <div class="chat-box aivochat-container" *ngIf="visible" [@fadeInOut]="visible" ngDraggable>
     <div class="aivochat-header custom-background ">
       <div class="aivochat-header-title brand-text">
         <span class="aivochat-title-brand">
           <img src="assets/logopau.png">
         </span>
         <span class="aivochat-title-text">Asistente Virtual</span>
-        <a class="aivochat-header-close" (click)="toggleChat()"><i class="material-icons">close</i></a>
+        <a class="aivochat-header-close" (click)="closeChat()"><i class="material-icons">close</i></a>
         
       </div>
     </div>
-
-
-
-
- 
     
     <div class="chat-box-main">
       <div class="chat-message-bottom" #scrollMe style="overflow: scroll; height: xyz;"></div>
@@ -43,7 +20,7 @@
           <div >
             <chat-avatar [image]="message.from.avatar" class="chat-message-from-avatar"  *ngIf="message.type === 'received'"></chat-avatar>
             <div class="chat-message-text" *ngIf="message.tipo==1"    >
-              <div style="white-space: pre-wrap"> {{message.text}} </div>
+              <div style="white-space: normal"> {{message.text}} </div>
                
             </div>
 
@@ -72,16 +49,16 @@
          
           
                 
-                  <chat-input (send)="sendMessage($event)" (dismiss)="toggleChat()" [focus]="focus"></chat-input>
+                  <chat-input (send)="sendMessage($event)" (dismiss)="closeChat()" [focus]="focus"></chat-input>
                
                
                  
       </div>
-      <!--<chat-input (send)="sendMessage($event)" (dismiss)="toggleChat()" [focus]="focus"></chat-input>-->
+     
     </div>
   </div>
    
-  <div class="avibubble agent-launcher"  (click)="toggleChat()"></div>
+  <div class="avibubble agent-launcher"  (click)="openChat()" *ngIf="!visible" [@fadeInOut]="!visible"></div>
  
 </div>
  

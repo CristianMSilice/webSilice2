@@ -6,13 +6,14 @@ import { ElementModule } from './element.module'
 import { AppComponent } from './app.component'
 import { ConfigFactory, ConfigService, TOKEN } from './chat/shared/services/config';
 import { HttpModule } from '@angular/http';
-
+import { CookieService } from 'ngx-cookie-service';
 
 @NgModule({
   imports: [BrowserModule, BrowserAnimationsModule, ElementModule,HttpClientModule,HttpModule],
   declarations: [AppComponent],
   providers: [
     ConfigService,
+    CookieService,
     { provide: 'CONFIGPATH', useValue: '/assets/config.json' },
     { provide: 'APIURL-VAR', useValue: 'TOKEN' },
     {

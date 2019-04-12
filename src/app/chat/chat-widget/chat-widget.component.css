@@ -355,6 +355,7 @@
   margin-left: 10px;
   padding: 10px;
   border-radius: 3px;
+  line-height: 20px;
 }
 
 .chat-message-img {
@@ -431,6 +432,10 @@ Sent message style
  */
 .chat-message-sent {
   align-self: flex-end;
+  padding-left: 0;
+    padding-right: 0;
+    max-width: 100%;
+    font-size: 13px;
 }
 
 .chat-message-sent .chat-message-from {
@@ -438,24 +443,32 @@ Sent message style
 }
 
 .chat-message-sent .chat-message-text {
-  background: #84DCCF;
-  margin-right: 50px;
-  border-bottom-right-radius: 0;
+  margin: 5px 5px 0 5px;
+  background: var(--main-color) ;
+  color: #ffffff;
+  text-align: right;
+  clear: right;
+  float: right;
+  /*max-width: calc(100% - 30px);*/
+  border-radius: 10px;
+    overflow: hidden;
+  
+    display: block;
+    word-break: break-word;
+    overflow-wrap: break-word;
 }
 
 .chat-message-sent .chat-message-text:after {
-  position: absolute;
-  content: " ";
-  right: -10px;
-  bottom: 0;
-  border-left: solid 10px #84DCCF;
-  border-top: solid 10px transparent;
-  z-index: 0;
+  
 }
 
 .chat-message-sent .chat-message-date {
   text-align: right;
-  padding-right: 50px;
+  padding-right: 10px;
+   
+  color: rgba(0, 0, 0, 0.4);
+  float: left;
+    margin: 5px 0 0;
 }
 
 .chat-message-sent .chat-message-from-avatar {
@@ -466,17 +479,7 @@ Sent message style
 
 
  
-.blueno .chat-box {
-  background: #1976d2;
-}
-
-.greyno .chat-button {
-  background: #454549;
-}
-.greyno .chat-box {
-  background: #454549;
-}
-
+ 
 .redno .chat-button {
   background: #DD0031;
 }
@@ -504,6 +507,7 @@ Sent message style
     right: 40px;
     height: 60vh;
     width: 350px;
+    position: fixed;
     border-radius: 10px;
   }
 }
@@ -518,7 +522,7 @@ Sent message style
 /* Large devices (desktops, 992px and up)*/
 @media (min-width: 992px) {
   .chat-box {
-    height: 80vh;
+    height: 60vh;
   }
 }
 

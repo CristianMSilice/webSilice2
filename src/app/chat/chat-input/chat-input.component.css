@@ -46,6 +46,7 @@
  
   border-radius: 0 0 0 5px;
   resize: none;
+  box-shadow: none;
 }
  
   .aivochat-input {

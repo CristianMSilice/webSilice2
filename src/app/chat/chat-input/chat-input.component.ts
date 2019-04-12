@@ -6,7 +6,7 @@ import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild, 
   <div class="aivochat-input">
     <textarea type="text" class="chat-input-text" placeholder="Indica tu mensaje..."
               #message (keydown.enter)="onSubmit()" (keyup.enter)="message.value = ''" (keyup.escape)="dismiss.emit()"></textarea>
-              <button class="aivochat-send custom-color" type="submit" (click)="onSubmit()">
+              <button class="aivochat-send custom-color"   (click)="onSubmit()">
               <i class="material-icons">send</i> 
               </button>           
    </div>

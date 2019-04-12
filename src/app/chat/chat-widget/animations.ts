@@ -9,7 +9,7 @@ export const SlideInOutAnimation = [
     trigger('slideInOut', [
        
       
-        state('in', style({   transition: 'bottom 0.4s ease-in-out, opacity 0.2s ease-in-out;',opacity: 1,bottom:'35px'
+        state('in', style({   transition: 'bottom 0.4s ease-in-out, opacity 0.2s ease-in-out;',opacity: 1,bottom:'40px'
 
  
            

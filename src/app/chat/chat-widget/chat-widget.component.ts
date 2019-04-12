@@ -2,13 +2,13 @@ import { Component, ElementRef, HostListener, Input, OnInit, ViewChild } from '@
 import { Subject } from 'rxjs'
 import { fadeIn, fadeInOut } from '../animations'
 import { Inject } from '@angular/core';
-
+import { LocalStorage } from "../shared/services/data.service";
 import { SocketService } from '../shared/services/socket.service';
 import { Action } from '../shared/model/action';
 import { Event } from '../shared/model/event';
 import { TOKEN } from '../shared/services/config';
 import { SlideInOutAnimation } from './animations';
-  
+ 
 
 const rand = max => Math.floor(Math.random() * max) 
 
@@ -93,17 +93,43 @@ export class ChatWidgetComponent implements OnInit {
  
   
 
-  ngOnInit() {
+  ngOnInit() { 
     //this._token='Apfee6R+yalDdomE3Oo/ejzxzmMhSr8HMFn8qqeWkA8=';
     setTimeout(() => this.visible = false, 1000)
+
+     
+    if (!localStorage.getItem('currentUserW')) {
+      this.valido=false;
+      // logged in so return true
+      setTimeout(() => {
+        this.addMessage(this.operator, 'Hola, bienvenido a tu asistente virtual, indica a continuación un nickname para  dirigirnos a usted', 'received', 1)
+      }, 1500)
+    
+       
+  }
+  else
+  {
+    this.client=LocalStorage.getObject('currentUserW');
+
     setTimeout(() => {
-      this.addMessage(this.operator, 'Hola, indica tu email para comenzar', 'received', 1)
+      this.addMessage(this.operator, 'Hola, bienvenido de nuevo '+this.client.name, 'received', 1)
     }, 1500)
+    //this.socketService.adduser(this.client.id);
+    this.valido=true; 
+    this.initIoConnection();
+    this.socketService.adduser(this.client.id);
+  }
+
+   
 
   }
 
-  public toggleChat() {
-    this.visible = !this.visible
+  public openChat() {
+    this.visible = true;
+  }
+
+  public closeChat() {
+    this.visible = false;
   }
 
   public sendMessage({ message }) {
@@ -114,8 +140,8 @@ export class ChatWidgetComponent implements OnInit {
       return
     }
     if (!this.valido) {
-      let evalido = message.trim().includes("@")
-      if (evalido) {
+      //let evalido = message.trim().includes("@")
+      
 
         this.client.name = message.trim();
         this.addMessage(this.client, message, 'sent', 1)
@@ -129,8 +155,13 @@ export class ChatWidgetComponent implements OnInit {
               this.client.id = data.data.id;
               this.initIoConnection();
               this.socketService.adduser(this.client.id);
+             //
               this.sendNotification(Action.JOINED);
               let texto = "Bienvenido " + this.client.name
+             
+           
+              LocalStorage.setObject('currentUserW', this.client);
+    
   
               this.addMessage(this.operator, texto, 'received', 1)
               this.valido = true;
@@ -149,15 +180,11 @@ export class ChatWidgetComponent implements OnInit {
           () => { }
         );
 
-        //conectamos con el socket
-
-
-      }
+         
     }
     else {
 
-
-
+ 
       this.socketService.send(this.client, message,this._token);
 
 
@@ -176,7 +203,7 @@ export class ChatWidgetComponent implements OnInit {
       this.focusMessage()
     }
     if (event.key === '?' && !this._visible) {
-      this.toggleChat()
+      this.closeChat()
     }
   }
 
@@ -212,6 +239,8 @@ export class ChatWidgetComponent implements OnInit {
 
     this.socketService.onEvent(Event.CONNECT)
       .subscribe(() => {
+        this.socketService.adduser(LocalStorage.getObject('currentUserW').id);
+
         console.log('connected');
       });
 
@@ -242,7 +271,7 @@ export class ChatWidgetComponent implements OnInit {
   }
 
   ocultarTarjetas = () => {
-console.log("llega")
+ 
     this.menuStatet = this.menuStatet === 'out' ? 'in' : 'out';
   }
 
