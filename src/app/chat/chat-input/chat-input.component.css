@@ -43,7 +43,7 @@
   padding-left: 6px;
   padding-top: 7px;
   background: transparent;
- 
+  font-size: 13px !important;  
   border-radius: 0 0 0 5px;
   resize: none;
   box-shadow: none;

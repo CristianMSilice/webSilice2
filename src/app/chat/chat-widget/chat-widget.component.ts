@@ -62,7 +62,7 @@ export class ChatWidgetComponent implements OnInit {
     id: 0,
     name: 'Guest User',
     status: 'online',
-    avatar: `https://randomuser.me/api/portraits/men/${rand(100)}.jpg`,
+    avatar: `./assets/logo-client.png`,
   }
 
   public messages = []
@@ -117,7 +117,8 @@ export class ChatWidgetComponent implements OnInit {
     //this.socketService.adduser(this.client.id);
     this.valido=true; 
     this.initIoConnection();
-    this.socketService.adduser(this.client.id);
+    //this.socketService.adduser(this.client.id);
+    //this.sendNotification(Action.JOINED);
   }
 
    
@@ -130,6 +131,16 @@ export class ChatWidgetComponent implements OnInit {
 
   public closeChat() {
     this.visible = false;
+  }
+
+  selectComando = (comando) => {
+
+   
+
+   this.socketService.send(this.client, comando,this._token);
+
+
+   this.addMessage(this.client, comando, 'sent', 1)
   }
 
   public sendMessage({ message }) {
@@ -154,9 +165,9 @@ export class ChatWidgetComponent implements OnInit {
             {
               this.client.id = data.data.id;
               this.initIoConnection();
-              this.socketService.adduser(this.client.id);
+             // this.socketService.adduser(this.client.id);
              //
-              this.sendNotification(Action.JOINED);
+              //this.sendNotification(Action.JOINED);
               let texto = "Bienvenido " + this.client.name
              
            
@@ -215,7 +226,7 @@ export class ChatWidgetComponent implements OnInit {
       .subscribe((respuesta: any) => {
         // this.operator.name=respuesta.usuario.name;
         //this.operator.avatar=respuesta.usuario.avatar;
-        console.log("llega "+respuesta.message)
+     //  console.log("llega "+respuesta.message)
 
         if (respuesta.tipo == 1)
           this.addMessage(this.operator, respuesta.message, 'received', 1)
@@ -239,7 +250,8 @@ export class ChatWidgetComponent implements OnInit {
 
     this.socketService.onEvent(Event.CONNECT)
       .subscribe(() => {
-        this.socketService.adduser(LocalStorage.getObject('currentUserW').id);
+        this.socketService.adduser(LocalStorage.getObject('currentUserW'),this._token);
+        
 
         console.log('connected');
       });
@@ -247,6 +259,10 @@ export class ChatWidgetComponent implements OnInit {
     this.socketService.onEvent(Event.DISCONNECT)
       .subscribe(() => {
         console.log('disconnected');
+        setTimeout(() => {
+          this.addMessage(this.operator, 'Desconectado', 'received', 1)
+        }, 1500)
+
       });
   }
   public sendNotification(action: Action): void {

@@ -7,17 +7,19 @@ import {  Output,  Input } from '@angular/core';
   styleUrls: ['./chat-preguntas.component.css']
 })
 export class ChatPreguntasComponent implements OnInit {
-  
+  @Input()
+  regresarComando:Function;
   constructor( 
   ) { } 
   ngOnInit(){
-    
- 
-  
- 
+     
  
 }
-
+selectComando(comando) 
+{
+  
+  this.regresarComando(comando);
+}
 goBack() {
    
 }

@@ -27,6 +27,7 @@
         display: block;
         width: calc(100% - 20px);
         padding: 7px 10px;
+        font-size: 13px;
         border-bottom: 1px solid #f1f0f0;
         color: #333333;
         cursor: pointer;

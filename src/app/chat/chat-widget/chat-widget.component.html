@@ -1,9 +1,9 @@
-<div class="wrapper {{theme}} " >
+<div class="wrapper-silice {{theme}} " >
   <div class="chat-box aivochat-container" *ngIf="visible" [@fadeInOut]="visible" ngDraggable>
     <div class="aivochat-header custom-background ">
       <div class="aivochat-header-title brand-text">
         <span class="aivochat-title-brand">
-          <img src="assets/logopau.png">
+          <img src="assets/logopau.png" class="img-silice">
         </span>
         <span class="aivochat-title-text">Asistente Virtual</span>
         <a class="aivochat-header-close" (click)="closeChat()"><i class="material-icons">close</i></a>
@@ -20,7 +20,7 @@
           <div >
             <chat-avatar [image]="message.from.avatar" class="chat-message-from-avatar"  *ngIf="message.type === 'received'"></chat-avatar>
             <div class="chat-message-text" *ngIf="message.tipo==1"    >
-              <div style="white-space: normal"> {{message.text}} </div>
+              <div style="white-space: pre-line"> {{message.text}} </div>
                
             </div>
 
@@ -41,9 +41,9 @@
       <div class="aivochat-hasnt-message aivochat-send-enabled">
              
             <span class="aivochat-input-button-container">
-              <div class="aivochat-input-button aivochat-input-faqs-button" (click)="ocultarTarjetas()"  >
-                <i class="material-icons custom-color" >menu</i>
-                <app-chat-preguntas [@slideInOut]="menuStatet"   > </app-chat-preguntas>
+              <div class="aivochat-input-button aivochat-input-faqs-button" (click)="ocultarTarjetas()"   *ngIf="valido" >
+                <i class="material-icons custom-color"  >menu</i>
+                <app-chat-preguntas [@slideInOut]="menuStatet"    [regresarComando]="selectComando" > </app-chat-preguntas>
               </div>
             </span>
          

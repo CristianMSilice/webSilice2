@@ -58,8 +58,9 @@ export class SocketService {
         this.socket.emit('join', nombre,token);
     }
 
-    public adduser(id:number): void {
-        this.socket.emit('add-user', id);
+    public adduser(usuario:any,token:string): void {
+       
+        this.socket.emit('add-user', usuario,token);
     }
 
     public onMessage(): Observable<Message> {
