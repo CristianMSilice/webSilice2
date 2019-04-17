@@ -392,6 +392,7 @@ Received message style
   padding: 7px 10px 7px 10px;
   margin: 0;
   min-height: 16px;
+  min-width: 90px;
   text-align: left;
   display: block;
   word-wrap: break-word;
@@ -404,10 +405,7 @@ Received message style
 }
 
 .chat-message-received .chat-message-img {
-  background: #B9D6F2;
-  margin-left: 50px;
-  max-height: 200px;
-  max-width: 200px;
+  
   border-bottom-left-radius: 0;
 }
 

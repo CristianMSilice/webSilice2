@@ -8,16 +8,17 @@ import { Action } from '../shared/model/action';
 import { Event } from '../shared/model/event';
 import { TOKEN } from '../shared/services/config';
 import { SlideInOutAnimation } from './animations';
- 
 
-const rand = max => Math.floor(Math.random() * max) 
+import { CookieService } from 'ngx-cookie-service';
+
+const rand = max => Math.floor(Math.random() * max)
 
 @Component({
   selector: 'chat-widget',
   templateUrl: './chat-widget.component.html',
   styleUrls: ['./chat-widget.component.css'],
-  
-  animations: [fadeInOut, fadeIn,SlideInOutAnimation],
+
+  animations: [fadeInOut, fadeIn, SlideInOutAnimation],
 })
 export class ChatWidgetComponent implements OnInit {
   //@ViewChild('bottom') bottom: ElementRef
@@ -26,11 +27,13 @@ export class ChatWidgetComponent implements OnInit {
 
   valido: boolean = false;
   action = Action;
- 
+
   messageContent: string;
   ioConnection: any;
   menuStatet: string = 'out';
-  constructor(private socketService: SocketService, @Inject(TOKEN) public _token?: string) { }
+  cookieValue: string;
+  constructor(private socketService: SocketService,
+    private cookieService: CookieService, @Inject(TOKEN) public _token?: string) { }
 
 
   public _visible = false
@@ -41,7 +44,7 @@ export class ChatWidgetComponent implements OnInit {
 
 
   @Input() public set visible(visible) {
-    this._visible = visible 
+    this._visible = visible
     if (this._visible) {
       setTimeout(() => {
         this.scrollToBottom()
@@ -75,53 +78,80 @@ export class ChatWidgetComponent implements OnInit {
       tipo,
       date: new Date().getTime(),
     })
-    this.scrollToBottom()
+    setTimeout(() => this.scrollToBottom(), 800)
   }
 
   public scrollToBottom() {
     /* if (this.bottom !== undefined) {
        this.bottom.nativeElement.scrollIntoView()
      }*/
+
     try {
       this.myScrollContainer.nativeElement.scrollTop = this.myScrollContainer.nativeElement.scrollHeight;
-    } catch (err) { }
+    } catch (err) {
+      console.log(err.message)
+    }
   }
 
   public focusMessage() {
     this.focus.next(true)
   }
- 
-  
 
-  ngOnInit() { 
+
+
+  ngOnInit() {
     //this._token='Apfee6R+yalDdomE3Oo/ejzxzmMhSr8HMFn8qqeWkA8=';
     setTimeout(() => this.visible = false, 1000)
+  
 
-     
-    if (!localStorage.getItem('currentUserW')) {
-      this.valido=false;
-      // logged in so return true
-      setTimeout(() => {
-        this.addMessage(this.operator, 'Hola, bienvenido a tu asistente virtual, indica a continuación un nickname para  dirigirnos a usted', 'received', 1)
-      }, 1500)
-    
-       
-  }
-  else
-  {
-    this.client=LocalStorage.getObject('currentUserW');
 
-    setTimeout(() => {
-      this.addMessage(this.operator, 'Hola, bienvenido de nuevo '+this.client.name, 'received', 1)
-    }, 1500)
-    //this.socketService.adduser(this.client.id);
-    this.valido=true; 
-    this.initIoConnection();
-    //this.socketService.adduser(this.client.id);
-    //this.sendNotification(Action.JOINED);
-  }
 
-   
+    if (!this.cookieService.check('__chatsil__')) {
+      console.log("NO Cooki")
+      this.valido = false;
+      this.socketService.getLogin2(this.client.name, this._token).subscribe(
+        data => {
+
+          if (!data.error) {
+            this.client.id = data.data.id;
+            this.client.name='widget-chat'
+            this.initIoConnection();
+
+            this.cookieService.set('__chatsil__', this.client.id.toString());
+
+
+
+            this.valido = true;
+          } else {
+            console.log(data.mensaje)
+          }
+
+        },
+        error => {
+          console.log(error.status)
+          //if ()
+
+
+        },
+        () => { }
+      );
+
+
+
+
+    }
+    else {
+      console.log("SI Cooki")
+      this.cookieValue = this.cookieService.get('__chatsil__');
+      this.client.id=Number(this.cookieValue);
+      this.client.name='widget-chat'
+      this.valido = true;
+      this.initIoConnection();
+      //this.socketService.adduser(this.client.id);
+      //this.sendNotification(Action.JOINED);
+    }
+
+
 
   }
 
@@ -135,68 +165,37 @@ export class ChatWidgetComponent implements OnInit {
 
   selectComando = (comando) => {
 
-   
-
-   this.socketService.send(this.client, comando,this._token);
 
 
-   this.addMessage(this.client, comando, 'sent', 1)
+    this.socketService.send(this.client, comando, this._token);
+
+
+    this.addMessage(this.client, comando, 'sent', 1)
   }
 
   public sendMessage({ message }) {
     //Vemos si es un email
-     
+
 
     if (message.trim() === '') {
       return
     }
     if (!this.valido) {
       //let evalido = message.trim().includes("@")
-      
-
-        this.client.name = message.trim();
-        this.addMessage(this.client, message, 'sent', 1)
 
 
-        this.socketService.getLogin2(this.client.name, this._token).subscribe(
-          data => {
-
-            if (!data.error)
-            {
-              this.client.id = data.data.id;
-              this.initIoConnection();
-             // this.socketService.adduser(this.client.id);
-             //
-              //this.sendNotification(Action.JOINED);
-              let texto = "Bienvenido " + this.client.name
-             
-           
-              LocalStorage.setObject('currentUserW', this.client);
-    
-  
-              this.addMessage(this.operator, texto, 'received', 1)
-              this.valido = true;
-            }else
-            {
-              console.log(data.mensaje)
-            }
-           
-          },
-          error => {
-            console.log(error.status)
-            //if ()
+      this.client.name = message.trim();
+      this.addMessage(this.client, message, 'sent', 1)
 
 
-          },
-          () => { }
-        );
 
-         
+
+
     }
     else {
 
- 
-      this.socketService.send(this.client, message,this._token);
+
+      this.socketService.send(this.client, message, this._token);
 
 
       this.addMessage(this.client, message, 'sent', 1)
@@ -220,13 +219,13 @@ export class ChatWidgetComponent implements OnInit {
 
 
   private initIoConnection(): void {
-    this.socketService.initSocket(); 
+    this.socketService.initSocket();
 
     this.ioConnection = this.socketService.onMessage()
       .subscribe((respuesta: any) => {
         // this.operator.name=respuesta.usuario.name;
         //this.operator.avatar=respuesta.usuario.avatar;
-     //  console.log("llega "+respuesta.message)
+        //  console.log("llega "+respuesta.message)
 
         if (respuesta.tipo == 1)
           this.addMessage(this.operator, respuesta.message, 'received', 1)
@@ -234,6 +233,8 @@ export class ChatWidgetComponent implements OnInit {
 
           let mime = respuesta.mime;
           this.addMessage(this.operator, respuesta.file, 'received', 2)
+
+
         }
 
       });
@@ -250,8 +251,8 @@ export class ChatWidgetComponent implements OnInit {
 
     this.socketService.onEvent(Event.CONNECT)
       .subscribe(() => {
-        this.socketService.adduser(LocalStorage.getObject('currentUserW'),this._token);
-        
+        this.socketService.adduser(this.client, this._token);
+
 
         console.log('connected');
       });
@@ -280,14 +281,14 @@ export class ChatWidgetComponent implements OnInit {
         nickname: this.client.name,
         message: 'rename',
       };
-      this.socketService.send(this.client.name, 'rename',this._token);
+      this.socketService.send(this.client.name, 'rename', this._token);
     }
 
 
   }
 
   ocultarTarjetas = () => {
- 
+
     this.menuStatet = this.menuStatet === 'out' ? 'in' : 'out';
   }
 
