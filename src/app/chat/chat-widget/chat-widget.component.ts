@@ -8,7 +8,7 @@ import { Action } from '../shared/model/action';
 import { Event } from '../shared/model/event';
 import { TOKEN } from '../shared/services/config';
 import { SlideInOutAnimation } from './animations';
-
+import {DomSanitizer, SafeUrl} from '@angular/platform-browser'
 import { CookieService } from 'ngx-cookie-service';
 
 const rand = max => Math.floor(Math.random() * max)
@@ -33,6 +33,7 @@ export class ChatWidgetComponent implements OnInit {
   menuStatet: string = 'out';
   cookieValue: string;
   constructor(private socketService: SocketService,
+    private sanitizer: DomSanitizer,
     private cookieService: CookieService, @Inject(TOKEN) public _token?: string) { }
 
 
@@ -62,20 +63,21 @@ export class ChatWidgetComponent implements OnInit {
   }
 
   public client = {
-    id: 0,
-    name: 'Guest User',
-    status: 'online',
+    id: '',
+    name: 'Invitado',
+    status: 'online', 
     avatar: `./assets/logo-client.png`,
   }
 
   public messages = []
 
-  public addMessage(from, text, type: 'received' | 'sent', tipo) {
+  public addMessage(from, text, type: 'received' | 'sent', tipo,file_mime) {
     this.messages.unshift({
       from,
       text,
       type,
       tipo,
+      file_mime,
       date: new Date().getTime(),
     })
     setTimeout(() => this.scrollToBottom(), 800)
@@ -107,7 +109,7 @@ export class ChatWidgetComponent implements OnInit {
 
 
     if (!this.cookieService.check('__chatsil__')) {
-      console.log("NO Cooki")
+     // console.log("NO Cooki")
       this.valido = false;
       this.socketService.getLogin2(this.client.name, this._token).subscribe(
         data => {
@@ -141,11 +143,12 @@ export class ChatWidgetComponent implements OnInit {
 
     }
     else {
-      console.log("SI Cooki")
+      
       this.cookieValue = this.cookieService.get('__chatsil__');
-      this.client.id=Number(this.cookieValue);
+      this.client.id=this.cookieValue;
       this.client.name='widget-chat'
       this.valido = true;
+    
       this.initIoConnection();
       //this.socketService.adduser(this.client.id);
       //this.sendNotification(Action.JOINED);
@@ -170,7 +173,7 @@ export class ChatWidgetComponent implements OnInit {
     this.socketService.send(this.client, comando, this._token);
 
 
-    this.addMessage(this.client, comando, 'sent', 1)
+    this.addMessage(this.client, comando, 'sent', 1,'')
   }
 
   public sendMessage({ message }) {
@@ -185,7 +188,7 @@ export class ChatWidgetComponent implements OnInit {
 
 
       this.client.name = message.trim();
-      this.addMessage(this.client, message, 'sent', 1)
+      this.addMessage(this.client, message, 'sent', 1,'')
 
 
 
@@ -198,7 +201,7 @@ export class ChatWidgetComponent implements OnInit {
       this.socketService.send(this.client, message, this._token);
 
 
-      this.addMessage(this.client, message, 'sent', 1)
+      this.addMessage(this.client, message, 'sent', 1,'')
 
     }
 
@@ -225,14 +228,13 @@ export class ChatWidgetComponent implements OnInit {
       .subscribe((respuesta: any) => {
         // this.operator.name=respuesta.usuario.name;
         //this.operator.avatar=respuesta.usuario.avatar;
-        //  console.log("llega "+respuesta.message)
-
+           
         if (respuesta.tipo == 1)
-          this.addMessage(this.operator, respuesta.message, 'received', 1)
+          this.addMessage(this.operator, respuesta.message, 'received', 1,'')
         else if (respuesta.tipo == 2) {
 
           let mime = respuesta.mime;
-          this.addMessage(this.operator, respuesta.file, 'received', 2)
+          this.addMessage(this.operator, respuesta.file, 'received', 2,mime)
 
 
         }
@@ -244,7 +246,7 @@ export class ChatWidgetComponent implements OnInit {
         console.log("error")
 
 
-        this.addMessage(this.operator, respuesta.message, 'received', 1)
+        this.addMessage(this.operator, respuesta.message, 'received', 1,'')
 
 
       });
@@ -252,16 +254,16 @@ export class ChatWidgetComponent implements OnInit {
     this.socketService.onEvent(Event.CONNECT)
       .subscribe(() => {
         this.socketService.adduser(this.client, this._token);
+        console.log("conectado")
 
-
-        console.log('connected');
+ 
       });
 
     this.socketService.onEvent(Event.DISCONNECT)
       .subscribe(() => {
         console.log('disconnected');
         setTimeout(() => {
-          this.addMessage(this.operator, 'Desconectado', 'received', 1)
+          this.addMessage(this.operator, 'Desconectado', 'received', 1,'')
         }, 1500)
 
       });
@@ -286,7 +288,14 @@ export class ChatWidgetComponent implements OnInit {
 
 
   }
-
+  goToLink(url: string) {
+    // url = GlobalService.SERVER_ENDPOINT + url;
+     window.open(url);
+   }
+   paserPdf(ruta: string) {
+     
+    return this.sanitizer.bypassSecurityTrustResourceUrl(ruta);
+  }
   ocultarTarjetas = () => {
 
     this.menuStatet = this.menuStatet === 'out' ? 'in' : 'out';

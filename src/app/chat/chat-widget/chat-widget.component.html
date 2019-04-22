@@ -24,10 +24,49 @@
                
             </div>
 
-            <div class="chat-message-img" *ngIf="message.tipo==2" >
-                <img src="{{message.text}}"  class="mimg" />
-          
+           
+
+
+
+           <div   *ngIf="message.tipo==2" [ngSwitch]="true">
+             
+                <div class="chat-message-img"   *ngSwitchCase="message.file_mime ==='image/gif' || message.file_mime ==='image/webp'  || message.file_mime ==='image/png' || message.file_mime === 'image/jpg' || message.file_mime ==='image/jpeg'">
+                  <figure class="effect-lily">
+                    <img src="{{message.text}}"   class="mimg"/>
+                  </figure>
+                </div>
+
+                
+
+                <div   *ngSwitchCase="message.file_mime  ==='video/mp4'    " >
+                  <video controls style=" max-width: 100%; max-height: 400px;">
+                      <source [src]="message.text" type="{{message.file_mime}}">
+                  </video>   
+               </div>
+            
+               <div   *ngSwitchCase=" message.file_mime === 'audio/ogg; codecs=opus'  ||  message.file_mime ==='audio/mp3' ||  message.file_mime ==='audio/ogg' || message.file_mime === 'audio/mp4'" >
+                 <audio controls style="max-width: 100%;  max-height: 400px;">
+                     <source [src]="message.text" type="{{message.file_mime}}">
+                 </audio>
+                </div>
+
+                <div     *ngSwitchDefault >
+                  <button type="button" class="btn btn-float btn-float-lg btn-outline-pink" (click)="goToLink(message.text)">
+                    <i class="fa fa-cloud-download"></i><span>Descargar Fichero<br/> </span>
+                  </button>
+                </div> 
+  
             </div>
+
+ 
+
+
+
+
+
+
+
+            
 
           </div>
           <div class="chat-message-date">

@@ -7,13 +7,13 @@ import { ChatPreguntasComponent } from './chat-preguntas/chat-preguntas.componen
 import { ChatConfigComponent } from './chat-config/chat-config.component'
 import { SocketService } from './shared/services/socket.service';
 import { AngularDraggableModule } from 'angular2-draggable';
-
+import { CookieService } from 'ngx-cookie-service';
 @NgModule({
   imports: [CommonModule,AngularDraggableModule],
   declarations: [ChatAvatarComponent, ChatWidgetComponent, ChatInputComponent, ChatConfigComponent,ChatPreguntasComponent],
-  providers: [SocketService],
+  providers: [SocketService,CookieService],
   exports: [ChatWidgetComponent, ChatConfigComponent],
   entryComponents: [ChatWidgetComponent, ChatConfigComponent],
 }) 
 export class ChatModule {}
- 
+  

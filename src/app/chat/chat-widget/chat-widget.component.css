@@ -34,6 +34,7 @@
   width: calc(300px - (10px * 2) - 35px - 35px);
   text-overflow: ellipsis;
   overflow: hidden;
+  vertical-align: top;
   display: inline-block;
   
 }
@@ -363,14 +364,14 @@
 }
 
 .chat-message-img {
-  margin-left: 15px;
+  margin-left: 5px;
   padding: 10px;
   
   border-radius: 3px;
 }
 .mimg{
   max-height: 190px;
-  max-width: 175fpx;
+  max-width: 175px;
 }
 
 /**
