@@ -6,7 +6,7 @@ import { ElementModule } from './element.module'
 import { AppComponent } from './app.component'
 import { ConfigFactory, ConfigService, TOKEN } from './chat/shared/services/config';
 import { HttpModule } from '@angular/http';
- 
+
 import { CookieService } from 'ngx-cookie-service';
 
 @NgModule({

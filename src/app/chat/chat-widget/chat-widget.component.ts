@@ -2,7 +2,7 @@ import { Component, ElementRef, HostListener, Input, OnInit, ViewChild } from '@
 import { Subject } from 'rxjs'
 import { fadeIn, fadeInOut } from '../animations'
 import { Inject } from '@angular/core';
-import { LocalStorage } from "../shared/services/data.service";
+import { GlobalService } from '../shared/globals';
 import { SocketService } from '../shared/services/socket.service';
 import { Action } from '../shared/model/action';
 import { Event } from '../shared/model/event';
@@ -10,7 +10,7 @@ import { TOKEN } from '../shared/services/config';
 import { SlideInOutAnimation } from './animations';
 import {DomSanitizer, SafeUrl} from '@angular/platform-browser'
 import { CookieService } from 'ngx-cookie-service';
-
+import swal from'sweetalert2';
 const rand = max => Math.floor(Math.random() * max)
 
 @Component({
@@ -32,6 +32,9 @@ export class ChatWidgetComponent implements OnInit {
   ioConnection: any;
   menuStatet: string = 'out';
   cookieValue: string;
+  avatar_cab:string=GlobalService.AVATAR_CAB;
+  texto_cab:string=GlobalService.TEXTO_CAB;
+  isMobileResolution: boolean;
   constructor(private socketService: SocketService,
     private sanitizer: DomSanitizer,
     private cookieService: CookieService, @Inject(TOKEN) public _token?: string) { }
@@ -59,7 +62,7 @@ export class ChatWidgetComponent implements OnInit {
   public operator = {
     name: 'Operador',
     status: 'online',
-    avatar: `./assets/logochat_red.svg`,
+    avatar: GlobalService.AVATAR_CHAT,
   }
 
   public client = {
@@ -83,6 +86,95 @@ export class ChatWidgetComponent implements OnInit {
     setTimeout(() => this.scrollToBottom(), 800)
   }
 
+  ngOnInit() {
+    if (window.innerWidth < 768) {
+      this.isMobileResolution = true;
+    } else {
+      this.isMobileResolution = false;
+    }
+    //this._token='Apfee6R+yalDdomE3Oo/ejzxzmMhSr8HMFn8qqeWkA8=';
+    setTimeout(() => this.visible = false, 1000)
+    if (!this.isMobileResolution )
+  this.comprobarDatos();
+
+
+
+  }
+  private comprobarDatos()
+  {
+    if (!this.cookieService.check(GlobalService.NM_COOKIE)) {
+
+
+      // console.log("NO Cooki")
+       this.valido = false;
+       setTimeout(() => {
+        this.addMessage(this.operator, 'Hola, bienvenido a tu asistente virtual, indica a continuación un nickname para  dirigirnos a usted', 'received', 1,'')
+      }, 1500)
+ 
+ 
+ 
+     }
+     else {
+       
+       this.cookieValue = this.cookieService.get(GlobalService.NM_COOKIE);
+       this.client.id=this.cookieValue;
+       this.misDatos()
+       //this.socketService.adduser(this.client.id);
+       //this.sendNotification(Action.JOINED);
+     }
+  }
+private login()
+{
+  this.socketService.getLogin2(this.client.name, this._token).subscribe(
+    data => {
+
+      if (!data.error) {
+        this.client.id = data.data.id;
+      
+
+        this.cookieService.set(GlobalService.NM_COOKIE, this.client.id.toString());
+        this.initIoConnection();
+         let texto = "Bienvenido " + this.client.name
+         this.addMessage(this.operator, texto, 'received', 1,'')
+        this.valido = true;
+      } else {
+        console.log(data.mensaje)
+      }
+
+    },
+    error => {
+      console.log(error.status)
+    },
+    () => { }
+  );
+}
+private misDatos()
+{
+  this.socketService.getMisDatos(this.client.id, this._token).subscribe(
+    data => {
+
+      if (!data.error) {
+      console.log(data)
+        this.client.name=data.data.username;
+        this.valido = true;
+      
+        setTimeout(() => {
+          this.addMessage(this.operator, 'Hola, bienvenido de nuevo '+this.client.name, 'received', 1,'')
+        }, 1500)
+        this.initIoConnection();
+
+     
+      } else {
+        console.log(data.mensaje)
+      }
+
+    },
+    error => {
+      console.log(error.status)
+    },
+    () => { }
+  );
+}
   public scrollToBottom() {
     /* if (this.bottom !== undefined) {
        this.bottom.nativeElement.scrollIntoView()
@@ -100,63 +192,23 @@ export class ChatWidgetComponent implements OnInit {
   }
 
 
-
-  ngOnInit() {
-    //this._token='Apfee6R+yalDdomE3Oo/ejzxzmMhSr8HMFn8qqeWkA8=';
-    setTimeout(() => this.visible = false, 1000)
-  
-
-
-
-    if (!this.cookieService.check('__chatsil__')) {
-     // console.log("NO Cooki")
-      this.valido = false;
-      this.socketService.getLogin2(this.client.name, this._token).subscribe(
-        data => {
-
-          if (!data.error) {
-            this.client.id = data.data.id;
-            this.client.name='widget-chat'
-            this.initIoConnection();
-
-            this.cookieService.set('__chatsil__', this.client.id.toString());
-
-
-
-            this.valido = true;
-          } else {
-            console.log(data.mensaje)
-          }
-
-        },
-        error => {
-          console.log(error.status)
-          //if ()
-
-
-        },
-        () => { }
-      );
-
-
-
-
-    }
-    else {
-      
-      this.cookieValue = this.cookieService.get('__chatsil__');
-      this.client.id=this.cookieValue;
-      this.client.name='widget-chat'
-      this.valido = true;
+public openMobil()
+{
+  swal.fire({
+    title: '',
+    type: 'info', 
+    html:
+      '<p>Para contactar con nosotros via movil, disponemos de los siguientes canales,</p> ' +
+      '<span><a href="https://api.whatsapp.com/send?phone=+50765273252" >   <img src="assets/wa.png"  >    </a> </span>'+
+      '<span><a href="https://m.me/1477223642413982" >   <img src="assets/me.png"  >    </a> </span>',
     
-      this.initIoConnection();
-      //this.socketService.adduser(this.client.id);
-      //this.sendNotification(Action.JOINED);
-    }
+    showCloseButton: false,
+    showCancelButton: false,
+    showConfirmButton: false,
+    
+  })
 
-
-
-  }
+}
 
   public openChat() {
     this.visible = true;
@@ -190,7 +242,7 @@ export class ChatWidgetComponent implements OnInit {
       this.client.name = message.trim();
       this.addMessage(this.client, message, 'sent', 1,'')
 
-
+      this.login();
 
 
 
@@ -244,6 +296,7 @@ export class ChatWidgetComponent implements OnInit {
     this.ioConnection = this.socketService.onError()
       .subscribe((respuesta: any) => {
         console.log("error")
+        console.log(respuesta)
 
 
         this.addMessage(this.operator, respuesta.message, 'received', 1,'')

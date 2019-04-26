@@ -1,11 +1,13 @@
 <div class="wrapper-silice {{theme}} " >
-  <div class="chat-box aivochat-container" *ngIf="visible" [@fadeInOut]="visible" ngDraggable>
+  
+  <div class="chat-box aivochat-container" *ngIf="visible && !isMobileResolution" [@fadeInOut]="visible" ngDraggable>
+    
     <div class="aivochat-header custom-background ">
       <div class="aivochat-header-title brand-text">
         <span class="aivochat-title-brand">
-          <img src="assets/logopau.png" class="img-silice">
+          <img src="{{avatar_cab}}" class="img-silice">
         </span>
-        <span class="aivochat-title-text">Asistente Virtual</span>
+        <span class="aivochat-title-text"> {{texto_cab}}</span>
         <a class="aivochat-header-close" (click)="closeChat()"><i class="material-icons">close</i></a>
         
       </div>
@@ -97,7 +99,9 @@
     </div>
   </div>
    
-  <div class="avibubble agent-launcher"  (click)="openChat()" *ngIf="!visible" [@fadeInOut]="!visible"></div>
+  <div class="avibubble agent-launcher"  (click)="openChat()" *ngIf="!visible && !isMobileResolution" [@fadeInOut]="!visible"></div>
+  <div class="avibubble agent-launcher"  (click)="openMobil()" *ngIf="!visible && isMobileResolution" [@fadeInOut]="!visible"></div>
+
  
 </div>
  

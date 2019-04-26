@@ -26,6 +26,7 @@
     "@angular/platform-browser": "^6.0.3",
     "@angular/platform-browser-dynamic": "^6.0.3",
     "@angular/router": "^6.0.3",
+    "@sweetalert2/ngx-sweetalert2": "^5.0.1",
     "@webcomponents/custom-elements": "^1.1.0",
     "angular2-draggable": "^2.2.2",
     "concat": "^1.0.3",
@@ -36,6 +37,7 @@
     "rxjs": "^6.2.1",
     "rxjs-compat": "^6.2.1",
     "socket.io": "^2.0.3",
+    "sweetalert2": "^8.8.7",
     "zone.js": "^0.8.26"
   },
   "devDependencies": {
