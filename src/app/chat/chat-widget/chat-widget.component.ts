@@ -26,7 +26,9 @@ export class ChatWidgetComponent implements OnInit {
   @Input() public theme: 'blueno' | 'greyno' | 'redno' = 'blueno'
 
   valido: boolean = false;
+   
   action = Action;
+ 
 
   messageContent: string;
   ioConnection: any;
@@ -69,7 +71,7 @@ export class ChatWidgetComponent implements OnInit {
     id: '',
     name: 'Invitado',
     status: 'online', 
-    avatar: `./assets/logo-client.png`,
+    avatar: '',
   }
 
   public messages = []
@@ -108,7 +110,7 @@ export class ChatWidgetComponent implements OnInit {
       // console.log("NO Cooki")
        this.valido = false;
        setTimeout(() => {
-        this.addMessage(this.operator, 'Hola, bienvenido a tu asistente virtual, indica a continuación un nickname para  dirigirnos a usted', 'received', 1,'')
+        this.addMessage(this.operator, GlobalService.TXT_INICIAL, 'received', 1,'')
       }, 1500)
  
  
@@ -154,7 +156,7 @@ private misDatos()
     data => {
 
       if (!data.error) {
-      console.log(data)
+    
         this.client.name=data.data.username;
         this.valido = true;
       
@@ -191,7 +193,7 @@ private misDatos()
     this.focus.next(true)
   }
 
-
+//  '<span><a href="https://t.me/adiper_bot" >   <img src="assets/te.png"  >    </a> </span>',
 public openMobil()
 {
   swal.fire({
@@ -199,8 +201,9 @@ public openMobil()
     type: 'info', 
     html:
       '<p>Para contactar con nosotros via movil, disponemos de los siguientes canales,</p> ' +
-      '<span><a href="https://api.whatsapp.com/send?phone=+50765273252" >   <img src="assets/wa.png"  >    </a> </span>'+
-      '<span><a href="https://m.me/1477223642413982" >   <img src="assets/me.png"  >    </a> </span>',
+      '<span><a href="https://api.whatsapp.com/send?phone=+34618554483" >   <img src="assets/wa.png"  >    </a> </span>'+
+      '<span><a href="https://t.me/adiper_bot" >   <img src="assets/te.png"  >    </a> </span>',
+    
     
     showCloseButton: false,
     showCancelButton: false,
@@ -209,15 +212,31 @@ public openMobil()
   })
 
 }
+ 
 
   public openChat() {
+   
     this.visible = true;
   }
 
   public closeChat() {
     this.visible = false;
+     
+  }
+  public closeButom() {
+    console.log("llega")
+     $('.chatbubble').removeClass('open');
+     $('.bot_btcerrar').removeClass('open');
+        
   }
 
+  public openButom() {
+    console.log("openButom")
+     $('.chatbubble').toggleClass('open');
+     $('.bot_btcerrar').toggleClass('open');
+       
+  }
+  
   selectComando = (comando) => {
 
 
@@ -307,8 +326,7 @@ public openMobil()
     this.socketService.onEvent(Event.CONNECT)
       .subscribe(() => {
         this.socketService.adduser(this.client, this._token);
-        console.log("conectado")
-
+      
  
       });
 

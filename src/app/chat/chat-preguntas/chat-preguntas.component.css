@@ -18,12 +18,12 @@
    
     
     }
-    .aivochat-input-faqs-list ul {
+    .silicechat-input-faqs-list ul {
         list-style: none;
         padding: 0;
         margin: 0;
     }
-      .aivochat-input-faqs-list ul li a {
+      .silicechat-input-faqs-list ul li a {
         display: block;
         width: calc(100% - 20px);
         padding: 7px 10px;

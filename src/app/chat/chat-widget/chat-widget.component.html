@@ -1,107 +1,112 @@
-<div class="wrapper-silice {{theme}} " >
-  
-  <div class="chat-box aivochat-container" *ngIf="visible && !isMobileResolution" [@fadeInOut]="visible" ngDraggable>
-    
-    <div class="aivochat-header custom-background ">
-      <div class="aivochat-header-title brand-text">
-        <span class="aivochat-title-brand">
+<div class="wrapper-silice {{theme}} ">
+    <a class="" (click)="openButom()">abrir</a>
+
+    <div class="chat-box silicechat-container" *ngIf="visible && !isMobileResolution" [@fadeInOut]="visible" ngDraggable>
+
+        <div class="silicechat-header custom-background ">
+            <div class="silicechat-header-title brand-text">
+                <span class="silicechat-title-brand">
           <img src="{{avatar_cab}}" class="img-silice">
         </span>
-        <span class="aivochat-title-text"> {{texto_cab}}</span>
-        <a class="aivochat-header-close" (click)="closeChat()"><i class="material-icons">close</i></a>
-        
-      </div>
-    </div>
-    
-    <div class="chat-box-main">
-      <div class="chat-message-bottom" #scrollMe style="overflow: scroll; height: xyz;"></div>
-      <ng-container *ngFor="let message of messages">
-        <div class="chat-message" [class.chat-message-received]="message.type === 'received'"
-             [@fadeIn]
-             [class.chat-message-sent]="message.type === 'sent'">
-          <div >
-            <chat-avatar [image]="message.from.avatar" class="chat-message-from-avatar"  *ngIf="message.type === 'received'"></chat-avatar>
-            <div class="chat-message-text" *ngIf="message.tipo==1"    >
-              <div style="white-space: pre-line"> {{message.text}} </div>
-               
+                <span class="silicechat-title-text"> {{texto_cab}}</span>
+                <a class="silicechat-header-close" (click)="closeChat()"><i class="material-icons">close</i></a>
+
             </div>
+        </div>
 
-           
+        <div class="chat-box-main">
+            <div class="chat-message-bottom" #scrollMe style="overflow: scroll; height: xyz;"></div>
+            <ng-container *ngFor="let message of messages">
+                <div class="chat-message" [class.chat-message-received]="message.type === 'received'" [@fadeIn] [class.chat-message-sent]="message.type === 'sent'">
+                    <div>
+                        <chat-avatar [image]="message.from.avatar" class="chat-message-from-avatar" *ngIf="message.type === 'received'"></chat-avatar>
+                        <div class="chat-message-text" *ngIf="message.tipo==1">
+                            <div style="white-space: pre-line"> {{message.text}} </div>
+
+                        </div>
 
 
 
-           <div   *ngIf="message.tipo==2" [ngSwitch]="true">
-             
-                <div class="chat-message-img"   *ngSwitchCase="message.file_mime ==='image/gif' || message.file_mime ==='image/webp'  || message.file_mime ==='image/png' || message.file_mime === 'image/jpg' || message.file_mime ==='image/jpeg'">
-                  <figure class="effect-lily">
-                    <img src="{{message.text}}"   class="mimg"/>
-                  </figure>
-                </div>
 
-                
 
-                <div   *ngSwitchCase="message.file_mime  ==='video/mp4'    " >
-                  <video controls style=" max-width: 100%; max-height: 400px;">
+                        <div *ngIf="message.tipo==2" [ngSwitch]="true">
+
+                            <div class="chat-message-img" *ngSwitchCase="message.file_mime ==='image/gif' || message.file_mime ==='image/webp'  || message.file_mime ==='image/png' || message.file_mime === 'image/jpg' || message.file_mime ==='image/jpeg'">
+                                <figure class="effect-lily">
+                                    <img src="{{message.text}}" class="mimg" />
+                                </figure>
+                            </div>
+
+
+
+                            <div *ngSwitchCase="message.file_mime  ==='video/mp4'    ">
+                                <video controls style=" max-width: 100%; max-height: 400px;">
                       <source [src]="message.text" type="{{message.file_mime}}">
-                  </video>   
-               </div>
-            
-               <div   *ngSwitchCase=" message.file_mime === 'audio/ogg; codecs=opus'  ||  message.file_mime ==='audio/mp3' ||  message.file_mime ==='audio/ogg' || message.file_mime === 'audio/mp4'" >
-                 <audio controls style="max-width: 100%;  max-height: 400px;">
+                  </video>
+                            </div>
+
+                            <div *ngSwitchCase=" message.file_mime === 'audio/ogg; codecs=opus'  ||  message.file_mime ==='audio/mp3' ||  message.file_mime ==='audio/ogg' || message.file_mime === 'audio/mp4'">
+                                <audio controls style="max-width: 100%;  max-height: 400px;">
                      <source [src]="message.text" type="{{message.file_mime}}">
                  </audio>
-                </div>
+                            </div>
 
-                <div     *ngSwitchDefault >
-                  <button type="button" class="btn btn-float btn-float-lg btn-outline-pink" (click)="goToLink(message.text)">
+                            <div *ngSwitchDefault>
+                                <button type="button" class="btn btn-float btn-float-lg btn-outline-pink" (click)="goToLink(message.text)">
                     <i class="fa fa-cloud-download"></i><span>Descargar Fichero<br/> </span>
                   </button>
-                </div> 
-  
-            </div>
+                            </div>
 
- 
+                        </div>
 
 
 
 
 
 
-
-            
-
-          </div>
-          <div class="chat-message-date">
-            {{message.date | date: 'short'}}
-          </div>
+                    </div>
+                    <div class="chat-message-date">
+                        {{message.date | date: 'short'}}
+                    </div>
+                </div>
+            </ng-container>
         </div>
-      </ng-container>
-    </div>
-   
-    <div class="aivochat-controls custom-border">
-      <div class="aivochat-hasnt-message aivochat-send-enabled">
-             
-            <span class="aivochat-input-button-container">
-              <div class="aivochat-input-button aivochat-input-faqs-button" (click)="ocultarTarjetas()"   *ngIf="valido" >
+
+        <div class="silicechat-controls custom-border">
+            <div class="silicechat-hasnt-message silicechat-send-enabled">
+
+                <span class="silicechat-input-button-container">
+              <div class="silicechat-input-button silicechat-input-faqs-button" (click)="ocultarTarjetas()"   *ngIf="valido" >
                 <i class="material-icons custom-color"  >menu</i>
                 <app-chat-preguntas [@slideInOut]="menuStatet"    [regresarComando]="selectComando" > </app-chat-preguntas>
               </div>
             </span>
-         
-          
-                
-                  <chat-input (send)="sendMessage($event)" (dismiss)="closeChat()" [focus]="focus"></chat-input>
-               
-               
-                 
-      </div>
-     
-    </div>
-  </div>
-   
-  <div class="avibubble agent-launcher"  (click)="openChat()" *ngIf="!visible && !isMobileResolution" [@fadeInOut]="!visible"></div>
-  <div class="avibubble agent-launcher"  (click)="openMobil()" *ngIf="!visible && isMobileResolution" [@fadeInOut]="!visible"></div>
 
- 
+
+
+                <chat-input (send)="sendMessage($event)" (dismiss)="closeChat()" [focus]="focus"></chat-input>
+
+
+
+            </div>
+
+        </div>
+    </div>
+
+    <div class="chatbubble open" #btnbubble (click)=" openChat()" *ngIf="!visible && !isMobileResolution" [@fadeInOut]="!visible">
+
+    </div>
+    <div class="chatbubble" (click)=" openMobil() " *ngIf="!visible && isMobileResolution " [@fadeInOut]="!visible "></div>
+    <div class="bot_btcerrar open" *ngIf="!visible && !isMobileResolution " [@fadeInOut]="!visible ">
+
+        <a class="silicechat-header-close " (click)="closeButom() "><i class="material-icons ">cancel</i></a>
+
+    </div>
+
+    <!--<div class="bot_text agent-launcher " *ngIf="!visible && !isMobileResolution " [@fadeInOut]="!visible ">
+        <img alt="Avi " src="assets/question.svg ">
+        <p>¿En qué podemos ayudarte? Pincha aquí y te atenderemos en seguida</p>
+    </div>-->
+
+
 </div>
- 

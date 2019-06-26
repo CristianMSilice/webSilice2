@@ -1,32 +1,32 @@
 <!doctype html>
 <html lang="en">
+
 <head>
-  <meta charset="utf-8">
-  <title>Chat Widget with Angular Elements</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
-  <style>
-   @import url(https://fonts.googleapis.com/css?family=Open+Sans);
-   @import url(https://fonts.googleapis.com/icon?family=Material+Icons);
-  
- 
-html, body {
-  margin: 0;
-  width: 100vw;
-  height: 100vh;
-  overflow: hidden;
-  --main-color:#cc0000;;
-}
-  </style>
+    <meta charset="utf-8">
+    <title>Chat Widget with Angular Elements</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <style>
+        @import url(https://fonts.googleapis.com/css?family=Open+Sans);
+        @import url(https://fonts.googleapis.com/icon?family=Material+Icons);
+        html,
+        body {
+            margin: 0;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            --main-color: #F00;
+        }
+    </style>
 </head>
-<body> 
- 
-<chat-widget id="widget"></chat-widget>
-<script src="./chat-widget.js"></script>
-<script>
-  
-  const widget = document.getElementById('widget')
-  
-</script>
+
+<body>
+
+    <chat-widget id="widget"></chat-widget>
+    <script src="./chat-widget.js"></script>
+    <script>
+        const widget = document.getElementById('widget')
+    </script>
 </body>
+
 </html>

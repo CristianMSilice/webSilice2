@@ -1,6 +1,6 @@
 .chat-input-text {
   margin: 14px 0 0 14px;
-  height: 25px;
+  height: 40px;
   width: 88%;
   border: 0;
   resize: none;
@@ -13,7 +13,7 @@
   background-color: inherit;
   color: inherit;
 }
-.custom-color,  .custom-color *,  .custom-color a,   .custom-color a *, .aivochat-message:not(.aivochat-message-client) .aivochat-content a,   .aivochat-message:not(.aivochat-message-client) .aivochat-content a *,  .custom-color-hover:hover {
+.custom-color,  .custom-color *,  .custom-color a,   .custom-color a *, .silicechat-message:not(.silicechat-message-client) .silicechat-content a,   .silicechat-message:not(.silicechat-message-client) .silicechat-content a *,  .custom-color-hover:hover {
   color: var(--main-color) !important;
 }
 .custom-border {
@@ -34,7 +34,7 @@
   -webkit-font-feature-settings: 'liga';
   -webkit-font-smoothing: antialiased;
 }
-  .aivochat-input textarea {
+  .silicechat-input textarea {
   
   min-height: calc(35px - (7px * 2));
   line-height: calc(35px - (7px * 2));
@@ -49,19 +49,19 @@
   box-shadow: none;
 }
  
-  .aivochat-input {
+  .silicechat-input {
   left: 60px;
   width: calc(100% - 10px - 1px - 10px);
 }
  .material-icons {
   text-rendering: optimizeLegibility;
 }
-  .aivochat-send-enabled .aivochat-send {
+  .silicechat-send-enabled .silicechat-send {
   visibility: visible;
   transform: scale(1);
 }
 
- .aivochat-send,  .aivochat-controls .aivochat-send-audio {
+ .silicechat-send,  .silicechat-controls .silicechat-send-audio {
   visibility: hidden;
   transform: scale(0);
   transition: all 0.3s ease-in-out;

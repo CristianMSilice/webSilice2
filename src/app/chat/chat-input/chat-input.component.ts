@@ -3,10 +3,10 @@ import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild, 
 @Component({
   selector: 'chat-input',
   template: `
-  <div class="aivochat-input">
+  <div class="silicechat-input">
     <textarea type="text" class="chat-input-text" placeholder="Indica tu mensaje..."
               #message (keydown.enter)="onSubmit()" (keyup.enter)="message.value = ''" (keyup.escape)="dismiss.emit()"></textarea>
-              <button class="aivochat-send custom-color"   (click)="onSubmit()">
+              <button class="silicechat-send custom-color"   (click)="onSubmit()">
               <i class="material-icons">send</i> 
               </button>           
    </div>
