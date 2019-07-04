@@ -9,6 +9,10 @@ import {  Output,  Input } from '@angular/core';
 export class ChatPreguntasComponent implements OnInit {
   @Input()
   regresarComando:Function;
+  @Input()
+  deleteHandler: Function;
+
+
   constructor( 
   ) { } 
   ngOnInit(){
@@ -17,12 +21,12 @@ export class ChatPreguntasComponent implements OnInit {
 }
 selectComando(comando) 
 {
-  
+  console.log("entra")
   this.regresarComando(comando);
 }
-goBack() {
-   
-}
- 
+
+  goBack() {
+    this.deleteHandler();
+  }
  
 }

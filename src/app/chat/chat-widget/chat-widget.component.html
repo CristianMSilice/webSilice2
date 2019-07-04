@@ -1,7 +1,6 @@
-<div class="wrapper-silice {{theme}} ">
-    <a class="" (click)="openButom()">abrir</a>
+<div class="wrapper-silice {{theme}} " ngDraggable>
 
-    <div class="chat-box silicechat-container" *ngIf="visible && !isMobileResolution" [@fadeInOut]="visible" ngDraggable>
+    <div class="chat-box silicechat-container" *ngIf="visible && !isMobileResolution" [@fadeInOut]="visible">
 
         <div class="silicechat-header custom-background ">
             <div class="silicechat-header-title brand-text">
@@ -76,10 +75,11 @@
             <div class="silicechat-hasnt-message silicechat-send-enabled">
 
                 <span class="silicechat-input-button-container">
-              <div class="silicechat-input-button silicechat-input-faqs-button" (click)="ocultarTarjetas()"   *ngIf="valido" >
-                <i class="material-icons custom-color"  >menu</i>
-                <app-chat-preguntas [@slideInOut]="menuStatet"    [regresarComando]="selectComando" > </app-chat-preguntas>
+              <div class="silicechat-input-button silicechat-input-faqs-button"   >
+                
+                <a   (click)="ocultarTarjetas()"><i class="material-icons custom-color"    *ngIf="valido" >menu</i></a>
               </div>
+              <app-chat-preguntas [@slideInOut]="menuStatet"    [deleteHandler]="ocultarTarjetas" [regresarComando]="selectComando" > </app-chat-preguntas>
             </span>
 
 
@@ -97,7 +97,7 @@
 
     </div>
     <div class="chatbubble" (click)=" openMobil() " *ngIf="!visible && isMobileResolution " [@fadeInOut]="!visible "></div>
-    <div class="bot_btcerrar open" *ngIf="!visible && !isMobileResolution " [@fadeInOut]="!visible ">
+    <div class="bot_btclose open" *ngIf="!visible && !isMobileResolution " [@fadeInOut]="!visible ">
 
         <a class="silicechat-header-close " (click)="closeButom() "><i class="material-icons ">cancel</i></a>
 

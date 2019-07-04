@@ -9,6 +9,7 @@ body {
     height: 100vh;
     overflow: hidden;
     --main-color: #cc0000;
+    --btclose-visibility: visible;
 }
 
 body {

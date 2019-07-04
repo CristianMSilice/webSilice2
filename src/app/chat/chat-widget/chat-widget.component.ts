@@ -224,16 +224,16 @@ public openMobil()
      
   }
   public closeButom() {
-    console.log("llega")
+   
      $('.chatbubble').removeClass('open');
-     $('.bot_btcerrar').removeClass('open');
+     $('.bot_btclose').removeClass('open');
         
   }
 
   public openButom() {
-    console.log("openButom")
+   
      $('.chatbubble').toggleClass('open');
-     $('.bot_btcerrar').toggleClass('open');
+     $('.bot_btclose').toggleClass('open');
        
   }
   
@@ -245,6 +245,7 @@ public openMobil()
 
 
     this.addMessage(this.client, comando, 'sent', 1,'')
+    this.ocultarTarjetas();
   }
 
   public sendMessage({ message }) {
@@ -368,7 +369,7 @@ public openMobil()
     return this.sanitizer.bypassSecurityTrustResourceUrl(ruta);
   }
   ocultarTarjetas = () => {
-
+ 
     this.menuStatet = this.menuStatet === 'out' ? 'in' : 'out';
   }
 
