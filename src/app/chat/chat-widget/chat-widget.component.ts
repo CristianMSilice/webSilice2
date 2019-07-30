@@ -201,8 +201,8 @@ public openMobil()
     type: 'info', 
     html:
       '<p>Para contactar con nosotros via movil, disponemos de los siguientes canales,</p> ' +
-      '<span><a href="https://api.whatsapp.com/send?phone=+34618554483" >   <img src="assets/wa.png"  >    </a> </span>'+
-      '<span><a href="https://t.me/adiper_bot" >   <img src="assets/te.png"  >    </a> </span>',
+      '<span><a href="https://api.whatsapp.com/send?phone=+34618554483" >   <img src="assets/wa.png"  >    </a> </span>' ,//+
+//'<span><a href="https://t.me/adiper_bot" >   <img src="assets/te.png"  >    </a> </span>',
     
     
     showCloseButton: false,

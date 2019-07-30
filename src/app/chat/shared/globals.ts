@@ -17,4 +17,4 @@ export class GlobalService {
     public static API_ENDPOINT='https://node1.smallshi.com/api-widget/';
     public static  SOCKET_ENDPOINT = 'https://node1.smallshi.com:1442/';
     
-} 
+}  
