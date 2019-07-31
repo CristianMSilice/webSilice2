@@ -12,6 +12,7 @@ export class GlobalService {
 
     //public static AVATAR_CAB='assets/logopau.png';
     public static AVATAR_CHAT= '/assets/logochat_red.svg';
+    public static ICON_CANCEL= '/assets/cancelsil.png';
     //public static TXT_INICIAL='Hola, soy Eva de Adiper.  ¿Cómo puedo ayudarle?  Le agradecería que me facilite un nickname para dirigirme más fácilmente a usted.';
     public static TXT_INICIAL='Hola, bienvenido a tu asistente virtual, indica a continuación un nickname para  dirigirnos a usted.';
     public static API_ENDPOINT='https://node1.smallshi.com/api-widget/';

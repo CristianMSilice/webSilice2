@@ -35,6 +35,7 @@ export class ChatWidgetComponent implements OnInit {
   menuStatet: string = 'out';
   cookieValue: string;
   avatar_cab:string=GlobalService.AVATAR_CAB;
+  icon_cancel:string=GlobalService.ICON_CANCEL;
   texto_cab:string=GlobalService.TEXTO_CAB;
   isMobileResolution: boolean;
   constructor(private socketService: SocketService,

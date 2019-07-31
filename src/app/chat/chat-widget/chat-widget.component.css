@@ -557,9 +557,9 @@ Received message style
         position: fixed;
         bottom: 0;
         border-radius: 100% !important;
-        width: 30px;
-        height: 30px;
-        line-height: 35px !important;
+        width: 32px;
+        height: 32px;
+        line-height: 23px !important;
         text-align: center;
         background-color: var(--main-color) !important;
         border: solid 2px white !important;
