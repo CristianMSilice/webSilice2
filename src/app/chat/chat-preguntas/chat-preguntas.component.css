@@ -1,4 +1,4 @@
-:host {
+.wrapper-silice :host {
     position: absolute;
     background: #FEFEFE;
     width: calc(100% - 10px);
@@ -8,7 +8,7 @@
     z-index: 1;
     margin: 0;
     border-radius: 5px;
-    max-height: 134px;
+    max-height: 144px;
     overflow: hidden;
     overflow-y: auto;
     opacity: 0;

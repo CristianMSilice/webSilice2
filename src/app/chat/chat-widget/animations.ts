@@ -14,7 +14,7 @@ export const SlideInOutAnimation = [
  
            
           })),
-          state('out', style({ transition:'bottom 0.3s ease-in-out, opacity 0.4s ease-in-out 0.1s',opacity: 0,bottom:'-135px'
+          state('out', style({ transition:'bottom 0.3s ease-in-out, opacity 0.4s ease-in-out 0.1s',opacity: 0,bottom:'-145px'
             
           })),
           transition('in => out', animate('400ms ease-in-out')),

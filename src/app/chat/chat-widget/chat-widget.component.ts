@@ -17,6 +17,7 @@ const rand = max => Math.floor(Math.random() * max)
   selector: 'chat-widget',
   templateUrl: './chat-widget.component.html',
   styleUrls: ['./chat-widget.component.css'],
+  
 
   animations: [fadeInOut, fadeIn, SlideInOutAnimation],
 })
@@ -227,7 +228,11 @@ public openMobil()
   public closeButom() {
    
      $('.chatbubble').removeClass('open');
-     $('.bot_btclose').removeClass('open');
+     $('.bot_btclose').removeClass('open'); 
+   
+     $('#componetchat').hide();
+     
+     
         
   }
 
@@ -235,7 +240,7 @@ public openMobil()
    
      $('.chatbubble').toggleClass('open');
      $('.bot_btclose').toggleClass('open');
-       
+     $('#componetchat').show();
   }
   
   selectComando = (comando) => {
