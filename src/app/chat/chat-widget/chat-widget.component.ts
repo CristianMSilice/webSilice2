@@ -9,9 +9,13 @@ import { Event } from '../shared/model/event';
 import { TOKEN } from '../shared/services/config';
 import { SlideInOutAnimation } from './animations';
 import {DomSanitizer, SafeUrl} from '@angular/platform-browser'
+import { SecurityContext } from '@angular/core';
+import {  SafeHtml } from '@angular/platform-browser';
 import { CookieService } from 'ngx-cookie-service';
 import swal from'sweetalert2';
+import {NgxLinkifyjsService} from 'ngx-linkifyjs';
 const rand = max => Math.floor(Math.random() * max)
+
 
 @Component({
   selector: 'chat-widget',
@@ -39,9 +43,14 @@ export class ChatWidgetComponent implements OnInit {
   icon_cancel:string=GlobalService.ICON_CANCEL;
   texto_cab:string=GlobalService.TEXTO_CAB;
   isMobileResolution: boolean;
+  pp:string=' <p>Hola, bienvenido de nuevo asdf</p> ';
+   
   constructor(private socketService: SocketService,
     private sanitizer: DomSanitizer,
-    private cookieService: CookieService, @Inject(TOKEN) public _token?: string) { }
+    public linkifyService: NgxLinkifyjsService,
+    private cookieService: CookieService, @Inject(TOKEN) public _token?: string) { 
+      
+    }
 
 
   public _visible = false
@@ -184,8 +193,11 @@ private misDatos()
        this.bottom.nativeElement.scrollIntoView()
      }*/
 
-    try {
-      this.myScrollContainer.nativeElement.scrollTop = this.myScrollContainer.nativeElement.scrollHeight;
+    try { 
+      
+       //this.myScrollContainer.nativeElement.scrollTop = this.myScrollContainer.nativeElement.scrollHeight;
+       this.myScrollContainer.nativeElement.scrollIntoView({ behavior: 'smooth', block: 'end', inline: 'nearest' });
+         
     } catch (err) {
       console.log(err.message)
     }
@@ -203,7 +215,7 @@ public openMobil()
     type: 'info', 
     html:
       '<p>Para contactar con nosotros via movil, disponemos de los siguientes canales,</p> ' +
-      '<span><a href="https://api.whatsapp.com/send?phone=+34618554483" >   <img src="assets/wa.png"  >    </a> </span>' ,//+
+      '<span><a href="https://api.whatsapp.com/send?phone=+573182380916" >   <img src="assets/wa.png"  >    </a> </span>' ,//+
 //'<span><a href="https://t.me/adiper_bot" >   <img src="assets/te.png"  >    </a> </span>',
     
     
@@ -306,8 +318,9 @@ public openMobil()
       .subscribe((respuesta: any) => {
         // this.operator.name=respuesta.usuario.name;
         //this.operator.avatar=respuesta.usuario.avatar;
-           
+        
         if (respuesta.tipo == 1)
+
           this.addMessage(this.operator, respuesta.message, 'received', 1,'')
         else if (respuesta.tipo == 2) {
 
@@ -378,5 +391,15 @@ public openMobil()
  
     this.menuStatet = this.menuStatet === 'out' ? 'in' : 'out';
   }
+  paserLink(html: string) : SafeHtml {
+
+     
+    var div = document.createElement("div");
+    div.innerHTML =    this.sanitizer.sanitize(SecurityContext.HTML, html) ;
+    return this.linkifyService.linkify(div.textContent) || this.linkifyService.linkify(div.innerText);
+        
+ 
+  }
+  
 
 }

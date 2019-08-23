@@ -6,11 +6,11 @@ import { ElementModule } from './element.module'
 import { AppComponent } from './app.component'
 import { ConfigFactory, ConfigService, TOKEN } from './chat/shared/services/config';
 import { HttpModule } from '@angular/http';
-
+import { NgxLinkifyjsModule } from 'ngx-linkifyjs';
 import { CookieService } from 'ngx-cookie-service';
 
 @NgModule({
-  imports: [BrowserModule, BrowserAnimationsModule, ElementModule,HttpClientModule,HttpModule],
+  imports: [BrowserModule, BrowserAnimationsModule, ElementModule,HttpClientModule,HttpModule,NgxLinkifyjsModule.forRoot()],
   declarations: [AppComponent],
   providers: [
     ConfigService,
@@ -22,6 +22,6 @@ import { CookieService } from 'ngx-cookie-service';
       deps: [ConfigService, 'CONFIGPATH', 'APIURL-VAR']
     }
   ],
-  bootstrap: [AppComponent],
+  bootstrap: [AppComponent], 
 })
 export class AppModule {}

@@ -9,10 +9,11 @@ import { SocketService } from './shared/services/socket.service';
 import { AngularDraggableModule } from 'angular2-draggable';
 import { CookieService } from 'ngx-cookie-service';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+import { SanitizeHtmlPipe } from './pipe/sanitize-html.pipe';
 @NgModule({
   imports: [CommonModule,AngularDraggableModule,SweetAlert2Module],
-  declarations: [ChatAvatarComponent, ChatWidgetComponent, ChatInputComponent, ChatConfigComponent,ChatPreguntasComponent],
-  providers: [SocketService,CookieService],
+  declarations: [ChatAvatarComponent, ChatWidgetComponent, ChatInputComponent, ChatConfigComponent,ChatPreguntasComponent,SanitizeHtmlPipe],
+  providers: [SocketService,CookieService,SanitizeHtmlPipe],
   exports: [ChatWidgetComponent, ChatConfigComponent],
   entryComponents: [ChatWidgetComponent, ChatConfigComponent],
 }) 

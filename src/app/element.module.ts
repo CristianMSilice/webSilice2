@@ -6,9 +6,11 @@ import { createCustomElement } from '@angular/elements'
 import { ChatModule, ChatWidgetComponent, ChatConfigComponent } from './chat/'
 import { ConfigFactory, ConfigService, TOKEN } from './chat/shared/services/config';
 import { HttpModule } from '@angular/http';
-
+ 
+import { NgxLinkifyjsModule } from 'ngx-linkifyjs';
 @NgModule({
-  imports: [BrowserModule, BrowserAnimationsModule, ChatModule,HttpClientModule,HttpModule],
+  imports: [BrowserModule, BrowserAnimationsModule, ChatModule,HttpClientModule,HttpModule,NgxLinkifyjsModule.forRoot()],
+ 
   providers: [
     ConfigService,
     { provide: 'CONFIGPATH', useValue: '/config.json' },

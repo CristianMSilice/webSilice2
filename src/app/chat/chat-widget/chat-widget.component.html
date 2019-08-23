@@ -14,59 +14,62 @@
         </div>
 
         <div class="chat-box-main">
-            <div class="chat-message-bottom" #scrollMe></div>
-            <ng-container *ngFor="let message of messages">
-                <div class="chat-message" [class.chat-message-received]="message.type === 'received'" [@fadeIn] [class.chat-message-sent]="message.type === 'sent'">
-                    <div>
-                        <chat-avatar [image]="message.from.avatar" class="chat-message-from-avatar" *ngIf="message.type === 'received'"></chat-avatar>
-                        <div class="chat-message-text" *ngIf="message.tipo==1">
-                            <div style="white-space: pre-line"> {{message.text}} </div>
+            <div id="inner" #scrollMe>
 
-                        </div>
+                <div class="chat-message-bottom"></div>
+                <ng-container *ngFor="let message of messages">
+                    <div class="chat-message" [class.chat-message-received]="message.type === 'received'" [@fadeIn] [class.chat-message-sent]="message.type === 'sent'">
+                        <div>
+                            <chat-avatar [image]="message.from.avatar" class="chat-message-from-avatar" *ngIf="message.type === 'received'"></chat-avatar>
+                            <div class="chat-message-text" *ngIf="message.tipo==1">
+                                <div style="white-space: pre-line" [innerHTML]="paserLink(message.text)  "> </div>
 
-
-
-                        <div *ngIf="message.tipo==2" [ngSwitch]="true">
-
-                            <div class="chat-message-img" *ngSwitchCase="message.file_mime ==='image/gif' || message.file_mime ==='image/webp'  || message.file_mime ==='image/png' || message.file_mime === 'image/jpg' || message.file_mime ==='image/jpeg'">
-                                <figure class="effect-lily">
-                                    <img src="{{message.text}}" class="mimg" />
-                                </figure>
                             </div>
 
 
 
-                            <div *ngSwitchCase="message.file_mime  ==='video/mp4'    ">
-                                <video controls style=" max-width: 100%; max-height: 400px;">
+                            <div *ngIf="message.tipo==2" [ngSwitch]="true">
+
+                                <div class="chat-message-img" *ngSwitchCase="message.file_mime ==='image/gif' || message.file_mime ==='image/webp'  || message.file_mime ==='image/png' || message.file_mime === 'image/jpg' || message.file_mime ==='image/jpeg'">
+                                    <figure class="effect-lily">
+                                        <img src="{{message.text}}" class="mimg" />
+                                    </figure>
+                                </div>
+
+
+
+                                <div *ngSwitchCase="message.file_mime  ==='video/mp4'    ">
+                                    <video controls style=" max-width: 100%; max-height: 400px;">
                       <source [src]="message.text" type="{{message.file_mime}}">
                   </video>
-                            </div>
+                                </div>
 
-                            <div *ngSwitchCase=" message.file_mime === 'audio/ogg; codecs=opus'  ||  message.file_mime ==='audio/mp3' ||  message.file_mime ==='audio/ogg' || message.file_mime === 'audio/mp4'">
-                                <audio controls style="max-width: 100%;  max-height: 400px;">
+                                <div *ngSwitchCase=" message.file_mime === 'audio/ogg; codecs=opus'  ||  message.file_mime ==='audio/mp3' ||  message.file_mime ==='audio/ogg' || message.file_mime === 'audio/mp4'">
+                                    <audio controls style="max-width: 100%;  max-height: 400px;">
                      <source [src]="message.text" type="{{message.file_mime}}">
                  </audio>
-                            </div>
+                                </div>
 
-                            <div *ngSwitchDefault>
-                                <button type="button" class="btn btn-float btn-float-lg btn-outline-pink" (click)="goToLink(message.text)">
+                                <div *ngSwitchDefault>
+                                    <button type="button" class="btn btn-float btn-float-lg btn-outline-pink" (click)="goToLink(message.text)">
                     <i class="fa fa-cloud-download"></i><span>Descargar Fichero<br/> </span>
                   </button>
+                                </div>
+
                             </div>
 
+
+
+
+
+
                         </div>
-
-
-
-
-
-
+                        <div class="chat-message-date">
+                            {{message.date | date: 'short'}}
+                        </div>
                     </div>
-                    <div class="chat-message-date">
-                        {{message.date | date: 'short'}}
-                    </div>
-                </div>
-            </ng-container>
+                </ng-container>
+            </div>
         </div>
 
         <div class="silicechat-controls custom-border">
@@ -97,11 +100,11 @@
 
     </div>
     <div class="chatbubble" (click)=" openMobil() " *ngIf="!visible && isMobileResolution " [@fadeInOut]="!visible "></div>
-    <div class="bot_btclose open" *ngIf="!visible && !isMobileResolution " [@fadeInOut]="!visible ">
+    <!--  <div class="bot_btclose open" *ngIf="!visible && !isMobileResolution " [@fadeInOut]="!visible ">
 
         <a (click)="closeButom() "><img src="{{icon_cancel}}"> </a>
 
-    </div>
+    </div>-->
 
     <!--<div class="bot_text agent-launcher " *ngIf="!visible && !isMobileResolution " [@fadeInOut]="!visible ">
         <img alt="Avi " src="assets/question.svg ">
