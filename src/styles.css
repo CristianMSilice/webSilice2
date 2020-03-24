@@ -8,7 +8,7 @@ body {
     width: 100vw;
     height: 100vh;
     overflow: hidden;
-    --main-color: #2D528A;
+    --main-color: #1d9354;
     /* #A80000;*/
     --btclose-visibility: visible;
 }

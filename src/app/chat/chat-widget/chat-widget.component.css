@@ -79,8 +79,40 @@
         opacity: 0;
         transition: visibility 1s 1s, opacity 1s linear;
     }
+    .chatbubblemovil {
+        z-index: 2147483647 !important;
+        background-color: var(--main-color) !important;
+        border-radius: 100% !important;
+        width: 60px !important;
+        height: 60px !important;
+        background-image: url(/assets/logochat_white.svg) !important;
+        background-position: center 52% !important;
+        background-repeat: no-repeat !important;
+        background-size: 50% !important;
+        border: solid 2px white !important;
+        margin: 0 !important;
+        -webkit-box-shadow: 0px 0px 14px 2px rgba(0, 0, 0, 0.26) !important;
+        -moz-box-shadow: 0px 0px 14px 2px rgba(0, 0, 0, 0.26) !important;
+        box-shadow: 0px 0px 14px 2px rgba(0, 0, 0, 0.26) !important;
+        /*transition: all 0.3s ease-in-out !important;*/
+        cursor: pointer !important;
+        position: fixed !important;
+        bottom: 20px !important;
+       
+        position: absolute;
+        visibility: hidden;
+        opacity: 0;
+        transition: visibility 1s 1s, opacity 1s linear;
+    }
+    
     
     .chatbubble.open {
+        visibility: visible;
+        opacity: 1;
+        transition: opacity 1s linear;
+    }
+    
+    .chatbubblemovil.open {
         visibility: visible;
         opacity: 1;
         transition: opacity 1s linear;
@@ -285,6 +317,7 @@
         bottom: 0;
         height: auto;
         width: auto;
+        z-index: 223223 !important;
         /* height: 100vh;
         width: 100vw;*/
     }

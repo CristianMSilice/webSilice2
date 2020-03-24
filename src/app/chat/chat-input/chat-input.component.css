@@ -11,7 +11,7 @@
   box-shadow: none;
   font-size: 14px;
   background-color: inherit;
-  color: inherit;
+  color: black;
 }
 .custom-color,  .custom-color *,  .custom-color a,   .custom-color a *, .silicechat-message:not(.silicechat-message-client) .silicechat-content a,   .silicechat-message:not(.silicechat-message-client) .silicechat-content a *,  .custom-color-hover:hover {
   color: var(--main-color) !important;
@@ -40,6 +40,8 @@
   line-height: calc(35px - (7px * 2));
   border: none;
   margin: 0;
+  /* aytoalmenre*/
+  width: 280px;
   padding-left: 6px;
   padding-top: 7px;
   background: transparent;
@@ -51,7 +53,8 @@
  
   .silicechat-input {
   left: 60px;
-  width: calc(100% - 10px - 1px - 10px);
+  /*width: calc(100% - 10px - 1px - 10px);*/
+  width:350px;
 }
  .material-icons {
   text-rendering: optimizeLegibility;

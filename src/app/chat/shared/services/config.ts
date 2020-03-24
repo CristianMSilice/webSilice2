@@ -1,6 +1,6 @@
 import 'rxjs/add/operator/map';
 import { Injectable, InjectionToken } from '@angular/core';
-import { Http } from '@angular/http';
+import { Http } from '@angular/http'; 
 import { Observable } from 'rxjs/Observable';
 
 export const TOKEN = new InjectionToken<string>('TOKEN');

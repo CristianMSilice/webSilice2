@@ -19,7 +19,7 @@ const concat = require('concat');
     await fs.copy('./src/assets/config.json', './dist/elements/config.json')
         //await fs.copy('./src/assets/logoadiper.png', './dist/elements/assets/logoadiper.png')
     await fs.copy('./src/assets/logochat_red.svg', './dist/elements/assets/logochat_red.svg')
-        //await fs.copy('./src/assets/logopau.png', './dist/elements/assets/logopau.png')
+    await fs.copy('./src/assets/logochat_white.svg', './dist/elements/assets/logochat_white.svg')
     await fs.copy('./src/assets/cancel.png', './dist/elements/assets/cancel.png')
     await fs.copy('./src/assets/logopau.png', './dist/elements/assets/logopau.png')
     await fs.copy('./src/assets/wa.png', './dist/elements/assets/wa.png')

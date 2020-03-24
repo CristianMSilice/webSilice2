@@ -14,9 +14,9 @@
         </div>
 
         <div class="chat-box-main">
-            <div id="inner" #scrollMe>
+            <div id="inner">
 
-                <div class="chat-message-bottom"></div>
+                <div class="chat-message-bottom" #scrollMe></div>
                 <ng-container *ngFor="let message of messages">
                     <div class="chat-message" [class.chat-message-received]="message.type === 'received'" [@fadeIn] [class.chat-message-sent]="message.type === 'sent'">
                         <div>
@@ -95,11 +95,11 @@
 
         </div>
     </div>
-
+ 
     <div class="chatbubble open" #btnbubble (click)="openChat()" *ngIf="!visible && !isMobileResolution" [@fadeInOut]="!visible">
 
     </div>
-    <div class="chatbubble" (click)=" openMobil() " *ngIf="!visible && isMobileResolution " [@fadeInOut]="!visible "></div>
+    <div class="chatbubblemovil open" #btnbubble (click)="openMobil()" *ngIf="!visible && isMobileResolution" [@fadeInOut]="!visible"></div>
     <!--  <div class="bot_btclose open" *ngIf="!visible && !isMobileResolution " [@fadeInOut]="!visible ">
 
         <a (click)="closeButom() "><img src="{{icon_cancel}}"> </a>

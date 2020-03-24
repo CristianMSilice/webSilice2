@@ -8,12 +8,12 @@ import { Action } from '../shared/model/action';
 import { Event } from '../shared/model/event';
 import { TOKEN } from '../shared/services/config';
 import { SlideInOutAnimation } from './animations';
-import {DomSanitizer, SafeUrl} from '@angular/platform-browser'
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser'
 import { SecurityContext } from '@angular/core';
-import {  SafeHtml } from '@angular/platform-browser';
+import { SafeHtml } from '@angular/platform-browser';
 import { CookieService } from 'ngx-cookie-service';
-import swal from'sweetalert2';
-import {NgxLinkifyjsService} from 'ngx-linkifyjs';
+import swal from 'sweetalert2';
+import { NgxLinkifyjsService } from 'ngx-linkifyjs';
 const rand = max => Math.floor(Math.random() * max)
 
 
@@ -21,45 +21,41 @@ const rand = max => Math.floor(Math.random() * max)
   selector: 'chat-widget',
   templateUrl: './chat-widget.component.html',
   styleUrls: ['./chat-widget.component.css'],
-  
+
 
   animations: [fadeInOut, fadeIn, SlideInOutAnimation],
 })
 export class ChatWidgetComponent implements OnInit {
   //@ViewChild('bottom') bottom: ElementRef
-  @ViewChild('scrollMe') private myScrollContainer: ElementRef;
+  //@ViewChild('scrollMe') private myScrollContainer: ElementRef;
+  @ViewChild('scrollMe', { read: ElementRef }) private myScrollContainer: ElementRef;
   @Input() public theme: 'blueno' | 'greyno' | 'redno' = 'blueno'
 
   valido: boolean = false;
-   
+
   action = Action;
- 
+
 
   messageContent: string;
   ioConnection: any;
   menuStatet: string = 'out';
   cookieValue: string;
-  avatar_cab:string=GlobalService.AVATAR_CAB;
-  icon_cancel:string=GlobalService.ICON_CANCEL;
-  texto_cab:string=GlobalService.TEXTO_CAB;
+  avatar_cab: string = GlobalService.AVATAR_CAB;
+  icon_cancel: string = GlobalService.ICON_CANCEL;
+  texto_cab: string = GlobalService.TEXTO_CAB;
   isMobileResolution: boolean;
-  pp:string=' <p>Hola, bienvenido de nuevo asdf</p> ';
-   
+  pp: string = ' <p>Hola, bienvenido de nuevo asdf</p> ';
+
   constructor(private socketService: SocketService,
     private sanitizer: DomSanitizer,
     public linkifyService: NgxLinkifyjsService,
-    private cookieService: CookieService, @Inject(TOKEN) public _token?: string) { 
-      
-    }
+    private cookieService: CookieService, @Inject(TOKEN) public _token?: string) {
 
-
+  }
   public _visible = false
-
   public get visible() {
     return this._visible
   }
-
-
   @Input() public set visible(visible) {
     this._visible = visible
     if (this._visible) {
@@ -81,13 +77,13 @@ export class ChatWidgetComponent implements OnInit {
   public client = {
     id: '',
     name: 'Invitado',
-    status: 'online', 
+    status: 'online',
     avatar: '',
   }
 
   public messages = []
 
-  public addMessage(from, text, type: 'received' | 'sent', tipo,file_mime) {
+  public addMessage(from, text, type: 'received' | 'sent', tipo, file_mime) {
     this.messages.unshift({
       from,
       text,
@@ -107,98 +103,106 @@ export class ChatWidgetComponent implements OnInit {
     }
     //this._token='Apfee6R+yalDdomE3Oo/ejzxzmMhSr8HMFn8qqeWkA8=';
     setTimeout(() => this.visible = false, 1000)
-    if (!this.isMobileResolution )
-  this.comprobarDatos();
+    if (!this.isMobileResolution)
+      this.comprobarDatos();
 
 
 
   }
-  private comprobarDatos()
-  {
+  private comprobarDatos() {
     if (!this.cookieService.check(GlobalService.NM_COOKIE)) {
 
 
       // console.log("NO Cooki")
-       this.valido = false;
-       setTimeout(() => {
-        this.addMessage(this.operator, GlobalService.TXT_INICIAL, 'received', 1,'')
+      this.valido = false;
+      setTimeout(() => {
+        this.addMessage(this.operator, GlobalService.TXT_INICIAL, 'received', 1, '')
       }, 1500)
- 
- 
- 
-     }
-     else {
-       
-       this.cookieValue = this.cookieService.get(GlobalService.NM_COOKIE);
+
+
+
+    }
+    else {
+
+      /* this.cookieValue = this.cookieService.get(GlobalService.NM_COOKIE);
        this.client.id=this.cookieValue;
-       this.misDatos()
-       //this.socketService.adduser(this.client.id);
-       //this.sendNotification(Action.JOINED);
-     }
+       this.misDatos()*/
+
+      this.valido = false;
+      setTimeout(() => {
+        this.addMessage(this.operator, GlobalService.TXT_INICIAL, 'received', 1, '')
+      }, 1500)
+
+
+    }
   }
-private login()
-{
-  this.socketService.getLogin2(this.client.name, this._token).subscribe(
-    data => {
+  private login() {
+    this.socketService.getLogin2(this.client.name, this._token).subscribe(
+      data => {
 
-      if (!data.error) {
-        this.client.id = data.data.id;
-      
+        if (!data.error) {
+          this.client.id = data.data.id;
 
-        this.cookieService.set(GlobalService.NM_COOKIE, this.client.id.toString());
-        this.initIoConnection();
-         let texto = "Bienvenido " + this.client.name
-         this.addMessage(this.operator, texto, 'received', 1,'')
-        this.valido = true;
-      } else {
-        console.log(data.mensaje)
-      }
 
-    },
-    error => {
-      console.log(error.status)
-    },
-    () => { }
-  );
-}
-private misDatos()
-{
-  this.socketService.getMisDatos(this.client.id, this._token).subscribe(
-    data => {
+          this.cookieService.set(GlobalService.NM_COOKIE, this.client.id.toString());
+          this.initIoConnection();
+          // let texto = "Bienvenido " + this.client.name
+          //this.addMessage(this.operator, texto, 'received', 1,'')
 
-      if (!data.error) {
-    
-        this.client.name=data.data.username;
-        this.valido = true;
-      
-        setTimeout(() => {
-          this.addMessage(this.operator, 'Hola, bienvenido de nuevo '+this.client.name, 'received', 1,'')
-        }, 1500)
-        this.initIoConnection();
 
-     
-      } else {
-        console.log(data.mensaje)
-      }
 
-    },
-    error => {
-      console.log(error.status)
-    },
-    () => { }
-  );
-}
+          this.socketService.send(this.client, '/start', this._token);
+          this.valido = true;
+        } else {
+          console.log(data.mensaje)
+        }
+
+      },
+      error => {
+        console.log(error.status)
+      },
+      () => { }
+    );
+  }
+  private misDatos() {
+    this.socketService.getMisDatos(this.client.id, this._token).subscribe(
+      data => {
+
+        if (!data.error) {
+
+          this.client.name = data.data.username;
+          this.valido = true;
+
+          setTimeout(() => {
+            this.addMessage(this.operator, 'Hola, bienvenido de nuevo ' + this.client.name, 'received', 1, '')
+          }, 1500)
+          this.initIoConnection();
+
+
+        } else {
+          console.log(data.mensaje)
+        }
+
+      },
+      error => {
+        console.log(error.status)
+      },
+      () => { }
+    );
+  }
   public scrollToBottom() {
     /* if (this.bottom !== undefined) {
        this.bottom.nativeElement.scrollIntoView()
      }*/
 
-    try { 
-      
-       //this.myScrollContainer.nativeElement.scrollTop = this.myScrollContainer.nativeElement.scrollHeight;
-       this.myScrollContainer.nativeElement.scrollIntoView({ behavior: 'smooth', block: 'end', inline: 'nearest' });
-         
+    try {
+
+      //this.myScrollContainer.nativeElement.scrollTop = this.myScrollContainer.nativeElement.scrollHeight;
+      this.myScrollContainer.nativeElement.scrollIntoView({ behavior: 'smooth', block: 'end' });
+
+
     } catch (err) {
+      console.log("error scroll")
       console.log(err.message)
     }
   }
@@ -207,54 +211,53 @@ private misDatos()
     this.focus.next(true)
   }
 
-//  '<span><a href="https://t.me/adiper_bot" >   <img src="assets/te.png"  >    </a> </span>',
-public openMobil()
-{
-  swal.fire({
-    title: '',
-    type: 'info', 
-    html:
-      '<p>Para contactar con nosotros via movil, disponemos de los siguientes canales,</p> ' +
-      '<span><a href="https://api.whatsapp.com/send?phone=+573182380916" >   <img src="assets/wa.png"  >    </a> </span>' ,//+
-//'<span><a href="https://t.me/adiper_bot" >   <img src="assets/te.png"  >    </a> </span>',
-    
-    
-    showCloseButton: false,
-    showCancelButton: false,
-    showConfirmButton: false,
-    
-  })
+  //  '<span><a href="https://t.me/adiper_bot" >   <img src="assets/te.png"  >    </a> </span>',
+  public openMobil() {
+    swal.fire({
+      title: '',
+      type: 'info',
+      html:
+        '<p>Para contactar con nosotros via movil, disponemos de los siguientes canales,</p> ' +
+        '<span><a href="https://api.whatsapp.com/send?phone=' + GlobalService.CONTACT_WAS + '" >   <img src="assets/wa.png"  >    </a> </span>',//+
+      // '<span><a href="https://t.me/pau_cableonda_bot" >   <img src="assets/te.png"  >    </a> </span>',
 
-}
- 
+
+      showCloseButton: false,
+      showCancelButton: false,
+      showConfirmButton: false,
+
+    })
+
+  }
+
 
   public openChat() {
-   
+
     this.visible = true;
   }
 
   public closeChat() {
     this.visible = false;
-     
+
   }
   public closeButom() {
-   
-     $('.chatbubble').removeClass('open');
-     $('.bot_btclose').removeClass('open'); 
-   
-     $('#componetchat').hide();
-     
-     
-        
+
+    $('.chatbubble').removeClass('open');
+    $('.bot_btclose').removeClass('open');
+
+    $('#componetchat').hide();
+
+
+
   }
 
   public openButom() {
-   
-     $('.chatbubble').toggleClass('open');
-     $('.bot_btclose').toggleClass('open');
-     $('#componetchat').show();
+
+    $('.chatbubble').toggleClass('open');
+    $('.bot_btclose').toggleClass('open');
+    $('#componetchat').show();
   }
-  
+
   selectComando = (comando) => {
 
 
@@ -262,41 +265,25 @@ public openMobil()
     this.socketService.send(this.client, comando, this._token);
 
 
-    this.addMessage(this.client, comando, 'sent', 1,'')
+    this.addMessage(this.client, comando, 'sent', 1, '')
     this.ocultarTarjetas();
   }
 
   public sendMessage({ message }) {
-    //Vemos si es un email
 
 
     if (message.trim() === '') {
       return
     }
     if (!this.valido) {
-      //let evalido = message.trim().includes("@")
-
-
       this.client.name = message.trim();
-      this.addMessage(this.client, message, 'sent', 1,'')
-
+      this.addMessage(this.client, message, 'sent', 1, '')
       this.login();
-
-
-
     }
     else {
-
-
       this.socketService.send(this.client, message, this._token);
-
-
-      this.addMessage(this.client, message, 'sent', 1,'')
-
+      this.addMessage(this.client, message, 'sent', 1, '')
     }
-
-
-
 
   }
 
@@ -318,17 +305,22 @@ public openMobil()
       .subscribe((respuesta: any) => {
         // this.operator.name=respuesta.usuario.name;
         //this.operator.avatar=respuesta.usuario.avatar;
-        
+        if (respuesta.message.search("deleteMensaje")!='-1') {
+          
+          this.messages = [];
+          this.comprobarDatos();
+        }
+        else {
+          
         if (respuesta.tipo == 1)
-
-          this.addMessage(this.operator, respuesta.message, 'received', 1,'')
-        else if (respuesta.tipo == 2) {
+         this.addMessage(this.operator, respuesta.message, 'received', 1, '')
+          else if (respuesta.tipo == 2) {
 
           let mime = respuesta.mime;
-          this.addMessage(this.operator, respuesta.file, 'received', 2,mime)
-
-
+          this.addMessage(this.operator, respuesta.file, 'received', 2, mime)
+ 
         }
+      }
 
       });
 
@@ -337,8 +329,7 @@ public openMobil()
         console.log("error")
         console.log(respuesta)
 
-
-        this.addMessage(this.operator, respuesta.message, 'received', 1,'')
+        this.addMessage(this.operator, respuesta.message, 'received', 1, '')
 
 
       });
@@ -346,16 +337,16 @@ public openMobil()
     this.socketService.onEvent(Event.CONNECT)
       .subscribe(() => {
         this.socketService.adduser(this.client, this._token);
-      
- 
+
+
       });
 
     this.socketService.onEvent(Event.DISCONNECT)
       .subscribe(() => {
-        console.log('disconnected');
-        setTimeout(() => {
-          this.addMessage(this.operator, 'Desconectado', 'received', 1,'')
-        }, 1500)
+        /* console.log('disconnected');
+         setTimeout(() => {
+           this.addMessage(this.operator, 'Desconectado', 'received', 1,'')
+         }, 1500)*/
 
       });
   }
@@ -381,25 +372,25 @@ public openMobil()
   }
   goToLink(url: string) {
     // url = GlobalService.SERVER_ENDPOINT + url;
-     window.open(url);
-   }
-   paserPdf(ruta: string) {
-     
+    window.open(url);
+  }
+  paserPdf(ruta: string) {
+
     return this.sanitizer.bypassSecurityTrustResourceUrl(ruta);
   }
   ocultarTarjetas = () => {
- 
+
     this.menuStatet = this.menuStatet === 'out' ? 'in' : 'out';
   }
-  paserLink(html: string) : SafeHtml {
+  paserLink(html: string): SafeHtml {
 
-     
+
     var div = document.createElement("div");
-    div.innerHTML =    this.sanitizer.sanitize(SecurityContext.HTML, html) ;
+    div.innerHTML = this.sanitizer.sanitize(SecurityContext.HTML, html);
     return this.linkifyService.linkify(div.textContent) || this.linkifyService.linkify(div.innerText);
-        
- 
+
+
   }
-  
+
 
 }

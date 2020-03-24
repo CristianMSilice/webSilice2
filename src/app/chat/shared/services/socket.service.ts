@@ -48,7 +48,7 @@ export class SocketService {
     });
     let options = {
       headers: httpHeaders
-    };
+    }; 
 
     return this.http.get<any>(SERVER_URL2 + 'getDatosChat/'+udid ,  options);
   }
