@@ -218,7 +218,7 @@ export class ChatWidgetComponent implements OnInit {
       type: 'info',
       html:
         '<p>Para contactar con nosotros via movil, disponemos de los siguientes canales,</p> ' +
-        '<span><a href="https://api.whatsapp.com/send?phone=' + GlobalService.CONTACT_WAS + '" >   <img src="assets/wa.png"  >    </a> </span>',//+
+        '<span><a href="https://api.whatsapp.com/send?phone=' + GlobalService.CONTACT_WAS + '" >   <img src="https://consultadesaldo.valepanama.com/wp-content/themes/valeth/chat/assets/wa.png"  >    </a> </span>',//+
       // '<span><a href="https://t.me/pau_cableonda_bot" >   <img src="assets/te.png"  >    </a> </span>',
 
 

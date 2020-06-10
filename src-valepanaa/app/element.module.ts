@@ -13,7 +13,7 @@ import { NgxLinkifyjsModule } from 'ngx-linkifyjs';
  
   providers: [
     ConfigService,
-    { provide: 'CONFIGPATH', useValue: './config.json' },
+    { provide: 'CONFIGPATH', useValue: '/config.json' },
     { provide: 'APIURL-VAR', useValue: 'TOKEN' },
     {
       provide: TOKEN, useFactory: ConfigFactory,

@@ -15,8 +15,7 @@ import { CookieService } from 'ngx-cookie-service';
   providers: [
     ConfigService,
     CookieService,
-    { provide: 'CONFIGPATH', useValue: './assets/config.json' },
-  
+    { provide: 'CONFIGPATH', useValue: 'https://consultadesaldo.valepanama.com/wp-content/themes/valeth/chat/config.json' },
     { provide: 'APIURL-VAR', useValue: 'TOKEN' },
     {
       provide: TOKEN, useFactory: ConfigFactory,
