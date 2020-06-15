@@ -5,9 +5,9 @@ export class GlobalService {
     
    //public static API_ENDPOINT='api-widget/';
     //public static  SOCKET_ENDPOINT = 'http://localhost:3000/'; 
-    public static NM_COOKIE='__hisponaoochat__';
-    public static TEXTO_CAB='Hispano';
-    public static CONTACT_WAS='+50769331925';
+    public static NM_COOKIE='__joac__';
+    public static TEXTO_CAB='Atención Ciudadana';
+    public static CONTACT_WAS='+34648561734';
    // public static CONTACT_TEL='@Hygeia112_bot';
    
     //public static AVATAR_CAB='/assets/bankblanco.png';
@@ -18,7 +18,7 @@ export class GlobalService {
     public static AVATAR_CHAT= '/assets/logochat_red.svg';
     public static ICON_CANCEL= '/assets/cancel.png';
     //public static TXT_INICIAL='Hola, soy Eva de Adiper.  ¿Cómo puedo ayudarle?  Le agradecería que me facilite un nickname para dirigirme más fácilmente a usted.';
-    public static TXT_INICIAL="Hello, I am Hispano, your virtual assistant. Write your name and let's get started";
+    public static TXT_INICIAL="Un gusto saludarle, hablar conmigo es muy sencillo, escriba Hola y siga mis instrucciones. Es muy fácil !"; 
     public static API_ENDPOINT='https://node1.smallshi.com/api-widget/';
     public static  SOCKET_ENDPOINT = 'https://node1.smallshi.com:1442/';
     //public static API_ENDPOINT='https://49544f13.ngrok.io/api-widget/';

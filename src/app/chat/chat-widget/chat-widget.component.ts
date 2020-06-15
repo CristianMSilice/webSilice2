@@ -14,6 +14,7 @@ import { SafeHtml } from '@angular/platform-browser';
 import { CookieService } from 'ngx-cookie-service';
 import swal from 'sweetalert2';
 import { NgxLinkifyjsService } from 'ngx-linkifyjs';
+
 const rand = max => Math.floor(Math.random() * max)
 
 
@@ -30,15 +31,16 @@ export class ChatWidgetComponent implements OnInit {
   //@ViewChild('scrollMe') private myScrollContainer: ElementRef;
   @ViewChild('scrollMe', { read: ElementRef }) private myScrollContainer: ElementRef;
   @Input() public theme: 'blueno' | 'greyno' | 'redno' = 'blueno'
-
+ 
   valido: boolean = false;
-
+  nuestraUrl:string=''
   action = Action;
 
 
   messageContent: string;
   ioConnection: any;
   menuStatet: string = 'out';
+  menuStatet2: string = 'out';
   cookieValue: string;
   avatar_cab: string = GlobalService.AVATAR_CAB;
   icon_cancel: string = GlobalService.ICON_CANCEL;
@@ -118,8 +120,7 @@ export class ChatWidgetComponent implements OnInit {
       setTimeout(() => {
         this.addMessage(this.operator, GlobalService.TXT_INICIAL, 'received', 1, '')
       }, 1500)
-
-
+    
 
     }
     else {
@@ -132,6 +133,8 @@ export class ChatWidgetComponent implements OnInit {
       setTimeout(() => {
         this.addMessage(this.operator, GlobalService.TXT_INICIAL, 'received', 1, '')
       }, 1500)
+    
+
 
 
     }
@@ -311,7 +314,7 @@ export class ChatWidgetComponent implements OnInit {
           this.comprobarDatos();
         }
         else {
-          
+            console.log(respuesta)
         if (respuesta.tipo == 1)
          this.addMessage(this.operator, respuesta.message, 'received', 1, '')
           else if (respuesta.tipo == 2) {
@@ -382,14 +385,32 @@ export class ChatWidgetComponent implements OnInit {
 
     this.menuStatet = this.menuStatet === 'out' ? 'in' : 'out';
   }
-  paserLink(html: string): SafeHtml {
+  ocultarTarjetas2 = () => {
 
+    this.menuStatet2 = this.menuStatet2 === 'out' ? 'in' : 'out';
+  }
+  paserLink(html: string): SafeHtml {
+   
+    
 
     var div = document.createElement("div");
-    div.innerHTML = this.sanitizer.sanitize(SecurityContext.HTML, html);
-    return this.linkifyService.linkify(div.textContent) || this.linkifyService.linkify(div.innerText);
+      div.innerHTML = this.sanitizer.sanitize(SecurityContext.HTML, html);
+      return this.linkifyService.linkify(div.textContent) || this.linkifyService.linkify(div.innerText);
 
+   
+  
+  
 
+  }
+  esnuestro( texto ):boolean  {
+
+   return texto.includes('url.pau.zone')
+    // return texto.includes(':8100')
+  }
+  goToLink2(link)
+  {
+    this.nuestraUrl=link
+   this.ocultarTarjetas2()
   }
 
 

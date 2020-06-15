@@ -5,8 +5,8 @@
         <div class="silicechat-header custom-background ">
             <div class="silicechat-header-title brand-text">
                 <span class="silicechat-title-brand">
-          <img src="{{avatar_cab}}" class="img-silice">
-        </span>
+                    <img src="{{avatar_cab}}" class="img-silice">
+                </span>
                 <span class="silicechat-title-text"> {{texto_cab}}</span>
                 <a class="silicechat-header-close" (click)="closeChat()"><i class="material-icons">close</i></a>
 
@@ -18,19 +18,29 @@
 
                 <div class="chat-message-bottom" #scrollMe *ngIf="valido"></div>
                 <ng-container *ngFor="let message of messages">
-                    <div class="chat-message" [class.chat-message-received]="message.type === 'received'" [@fadeIn] [class.chat-message-sent]="message.type === 'sent'">
-                        <div>
-                            <chat-avatar [image]="message.from.avatar" class="chat-message-from-avatar" *ngIf="message.type === 'received'"></chat-avatar>
-                            <div class="chat-message-text" *ngIf="message.tipo==1">
-                                <div style="white-space: pre-line" [innerHTML]="paserLink(message.text)  "> </div>
+                    <div class="chat-message" [class.chat-message-received]="message.type === 'received'" [@fadeIn]
+                        [class.chat-message-sent]="message.type === 'sent'">
 
+                    
+                        <div>
+                            <chat-avatar [image]="message.from.avatar" class="chat-message-from-avatar"
+                                *ngIf="message.type === 'received'"></chat-avatar>
+                            <div class="chat-message-text" *ngIf="message.tipo==1">
+                                <div style="white-space: pre-line" [innerHTML]="paserLink(message.text)"  *ngIf="!esnuestro(message.text)" > </div>
+                                <div style="white-space: pre-line"   *ngIf="esnuestro(message.text)" > 
+                                    <button type="button" class="btn btn-float btn-float-lg btn-outline-pink"
+                                    (click)="goToLink2(message.text)">
+                                    <i class="fa fa-cloud-download"></i><span>Abrir Enlace<br /> </span>
+                                </button>
+                                </div>
                             </div>
 
 
 
                             <div *ngIf="message.tipo==2" [ngSwitch]="true">
 
-                                <div class="chat-message-img" *ngSwitchCase="message.file_mime ==='image/gif' || message.file_mime ==='image/webp'  || message.file_mime ==='image/png' || message.file_mime === 'image/jpg' || message.file_mime ==='image/jpeg'">
+                                <div class="chat-message-img"
+                                    *ngSwitchCase="message.file_mime ==='image/gif' || message.file_mime ==='image/webp'  || message.file_mime ==='image/png' || message.file_mime === 'image/jpg' || message.file_mime ==='image/jpeg'">
                                     <figure class="effect-lily">
                                         <img src="{{message.text}}" class="mimg" />
                                     </figure>
@@ -40,20 +50,22 @@
 
                                 <div *ngSwitchCase="message.file_mime  ==='video/mp4'    ">
                                     <video controls style=" max-width: 100%; max-height: 400px;">
-                      <source [src]="message.text" type="{{message.file_mime}}">
-                  </video>
+                                        <source [src]="message.text" type="{{message.file_mime}}">
+                                    </video>
                                 </div>
 
-                                <div *ngSwitchCase=" message.file_mime === 'audio/ogg; codecs=opus'  ||  message.file_mime ==='audio/mp3' ||  message.file_mime ==='audio/ogg' || message.file_mime === 'audio/mp4'">
+                                <div
+                                    *ngSwitchCase=" message.file_mime === 'audio/ogg; codecs=opus'  ||  message.file_mime ==='audio/mp3' ||  message.file_mime ==='audio/ogg' || message.file_mime === 'audio/mp4'">
                                     <audio controls style="max-width: 100%;  max-height: 400px;">
-                     <source [src]="message.text" type="{{message.file_mime}}">
-                 </audio>
+                                        <source [src]="message.text" type="{{message.file_mime}}">
+                                    </audio>
                                 </div>
 
                                 <div *ngSwitchDefault>
-                                    <button type="button" class="btn btn-float btn-float-lg btn-outline-pink" (click)="goToLink(message.text)">
-                    <i class="fa fa-cloud-download"></i><span>Descargar Fichero<br/> </span>
-                  </button>
+                                    <button type="button" class="btn btn-float btn-float-lg btn-outline-pink"
+                                        (click)="goToLink(message.text)">
+                                        <i class="fa fa-cloud-download"></i><span>Descargar Fichero<br /> </span>
+                                    </button>
                                 </div>
 
                             </div>
@@ -76,17 +88,18 @@
             <div class="silicechat-hasnt-message silicechat-send-enabled">
 
                 <span class="silicechat-input-button-container">
-              <div class="silicechat-input-button silicechat-input-faqs-button"   >
-                
-           <a   (click)="ocultarTarjetas()"><i class="material-icons custom-color"    *ngIf="valido" >report</i></a>
-                   
+                    <div class="silicechat-input-button silicechat-input-faqs-button">
+
+                        <a (click)="ocultarTarjetas()"><i class="material-icons custom-color"
+                                *ngIf="valido">menu</i></a>
+
+
+                    </div>
+                    <app-chat-preguntas [@slideInOut]="menuStatet" [deleteHandler]="ocultarTarjetas"
+                        [regresarComando]="selectComando"> </app-chat-preguntas>
+                </span>
+
            
-              </div>
-       <app-chat-preguntas [@slideInOut]="menuStatet"    [deleteHandler]="ocultarTarjetas" [regresarComando]="selectComando" > </app-chat-preguntas>
-            </span>
-
-
-
                 <chat-input (send)="sendMessage($event)" (dismiss)="closeChat()" [focus]="focus"></chat-input>
 
 
@@ -94,12 +107,16 @@
             </div>
 
         </div>
-    </div>
- 
-    <div class="chatbubble open" #btnbubble (click)="openChat()" *ngIf="!visible && !isMobileResolution" [@fadeInOut]="!visible">
+        <app-new-tarjeta [url]="nuestraUrl" [@slideInOut2]="menuStatet2"   [deleteHandler]="ocultarTarjetas2"> </app-new-tarjeta>
 
     </div>
-    <div class="chatbubblemovil open" #btnbubble (click)="openMobil()" *ngIf="!visible && isMobileResolution" [@fadeInOut]="!visible"></div>
+
+    <div class="chatbubble open" #btnbubble (click)="openChat()" *ngIf="!visible && !isMobileResolution"
+        [@fadeInOut]="!visible">
+
+    </div>
+    <div class="chatbubblemovil open" #btnbubble (click)="openMobil()" *ngIf="!visible && isMobileResolution"
+        [@fadeInOut]="!visible"></div>
     <!--  <div class="bot_btclose open" *ngIf="!visible && !isMobileResolution " [@fadeInOut]="!visible ">
 
         <a (click)="closeButom() "><img src="{{icon_cancel}}"> </a>
@@ -111,5 +128,6 @@
         <p>¿En qué podemos ayudarte? Pincha aquí y te atenderemos en seguida</p>
     </div>-->
 
-
+          
+           
 </div>
