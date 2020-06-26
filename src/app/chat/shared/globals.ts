@@ -5,9 +5,9 @@ export class GlobalService {
     
    //public static API_ENDPOINT='api-widget/';
     //public static  SOCKET_ENDPOINT = 'http://localhost:3000/'; 
-    public static NM_COOKIE='__joac__';
-    public static TEXTO_CAB='Atención Ciudadana';
-    public static CONTACT_WAS='+34648561734';
+    public static NM_COOKIE='__sexpe__';
+    public static TEXTO_CAB='Extremadura Trabaja';
+    public static CONTACT_WAS='+34628653025';
    // public static CONTACT_TEL='@Hygeia112_bot';
    
     //public static AVATAR_CAB='/assets/bankblanco.png';

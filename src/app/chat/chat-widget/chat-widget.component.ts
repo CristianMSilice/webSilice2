@@ -157,7 +157,7 @@ export class ChatWidgetComponent implements OnInit {
           this.socketService.send(this.client, '/start', this._token);
           this.valido = true;
         } else {
-          console.log(data.mensaje)
+         // console.log(data.mensaje)
         }
 
       },
@@ -183,7 +183,7 @@ export class ChatWidgetComponent implements OnInit {
 
 
         } else {
-          console.log(data.mensaje)
+         // console.log(data.mensaje)
         }
 
       },
@@ -314,7 +314,7 @@ export class ChatWidgetComponent implements OnInit {
           this.comprobarDatos();
         }
         else {
-            console.log(respuesta)
+            
         if (respuesta.tipo == 1)
          this.addMessage(this.operator, respuesta.message, 'received', 1, '')
           else if (respuesta.tipo == 2) {
@@ -330,7 +330,7 @@ export class ChatWidgetComponent implements OnInit {
     this.ioConnection = this.socketService.onError()
       .subscribe((respuesta: any) => {
         console.log("error")
-        console.log(respuesta)
+        
 
         this.addMessage(this.operator, respuesta.message, 'received', 1, '')
 
