@@ -9,11 +9,17 @@ import { HttpModule } from '@angular/http';
 import { NgxLinkifyjsModule } from 'ngx-linkifyjs';
 import { CookieService } from 'ngx-cookie-service';
 
+import { NgxWebstorageModule } from 'ngx-webstorage';
+
+import { EncsessionService } from './chat/shared/helpers/encsession.service';
+
 @NgModule({
-  imports: [BrowserModule, BrowserAnimationsModule, ElementModule,HttpClientModule,HttpModule,NgxLinkifyjsModule.forRoot()],
+  imports: [BrowserModule, BrowserAnimationsModule, ElementModule,HttpClientModule,HttpModule,NgxLinkifyjsModule.forRoot(),
+    NgxWebstorageModule.forRoot()],
   declarations: [AppComponent],
   providers: [
-    ConfigService,
+    ConfigService, 
+    EncsessionService,
     CookieService,
     { provide: 'CONFIGPATH', useValue: './assets/config.json' },
   

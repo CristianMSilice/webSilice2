@@ -15,6 +15,7 @@ import { CookieService } from 'ngx-cookie-service';
 import swal from 'sweetalert2';
 import { NgxLinkifyjsService } from 'ngx-linkifyjs';
 
+import { EncsessionService } from '../shared/helpers/encsession.service';
 const rand = max => Math.floor(Math.random() * max)
 
 
@@ -23,20 +24,21 @@ const rand = max => Math.floor(Math.random() * max)
   templateUrl: './chat-widget.component.html',
   styleUrls: ['./chat-widget.component.css'],
 
+  providers: [EncsessionService],
 
   animations: [fadeInOut, fadeIn, SlideInOutAnimation],
 })
 export class ChatWidgetComponent implements OnInit {
   //@ViewChild('bottom') bottom: ElementRef
-  //@ViewChild('scrollMe') private myScrollContainer: ElementRef;
-  @ViewChild('scrollMe', { read: ElementRef }) private myScrollContainer: ElementRef;
+  //@ViewChild('scrollMe') private myScrollContainer: ElementRef; 
+  @ViewChild('scrollMe', { static: false, read: ElementRef }) private myScrollContainer: ElementRef;
   @Input() public theme: 'blueno' | 'greyno' | 'redno' = 'blueno'
- 
+
   valido: boolean = false;
-  nuestraUrl:string=''
+  nuestraUrl: string = ''
   action = Action;
 
-
+  msgList: any[] = [];
   messageContent: string;
   ioConnection: any;
   menuStatet: string = 'out';
@@ -51,6 +53,7 @@ export class ChatWidgetComponent implements OnInit {
   constructor(private socketService: SocketService,
     private sanitizer: DomSanitizer,
     public linkifyService: NgxLinkifyjsService,
+    private encsessionService: EncsessionService,
     private cookieService: CookieService, @Inject(TOKEN) public _token?: string) {
 
   }
@@ -86,15 +89,28 @@ export class ChatWidgetComponent implements OnInit {
   public messages = []
 
   public addMessage(from, text, type: 'received' | 'sent', tipo, file_mime) {
-    this.messages.unshift({
+    let msg = {
       from,
       text,
       type,
       tipo,
       file_mime,
       date: new Date().getTime(),
-    })
+    }
+    let fila = {
+      from: from,
+      text: text,
+      type: type,
+      tipo: tipo,
+      file_mime: file_mime,
+      date: msg.date
+    }
+    this.messages.unshift(msg)
+    this.trabajarMsg(fila)
+
     setTimeout(() => this.scrollToBottom(), 800)
+
+
   }
 
   ngOnInit() {
@@ -103,6 +119,18 @@ export class ChatWidgetComponent implements OnInit {
     } else {
       this.isMobileResolution = false;
     }
+
+    /* this.msgList.push({
+       from:-1,
+       text:"",
+       type:"",
+       tipo:0,
+       file_mime:"",
+       date:""
+     })*/
+
+
+
     //this._token='Apfee6R+yalDdomE3Oo/ejzxzmMhSr8HMFn8qqeWkA8=';
     setTimeout(() => this.visible = false, 1000)
     if (!this.isMobileResolution)
@@ -114,26 +142,42 @@ export class ChatWidgetComponent implements OnInit {
   private comprobarDatos() {
     if (!this.cookieService.check(GlobalService.NM_COOKIE)) {
 
-
       // console.log("NO Cooki")
       this.valido = false;
       setTimeout(() => {
         this.addMessage(this.operator, GlobalService.TXT_INICIAL, 'received', 1, '')
       }, 1500)
-    
+      this.encsessionService.remove
+
+      this.encsessionService.codif(this.msgList, GlobalService.NM_COOKIE);
+
 
     }
     else {
 
-      /* this.cookieValue = this.cookieService.get(GlobalService.NM_COOKIE);
-       this.client.id=this.cookieValue;
-       this.misDatos()*/
+      this.cookieValue = this.cookieService.get(GlobalService.NM_COOKIE);
+      this.client.id = this.cookieValue;
+      this.misDatos()
+      try {
+        this.msgList = this.encsessionService.descodif(GlobalService.NM_COOKIE);
+        this.messages = this.msgList
+       
+        setTimeout(() => {
+          this.visible = true;
+          setTimeout(() => {
+            this.scrollToBottom()
+            this.focusMessage()
+          }, 0)
+        }, 1500)
+  
 
-      this.valido = false;
-      setTimeout(() => {
-        this.addMessage(this.operator, GlobalService.TXT_INICIAL, 'received', 1, '')
-      }, 1500)
-    
+       
+      } catch (error) {
+        console.log(error)
+      }
+
+
+   
 
 
 
@@ -146,8 +190,12 @@ export class ChatWidgetComponent implements OnInit {
         if (!data.error) {
           this.client.id = data.data.id;
 
+          var expire = new Date();
+          var time = Date.now() + ((3600 * 1000) * 6); // current time + 6 hours ///
+          expire.setTime(time);
 
-          this.cookieService.set(GlobalService.NM_COOKIE, this.client.id.toString());
+
+          this.cookieService.set(GlobalService.NM_COOKIE, this.client.id.toString(), expire);
           this.initIoConnection();
           // let texto = "Bienvenido " + this.client.name
           //this.addMessage(this.operator, texto, 'received', 1,'')
@@ -157,7 +205,7 @@ export class ChatWidgetComponent implements OnInit {
           this.socketService.send(this.client, '/start', this._token);
           this.valido = true;
         } else {
-         // console.log(data.mensaje)
+          // console.log(data.mensaje)
         }
 
       },
@@ -176,14 +224,14 @@ export class ChatWidgetComponent implements OnInit {
           this.client.name = data.data.username;
           this.valido = true;
 
-          setTimeout(() => {
-            this.addMessage(this.operator, 'Hola, bienvenido de nuevo ' + this.client.name, 'received', 1, '')
-          }, 1500)
+          /*  setTimeout(() => {
+              this.addMessage(this.operator, 'Hola, bienvenido de nuevo ' + this.client.name, 'received', 1, '')
+            }, 1500)*/
           this.initIoConnection();
 
 
         } else {
-         // console.log(data.mensaje)
+          // console.log(data.mensaje)
         }
 
       },
@@ -197,7 +245,7 @@ export class ChatWidgetComponent implements OnInit {
     /* if (this.bottom !== undefined) {
        this.bottom.nativeElement.scrollIntoView()
      }*/
-
+ 
     try {
 
       //this.myScrollContainer.nativeElement.scrollTop = this.myScrollContainer.nativeElement.scrollHeight;
@@ -205,11 +253,11 @@ export class ChatWidgetComponent implements OnInit {
 
 
     } catch (err) {
-     // console.log("error scroll")
-     // console.log(err.message)
+      // console.log("error scroll")
+      // console.log(err.message)
     }
   }
-  
+
   public focusMessage() {
     this.focus.next(true)
   }
@@ -299,7 +347,24 @@ export class ChatWidgetComponent implements OnInit {
       this.closeChat()
     }
   }
+  private trabajarMsg(msg: any) {
+    this.msgList = this.encsessionService.descodif(GlobalService.NM_COOKIE);
 
+    let i = 0;
+    if (this.msgList.length > 110) {
+      for (let index = 110; index < this.msgList.length; index++) {
+        this.msgList.splice(i, 1);
+        i++;
+      }
+    }
+
+
+
+    this.msgList.unshift(msg)
+
+    this.encsessionService.codif(this.msgList, GlobalService.NM_COOKIE);
+
+  }
 
   private initIoConnection(): void {
     this.socketService.initSocket();
@@ -308,29 +373,29 @@ export class ChatWidgetComponent implements OnInit {
       .subscribe((respuesta: any) => {
         // this.operator.name=respuesta.usuario.name;
         //this.operator.avatar=respuesta.usuario.avatar;
-        if (respuesta.message.search("deleteMensaje")!='-1') {
-          
+        if (respuesta.message.search("deleteMensaje") != '-1') {
+
           this.messages = [];
           this.comprobarDatos();
         }
         else {
-            
-        if (respuesta.tipo == 1)
-         this.addMessage(this.operator, respuesta.message, 'received', 1, '')
+
+          if (respuesta.tipo == 1)
+            this.addMessage(this.operator, respuesta.message, 'received', 1, '')
           else if (respuesta.tipo == 2) {
 
-          let mime = respuesta.mime;
-          this.addMessage(this.operator, respuesta.file, 'received', 2, mime)
- 
+            let mime = respuesta.mime;
+            this.addMessage(this.operator, respuesta.file, 'received', 2, mime)
+
+          }
         }
-      }
 
       });
 
     this.ioConnection = this.socketService.onError()
       .subscribe((respuesta: any) => {
         console.log("error")
-        
+
 
         this.addMessage(this.operator, respuesta.message, 'received', 1, '')
 
@@ -390,27 +455,26 @@ export class ChatWidgetComponent implements OnInit {
     this.menuStatet2 = this.menuStatet2 === 'out' ? 'in' : 'out';
   }
   paserLink(html: string): SafeHtml {
-   
-    
+
+
 
     var div = document.createElement("div");
-      div.innerHTML = this.sanitizer.sanitize(SecurityContext.HTML, html);
-      return this.linkifyService.linkify(div.textContent) || this.linkifyService.linkify(div.innerText);
+    div.innerHTML = this.sanitizer.sanitize(SecurityContext.HTML, html);
+    return this.linkifyService.linkify(div.textContent) || this.linkifyService.linkify(div.innerText);
 
-   
-  
-  
+
+
+
 
   }
-  esnuestro( texto ):boolean  {
+  esnuestro(texto): boolean {
 
-   return texto.includes('url.pau.zone')
+    return texto.includes('url.pau.zone')
     // return texto.includes(':8100')
   }
-  goToLink2(link)
-  {
-    this.nuestraUrl=link
-   this.ocultarTarjetas2()
+  goToLink2(link) {
+    this.nuestraUrl = link
+    this.ocultarTarjetas2()
   }
 
 
