@@ -8,9 +8,15 @@ import { ConfigFactory, ConfigService, TOKEN } from './chat/shared/services/conf
 import { HttpModule } from '@angular/http';
 import { NgxLinkifyjsModule } from 'ngx-linkifyjs';
 import { CookieService } from 'ngx-cookie-service';
-
 @NgModule({
-  imports: [BrowserModule, BrowserAnimationsModule, ElementModule,HttpClientModule,HttpModule,NgxLinkifyjsModule.forRoot()],
+  imports: [
+    BrowserModule, 
+    BrowserAnimationsModule, 
+    ElementModule,
+    HttpClientModule,
+    HttpModule,
+    NgxLinkifyjsModule.forRoot()
+  ],
   declarations: [AppComponent],
   providers: [
     ConfigService,

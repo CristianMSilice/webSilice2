@@ -1,19 +1,36 @@
 import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild, ViewEncapsulation } from '@angular/core'
+import { selector } from 'rxjs-compat/operator/publish'
 
 @Component({
   selector: 'chat-input',
   template: `
   <div class="silicechat-input">
-    <textarea type="text" class="chat-input-text" placeholder="Indica tu mensaje..."
-              #message (keydown.enter)="onSubmit()" (keyup.enter)="message.value = ''" (keyup.escape)="dismiss.emit()"></textarea>
-              <button class="silicechat-send custom-color"   (click)="onSubmit()">
-              <i class="material-icons">send</i> 
-              </button>           
+    <div 
+      id="message" 
+      type="text" 
+      class="chat-input-text" 
+      #message
+      (keydown.enter)="onSubmit($event)" 
+      (keyup.enter)="message.innerHTML = ''" 
+      (keyup.escape)="dismiss.emit()"
+      contenteditable>
+    </div>
+    <span style="background-position: 60.7843% 74.5098%;"  class="emoji emoji-icon" (click)="toggleEmojisMenu()"></span>
+    <div class="emoji-input hidden" id="EmojiMenu" >            
+    <emoji-mart
+      [style]="{ position: 'absolute', bottom: '20px', right: '20px' }"
+      (emojiClick)="addEmoji($event)"
+    ></emoji-mart>
+    </div>
+
+    <button class="silicechat-send custom-color"   (click)="onSubmit()">
+      <i class="material-icons">send</i> 
+    </button>           
    </div>
                    
   `,
   encapsulation: ViewEncapsulation.None,
-  styleUrls: ['./chat-input.component.css'],
+  styleUrls: ['./chat-input.component.css','./chat-input-emoji.component.css'],
 })
 export class ChatInputComponent implements OnInit {
   @Input() public buttonText = '↩︎'
@@ -29,21 +46,35 @@ export class ChatInputComponent implements OnInit {
   public focusMessage() {
     this.message.nativeElement.focus()
   }
-
+  public addEmoji(event){
+    
+    let emoji  = event.$event.target.cloneNode();
+    emoji.setAttribute("contenteditable","false");
+    let position = emoji.style.backgroundPosition;
+    emoji.classList.add('emoji');
+    emoji.style = '';
+    emoji.style.backgroundPosition= position;
+    let message = this.getMessage();
+    message.append(emoji);
+    this.focusMessage()
+  }  
+  public toggleEmojisMenu(){
+    document.querySelector('#EmojiMenu').classList.toggle('hidden');
+  }
   public getMessage() {
-    return this.message.nativeElement.value
+    return this.message.nativeElement
   }
 
   public clearMessage() {
-    this.message.nativeElement.value = ''
+    this.message.nativeElement.innerHTML = ''
   }
 
   onSubmit() {
     const message = this.getMessage()
-    if (message.trim() === '') {
+    if (message.textContent.trim() === '') {
       return
     }
-    this.send.emit({ message })
+    this.send.emit( message );
     this.clearMessage()
     this.focusMessage()
   }

@@ -105,23 +105,18 @@ export class ChatWidgetComponent implements OnInit {
     }
     //this._token='Apfee6R+yalDdomE3Oo/ejzxzmMhSr8HMFn8qqeWkA8=';
     setTimeout(() => this.visible = false, 1000)
-    if (!this.isMobileResolution)
+    if (!this.isMobileResolution){
       this.comprobarDatos();
-
-
+    }
 
   }
   private comprobarDatos() {
     if (!this.cookieService.check(GlobalService.NM_COOKIE)) {
 
-
-      // console.log("NO Cooki")
       this.valido = false;
       setTimeout(() => {
         this.addMessage(this.operator, GlobalService.TXT_INICIAL, 'received', 1, '')
       }, 1500)
-    
-
     }
     else {
 
@@ -134,7 +129,7 @@ export class ChatWidgetComponent implements OnInit {
         this.addMessage(this.operator, GlobalService.TXT_INICIAL, 'received', 1, '')
       }, 1500)
     
-
+ 
 
 
     }
@@ -262,31 +257,24 @@ export class ChatWidgetComponent implements OnInit {
   }
 
   selectComando = (comando) => {
-
-
-
     this.socketService.send(this.client, comando, this._token);
-
-
     this.addMessage(this.client, comando, 'sent', 1, '')
     this.ocultarTarjetas();
   }
 
-  public sendMessage({ message }) {
-
-
-    if (message.trim() === '') {
+  public sendMessage( message ) {
+    if (message.textContent.trim() === '') {
       return
     }
     if (!this.valido) {
-      this.client.name = message.trim();
-      this.addMessage(this.client, message, 'sent', 1, '')
-      this.login();
+      this.client.name = message.textContent.trim();
+      this.addMessage(this.client, message.innerHTML, 'sent', 1, '')
     }
     else {
-      this.socketService.send(this.client, message, this._token);
-      this.addMessage(this.client, message, 'sent', 1, '')
+      this.socketService.send(this.client, message.innerHTML, this._token);
+      this.addMessage(this.client, message.innerHTML, 'sent', 1, '')
     }
+    this.login();
 
   }
 
@@ -389,18 +377,22 @@ export class ChatWidgetComponent implements OnInit {
 
     this.menuStatet2 = this.menuStatet2 === 'out' ? 'in' : 'out';
   }
-  paserLink(html: string): SafeHtml {
-   
-    
 
+  paserLink(html :any ) :SafeHtml{
     var div = document.createElement("div");
-      div.innerHTML = this.sanitizer.sanitize(SecurityContext.HTML, html);
-      return this.linkifyService.linkify(div.textContent) || this.linkifyService.linkify(div.innerText);
+    div.innerHTML  = html;
+    // div.innerHTML  = this.sanitizer.sanitize(SecurityContext.HTML, html);
 
-   
-  
-  
+    div.childNodes.forEach((e:any)=>{
+      if (e.textContent.trim() !== '') {
+        let a=this.linkifyService.linkify(e.textContent) || this.linkifyService.linkify(e.innerText);
+        let temporalNode = document.createElement("span");
+        temporalNode.innerHTML=a;
+        e.replaceWith(temporalNode);
+      }
 
+    })
+    return div.innerHTML;
   }
   esnuestro( texto ):boolean  {
 

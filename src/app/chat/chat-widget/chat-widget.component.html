@@ -26,7 +26,7 @@
                             <chat-avatar [image]="message.from.avatar" class="chat-message-from-avatar"
                                 *ngIf="message.type === 'received'"></chat-avatar>
                             <div class="chat-message-text" *ngIf="message.tipo==1">
-                                <div style="white-space: pre-line" [innerHTML]="paserLink(message.text)"  *ngIf="!esnuestro(message.text)" > </div>
+                                <div style="white-space: pre-line" [innerHTML]="paserLink(message.text) | sanitizeHtml"  *ngIf="!esnuestro(message.text)" > </div>
                                 <div style="white-space: pre-line"   *ngIf="esnuestro(message.text)" > 
                                     <button type="button" class="btn btn-float btn-float-lg btn-outline-pink"
                                     (click)="goToLink2(message.text)">

@@ -11,8 +11,10 @@ import { AngularDraggableModule } from 'angular2-draggable';
 import { CookieService } from 'ngx-cookie-service';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { SanitizeHtmlPipe } from './pipe/sanitize-html.pipe';
+import { PickerModule } from '@ctrl/ngx-emoji-mart'
+
 @NgModule({
-  imports: [CommonModule,AngularDraggableModule,SweetAlert2Module],
+  imports: [CommonModule,AngularDraggableModule,SweetAlert2Module,PickerModule],
   declarations: [ChatAvatarComponent, ChatWidgetComponent, ChatInputComponent, ChatConfigComponent,ChatPreguntasComponent,SanitizeHtmlPipe,NewTarjetaComponent],
   providers: [SocketService,CookieService,SanitizeHtmlPipe],
   exports: [ChatWidgetComponent, ChatConfigComponent],

@@ -27,6 +27,7 @@
         "@angular/platform-browser": "^6.0.3",
         "@angular/platform-browser-dynamic": "^6.0.3",
         "@angular/router": "^6.0.3",
+        "@ctrl/ngx-emoji-mart": "^0.17.0",
         "@sweetalert2/ngx-sweetalert2": "^5.0.1",
         "@types/jquery": "^3.3.30",
         "@webcomponents/custom-elements": "^1.1.0",

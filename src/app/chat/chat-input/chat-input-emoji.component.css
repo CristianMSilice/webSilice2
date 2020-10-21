@@ -1,0 +1,60 @@
+.emoji {
+  width: 1.2em;
+  height: 1.2em;
+  display: inline-block;
+  background-image: url(./../../../assets/emojisIcons.png);
+  background-size: 5200%;
+  position: relative;
+  bottom: -3px;
+}
+
+.emoji.hidden {
+    visibility: hidden;
+  }
+  
+.emoji-input {
+  position: absolute;
+  top: 59px;
+  left: 20px;
+}
+
+.emoji-input.hidden{
+    visibility: hidden;
+}
+.emoji-mart-scroll {
+  height: 140px;
+}
+
+span.emoji.emoji-icon {
+  cursor: pointer;
+  margin: 0px 0px 9px 0px;
+  width: 25px;
+  height: 25px;
+  flex-grow: 0;
+  flex-shrink: 0;
+  align-self: center;
+}
+
+button.silicechat-send.custom-color {
+  position: relative;
+  justify-content: center;
+  height: 40px;
+}
+section.emoji-mart-category {
+  height: 140px;
+  overflow-y: auto;
+}
+
+
+.chat-input-text {
+  padding: calc(40px - 2em) 0px 0px 2em !important;
+  margin: 0px !important;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.silicechat-input {
+  left: 0px;
+  display: flex;
+  position: absolute;
+}
