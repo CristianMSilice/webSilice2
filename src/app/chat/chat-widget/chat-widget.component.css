@@ -656,6 +656,10 @@ Sent message style
 .chat-message-sent .chat-message-from {
     float: right;
 }
+.silicechat-options-flex {
+    display: flex;
+    flex-wrap: nowrap;
+}
 
 .chat-message-sent .chat-message-text {
     margin: 5px 5px 0 5px;
@@ -671,7 +675,10 @@ Sent message style
     word-break: break-word;
     overflow-wrap: break-word;
 }
-
+chat-input{
+    width: 100%;
+    margin: 0px !important;
+}
 .chat-message-sent .chat-message-text:after {}
 
 .chat-message-sent .chat-message-date {
@@ -740,4 +747,7 @@ Sent message style
         /*height: 80vh;*/
     }
 }
+
+
+
 

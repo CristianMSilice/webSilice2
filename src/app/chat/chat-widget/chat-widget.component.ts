@@ -1,59 +1,67 @@
-import { Component, ElementRef, HostListener, Input, OnInit, ViewChild } from '@angular/core'
+import {
+  Component,
+  ElementRef,
+  HostListener,
+  Input,
+  OnInit,
+  ViewChild,
+} from '@angular/core'
 import { Subject } from 'rxjs'
 import { fadeIn, fadeInOut } from '../animations'
-import { Inject } from '@angular/core';
-import { GlobalService } from '../shared/globals';
-import { SocketService } from '../shared/services/socket.service';
-import { Action } from '../shared/model/action';
-import { Event } from '../shared/model/event';
-import { TOKEN } from '../shared/services/config';
-import { SlideInOutAnimation } from './animations';
+import { Inject } from '@angular/core'
+import { GlobalService } from '../shared/globals'
+import { SocketService } from '../shared/services/socket.service'
+import { Action } from '../shared/model/action'
+import { Event } from '../shared/model/event'
+import { TOKEN } from '../shared/services/config'
+import { SlideInOutAnimation } from './animations'
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser'
-import { SecurityContext } from '@angular/core';
-import { SafeHtml } from '@angular/platform-browser';
-import { CookieService } from 'ngx-cookie-service';
-import swal from 'sweetalert2';
-import { NgxLinkifyjsService } from 'ngx-linkifyjs';
+import { SecurityContext } from '@angular/core'
+import { SafeHtml } from '@angular/platform-browser'
+import { CookieService } from 'ngx-cookie-service'
+import swal from 'sweetalert2'
+import { NgxLinkifyjsService } from 'ngx-linkifyjs'
 
-const rand = max => Math.floor(Math.random() * max)
-
+const rand = (max) => Math.floor(Math.random() * max)
 
 @Component({
   selector: 'chat-widget',
   templateUrl: './chat-widget.component.html',
   styleUrls: ['./chat-widget.component.css'],
 
-
   animations: [fadeInOut, fadeIn, SlideInOutAnimation],
 })
 export class ChatWidgetComponent implements OnInit {
   //@ViewChild('bottom') bottom: ElementRef
   //@ViewChild('scrollMe') private myScrollContainer: ElementRef;
-  @ViewChild('scrollMe', { read: ElementRef }) private myScrollContainer: ElementRef;
+  @ViewChild('scrollMe', { read: ElementRef })
+  private myScrollContainer: ElementRef
   @Input() public theme: 'blueno' | 'greyno' | 'redno' = 'blueno'
- 
-  valido: boolean = false;
-  nuestraUrl:string=''
-  action = Action;
 
+  valido: boolean = false
+  nuestraUrl: string = ''
+  action = Action
 
-  messageContent: string;
-  ioConnection: any;
-  menuStatet: string = 'out';
-  menuStatet2: string = 'out';
-  cookieValue: string;
-  avatar_cab: string = GlobalService.AVATAR_CAB;
-  icon_cancel: string = GlobalService.ICON_CANCEL;
-  texto_cab: string = GlobalService.TEXTO_CAB;
-  isMobileResolution: boolean;
-  pp: string = ' <p>Hola, bienvenido de nuevo asdf</p> ';
+  messageContent: string
+  ioConnection: any
+  menuStatet: string = 'out'
+  menuStatet2: string = 'out'
+  cookieValue: string
+  avatar_cab: string = GlobalService.AVATAR_CAB
+  icon_cancel: string = GlobalService.ICON_CANCEL
+  texto_cab: string = GlobalService.TEXTO_CAB
+  isMobileResolution: boolean
+  pp: string = ' <p>Hola, bienvenido de nuevo asdf</p> '
 
-  constructor(private socketService: SocketService,
+  filetosend: HTMLInputElement;
+
+  constructor(
+    private socketService: SocketService,
     private sanitizer: DomSanitizer,
     public linkifyService: NgxLinkifyjsService,
-    private cookieService: CookieService, @Inject(TOKEN) public _token?: string) {
-
-  }
+    private cookieService: CookieService,
+    @Inject(TOKEN) public _token?: string,
+  ) {}
   public _visible = false
   public get visible() {
     return this._visible
@@ -99,94 +107,97 @@ export class ChatWidgetComponent implements OnInit {
 
   ngOnInit() {
     if (window.innerWidth < 768) {
-      this.isMobileResolution = true;
+      this.isMobileResolution = true
     } else {
-      this.isMobileResolution = false;
+      this.isMobileResolution = false
     }
     //this._token='Apfee6R+yalDdomE3Oo/ejzxzmMhSr8HMFn8qqeWkA8=';
-    setTimeout(() => this.visible = false, 1000)
-    if (!this.isMobileResolution){
-      this.comprobarDatos();
+    setTimeout(() => (this.visible = false), 1000)
+    if (!this.isMobileResolution) {
+      this.comprobarDatos()
     }
-
   }
   private comprobarDatos() {
     if (!this.cookieService.check(GlobalService.NM_COOKIE)) {
-
-      this.valido = false;
+      this.valido = false
       setTimeout(() => {
-        this.addMessage(this.operator, GlobalService.TXT_INICIAL, 'received', 1, '')
+        this.addMessage(
+          this.operator,
+          GlobalService.TXT_INICIAL,
+          'received',
+          1,
+          '',
+        )
       }, 1500)
-    }
-    else {
-
+    } else {
       /* this.cookieValue = this.cookieService.get(GlobalService.NM_COOKIE);
        this.client.id=this.cookieValue;
        this.misDatos()*/
 
-      this.valido = false;
+      this.valido = false
       setTimeout(() => {
-        this.addMessage(this.operator, GlobalService.TXT_INICIAL, 'received', 1, '')
+        this.addMessage(
+          this.operator,
+          GlobalService.TXT_INICIAL,
+          'received',
+          1,
+          '',
+        )
       }, 1500)
-    
- 
-
-
     }
   }
   private login() {
     this.socketService.getLogin2(this.client.name, this._token).subscribe(
-      data => {
-
+      (data) => {
         if (!data.error) {
-          this.client.id = data.data.id;
+          this.client.id = data.data.id
 
-
-          this.cookieService.set(GlobalService.NM_COOKIE, this.client.id.toString());
-          this.initIoConnection();
+          this.cookieService.set(
+            GlobalService.NM_COOKIE,
+            this.client.id.toString(),
+          )
+          this.initIoConnection()
           // let texto = "Bienvenido " + this.client.name
           //this.addMessage(this.operator, texto, 'received', 1,'')
 
-
-
-          this.socketService.send(this.client, '/start', this._token);
-          this.valido = true;
+          this.socketService.send(this.client, '/start', this._token)
+          this.valido = true
         } else {
-         // console.log(data.mensaje)
+          // console.log(data.mensaje)
         }
-
       },
-      error => {
+      (error) => {
         console.log(error.status)
       },
-      () => { }
-    );
+      () => {},
+    )
   }
   private misDatos() {
     this.socketService.getMisDatos(this.client.id, this._token).subscribe(
-      data => {
-
+      (data) => {
         if (!data.error) {
-
-          this.client.name = data.data.username;
-          this.valido = true;
+          this.client.name = data.data.username
+          this.valido = true
 
           setTimeout(() => {
-            this.addMessage(this.operator, 'Hola, bienvenido de nuevo ' + this.client.name, 'received', 1, '')
+            this.addMessage(
+              this.operator,
+              'Hola, bienvenido de nuevo ' + this.client.name,
+              'received',
+              1,
+              '',
+            )
           }, 1500)
-          this.initIoConnection();
-
-
+          this.initIoConnection()
         } else {
-         // console.log(data.mensaje)
+          // console.log(data.mensaje)
         }
-
       },
-      error => {
+      (error) => {
         console.log(error.status)
       },
-      () => { }
-    );
+      () => {},
+    )
   }
   public scrollToBottom() {
     /* if (this.bottom !== undefined) {
@@ -194,17 +205,17 @@ export class ChatWidgetComponent implements OnInit {
      }*/
 
     try {
-
       //this.myScrollContainer.nativeElement.scrollTop = this.myScrollContainer.nativeElement.scrollHeight;
-      this.myScrollContainer.nativeElement.scrollIntoView({ behavior: 'smooth', block: 'end' });
-
-
+      this.myScrollContainer.nativeElement.scrollIntoView({
+        behavior: 'smooth',
+        block: 'end',
+      })
     } catch (err) {
-     // console.log("error scroll")
-     // console.log(err.message)
+      // console.log("error scroll")
+      // console.log(err.message)
     }
   }
-  
+
   public focusMessage() {
     this.focus.next(true)
   }
@@ -216,66 +227,53 @@ export class ChatWidgetComponent implements OnInit {
       type: 'info',
       html:
         '<p>Para contactar con nosotros via movil, disponemos de los siguientes canales,</p> ' +
-        '<span><a href="https://api.whatsapp.com/send?phone=' + GlobalService.CONTACT_WAS + '" >   <img src="assets/wa.png"  >    </a> </span>',//+
+        '<span><a href="https://api.whatsapp.com/send?phone=' +
+        GlobalService.CONTACT_WAS +
+        '" >   <img src="assets/wa.png"  >    </a> </span>', //+
       // '<span><a href="https://t.me/pau_cableonda_bot" >   <img src="assets/te.png"  >    </a> </span>',
-
 
       showCloseButton: false,
       showCancelButton: false,
       showConfirmButton: false,
-
     })
-
   }
-
-
   public openChat() {
-
-    this.visible = true;
+    this.visible = true
   }
-
   public closeChat() {
-    this.visible = false;
-
+    this.visible = false
   }
   public closeButom() {
+    $('.chatbubble').removeClass('open')
+    $('.bot_btclose').removeClass('open')
 
-    $('.chatbubble').removeClass('open');
-    $('.bot_btclose').removeClass('open');
-
-    $('#componetchat').hide();
-
-
-
+    $('#componetchat').hide()
   }
 
   public openButom() {
-
-    $('.chatbubble').toggleClass('open');
-    $('.bot_btclose').toggleClass('open');
-    $('#componetchat').show();
+    $('.chatbubble').toggleClass('open')
+    $('.bot_btclose').toggleClass('open')
+    $('#componetchat').show()
   }
 
   selectComando = (comando) => {
-    this.socketService.send(this.client, comando, this._token);
+    this.socketService.send(this.client, comando, this._token)
     this.addMessage(this.client, comando, 'sent', 1, '')
-    this.ocultarTarjetas();
+    this.ocultarTarjetas()
   }
 
-  public sendMessage( message ) {
+  public sendMessage(message) {
     if (message.textContent.trim() === '') {
       return
     }
     if (!this.valido) {
-      this.client.name = message.textContent.trim();
+      this.client.name = message.textContent.trim()
+      this.addMessage(this.client, message.innerHTML, 'sent', 1, '')
+    } else {
+      this.socketService.send(this.client, message.innerHTML, this._token)
       this.addMessage(this.client, message.innerHTML, 'sent', 1, '')
     }
-    else {
-      this.socketService.send(this.client, message.innerHTML, this._token);
-      this.addMessage(this.client, message.innerHTML, 'sent', 1, '')
-    }
-    this.login();
-
+    this.login()
   }
 
   @HostListener('document:keypress', ['$event'])
@@ -288,122 +286,124 @@ export class ChatWidgetComponent implements OnInit {
     }
   }
 
-
   private initIoConnection(): void {
-    this.socketService.initSocket();
+    this.socketService.initSocket()
 
-    this.ioConnection = this.socketService.onMessage()
+    this.ioConnection = this.socketService
+      .onMessage()
       .subscribe((respuesta: any) => {
         // this.operator.name=respuesta.usuario.name;
         //this.operator.avatar=respuesta.usuario.avatar;
-        if (respuesta.message.search("deleteMensaje")!='-1') {
-          
-          this.messages = [];
-          this.comprobarDatos();
-        }
-        else {
-            
-        if (respuesta.tipo == 1)
-         this.addMessage(this.operator, respuesta.message, 'received', 1, '')
+        if (respuesta.message.search('deleteMensaje') != '-1') {
+          this.messages = []
+          this.comprobarDatos()
+        } else {
+          if (respuesta.tipo == 1)
+            this.addMessage(this.operator, respuesta.message, 'received', 1, '')
           else if (respuesta.tipo == 2) {
-
-          let mime = respuesta.mime;
-          this.addMessage(this.operator, respuesta.file, 'received', 2, mime)
- 
+            let mime = respuesta.mime
+            this.addMessage(this.operator, respuesta.file, 'received', 2, mime)
+          }
         }
-      }
+      })
 
-      });
-
-    this.ioConnection = this.socketService.onError()
+    this.ioConnection = this.socketService
+      .onError()
       .subscribe((respuesta: any) => {
-        console.log("error")
-        
+        console.log('error')
 
         this.addMessage(this.operator, respuesta.message, 'received', 1, '')
+      })
 
+    this.socketService.onEvent(Event.CONNECT).subscribe(() => {
+      this.socketService.adduser(this.client, this._token)
+    })
 
-      });
-
-    this.socketService.onEvent(Event.CONNECT)
-      .subscribe(() => {
-        this.socketService.adduser(this.client, this._token);
-
-
-      });
-
-    this.socketService.onEvent(Event.DISCONNECT)
-      .subscribe(() => {
-        /* console.log('disconnected');
+    this.socketService.onEvent(Event.DISCONNECT).subscribe(() => {
+      /* console.log('disconnected');
          setTimeout(() => {
            this.addMessage(this.operator, 'Desconectado', 'received', 1,'')
          }, 1500)*/
-
-      });
+    })
   }
   public sendNotification(action: Action): void {
-    let message: any;
+    let message: any
 
     if (action === Action.JOINED) {
       message = {
         nickname: this.client.name,
-        action: action
+        action: action,
       }
-      this.socketService.join(this.client.name, this._token);
+      this.socketService.join(this.client.name, this._token)
     } else if (action === Action.RENAME) {
       message = {
         action: action,
         nickname: this.client.name,
         message: 'rename',
-      };
-      this.socketService.send(this.client.name, 'rename', this._token);
+      }
+      this.socketService.send(this.client.name, 'rename', this._token)
     }
-
-
   }
   goToLink(url: string) {
     // url = GlobalService.SERVER_ENDPOINT + url;
-    window.open(url);
+    window.open(url)
   }
   paserPdf(ruta: string) {
-
-    return this.sanitizer.bypassSecurityTrustResourceUrl(ruta);
+    return this.sanitizer.bypassSecurityTrustResourceUrl(ruta)
   }
   ocultarTarjetas = () => {
-
-    this.menuStatet = this.menuStatet === 'out' ? 'in' : 'out';
+    this.menuStatet = this.menuStatet === 'out' ? 'in' : 'out'
   }
   ocultarTarjetas2 = () => {
-
-    this.menuStatet2 = this.menuStatet2 === 'out' ? 'in' : 'out';
+    this.menuStatet2 = this.menuStatet2 === 'out' ? 'in' : 'out'
   }
 
-  paserLink(html :any ) :SafeHtml{
-    var div = document.createElement("div");
-    div.innerHTML  = html;
+  paserLink(html: any): SafeHtml {
+    var div = document.createElement('div')
+    div.innerHTML = html
     // div.innerHTML  = this.sanitizer.sanitize(SecurityContext.HTML, html);
 
-    div.childNodes.forEach((e:any)=>{
+    div.childNodes.forEach((e: any) => {
       if (e.textContent.trim() !== '') {
-        let a=this.linkifyService.linkify(e.textContent) || this.linkifyService.linkify(e.innerText);
-        let temporalNode = document.createElement("span");
-        temporalNode.innerHTML=a;
-        e.replaceWith(temporalNode);
+        let a =
+          this.linkifyService.linkify(e.textContent) ||
+          this.linkifyService.linkify(e.innerText)
+        let temporalNode = document.createElement('span')
+        temporalNode.innerHTML = a
+        e.replaceWith(temporalNode)
       }
-
     })
-    return div.innerHTML;
+    return div.innerHTML
   }
-  esnuestro( texto ):boolean  {
-
-   return texto.includes('url.pau.zone')
+  esnuestro(texto): boolean {
+    return texto.includes('url.pau.zone')
     // return texto.includes(':8100')
   }
-  goToLink2(link)
-  {
-    this.nuestraUrl=link
-   this.ocultarTarjetas2()
+  goToLink2(link) {
+    this.nuestraUrl = link
+    this.ocultarTarjetas2()
   }
+  sendFile(kind) {
+    this.filetosend = document.querySelector('#chat-input-file');
+    let direccion
+    switch (kind) {
+      case 'image':
+        direccion = document.querySelector(`#archivo-preview-image`).getAttribute('src')
+        this.addMessage(this.operator,direccion,'sent',2,this.filetosend.files[0].type);
+        this.filetosend.value = '';
+        break
+        case 'video':
+          direccion = document.querySelector(`#archivo-preview-video`).getAttribute('src')
+          this.addMessage(this.operator,direccion,'sent',2,this.filetosend.files[0].type);
+          break
+      default:
+        break
+    }
+    let option :any= document.querySelector('.option.adjunto');
+    option.click();
+    option =document.querySelector('.relative .options');
+    option.click();
+    
 
-
+  }
 }

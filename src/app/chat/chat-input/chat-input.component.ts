@@ -16,18 +16,17 @@ import { selector } from 'rxjs-compat/operator/publish'
       contenteditable>
     </div>
     <span style="background-position: 60.7843% 74.5098%;"  class="emoji emoji-icon" (click)="toggleEmojisMenu()"></span>
-    <div class="emoji-input hidden" id="EmojiMenu" >            
+    <div class="emoji-input hidden selectableOptionInput EmojiMenu"  >            
     <emoji-mart
       [style]="{ position: 'absolute', bottom: '20px', right: '20px' }"
-      (emojiClick)="addEmoji($event)"
-    ></emoji-mart>
+      (emojiClick)="addEmoji($event)">
+    </emoji-mart>
     </div>
 
     <button class="silicechat-send custom-color"   (click)="onSubmit()">
       <i class="material-icons">send</i> 
     </button>           
    </div>
-                   
   `,
   encapsulation: ViewEncapsulation.None,
   styleUrls: ['./chat-input.component.css','./chat-input-emoji.component.css'],
@@ -59,7 +58,15 @@ export class ChatInputComponent implements OnInit {
     this.focusMessage()
   }  
   public toggleEmojisMenu(){
-    document.querySelector('#EmojiMenu').classList.toggle('hidden');
+    let options = document.querySelectorAll('.selectableOptionInput');
+    options.forEach(option=>{
+    if( option.classList.contains('EmojiMenu')){
+      option.classList.toggle('hidden');
+    }else{
+      option.classList.add('hidden');
+    }
+    })
+     this.focusMessage();
   }
   public getMessage() {
     return this.message.nativeElement
@@ -68,7 +75,6 @@ export class ChatInputComponent implements OnInit {
   public clearMessage() {
     this.message.nativeElement.innerHTML = ''
   }
-
   onSubmit() {
     const message = this.getMessage()
     if (message.textContent.trim() === '') {
