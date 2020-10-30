@@ -1,0 +1,120 @@
+
+.chat-message {
+  margin: 1em;
+  display: flex;
+  flex-direction: column;
+}
+.message {
+  position: relative;
+  width: 80%;
+  border-radius: 10px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0px 4px 10px -10px black;
+}
+.message.message-user {
+  align-items: flex-end;
+  align-self: flex-end;
+  background-color: var(--main-color);
+  color: hsl(0, 0%, 95%);
+}
+.message.message-user::before {
+  right: 0;
+  clip-path: polygon(0 0, 100% 100%, 100% 0);
+}
+.message.message-user .message-photo {
+  right: -30px;
+  background-image: url(./../../../assets/user.svg);
+}
+.message.message-user .message-time {
+  color: hsl(0, 0%, 80%);
+}
+
+.message.message-bot {
+  align-items: flex-start;
+  align-self: flex-start;
+  background-color: hsl(250, 13%, 91%);
+  color: black;
+}
+.message.message-bot::before {
+  left: 0;
+  clip-path: polygon(0 0, 0% 100%, 100% 0);
+}
+.message.message-bot .message-photo {
+  left: -30px;
+  background-image: url(./../../../assets/logochat_red.svg);
+}
+.message.message-bot .message-time {
+  color: hsl(0, 0%, 40%);
+}
+
+.message::before {
+  content: '';
+  position: absolute;
+  width: 30px;
+  height: 15px;
+  background: inherit;
+  bottom: -7px;
+}
+
+.message .message-time {
+  font-size: 0.6em;
+  font-family: sans-serif;
+  display: block;
+  width: 100%;
+  text-align: right;
+}
+.message .message-photo {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  clip-path: circle(50% at 50% 50%);
+  bottom: -32px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+.message .message-image img {
+  max-width: 100%;
+  max-height: 300px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+.message .message-image {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.message .video-message {
+  box-shadow: 0px 0px 20px -10px;
+  border-radius: 10px;
+}
+.message .video-message:focus {
+  outline: none;
+}
+
+.message-buttons-array {
+  padding: 0.1em;
+  margin: 0.1em 0px;
+  width: 100%;
+  font-weight: bold;
+  font-size: 0.9em;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+.message-buttons-array .message-button-option {
+  padding: 8px;
+  margin: 5px 3px;
+  border: 1px solid;
+  border-radius: 50vmin;
+  color: #1986f5;
+  background-color: hsla(0, 0%, 0%, 5%);
+}
+
+.message-buttons-array .message-button-option:hover {
+  cursor: pointer;
+  background-color: hsla(0, 0%, 0%, 10%);
+}

@@ -47,14 +47,15 @@ section.emoji-mart-category {
 
 
 .chat-input-text {
-  padding: calc(40px - 2em) 0px 0px 2em !important;
+  padding: calc(40px - 2em) 0px 0px 1em !important;
   margin: 0px !important;
   overflow-y: auto;
   overflow-x: hidden;
 }
 
 .silicechat-input {
+  right: 0px;
   left: 0px;
+  width: 100%;
   display: flex;
-  position: absolute;
 }
