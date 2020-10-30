@@ -105,6 +105,8 @@ export class ChatWidgetComponent implements OnInit {
       file_mime: file_mime,
       date: msg.date
     }
+ 
+   if (this.messages==undefined) this.messages=[];
     this.messages.unshift(msg)
     this.trabajarMsg(fila)
 
@@ -349,14 +351,22 @@ export class ChatWidgetComponent implements OnInit {
   }
   private trabajarMsg(msg: any) {
     this.msgList = this.encsessionService.descodif(GlobalService.NM_COOKIE);
-
-    let i = 0;
-    if (this.msgList.length > 110) {
-      for (let index = 110; index < this.msgList.length; index++) {
-        this.msgList.splice(i, 1);
-        i++;
+    if (this.msgList==undefined)
+    {
+      this.msgList=[];
+    }
+    else
+    {
+      let i = 0;
+  
+      if (this.msgList.length > 110) {
+        for (let index = 110; index < this.msgList.length; index++) {
+          this.msgList.splice(i, 1);
+          i++;
+        }
       }
     }
+   
 
 
 
