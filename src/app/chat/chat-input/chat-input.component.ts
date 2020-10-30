@@ -15,13 +15,6 @@ import { selector } from 'rxjs-compat/operator/publish'
       (keyup.escape)="dismiss.emit()"
       contenteditable>
     </div>
-    <span style="background-position: 60.7843% 74.5098%;"  class="emoji emoji-icon" (click)="toggleEmojisMenu()"></span>
-    <div class="emoji-input hidden" id="EmojiMenu" >            
-    <emoji-mart
-      [style]="{ position: 'absolute', bottom: '20px', right: '20px' }"
-      (emojiClick)="addEmoji($event)"
-    ></emoji-mart>
-    </div>
 
     <button class="silicechat-send custom-color"   (click)="onSubmit()">
       <i class="material-icons">send</i> 
@@ -37,7 +30,7 @@ export class ChatInputComponent implements OnInit {
   @Input() public focus = new EventEmitter()
   @Output() public send = new EventEmitter()
   @Output() public dismiss = new EventEmitter()
-  @ViewChild('message') message: ElementRef
+  @ViewChild('message', { static: false }) message: ElementRef
 
   ngOnInit() {
     this.focus.subscribe(() => this.focusMessage())

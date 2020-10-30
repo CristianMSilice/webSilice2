@@ -1,7 +1,7 @@
 import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild, ViewEncapsulation } from '@angular/core'
 
 @Component({
-  selector: 'chat-input',
+  selector: 'chat-input', 
   template: `
   <div class="silicechat-input">
     <textarea type="text" class="chat-input-text" placeholder="Indica tu mensaje..."
@@ -20,7 +20,7 @@ export class ChatInputComponent implements OnInit {
   @Input() public focus = new EventEmitter()
   @Output() public send = new EventEmitter()
   @Output() public dismiss = new EventEmitter()
-  @ViewChild('message') message: ElementRef
+  @ViewChild('message', { static: false }) message: ElementRef
 
   ngOnInit() {
     this.focus.subscribe(() => this.focusMessage())

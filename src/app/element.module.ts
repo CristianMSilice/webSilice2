@@ -7,12 +7,16 @@ import { ChatModule, ChatWidgetComponent, ChatConfigComponent } from './chat/'
 import { ConfigFactory, ConfigService, TOKEN } from './chat/shared/services/config';
 import { HttpModule } from '@angular/http';
  
+import { NgxWebstorageModule } from 'ngx-webstorage';
+import { EncsessionService } from './chat/shared/helpers/encsession.service';
 import { NgxLinkifyjsModule } from 'ngx-linkifyjs';
 @NgModule({
-  imports: [BrowserModule, BrowserAnimationsModule, ChatModule,HttpClientModule,HttpModule,NgxLinkifyjsModule.forRoot()],
+  imports: [BrowserModule, BrowserAnimationsModule, ChatModule,HttpClientModule,HttpModule,NgxLinkifyjsModule.forRoot(),
+    NgxWebstorageModule.forRoot()],
  
   providers: [
     ConfigService,
+    EncsessionService,
     { provide: 'CONFIGPATH', useValue: './config.json' },
     { provide: 'APIURL-VAR', useValue: 'TOKEN' },
     {
@@ -37,3 +41,4 @@ export class ElementModule {
     customElements.define('chat-widget', chatWidget)
   }
 }
+ 
