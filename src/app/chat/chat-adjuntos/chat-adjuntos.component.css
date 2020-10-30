@@ -124,14 +124,14 @@
     height: 50px;
 
     -webkit-mask: url(./../../../assets/sendIcon.svg);
-    -webkit-mask-position: center;
-    -webkit-mask-size: 67%;
-    -webkit-mask-repeat: no-repeat;
-
     mask: url(./../../../assets/sendIcon.svg);
+    -webkit-mask-position: center;
     mask-position: center;
+    -webkit-mask-size: 67%;
     mask-size: 67%;
+    -webkit-mask-repeat: no-repeat;
     mask-repeat: no-repeat;
+
  
 }
 .archivo-preview.show{
