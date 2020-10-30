@@ -27,21 +27,22 @@ const rand = (max) => Math.floor(Math.random() * max)
 @Component({
   selector: 'chat-widget',
   templateUrl: './chat-widget.component.html',
-  styleUrls: ['./chat-widget.component.css'],
+  styleUrls: [
+    './header.css',
+    './message.css',
+    './chat-widget.component.css'],
 
   animations: [fadeInOut, fadeIn, SlideInOutAnimation],
 })
 export class ChatWidgetComponent implements OnInit {
   //@ViewChild('bottom') bottom: ElementRef
-  //@ViewChild('scrollMe') private myScrollContainer: ElementRef;
-  @ViewChild('scrollMe', { read: ElementRef })
-  private myScrollContainer: ElementRef
+  @ViewChild('widgetBody') widgetBody: ElementRef
   @Input() public theme: 'blueno' | 'greyno' | 'redno' = 'blueno'
-
+  showAdjuntos: boolean = false; // variable que se envía al hijo para mostrar adjuntos
   valido: boolean = false
   nuestraUrl: string = ''
   action = Action
-
+  banderaScroll = true;
   messageContent: string
   ioConnection: any
   menuStatet: string = 'out'
@@ -54,6 +55,10 @@ export class ChatWidgetComponent implements OnInit {
   pp: string = ' <p>Hola, bienvenido de nuevo asdf</p> '
 
   filetosend: HTMLInputElement;
+
+
+
+  stringPrueba=`este es un mensaje de prueba *$MARCO$*:{"button" : [{"color": "#FFF000","texto": "Credito Hipotecario","accion": "Hipotecario"},{"color": "#F0F000","texto": "Credito Vihiculo","accion": "Credito"}]}`
 
   constructor(
     private socketService: SocketService,
@@ -70,7 +75,7 @@ export class ChatWidgetComponent implements OnInit {
     this._visible = visible
     if (this._visible) {
       setTimeout(() => {
-        this.scrollToBottom()
+        this.scrollToBottom(this.widgetBody.nativeElement,200)
         this.focusMessage()
       }, 0)
     }
@@ -93,8 +98,30 @@ export class ChatWidgetComponent implements OnInit {
 
   public messages = []
 
+  /* public trabajarMsg(msg:any){
+    this.msgList = this.encsessionService.descodif(GlobalService.NM_COOKIE);
+    if (this.msgList == undefined) {
+      this.msgList=[];
+    } else {
+      let i = 0;
+      if (this.msgList.length >110) {
+        for (let index = 110; index < this.msgList.length; index++) {
+          this.msgList.splice(i,1);
+          i++
+        }
+      }
+    }
+
+    this.msgList.unshift(msg);
+    this.encsessionService.codif(this.msgList, globalService.NM_COOKIE)
+  } */
   public addMessage(from, text, type: 'received' | 'sent', tipo, file_mime) {
-    this.messages.unshift({
+    console.log(this.stringPrueba);
+    let clave = '*$MARCO$*:';
+    let stringify = this.stringPrueba.substring(this.stringPrueba.lastIndexOf(clave)+clave.length);
+    let buttons = JSON.parse(stringify);
+    console.log(buttons);
+    this.messages.push({
       from,
       text,
       type,
@@ -102,7 +129,33 @@ export class ChatWidgetComponent implements OnInit {
       file_mime,
       date: new Date().getTime(),
     })
-    setTimeout(() => this.scrollToBottom(), 800)
+
+    // let msg = {
+    //   from,
+    //   text,
+    //   type,
+    //   tipo,
+    //   file_mime,
+    //   date: new Date().getTime(),
+    // }
+    // let fila = {
+    //   from: from,
+    //   text: text,
+    //   type: type,
+    //   file_mime: file_mime,
+    //   date: msg.date
+    // }
+    // if (this.messages == undefined) {
+    //   this.messages= [];
+    //   this.messages.push(msg);
+    //   // this.trabajarMsg(fila);
+    // }
+
+    setTimeout(() => {
+      try {
+        this.scrollToBottom(this.widgetBody.nativeElement,200);
+      } catch (error) { }
+    }, 800);
   }
 
   ngOnInit() {
@@ -199,21 +252,27 @@ export class ChatWidgetComponent implements OnInit {
       () => {},
     )
   }
-  public scrollToBottom() {
-    /* if (this.bottom !== undefined) {
-       this.bottom.nativeElement.scrollIntoView()
-     }*/
+  public scrollToBottom(element:HTMLElement, time :number) {
+    if (this.banderaScroll==true) {
+      this.banderaScroll=false;
+      try {
+        let InicialY = element.scrollTop;
+        let velocity = (element.scrollHeight - element.scrollTop)/time;
+        for (let i = 0; i < time; i++) {
+          setTimeout(() => {
+            InicialY= InicialY + velocity; 
+            element.scrollTo(0,InicialY);
+          }, velocity);
+        }
+        this.banderaScroll=true;
+      } catch (err) {
+        console.log("error scroll")
+        console.log(err.message)
+      }  
+    }else{
 
-    try {
-      //this.myScrollContainer.nativeElement.scrollTop = this.myScrollContainer.nativeElement.scrollHeight;
-      this.myScrollContainer.nativeElement.scrollIntoView({
-        behavior: 'smooth',
-        block: 'end',
-      })
-    } catch (err) {
-      // console.log("error scroll")
-      // console.log(err.message)
     }
+    
   }
 
   public focusMessage() {
@@ -263,15 +322,15 @@ export class ChatWidgetComponent implements OnInit {
   }
 
   public sendMessage(message) {
-    if (message.textContent.trim() === '') {
+    if (message.value.trim() === '') {
       return
     }
     if (!this.valido) {
-      this.client.name = message.textContent.trim()
-      this.addMessage(this.client, message.innerHTML, 'sent', 1, '')
+      this.client.name = message.value.trim()
+      this.addMessage(this.client, message.value, 'sent', 1, '')
     } else {
-      this.socketService.send(this.client, message.innerHTML, this._token)
-      this.addMessage(this.client, message.innerHTML, 'sent', 1, '')
+      this.socketService.send(this.client, message.value, this._token)
+      this.addMessage(this.client, message.value, 'sent', 1, '')
     }
     this.login()
   }
@@ -383,27 +442,25 @@ export class ChatWidgetComponent implements OnInit {
     this.nuestraUrl = link
     this.ocultarTarjetas2()
   }
-  sendFile(kind) {
-    this.filetosend = document.querySelector('#chat-input-file');
-    let direccion
-    switch (kind) {
+  sendFile(stringInput) {
+    let input = JSON.parse(stringInput);
+    console.log(input)
+    switch (input.kind) {
       case 'image':
-        direccion = document.querySelector(`#archivo-preview-image`).getAttribute('src')
-        this.addMessage(this.operator,direccion,'sent',2,this.filetosend.files[0].type);
-        this.filetosend.value = '';
+        this.addMessage(this.operator,input.source,'sent',2,input.type);
         break
         case 'video':
-          direccion = document.querySelector(`#archivo-preview-video`).getAttribute('src')
-          this.addMessage(this.operator,direccion,'sent',2,this.filetosend.files[0].type);
+          this.addMessage(this.operator,input.source,'sent',2,input.type);
           break
       default:
         break
-    }
-    let option :any= document.querySelector('.option.adjunto');
-    option.click();
-    option =document.querySelector('.relative .options');
-    option.click();
-    
+    } 
 
+  }
+  toggleAttOptions(){
+    this.showAdjuntos = !this.showAdjuntos;
+  }
+  closeAdjuntos(){
+    this.showAdjuntos = false;
   }
 }

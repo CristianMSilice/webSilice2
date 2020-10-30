@@ -1,0 +1,36 @@
+<div class="chat-widget-input-container" [ngClass]="{'showOptions':showOptions==true}">
+  <input
+    type="text"
+    placeholder="Ingresa aquí tu mensaje..."
+    id="message"
+    class="chat-widget-input"
+    #message
+    (keydown.enter)="onSubmit($event)"
+    (keyup.enter)="message.value = ''"
+    (keyup.escape)="dismiss.emit()"
+    contenteditable
+  >
+
+  <div class="buttons-options" [ngClass]="{'showOptions':showOptions==true}">
+
+      <div *ngIf="showOptions==true">
+        <div class="option-showed backgroundImage emojiIcon"
+          (click)="toggleEmojisMenu()"
+        ></div>
+      </div> 
+
+      <div *ngIf="showOptions==true">
+        <div class="option-showed backgroundImage attached"
+          (click)="toggleAttachedOptions()"
+        ></div>
+      </div> 
+
+    <div class="options option-showed" (click)="toggleOptions()" [ngClass]="{'showOptions':showOptions==true}">
+      <div class="line line1"></div>
+      <div class="line line2"></div>
+      <div class="line line3"></div>
+    </div>
+    <div class="option-showed backgroundImage send" (click)="onSubmit($event)">
+    </div>
+  </div>
+</div>

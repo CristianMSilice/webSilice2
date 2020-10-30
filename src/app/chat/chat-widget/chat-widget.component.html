@@ -1,52 +1,35 @@
 <div class="wrapper-silice   {{ theme }}" id="componetchat" ngDraggable>
   <div
-    class="chat-box silicechat-container"
+    class="chat-widget"
     *ngIf="visible && !isMobileResolution"
     [@fadeInOut]="visible"
   >
-    <div class="silicechat-header custom-background">
-      <div class="silicechat-header-title brand-text">
-        <span class="silicechat-title-brand">
-          <img src="{{ avatar_cab }}" class="img-silice" />
-        </span>
-        <span class="silicechat-title-text"> {{ texto_cab }}</span>
-        <a class="silicechat-header-close" (click)="closeChat()"
-          ><i class="material-icons">close</i></a
-        >
+    <div class="chat-widget-header">
+      <div class="chat-widget-header-logo">
+        <img src="{{ avatar_cab }}" class="img-silice" />
       </div>
+      <div class="chat-widget-header-name">
+        {{ texto_cab }}
+      </div>
+      <div class="chat-widget-close" (click)="closeChat()">&#10006;</div>
     </div>
 
-    <div class="chat-box-main">
-      <div id="inner">
-        <div class="chat-message-bottom" #scrollMe *ngIf="valido"></div>
+    <div class="chat-widget-body" #widgetBody>
         <ng-container *ngFor="let message of messages">
-          <div
-            class="chat-message"
-            [class.chat-message-received]="message.type === 'received'"
+          <div class="chat-message">
+            <div class="message"
+            [class.message-bot]="message.type === 'received'"
+            [class.message-user]="message.type === 'sent'"
             [@fadeIn]
-            [class.chat-message-sent]="message.type === 'sent'"
           >
             <div>
-              <chat-avatar
-                [image]="message.from.avatar"
-                class="chat-message-from-avatar"
-                *ngIf="message.type === 'received'"
-              ></chat-avatar>
-              <div class="chat-message-text" *ngIf="message.tipo == 1">
-                <div
-                  style="white-space: pre-line"
-                  [innerHTML]="paserLink(message.text) | sanitizeHtml"
-                  *ngIf="!esnuestro(message.text)"
-                ></div>
-                <div
-                  style="white-space: pre-line"
-                  *ngIf="esnuestro(message.text)"
-                >
-                  <button
-                    type="button"
-                    class="btn btn-float btn-float-lg btn-outline-pink"
-                    (click)="goToLink2(message.text)"
-                  >
+              <div class="message-photo"></div>
+              <div class="message-text" *ngIf="message.tipo == 1">
+                <div style="white-space: pre-line" [innerHTML]="paserLink(message.text) | sanitizeHtml"
+                  *ngIf="!esnuestro(message.text)"></div>
+                <div style="white-space: pre-line" *ngIf="esnuestro(message.text)" >
+                  <button type="button" class="btn btn-float btn-float-lg btn-outline-pink"
+                    (click)="goToLink2(message.text)">
                     <i class="fa fa-cloud-download"></i
                     ><span>Abrir Enlace<br /> </span>
                   </button>
@@ -55,7 +38,7 @@
 
               <div *ngIf="message.tipo == 2" [ngSwitch]="true">
                 <div
-                  class="chat-message-img"
+                  class="message-image"
                   *ngSwitchCase="
                     message.file_mime === 'image/gif' ||
                     message.file_mime === 'image/webp' ||
@@ -64,9 +47,7 @@
                     message.file_mime === 'image/jpeg'
                   "
                 >
-                  <figure class="effect-lily">
-                    <img src="{{ message.text }}" class="mimg" />
-                  </figure>
+                    <img src="{{ message.text }}"  />
                 </div>
 
                 <div *ngSwitchCase="message.file_mime === 'video/mp4'">
@@ -106,37 +87,24 @@
                 </div>
               </div>
             </div>
-            <div class="chat-message-date">
+            <div class="message-time">
               {{ message.date | date: 'short' }}
             </div>
           </div>
-        </ng-container>
-      </div>
-    </div>
-
-    <div class="silicechat-controls custom-border">
-      <div class="silicechat-hasnt-message silicechat-send-enabled silicechat-options-flex">
-        <!-- <span class="silicechat-input-button-container">
-          <div class="silicechat-input-button silicechat-input-faqs-button">
-            <a (click)="ocultarTarjetas()"
-              ><i class="material-icons custom-color" *ngIf="valido">menu</i></a
-            >
           </div>
-          <app-chat-preguntas
-            [@slideInOut]="menuStatet"
-            [deleteHandler]="ocultarTarjetas"
-            [regresarComando]="selectComando"
-          >
-          </app-chat-preguntas>
-        </span> -->
-        <chat-options (enviarArchivo)="sendFile($event)"></chat-options>
+          
+        </ng-container>
+    </div>
         <chat-input
           (send)="sendMessage($event)"
           (dismiss)="closeChat()"
+          (toggleAttOptions)="toggleAttOptions()"
           [focus]="focus"
         ></chat-input>
-      </div>
-    </div>
+        <chat-adjuntos 
+        [(show)]="showAdjuntos" 
+        (showoutput)="closeAdjuntos($event)" 
+        (send)="sendFile($event)" ></chat-adjuntos>
     <app-new-tarjeta
       [url]="nuestraUrl"
       [@slideInOut2]="menuStatet2"
@@ -170,4 +138,3 @@
         <p>¿En qué podemos ayudarte? Pincha aquí y te atenderemos en seguida</p>
     </div>-->
 </div>
-

@@ -12,11 +12,12 @@ import { CookieService } from 'ngx-cookie-service';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { SanitizeHtmlPipe } from './pipe/sanitize-html.pipe';
 import { PickerModule } from '@ctrl/ngx-emoji-mart';
-import { ChatOptionsComponent } from './chat-options/chat-options/chat-options.component'
+import { ChatOptionsComponent } from './chat-options/chat-options/chat-options.component';
+import { ChatAdjuntosComponent } from './chat-adjuntos/chat-adjuntos.component'
 
 @NgModule({
   imports: [CommonModule,AngularDraggableModule,SweetAlert2Module,PickerModule],
-  declarations: [ChatAvatarComponent, ChatWidgetComponent, ChatInputComponent, ChatConfigComponent,ChatPreguntasComponent,SanitizeHtmlPipe,NewTarjetaComponent, ChatOptionsComponent],
+  declarations: [ChatAvatarComponent, ChatWidgetComponent, ChatInputComponent, ChatConfigComponent,ChatPreguntasComponent,SanitizeHtmlPipe,NewTarjetaComponent, ChatOptionsComponent, ChatAdjuntosComponent],
   providers: [SocketService,CookieService,SanitizeHtmlPipe],
   exports: [ChatWidgetComponent, ChatConfigComponent],
   entryComponents: [ChatWidgetComponent, ChatConfigComponent],

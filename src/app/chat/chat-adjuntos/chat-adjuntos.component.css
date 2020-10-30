@@ -1,0 +1,142 @@
+.adjuntos-container{
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    left: 0;
+    bottom: 50px;
+    transform: scaley(0);
+    transition: transform 200ms ease;
+    transform-origin: bottom left;
+}
+.adjuntos-container.show{
+    transform: scaley(1);
+}
+.adjuntos-container input{
+    width: 0%;
+    height: 0%;
+    position: absolute;
+    visibility: hidden;
+}
+.option-tooltip{
+    position: absolute;
+    bottom: calc(50% - 0.5em);
+    width: max-content;
+    left: calc(100% + 1em);
+    font-weight: bold;
+    text-shadow: 0px 0px 4px black;
+    color: white;
+    visibility: hidden;
+}
+.adjunto-option-container:hover .option-tooltip{
+    visibility: visible;
+}
+.adjunto-option-container{
+    width: fit-content;
+    height: fit-content;
+    border-radius: 50%;
+    background: transparent;
+    box-shadow: 2px 2px 6px -3px black;
+    margin:5px;
+    position: relative;
+    cursor: pointer;
+}
+.adjunto-opcion{
+    mask-position: center !important;
+    mask-repeat: no-repeat !important;
+    mask-size: 100% !important;
+    background-color: blue ;
+    position: relative;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+}
+.adjunto-opcion::after{
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    top: 0;
+    left: 0;
+    background: hsla(0,0%,100%,20%);
+    clip-path: circle(72% at 28% -11%);
+}
+.paisaje{
+    mask: url(./../../../assets/attcPaisaje.svg);
+}
+
+.archivo-preview{
+    width: 100%;
+    height: calc(100% - 40px);
+    background: #f2f2f2;
+    position: absolute;
+    top: 40px;
+    left: 0;
+    z-index: 20;
+    display: grid;
+    grid-template-rows: 15% 70% 15%;
+    transform: scaley(0);
+    transition: transform 400ms ease;
+    transform-origin: bottom left;
+    border-radius: 0px 0px 10px 10px;
+}
+
+.archivo-preview-title{
+    width: 100%;
+    background: var(--attachedFilesTitle);
+    height: calc(100% - 1em);
+    display: flex;
+    align-items: center;
+    font-size: 12pt;
+    color: white;
+    padding: 0em 1em;
+    font-weight: 600;
+    align-self: center;
+    justify-self: center;
+}
+
+.archivo-preview-showed{
+    max-width: 500px;
+    max-height: 90vh;
+    width: 90%;
+    height: 68%;
+    border: 1px dashed var(--attachedFilesTitle);
+    justify-self: center;
+    align-self: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.archivo-preview-showed * {
+    max-width: 100%;
+    max-height: 100%;
+}
+.archivo-send {
+    align-self: start;
+    justify-self: end;
+    cursor: pointer;
+}
+.archivo-send button {
+    width: 50px;
+    background: var(--attachedFilesTitle);
+    box-shadow: 0px 0px 5px black;
+    border-radius: 50%;
+    height: 50px;
+
+    -webkit-mask: url(./../../../assets/sendIcon.svg);
+    -webkit-mask-position: center;
+    -webkit-mask-size: 67%;
+    -webkit-mask-repeat: no-repeat;
+
+    mask: url(./../../../assets/sendIcon.svg);
+    mask-position: center;
+    mask-size: 67%;
+    mask-repeat: no-repeat;
+ 
+}
+.archivo-preview.show{
+    transform: scaley(1);
+}
+.clickable{
+    cursor: pointer;
+}

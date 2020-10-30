@@ -8,9 +8,12 @@ body {
     width: 100vw;
     height: 100vh;
     overflow: hidden;
-    --main-color: #0053ad;
+    --main-color: #1986f5;
+    --attachedFilesTitle: #A80000;
+    --buttonsColor :#1986f5;
     /* #A80000;*/
     --btclose-visibility: visible;
+    --scrollcolor: hsl(223, 12%, 86%);
 }
 
 body {
@@ -19,4 +22,8 @@ body {
 
 * {
     box-sizing: border-box;
+}
+
+.pr-1{
+    padding: 0em 1em 0em 0em;
 }

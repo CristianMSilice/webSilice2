@@ -1,35 +1,20 @@
-import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild, ViewEncapsulation } from '@angular/core'
+import {
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  ViewChild,
+  ViewEncapsulation,
+} from '@angular/core'
 import { selector } from 'rxjs-compat/operator/publish'
 
 @Component({
   selector: 'chat-input',
-  template: `
-  <div class="silicechat-input">
-    <div 
-      id="message" 
-      type="text" 
-      class="chat-input-text" 
-      #message
-      (keydown.enter)="onSubmit($event)" 
-      (keyup.enter)="message.innerHTML = ''" 
-      (keyup.escape)="dismiss.emit()"
-      contenteditable>
-    </div>
-    <span style="background-position: 60.7843% 74.5098%;"  class="emoji emoji-icon" (click)="toggleEmojisMenu()"></span>
-    <div class="emoji-input hidden selectableOptionInput EmojiMenu"  >            
-    <emoji-mart
-      [style]="{ position: 'absolute', bottom: '20px', right: '20px' }"
-      (emojiClick)="addEmoji($event)">
-    </emoji-mart>
-    </div>
-
-    <button class="silicechat-send custom-color"   (click)="onSubmit()">
-      <i class="material-icons">send</i> 
-    </button>           
-   </div>
-  `,
+  templateUrl: `./chat-input.component.html`,
   encapsulation: ViewEncapsulation.None,
-  styleUrls: ['./chat-input.component.css','./chat-input-emoji.component.css'],
+  styleUrls: ['./chat-input.component.css', './chat-input-emoji.component.css'],
 })
 export class ChatInputComponent implements OnInit {
   @Input() public buttonText = '↩︎'
@@ -37,7 +22,8 @@ export class ChatInputComponent implements OnInit {
   @Output() public send = new EventEmitter()
   @Output() public dismiss = new EventEmitter()
   @ViewChild('message') message: ElementRef
-
+  @Output() public toggleAttOptions = new EventEmitter<string>()
+  showOptions = false
   ngOnInit() {
     this.focus.subscribe(() => this.focusMessage())
   }
@@ -45,8 +31,34 @@ export class ChatInputComponent implements OnInit {
   public focusMessage() {
     this.message.nativeElement.focus()
   }
-  public addEmoji(event){
-    
+
+  public getMessage() {
+    return this.message.nativeElement
+  }
+
+  public clearMessage() {
+    this.message.nativeElement.innerHTML = ''
+  }
+  onSubmit() {
+    const message = this.getMessage()
+    if (message.value.trim() === '') {
+      return
+    }
+    console.log(message)
+    this.send.emit(message)
+    this.clearMessage()
+    this.focusMessage()
+  }
+
+  toggleOptions() {
+    this.showOptions=(this.showOptions==true)?false:true;
+  }
+  toggleAttachedOptions(){
+    this.toggleAttOptions.emit();
+  }
+
+
+  /* public addEmoji(event){
     let emoji  = event.$event.target.cloneNode();
     emoji.setAttribute("contenteditable","false");
     let position = emoji.style.backgroundPosition;
@@ -56,7 +68,7 @@ export class ChatInputComponent implements OnInit {
     let message = this.getMessage();
     message.append(emoji);
     this.focusMessage()
-  }  
+  }
   public toggleEmojisMenu(){
     let options = document.querySelectorAll('.selectableOptionInput');
     options.forEach(option=>{
@@ -67,22 +79,5 @@ export class ChatInputComponent implements OnInit {
     }
     })
      this.focusMessage();
-  }
-  public getMessage() {
-    return this.message.nativeElement
-  }
-
-  public clearMessage() {
-    this.message.nativeElement.innerHTML = ''
-  }
-  onSubmit() {
-    const message = this.getMessage()
-    if (message.textContent.trim() === '') {
-      return
-    }
-    this.send.emit( message );
-    this.clearMessage()
-    this.focusMessage()
-  }
-
+  } */
 }
