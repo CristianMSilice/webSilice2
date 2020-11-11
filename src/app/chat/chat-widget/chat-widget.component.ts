@@ -23,8 +23,7 @@ import swal from 'sweetalert2';
 import { NgxLinkifyjsService } from 'ngx-linkifyjs';
 
 import { EncsessionService } from '../shared/helpers/encsession.service';
-const rand = max => Math.floor(Math.random() * max)
-
+import {ChatAdjuntosComponent} from '../chat-adjuntos/chat-adjuntos.component';
 @Component({
   selector: 'chat-widget',
   templateUrl: './chat-widget.component.html',
@@ -40,9 +39,9 @@ export class ChatWidgetComponent implements OnInit {
   //@ViewChild('scrollMe') private myScrollContainer: ElementRef; 
   // @ViewChild('scrollMe', { static: false, read: ElementRef }) private myScrollContainer: ElementRef;
   @ViewChild('widgetBody', {static: false}) widgetBody: ElementRef
+  @ViewChild(ChatAdjuntosComponent, {static: false}) AdjuntosComponent : ChatAdjuntosComponent 
   @Input() public theme: 'blueno' | 'greyno' | 'redno' = 'blueno'
-  showAdjuntos: boolean = false; // variable que se envía al hijo para mostrar adjuntos
-
+  supportEmojis;
   valido: boolean = false;
   nuestraUrl: string = ''
   action = Action;
@@ -60,7 +59,6 @@ export class ChatWidgetComponent implements OnInit {
   isMobileResolution: boolean;
   pp: string = ' <p>Hola, bienvenido de nuevo asdf</p> ';
   filetosend: HTMLInputElement;
-  stringPrueba=`este es un mensaje de prueba *$MARCO$*:{"button" : [{"color": "#FFF000","texto": "Credito Hipotecario","accion": "Hipotecario"},{"color": "#F0F000","texto": "Credito Vihiculo","accion": "Credito"}]}`
   constructor(
     private socketService: SocketService,
     private sanitizer: DomSanitizer,
@@ -101,37 +99,71 @@ export class ChatWidgetComponent implements OnInit {
 
   public messages = []
 
-  /* public trabajarMsg(msg:any){
-    this.msgList = this.encsessionService.descodif(GlobalService.NM_COOKIE);
-    if (this.msgList == undefined) {
-      this.msgList=[];
-    } else {
-      let i = 0;
-      if (this.msgList.length >110) {
-        for (let index = 110; index < this.msgList.length; index++) {
-          this.msgList.splice(i,1);
-          i++
-        }
-      }
-    }
+  createbuttons(buttons){
+    let div = document.createElement('div');
+    div.classList.add('message-buttons-array');
+    buttons.forEach(button => {
+      let div1 =  document.createElement('div');
+      div1.classList.add('message-button-option');
+      div1.textContent = button.texto;
+      div1.style.borderColor=button.color;
+      div1.style.color=button.color;
+      div1.setAttribute('action', button.accion);
+      div1.setAttribute('state', 'enabled');
+      div.appendChild(div1)
+    });
+    
+    return div;
+  }
 
-    this.msgList.unshift(msg);
-    this.encsessionService.codif(this.msgList, globalService.NM_COOKIE)
-  } */
+  reviewOptions(event){
+    let button :Element = event.target;
+    let state = button.getAttribute('state');
+    let message = {
+      value: button.getAttribute('action')
+    };
+    if(state == 'enabled'){
+      button.parentElement.childNodes.forEach((optionBtn :Element) =>{
+        optionBtn.classList.add('disabled');
+        optionBtn.setAttribute('state', 'disabled');
+      })
+      button.classList.add('selectable');
+      this.sendMessage(message);
+    }
+  }
   public addMessage(from, text, type: 'received' | 'sent', tipo, file_mime) {
-    console.log(this.stringPrueba);
     let clave = '*$MARCO$*:';
-    let stringify = this.stringPrueba.substring(this.stringPrueba.lastIndexOf(clave)+clave.length);
-    let buttons = JSON.parse(stringify);
-    console.log(buttons);
-    this.messages.push({
-      from,
-      text,
-      type,
-      tipo,
-      file_mime,
-      date: new Date().getTime(),
-    })
+
+    if (this.messages==undefined) this.messages=[];
+    if ((text.includes(clave)) && type == 'received') {
+      let stringify =text.substring(text.lastIndexOf(clave)+clave.length);
+      let buttons = JSON.parse(stringify);
+      let drawButtons = this.createbuttons(buttons.button);
+      let div = document.createElement('div');
+      text = text.substring(0,text.lastIndexOf(clave))
+      div.textContent=text;
+      console.log(buttons.button.length);
+      (buttons.button.length > 0) ? div.appendChild(drawButtons):'';
+      text = div.innerHTML;
+      this.messages.push({
+        from,
+        text,
+        type,
+        tipo,
+        file_mime,
+        date: new Date().getTime(),
+      })
+    }else{
+      console.log(this.messages)
+      this.messages.push({
+        from,
+        text,
+        type,
+        tipo,
+        file_mime,
+        date: new Date().getTime(),
+      })  
+    }
 
     // let msg = {
     //   from,
@@ -201,7 +233,9 @@ export class ChatWidgetComponent implements OnInit {
       this.encsessionService.codif(this.msgList, GlobalService.NM_COOKIE);
     }
     else {
+      
       this.cookieValue = this.cookieService.get(GlobalService.NM_COOKIE);
+      alert(this.cookieValue);
       this.client.id = this.cookieValue;
       this.misDatos()
       try {
@@ -460,13 +494,14 @@ export class ChatWidgetComponent implements OnInit {
   }
 
   paserLink(html: any): SafeHtml {
+
     var div = document.createElement('div')
     div.innerHTML = html
     // div.innerHTML  = this.sanitizer.sanitize(SecurityContext.HTML, html);
-
     div.childNodes.forEach((e: any) => {
-      if (e.textContent.trim() !== '') {
-        let a =
+      if (e.textContent.trim() !== '' && e.textContent.includes('www.')) 
+      { 
+          let a =
           this.linkifyService.linkify(e.textContent) ||
           this.linkifyService.linkify(e.innerText)
         let temporalNode = document.createElement('span')
@@ -475,6 +510,7 @@ export class ChatWidgetComponent implements OnInit {
       }
     })
     return div.innerHTML
+    // return html
   }
   esnuestro(texto): boolean {
     return texto.includes('url.pau.zone')
@@ -486,7 +522,6 @@ export class ChatWidgetComponent implements OnInit {
   }
   sendFile(stringInput) {
     let input = JSON.parse(stringInput);
-    console.log(input)
     switch (input.kind) {
       case 'image':
         this.addMessage(this.operator,input.source,'sent',2,input.type);
@@ -500,9 +535,8 @@ export class ChatWidgetComponent implements OnInit {
 
   }
   toggleAttOptions(){
-    this.showAdjuntos = !this.showAdjuntos;
+    this.AdjuntosComponent.cargarAdjunto();
   }
   closeAdjuntos(){
-    this.showAdjuntos = false;
   }
 }

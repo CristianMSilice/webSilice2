@@ -1,43 +1,76 @@
-import { Component, ElementRef, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { reviewFile } from "./utils/reviewfile";
+import {
+  Component,
+  ElementRef,
+  EventEmitter,
+  Inject,
+  Input,
+  Output,
+  ViewChild,
+} from '@angular/core'
+import { reviewFile } from './utils/reviewfile'
+import { SocketService } from '../shared/services/socket.service'
+import { TOKEN } from '../shared/services/config'
+
+
 @Component({
   selector: 'chat-adjuntos',
   templateUrl: './chat-adjuntos.component.html',
-  styleUrls: ['./chat-adjuntos.component.css']
+  styleUrls: ['./chat-adjuntos.component.css'],
 })
-export class ChatAdjuntosComponent implements OnInit {
+export class ChatAdjuntosComponent {
 
-  @Input() show:boolean; // Sí se muestra o no los adjuntos
+  // c786b248746c3ef39942ae7567e883b5ce771c0cc775bdf324db14561cba25f9
   @Output() public showoutput = new EventEmitter()
   @Output() public send = new EventEmitter()
-  file :reviewFile;
-  constructor() { }
-  ngOnInit() {
-  }
-  getinput(element : HTMLElement) :HTMLInputElement{
-    return element.querySelector('input');
-  }
-  cargarAdjunto(element : HTMLElement){
-    let input  = this.getinput(element);
-    if(!this.file){
-      this.file = new reviewFile(input, ['image','video']);
+  @ViewChild('inputAttachedFile', { static: false }) inputFile: ElementRef
+  // @Input() _token:string;
+  file: reviewFile
+  constructor(private socketService: SocketService,
+    @Inject(TOKEN) public _token?: string
+    ) {}
+
+  cargarAdjunto() {
+    if (!this.file) {
+      this.file = new reviewFile(this.inputFile.nativeElement, [
+        'image',
+        'video',
+        'pdf',
+      ])
     }
-    input.click();
+    this.inputFile.nativeElement.click()
   }
-  cancelLoadFile(element : HTMLElement){
-    // let input  = this.getinput(element);
-    this.file.resetfile();
-    // input.value='';
+  cancelLoadFile(element: HTMLElement) {
+    this.file.resetfile()
   }
-  sendFile(element : any, kind : String){
-      let src = element.lastChild.getAttribute('src')
+  sendFile(element: any, kind: String) {
+    // let src = element.lastChild.getAttribute('src')
     let tostring = {
-      source: src,
       kind: this.file.file.kindfile,
       type: this.file.getMime(),
+      source: this.file.LoadedFile,
     }
-    this.send.emit(JSON.stringify(tostring));
-    this.file.file.enabled=false;
-    this.showoutput.emit(false);    
+    
+    this.send.emit(JSON.stringify(tostring))
+    this.file.file.enabled = false
+    this.showoutput.emit(false)
+    this.socketService.getLogin2('', this._token).subscribe(
+      (data) => {
+        if (!data.error) {
+          let sendedFile = {
+            texto: this.file.LoadedFile,
+            file_mime: this.file.getMime(),
+            file_token: this._token,
+            iduser: data.data.id
+          }
+          this.socketService.sendFile(sendedFile)
+
+        } else {
+        }
+      },
+      (error) => {
+        console.log(error.status)
+      },
+      () => {},
+    )
   }
 }

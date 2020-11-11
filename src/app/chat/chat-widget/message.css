@@ -43,7 +43,7 @@
 }
 .message.message-bot .message-photo {
   left: -30px;
-  background-image: url(./../../../assets/logochat_red.svg);
+  background-image: url(./../../../assets/logoBot1.svg);
 }
 .message.message-bot .message-time {
   color: hsl(0, 0%, 40%);
@@ -95,26 +95,5 @@
   outline: none;
 }
 
-.message-buttons-array {
-  padding: 0.1em;
-  margin: 0.1em 0px;
-  width: 100%;
-  font-weight: bold;
-  font-size: 0.9em;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-}
-.message-buttons-array .message-button-option {
-  padding: 8px;
-  margin: 5px 3px;
-  border: 1px solid;
-  border-radius: 50vmin;
-  color: #1986f5;
-  background-color: hsla(0, 0%, 0%, 5%);
-}
 
-.message-buttons-array .message-button-option:hover {
-  cursor: pointer;
-  background-color: hsla(0, 0%, 0%, 10%);
-}
+

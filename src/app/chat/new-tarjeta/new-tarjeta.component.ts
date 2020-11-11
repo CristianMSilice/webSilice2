@@ -18,9 +18,7 @@ export class NewTarjetaComponent    implements OnInit {
   }
  
   ngOnInit() {
- console.log(this.url)
-     
-       
+//  console.log(this.url)  
      
 }
 

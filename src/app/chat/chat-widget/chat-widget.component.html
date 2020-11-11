@@ -22,18 +22,10 @@
             [class.message-user]="message.type === 'sent'"
             [@fadeIn]
           >
-            <div>
               <div class="message-photo"></div>
               <div class="message-text" *ngIf="message.tipo == 1">
                 <div style="white-space: pre-line" [innerHTML]="paserLink(message.text) | sanitizeHtml"
-                  *ngIf="!esnuestro(message.text)"></div>
-                <div style="white-space: pre-line" *ngIf="esnuestro(message.text)" >
-                  <button type="button" class="btn btn-float btn-float-lg btn-outline-pink"
-                    (click)="goToLink2(message.text)">
-                    <i class="fa fa-cloud-download"></i
-                    ><span>Abrir Enlace<br /> </span>
-                  </button>
-                </div>
+                  *ngIf="!esnuestro(message.text)" (click)=reviewOptions($event)></div>
               </div>
 
               <div *ngIf="message.tipo == 2" [ngSwitch]="true">
@@ -86,7 +78,6 @@
                   </button>
                 </div>
               </div>
-            </div>
             <div class="message-time">
               {{ message.date | date: 'short' }}
             </div>
@@ -102,8 +93,8 @@
           [focus]="focus"
         ></chat-input>
         <chat-adjuntos 
-        [(show)]="showAdjuntos" 
         (showoutput)="closeAdjuntos($event)" 
+        
         (send)="sendFile($event)" ></chat-adjuntos>
     <app-new-tarjeta
       [url]="nuestraUrl"

@@ -8,12 +8,11 @@
     (keydown.enter)="onSubmit($event)"
     (keyup.enter)="message.value = ''"
     (keyup.escape)="dismiss.emit()"
-    contenteditable
   >
 
-  <div class="buttons-options" [ngClass]="{'showOptions':showOptions==true}">
+  <div class="buttons-options" [ngClass]="{'showOptions':showOptions==true,'removeEmojis':!supportEmojis}">
 
-      <div *ngIf="showOptions==true">
+      <div *ngIf="showOptions==true && supportEmojis">
         <div class="option-showed backgroundImage emojiIcon"
           (click)="toggleEmojisMenu()"
         ></div>

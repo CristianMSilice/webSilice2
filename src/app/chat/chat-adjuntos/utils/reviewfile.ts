@@ -8,7 +8,8 @@ export class reviewFile {
     kindfile: null, // tipo de archivo, un valor de acceptedfiles
     enabled: false, //Si el archivo está listo para enviar
   }
-  input;
+  input; 
+  LoadedFile; //archivo cargado
   constructor(input: Element, acceptedfiles:Array<string>) {
     this.acceptedfiles=acceptedfiles;
     this.input=input;
@@ -20,7 +21,7 @@ export class reviewFile {
       let accepted = this.reviewFile(input)
       if (!accepted) {
         this.file.errormessage.showError = true
-        this.file.errormessage.message = 'Tipo de archivo no permitido'
+        this.file.errormessage.message = 'Solo se permiten PDF, Video e Imagenes'
       }
     })
   }
@@ -46,24 +47,34 @@ export class reviewFile {
     const reader = new FileReader()
     switch (kind) {
       case 'image':
-        reader.addEventListener('load', function () {
-          let filereader: any = this.result;
+        reader.addEventListener('load',  (event:any) => {
+          this.LoadedFile = event.target.result;
           document
             .querySelector(`#archivo-preview-image`)
-            .setAttribute('src', filereader)
+            .setAttribute('src', this.LoadedFile)
         })
         reader.readAsDataURL(file)
         break
       case 'video':
-        reader.addEventListener('load', function () {
+        reader.addEventListener('load',  (event :any) => {
+          this.LoadedFile = event.target.result;
           let source:HTMLSourceElement = document.querySelector(`#archivo-preview-video`);
-          let blobURL = URL.createObjectURL(file);
-          source.setAttribute('src', blobURL);
-          // source.setAttribute('type', file.type);
+          source.setAttribute('src', this.LoadedFile);
+          source.setAttribute('type', file.type);
         })
         reader.readAsDataURL(file)
       break;
-
+      case 'pdf':
+        reader.addEventListener('load',  (event:any) => {
+          let blob = new Blob([file], { type: "application/pdf" });
+          let objectURL = window.URL.createObjectURL(blob);
+          this.LoadedFile = event.target.result;
+          document
+            .querySelector(`#archivo-preview-pdf`)
+            .setAttribute('href', objectURL)
+        })
+        reader.readAsDataURL(file)
+        break
       default:
         break
     }
@@ -71,7 +82,7 @@ export class reviewFile {
   public resetfile(){
     this.file ={
       errormessage: {
-        showError: true,
+        showError: false,
         message: '',
       }, 
       kindfile: null,

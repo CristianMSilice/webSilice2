@@ -10,10 +10,13 @@
 }
 
 .chat-widget-input-container.showOptions{
-  grid-template-columns: 1fr 160px;
+  grid-template-columns: 1fr 120px;
 }
 .buttons-options.showOptions{
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: 2fr 2fr 2fr 3fr;
+}
+.buttons-options.showOptions.removeEmojis{
+  grid-template-columns:3fr 3fr 3fr
 }
 
 .chat-widget-input {
@@ -37,12 +40,14 @@
   justify-content: center;
   align-items: center; 
 }
-
+.option-showed.send{
+  width: 25px;
+}
 .buttons-options .send {
   background-image: url(./../../../assets/sendIcon.svg);
 }
 .buttons-options .attached {
-  background-image: url(./../../../assets/attachedIcon.png);
+  background-image: url(./../../../assets/attachedIcon.svg);
 }
 .buttons-options .emojiIcon {
   background-image: url(./../../../assets/emojiIcon.svg);
@@ -58,8 +63,8 @@
   cursor: pointer;
 }
 .option-showed{
-  width: 30px;
-  height: 30px;
+  width: 20px;
+  height: 20px;
   position: relative;
   z-index: 10;
   display: flex;
