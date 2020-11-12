@@ -5,8 +5,9 @@ import {
   Inject,
   Input,
   Output,
+  SimpleChanges,
   ViewChild,
-} from '@angular/core'
+} from '@angular/core' 
 import { reviewFile } from './utils/reviewfile'
 import { SocketService } from '../shared/services/socket.service'
 import { TOKEN } from '../shared/services/config'
@@ -22,13 +23,27 @@ export class ChatAdjuntosComponent {
   // c786b248746c3ef39942ae7567e883b5ce771c0cc775bdf324db14561cba25f9
   @Output() public showoutput = new EventEmitter()
   @Output() public send = new EventEmitter()
+  @Input() clientChat: any;
   @ViewChild('inputAttachedFile', { static: false }) inputFile: ElementRef
   // @Input() _token:string;
   file: reviewFile
   constructor(private socketService: SocketService,
     @Inject(TOKEN) public _token?: string
-    ) {}
+    ) {
+      
+    }
 
+    ngOnChanges(changes: SimpleChanges) {
+      // only run when property "data" changed
+  
+      if (changes['clientChat']) {
+  
+        console.log("USERID2 "+this.clientChat)
+        }
+  
+  
+        
+    }
   cargarAdjunto() {
     if (!this.file) {
       this.file = new reviewFile(this.inputFile.nativeElement, [
@@ -53,7 +68,17 @@ export class ChatAdjuntosComponent {
     this.send.emit(JSON.stringify(tostring))
     this.file.file.enabled = false
     this.showoutput.emit(false)
-    this.socketService.getLogin2('', this._token).subscribe(
+
+    let sendedFile = {
+      texto: this.file.LoadedFile,
+      file_mime: this.file.getMime(),
+      file_token: this._token,
+      iduser: this.clientChat
+    }
+    this.socketService.sendFile(sendedFile)
+
+  
+   /* this.socketService.getLogin2('', this._token).subscribe(
       (data) => {
         if (!data.error) {
           let sendedFile = {
@@ -70,7 +95,7 @@ export class ChatAdjuntosComponent {
       (error) => {
         console.log(error.status)
       },
-      () => {},
-    )
+      () => {},*/
+     
   }
 }

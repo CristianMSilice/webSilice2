@@ -93,9 +93,10 @@
           [focus]="focus"
         ></chat-input>
         <chat-adjuntos 
-        (showoutput)="closeAdjuntos($event)" 
+        (showoutput)="closeAdjuntos($event)"  [clientChat]="client.id"
         
         (send)="sendFile($event)" ></chat-adjuntos>
+       
     <app-new-tarjeta
       [url]="nuestraUrl"
       [@slideInOut2]="menuStatet2"
