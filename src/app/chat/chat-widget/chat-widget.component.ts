@@ -235,7 +235,6 @@ export class ChatWidgetComponent implements OnInit {
     else {
       
       this.cookieValue = this.cookieService.get(GlobalService.NM_COOKIE);
-      alert(this.cookieValue);
       this.client.id = this.cookieValue;
       this.misDatos()
       try {
