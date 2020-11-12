@@ -131,11 +131,13 @@ export class ChatWidgetComponent implements OnInit {
       this.sendMessage(message);
     }
   }
-  public addMessage(from, text, type: 'received' | 'sent', tipo, file_mime) {
+  public addMessage(from, text:string, type: 'received' | 'sent', tipo, file_mime) {
     let clave = '*$MARCO$*:';
 
     if (this.messages==undefined) this.messages=[];
-    if ((text.includes(clave)) && type == 'received') {
+ 
+    
+    if ( text!=undefined &&  (text.includes(clave)) && type == 'received') {
       let stringify =text.substring(text.lastIndexOf(clave)+clave.length);
       let buttons = JSON.parse(stringify);
       let drawButtons = this.createbuttons(buttons.button);
@@ -165,26 +167,26 @@ export class ChatWidgetComponent implements OnInit {
       })  
     }
 
-    // let msg = {
-    //   from,
-    //   text,
-    //   type,
-    //   tipo,
-    //   file_mime,
-    //   date: new Date().getTime(),
-    // }
-    // let fila = {
-    //   from: from,
-    //   text: text,
-    //   type: type,
-    //   file_mime: file_mime,
-    //   date: msg.date
-    // }
-    // if (this.messages == undefined) {
-    //   this.messages= [];
-    //   this.messages.push(msg);
-    //   // this.trabajarMsg(fila);
-    // }
+    let msg = {
+       from,
+       text,
+       type,
+       tipo,
+       file_mime,
+       date: new Date().getTime(),
+     }
+     let fila = {
+       from: from,
+       text: text,
+       type: type,
+       tipo:  tipo,
+       file_mime: file_mime,
+       date: msg.date
+     }
+      
+       
+       this.trabajarMsg(fila);
+      
 
     setTimeout(() => {
       try {
@@ -208,12 +210,13 @@ export class ChatWidgetComponent implements OnInit {
        file_mime:"",
        date:""
      })*/
-
+ 
 
 
     //this._token='Apfee6R+yalDdomE3Oo/ejzxzmMhSr8HMFn8qqeWkA8=';
     setTimeout(() => (this.visible = false), 1000)
     if (!this.isMobileResolution) {
+      console.log('inicio')
       this.comprobarDatos()
     }
   }
@@ -221,6 +224,7 @@ export class ChatWidgetComponent implements OnInit {
     if (!this.cookieService.check(GlobalService.NM_COOKIE)) {
       this.valido = false
       setTimeout(() => {
+        //Texto inicial que se indica englobal para iniciar el chat
         this.addMessage(
           this.operator,
           GlobalService.TXT_INICIAL,
@@ -229,26 +233,46 @@ export class ChatWidgetComponent implements OnInit {
           '',
         )
       }, 1500)
+      console.log("primera vez sin cookies")
       this.encsessionService.remove
       this.encsessionService.codif(this.msgList, GlobalService.NM_COOKIE);
+      this.login()
     }
     else {
-      
-      this.cookieValue = this.cookieService.get(GlobalService.NM_COOKIE);
-      this.client.id = this.cookieValue;
-      this.misDatos()
+        //SI exite la cokkie
+    
       try {
         this.msgList = this.encsessionService.descodif(GlobalService.NM_COOKIE);
+        this.cookieValue = this.cookieService.get(GlobalService.NM_COOKIE);
+    
+        this.client.id = this.cookieValue;
+        this.misDatos()
         this.messages = this.msgList
+         
+       
         setTimeout(() => {
-          this.visible = true;
+          
+          this.visible = true
           setTimeout(() => {
             this.scrollToBottom(this.widgetBody.nativeElement,200)
             this.focusMessage()
           }, 0)
         }, 1500)
       } catch (error) {
-        console.log(error)
+        this.valido = false
+        setTimeout(() => {
+          //Texto inicial que se indica englobal para iniciar el chat
+          this.addMessage(
+            this.operator,
+            GlobalService.TXT_INICIAL,
+            'received',
+            1,
+            '',
+          )
+        }, 1500)
+        this.encsessionService.remove
+        this.encsessionService.codif(this.msgList, GlobalService.NM_COOKIE);
+        this.login()
       }
     }
   }
@@ -258,10 +282,11 @@ export class ChatWidgetComponent implements OnInit {
         if (!data.error) {
           this.client.id = data.data.id;
           var expire = new Date();
-          var time = Date.now() + ((3600 * 1000) * 6); // current time + 6 hours ///
+          var time = Date.now() + ((3600 * 1000) * 24); // current time + 6 hours ///
           expire.setTime(time);
           this.cookieService.set(GlobalService.NM_COOKIE, this.client.id.toString(), expire);
           this.initIoConnection();
+          console.log("almacenos la cookei")
           // let texto = "Bienvenido " + this.client.name
           //this.addMessage(this.operator, texto, 'received', 1,'')
 
@@ -346,7 +371,9 @@ export class ChatWidgetComponent implements OnInit {
   }
   public openChat() {
     this.visible = true
+  
   }
+   
   public closeChat() {
     this.visible = false
   }
@@ -370,6 +397,7 @@ export class ChatWidgetComponent implements OnInit {
   }
 
   public sendMessage(message) {
+   
     if (message.value.trim() === '') {
       return
     }
@@ -380,7 +408,7 @@ export class ChatWidgetComponent implements OnInit {
       this.socketService.send(this.client, message.value, this._token)
       this.addMessage(this.client, message.value, 'sent', 1, '')
     }
-    this.login()
+   
   }
 
   @HostListener('document:keypress', ['$event'])
@@ -413,7 +441,8 @@ export class ChatWidgetComponent implements OnInit {
 
 
 
-    this.msgList.unshift(msg)
+    //this.msgList.unshift(msg)
+    this.msgList.push(msg)
 
     this.encsessionService.codif(this.msgList, GlobalService.NM_COOKIE);
 
@@ -429,7 +458,7 @@ export class ChatWidgetComponent implements OnInit {
         //this.operator.avatar=respuesta.usuario.avatar;
         if (respuesta.message.search('deleteMensaje') != '-1') {
           this.messages = []
-          this.comprobarDatos()
+         // this.comprobarDatos()
         } else {
           if (respuesta.tipo == 1)
             this.addMessage(this.operator, respuesta.message, 'received', 1, '')
@@ -497,7 +526,8 @@ export class ChatWidgetComponent implements OnInit {
     var div = document.createElement('div')
     div.innerHTML = html
     // div.innerHTML  = this.sanitizer.sanitize(SecurityContext.HTML, html);
-    div.childNodes.forEach((e: any) => {
+    div.childNodes.forEach((e: any) => { 
+      
       if (e.textContent.trim() !== '' && e.textContent.includes('www.')) 
       { 
           let a =
