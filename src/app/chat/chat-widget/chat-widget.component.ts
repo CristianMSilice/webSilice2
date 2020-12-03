@@ -59,6 +59,7 @@ export class ChatWidgetComponent implements OnInit {
   isMobileResolution: boolean;
   pp: string = ' <p>Hola, bienvenido de nuevo asdf</p> ';
   filetosend: HTMLInputElement;
+  menuPrincipal = { options: [{ texto: '', accion: '' }], enabled: false }
   constructor(
     private socketService: SocketService,
     private sanitizer: DomSanitizer,
@@ -131,21 +132,35 @@ export class ChatWidgetComponent implements OnInit {
       this.sendMessage(message);
     }
   }
+  
   public addMessage(from, text:string, type: 'received' | 'sent', tipo, file_mime) {
     let clave = '*$MARCO$*:';
 
     if (this.messages==undefined) this.messages=[];
- 
-    
-    if ( text!=undefined &&  (text.includes(clave)) && type == 'received') {
+    if (text.includes(clave) && type == 'received') {
       let stringify =text.substring(text.lastIndexOf(clave)+clave.length);
-      let buttons = JSON.parse(stringify);
-      let drawButtons = this.createbuttons(buttons.button);
       let div = document.createElement('div');
       text = text.substring(0,text.lastIndexOf(clave))
       div.textContent=text;
-      console.log(buttons.button.length);
-      (buttons.button.length > 0) ? div.appendChild(drawButtons):'';
+      let buttons;
+      let drawButtons;
+      try {
+        buttons = JSON.parse(stringify);
+        drawButtons = this.createbuttons(buttons.button);
+        (buttons.button.length > 0) ? div.appendChild(drawButtons):'';
+        if (buttons.hasOwnProperty('menuPrincipal')) {
+          this.menuPrincipal.options=buttons.menuPrincipal;
+          this.menuPrincipal.enabled=true;
+        }
+      } catch (error) {
+        console.log('occurrió un error al convertir el JSON');
+        console.log(stringify);
+        console.log('este es el error que salió')
+        console.log(error);
+      }
+     
+      
+      
       text = div.innerHTML;
       this.messages.push({
         from,

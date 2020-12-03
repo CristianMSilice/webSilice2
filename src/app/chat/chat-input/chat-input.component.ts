@@ -19,12 +19,16 @@ import { selector } from 'rxjs-compat/operator/publish'
 export class ChatInputComponent implements OnInit {
   @Input() public buttonText = '↩︎'
   @Input() public focus = new EventEmitter()
+  @Input() public menuPrincipal = '↩︎'
   @Output() public send = new EventEmitter()
   @Output() public dismiss = new EventEmitter()
   @ViewChild('message', { static: false }) message: ElementRef
   @Output() public toggleAttOptions = new EventEmitter<string>()
+  @Output() public toggleMenuprincipal = new EventEmitter<string>()
+  showMenuPrincipal = false
   showOptions = false
   supportEmojis: boolean
+
   ngOnInit() {
     this.supportEmojis = navigator.userAgent
       .toLowerCase()
@@ -81,5 +85,17 @@ export class ChatInputComponent implements OnInit {
       0, // charCodeArgs : unsigned long the Unicode character associated with the depressed key, else 0
     )
     document.dispatchEvent(keyboardEvent)
+  }
+
+  toggleMenuPrincipal() {
+    this.showMenuPrincipal = !this.showMenuPrincipal
+  }
+
+  sendOption(message) {
+    let option = {
+      value: message,
+    }
+    this.send.emit(option)
+    this.toggleMenuPrincipal()
   }
 }

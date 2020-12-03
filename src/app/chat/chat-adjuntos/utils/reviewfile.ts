@@ -23,7 +23,15 @@ export class reviewFile {
         this.file.errormessage.showError = true
         this.file.errormessage.message = 'Solo se permiten PDF, Video e Imagenes'
       }
+      accepted = this.reviewsize(input, 5);
+      if(!accepted){
+
+      }
     })
+  }
+  private reviewsize(input, maxsize):Boolean{
+    console.log(input.files[0].size/1024/1024);
+    return true;
   }
   private reviewFile(input): Boolean {
     let accepted = false

@@ -10,6 +10,7 @@
       </div>
       <div class="chat-widget-header-name">
         {{ texto_cab }}
+        
       </div>
       <div class="chat-widget-close" (click)="closeChat()">&#10006;</div>
     </div>
@@ -91,6 +92,7 @@
           (dismiss)="closeChat()"
           (toggleAttOptions)="toggleAttOptions()"
           [focus]="focus"
+          [menuPrincipal]="menuPrincipal"
         ></chat-input>
         <chat-adjuntos 
         (showoutput)="closeAdjuntos($event)"  [clientChat]="client.id"
