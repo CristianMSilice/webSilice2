@@ -11,7 +11,8 @@ import { AngularDraggableModule } from 'angular2-draggable'
 import { CookieService } from 'ngx-cookie-service'
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2'
 import { SanitizeHtmlPipe } from './pipe/sanitize-html.pipe'
-import { ChatAdjuntosComponent } from './chat-adjuntos/chat-adjuntos.component'
+import { ChatAdjuntosComponent } from './chat-adjuntos/chat-adjuntos.component';
+import { EmojiSiliceComponent } from './emojis/emoji-silice/emoji-silice.component'
 
 @NgModule({
   imports: [CommonModule, AngularDraggableModule, SweetAlert2Module],
@@ -24,6 +25,7 @@ import { ChatAdjuntosComponent } from './chat-adjuntos/chat-adjuntos.component'
     SanitizeHtmlPipe,
     NewTarjetaComponent,
     ChatAdjuntosComponent,
+    EmojiSiliceComponent,
   ],
   providers: [SocketService, CookieService, SanitizeHtmlPipe],
   exports: [ChatWidgetComponent, ChatConfigComponent],

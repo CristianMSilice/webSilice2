@@ -1,43 +1,37 @@
-<div class="chat-widget-input-container" [ngClass]="{'showOptions':showOptions==true,'noGeneralMenu':!menuPrincipal.enabled}">
-  <input
-    type="text"
-    placeholder="Ingresa aquí tu mensaje..."
-    id="message"
-    class="chat-widget-input"
-    #message
-    (keydown.enter)="onSubmit($event)"
-    (keyup.enter)="message.value = ''"
-    (keyup.escape)="dismiss.emit()"
-  >
-  <div class="chat-global-options" *ngIf="menuPrincipal.enabled" [ngClass]="{'open':showMenuPrincipal}">
-    <div class="chat-global-option" *ngFor="let option of menuPrincipal.options" (click)="sendOption(option.accion)">{{option.texto}}</div>
-  </div>
-  <div class="buttons-options" [ngClass]="{'showOptions':showOptions==true,'removeEmojis':!supportEmojis,'noGeneralMenu':!menuPrincipal.enabled}">
-
-      <div *ngIf="showOptions==true && supportEmojis">
-        <div class="option-showed backgroundImage emojiIcon"
-          (click)="toggleEmojisMenu()"
-        ></div>
-      </div> 
-
-      <div *ngIf="showOptions==true">
-        <div class="option-showed backgroundImage attached"
-          (click)="toggleAttachedOptions()"
-        ></div>
-      </div> 
-
-      <div *ngIf="showOptions==true && menuPrincipal.enabled">
-        <div class="option-showed option-menu-principal"
-          (click)="toggleMenuPrincipal()"
-        >...</div>
-      </div> 
-      
-    <div class="options option-showed" (click)="toggleOptions()" [ngClass]="{'showOptions':showOptions==true}">
-      <div class="line line1"></div>
-      <div class="line line2"></div>
-      <div class="line line3"></div>
+<div class="chat-widget-input-container" [ngClass]="{
+    showOptions: showOptions == true,
+    noGeneralMenu: !menuPrincipal.enabled
+  }">
+    <input type="text" placeholder="Ingresa aquí tu mensaje..." id="message" class="chat-widget-input" #message (keydown.enter)="onSubmit($event)" (keyup.enter)="message.value = ''" (keyup.escape)="dismiss.emit()" />
+    <div class="chat-global-options" *ngIf="menuPrincipal.enabled" [ngClass]="{ open: showMenuPrincipal }">
+        <div class="chat-global-option" *ngFor="let option of menuPrincipal.options" (click)="sendOption(option.accion)">
+            {{ option.texto }}
+        </div>
     </div>
-    <div class="option-showed backgroundImage send" (click)="onSubmit($event)">
+    <div class="buttons-options" [ngClass]="{
+      showOptions: showOptions == true,
+      removeEmojis: !supportEmojis,
+      noGeneralMenu: !menuPrincipal.enabled
+    }">
+        <div *ngIf="showOptions == true && supportEmojis" (click)="toggleEmojisMenu()">
+            <div class="option-showed backgroundImage emojiIcon"></div>
+        </div>
+        <div *ngIf="showOptions == true">
+            <div class="option-showed backgroundImage attached" (click)="toggleAttachedOptions()"></div>
+        </div>
+
+        <div *ngIf="showOptions == true && menuPrincipal.enabled">
+            <div class="option-showed option-menu-principal" (click)="toggleMenuPrincipal()">
+                ...
+            </div>
+        </div>
+
+        <div class="options option-showed" (click)="toggleOptions()" [ngClass]="{ showOptions: showOptions == true }">
+            <div class="line line1"></div>
+            <div class="line line2"></div>
+            <div class="line line3"></div>
+        </div>
+        <div class="option-showed backgroundImage send" (click)="onSubmit($event)"></div>
     </div>
-  </div>
 </div>
+<app-emoji-silice [toggleemojimenu]="toggleemojimenu"></app-emoji-silice>

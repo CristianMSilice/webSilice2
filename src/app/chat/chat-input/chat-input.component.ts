@@ -8,7 +8,8 @@ import {
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core'
-import { selector } from 'rxjs-compat/operator/publish'
+import { SiblingService } from '../shared/services/sibling.service';
+import { Subscription } from 'rxjs/Subscription'
 
 @Component({
   selector: 'chat-input',
@@ -28,13 +29,18 @@ export class ChatInputComponent implements OnInit {
   showMenuPrincipal = false
   showOptions = false
   supportEmojis: boolean
+  toggleemojimenu = false
 
+  constructor(private _SiblingService: SiblingService) {
+
+  }
   ngOnInit() {
     this.supportEmojis = navigator.userAgent
       .toLowerCase()
       .includes('windows nt 10')
 
     this.focus.subscribe(() => this.focusMessage())
+    this.subscribeAddEmoji()
   }
 
   public focusMessage() {
@@ -66,25 +72,7 @@ export class ChatInputComponent implements OnInit {
   }
 
   toggleEmojisMenu() {
-    var keyboardEvent: any = document.createEvent('KeyboardEvent')
-    var initMethod =
-      typeof keyboardEvent.initKeyboardEvent !== 'undefined'
-        ? 'initKeyboardEvent'
-        : 'initKeyEvent'
-
-    keyboardEvent[initMethod](
-      'keydown', // event type : keydown, keyup, keypress
-      true, // bubbles
-      true, // cancelable
-      window, // viewArg: should be window
-      true, // ctrlKeyArg
-      false, // altKeyArg
-      false, // shiftKeyArg
-      false, // metaKeyArg
-      43, // keyCodeArg : unsigned long the virtual key code, else 0
-      0, // charCodeArgs : unsigned long the Unicode character associated with the depressed key, else 0
-    )
-    document.dispatchEvent(keyboardEvent)
+    this.toggleemojimenu = !this.toggleemojimenu
   }
 
   toggleMenuPrincipal() {
@@ -92,10 +80,17 @@ export class ChatInputComponent implements OnInit {
   }
 
   sendOption(message) {
-    let option = {
+    const option = {
       value: message,
     }
     this.send.emit(option)
     this.toggleMenuPrincipal()
+  }
+  subscribeAddEmoji() {
+    this._SiblingService.emoji$.subscribe((emoji) => {
+      const div = document.createElement('div')
+      div.innerHTML = emoji
+      this.message.nativeElement.value += div.innerHTML
+    })
   }
 }
