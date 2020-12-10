@@ -9,7 +9,7 @@ import {
   ViewEncapsulation,
 } from '@angular/core'
 import { selector } from 'rxjs-compat/operator/publish'
-
+import { GlobalService } from '../shared/globals'
 @Component({
   selector: 'chat-input',
   templateUrl: `./chat-input.component.html`,
@@ -23,6 +23,9 @@ export class ChatInputComponent implements OnInit {
   @Output() public dismiss = new EventEmitter()
   @ViewChild('message', { static: false }) message: ElementRef
   @Output() public toggleAttOptions = new EventEmitter<string>()
+  icon_send : string = GlobalService.ICON_SEND;
+  icon_attached: string = GlobalService.ICON_ATTAC;
+  icon_emoji: string = GlobalService.ICON_EMOJI;
   showOptions = false
   supportEmojis: boolean
   ngOnInit() {
@@ -44,7 +47,7 @@ export class ChatInputComponent implements OnInit {
   public clearMessage() {
     this.message.nativeElement.innerHTML = ''
   }
-  onSubmit() {
+  onSubmit(e) {
     const message = this.getMessage()
     if (message.value.trim() === '') {
       return

@@ -23,9 +23,9 @@
   right: 0;
   clip-path: polygon(0 0, 100% 100%, 100% 0);
 }
-.message.message-user .message-photo {
+.message.message-user .message-photo { 
   right: -30px;
-  background-image: url(./../../../assets/user.svg);
+  background-image: url("/assets/user.svg");
 }
 .message.message-user .message-time {
   color: hsl(0, 0%, 80%);
@@ -43,7 +43,7 @@
 }
 .message.message-bot .message-photo {
   left: -30px;
-  background-image: url(./../../../assets/logoBot1.svg);
+  background-image: url("/assets/logoBot1.svg");
 }
 .message.message-bot .message-time {
   color: hsl(0, 0%, 40%);

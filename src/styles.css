@@ -8,9 +8,9 @@ body {
   width: 100vw;
   height: 100vh;
   overflow: hidden;
-  --main-color: #1986f5;
+  --main-color: #ee0a0c;
   --attachedFilesTitle: #a80000;
-  --buttonsColor: #1986f5;
+  --buttonsColor: #ee0a0c;
   /* #A80000;*/
   --btclose-visibility: visible;
   --scrollcolor: hsl(223, 12%, 86%);

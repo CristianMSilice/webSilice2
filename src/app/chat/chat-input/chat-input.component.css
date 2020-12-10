@@ -22,7 +22,7 @@
 .chat-widget-input {
   border-radius: 0px 0px 0px 10px;
   border: none;
-  width: 100%;
+  width: 96%;
   height: calc(100% - 4px);
   background-color: white;
   overflow-y: auto;
@@ -43,15 +43,8 @@
 .option-showed.send{
   width: 25px;
 }
-.buttons-options .send {
-  background-image: url(./../../../assets/sendIcon.svg);
-}
-.buttons-options .attached {
-  background-image: url(./../../../assets/attachedIcon.svg);
-}
-.buttons-options .emojiIcon {
-  background-image: url(./../../../assets/emojiIcon.svg);
-}
+.buttons-options  
+ 
 .backgroundImage{
   background-position: center;
   background-size: 80%;

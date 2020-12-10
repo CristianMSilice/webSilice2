@@ -21,7 +21,8 @@
     </video>
     <div *ngIf=" file.file.errormessage.showError" class="texto-secundario danger">{{file.file.errormessage.message}}</div>
     <a  class="PDF-link clickable" target="_blank" *ngIf="file.file.kindfile == 'pdf' && file.file.enabled" id="archivo-preview-pdf" >
-      <img src="../../../assets/pdfIcon.svg" alt="PDF">
+      
+      <img src="{{ icon_pdf }}" class="img-silice" />
     </a>
     <!-- <div *ngIf="file.file.kindfile == null &&  file.file.errormessage.value " class="texto-secundario">Vista previa</div>
     <div *ngIf="file.file.kindfile=='pdf' &&  file.file.errormessage.value" class="texto-secundario ">Vista previa no disponible</div> -->

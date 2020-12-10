@@ -13,15 +13,19 @@
   <div class="buttons-options" [ngClass]="{'showOptions':showOptions==true,'removeEmojis':!supportEmojis}">
 
       <div *ngIf="showOptions==true && supportEmojis">
-        <div class="option-showed backgroundImage emojiIcon"
+        <div class="option-showed backgroundImage  "
           (click)="toggleEmojisMenu()"
-        ></div>
+        >
+        <img src="{{ icon_emoji }}"    width="20px"  />
+      </div>
       </div> 
 
       <div *ngIf="showOptions==true">
         <div class="option-showed backgroundImage attached"
           (click)="toggleAttachedOptions()"
-        ></div>
+        >
+        <img src="{{ icon_attached }}"    width="20px"  />
+      </div>
       </div> 
 
     <div class="options option-showed" (click)="toggleOptions()" [ngClass]="{'showOptions':showOptions==true}">
@@ -29,7 +33,8 @@
       <div class="line line2"></div>
       <div class="line line3"></div>
     </div>
-    <div class="option-showed backgroundImage send" (click)="onSubmit($event)">
+    <div class="option-showed backgroundImage    " (click)="onSubmit($event)">
+      <img src="{{ icon_send }}"    width="20px"  />
     </div>
   </div>
 </div>

@@ -56,6 +56,7 @@ export class ChatWidgetComponent implements OnInit {
   avatar_cab: string = GlobalService.AVATAR_CAB;
   icon_cancel: string = GlobalService.ICON_CANCEL;
   texto_cab: string = GlobalService.TEXTO_CAB;
+   
   isMobileResolution: boolean;
   pp: string = ' <p>Hola, bienvenido de nuevo asdf</p> ';
   filetosend: HTMLInputElement;
@@ -156,7 +157,7 @@ export class ChatWidgetComponent implements OnInit {
         date: new Date().getTime(),
       })
     }else{
-      console.log(this.messages)
+       
       this.messages.push({
         from,
         text,
@@ -216,7 +217,7 @@ export class ChatWidgetComponent implements OnInit {
     //this._token='Apfee6R+yalDdomE3Oo/ejzxzmMhSr8HMFn8qqeWkA8=';
     setTimeout(() => (this.visible = false), 1000)
     if (!this.isMobileResolution) {
-      console.log('inicio')
+     
       this.comprobarDatos()
     }
   }
@@ -233,7 +234,7 @@ export class ChatWidgetComponent implements OnInit {
           '',
         )
       }, 1500)
-      console.log("primera vez sin cookies")
+   
       this.encsessionService.remove
       this.encsessionService.codif(this.msgList, GlobalService.NM_COOKIE);
       this.login()
@@ -243,21 +244,43 @@ export class ChatWidgetComponent implements OnInit {
     
       try {
         this.msgList = this.encsessionService.descodif(GlobalService.NM_COOKIE);
-        this.cookieValue = this.cookieService.get(GlobalService.NM_COOKIE);
-    
-        this.client.id = this.cookieValue;
-        this.misDatos()
-        this.messages = this.msgList
-         
-       
-        setTimeout(() => {
-          
-          this.visible = true
+        if (this.msgList==undefined)
+        {
+          this.valido = false
           setTimeout(() => {
-            this.scrollToBottom(this.widgetBody.nativeElement,200)
-            this.focusMessage()
-          }, 0)
-        }, 1500)
+            //Texto inicial que se indica englobal para iniciar el chat
+            this.addMessage(
+              this.operator,
+              GlobalService.TXT_INICIAL,
+              'received',
+              1,
+              '',
+            )
+          }, 1500)
+          this.msgList=[]
+          this.encsessionService.remove
+          this.encsessionService.codif(this.msgList, GlobalService.NM_COOKIE);
+          this.login()
+        }
+        else
+        {
+          this.cookieValue = this.cookieService.get(GlobalService.NM_COOKIE);
+    
+          this.client.id = this.cookieValue;
+          this.misDatos()
+          this.messages = this.msgList
+        //   console.log(this.msgList)
+         
+          setTimeout(() => {
+            
+            this.visible = true
+            setTimeout(() => {
+              this.scrollToBottom(this.widgetBody.nativeElement,200)
+              this.focusMessage()
+            }, 0)
+          }, 1500)
+        }
+       
       } catch (error) {
         this.valido = false
         setTimeout(() => {
@@ -286,11 +309,11 @@ export class ChatWidgetComponent implements OnInit {
           expire.setTime(time);
           this.cookieService.set(GlobalService.NM_COOKIE, this.client.id.toString(), expire);
           this.initIoConnection();
-          console.log("almacenos la cookei")
+          //console.log("almacenos la cookei")
           // let texto = "Bienvenido " + this.client.name
           //this.addMessage(this.operator, texto, 'received', 1,'')
 
-          this.socketService.send(this.client, '/start', this._token)
+         // this.socketService.send(this.client, '/start', this._token)
           this.valido = true
         } else {
           // console.log(data.mensaje)

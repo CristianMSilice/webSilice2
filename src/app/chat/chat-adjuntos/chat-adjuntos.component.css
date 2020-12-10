@@ -43,7 +43,7 @@
 }
 
 .archivo-preview-title{
-    width: 100%;
+    width: 95%;
     background: var(--attachedFilesTitle);
     height: calc(100% - 1em);
     display: flex;
@@ -84,8 +84,8 @@
     border-radius: 50%;
     height: 50px;
 
-    -webkit-mask: url(./../../../assets/sendIcon.svg);
-    mask: url(./../../../assets/sendIcon.svg);
+    -webkit-mask: url("/assets/sendIcon.svg");
+    mask: url("/assets/sendIcon.svg");
     -webkit-mask-position: center;
     mask-position: center;
     -webkit-mask-size: 67%;

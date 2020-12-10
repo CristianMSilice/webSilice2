@@ -22,7 +22,11 @@
             [class.message-user]="message.type === 'sent'"
             [@fadeIn]
           >
-              <div class="message-photo"></div>
+              <div class="message-photo">
+                
+              </div>
+              
+                             
               <div class="message-text" *ngIf="message.tipo == 1">
                 <div style="white-space: pre-line" [innerHTML]="paserLink(message.text) | sanitizeHtml"
                   *ngIf="!esnuestro(message.text)" (click)=reviewOptions($event)></div>

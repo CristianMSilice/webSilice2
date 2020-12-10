@@ -11,7 +11,7 @@ import {
 import { reviewFile } from './utils/reviewfile'
 import { SocketService } from '../shared/services/socket.service'
 import { TOKEN } from '../shared/services/config'
-
+import { GlobalService } from '../shared/globals'
 
 @Component({
   selector: 'chat-adjuntos',
@@ -19,26 +19,25 @@ import { TOKEN } from '../shared/services/config'
   styleUrls: ['./chat-adjuntos.component.css'],
 })
 export class ChatAdjuntosComponent {
-
+ 
   // c786b248746c3ef39942ae7567e883b5ce771c0cc775bdf324db14561cba25f9
   @Output() public showoutput = new EventEmitter()
   @Output() public send = new EventEmitter()
   @Input() clientChat: any;
   @ViewChild('inputAttachedFile', { static: false }) inputFile: ElementRef
   // @Input() _token:string;
-  file: reviewFile
+  file: reviewFile 
+  icon_pdf : string = GlobalService.ICON_PDF;
   constructor(private socketService: SocketService,
     @Inject(TOKEN) public _token?: string
     ) {
-      
+       
     }
 
     ngOnChanges(changes: SimpleChanges) {
       // only run when property "data" changed
   
-      if (changes['clientChat']) {
-  
-        console.log("USERID2 "+this.clientChat)
+      if (changes['clientChat']) { 
         }
   
   

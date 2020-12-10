@@ -6,6 +6,7 @@ import { Component, Output,EventEmitter , OnInit } from '@angular/core';
 })
 export class ChatOptionsComponent implements OnInit {
   filetoSend :HTMLInputElement;
+  file:any
   @Output() enviarArchivo = new EventEmitter<string>();
   constructor(  ) {   }
   ngOnInit() {
