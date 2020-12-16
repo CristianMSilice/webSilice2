@@ -11,12 +11,17 @@
         </div>
 
         <div class="chat-widget-body" #widgetBody>
-            <ng-container *ngFor="let message of messages;let i = index">
+            <ng-container *ngFor="let message of messages; let i = index">
                 <div class="chat-message">
                     <div class="message" [class.message-bot]="message.type === 'received'" [class.message-user]="message.type === 'sent'" [@fadeIn]>
-                        <div class="message-photo"></div>
+                        <div class="message-photo">
+                            <div class="background" *ngIf="message.type === 'received'"></div>
+                            <div class="traje1" *ngIf="message.type === 'received'"></div>
+                            <div class="traje2" *ngIf="message.type === 'received'"></div>
+                            <div class="body" *ngIf="message.type === 'received'"></div>
+                        </div>
                         <div class="message-text" *ngIf="message.tipo == 1">
-                            <div style="white-space: pre-line" [innerHTML]="paserLink(message.text) | sanitizeHtml" *ngIf="!esnuestro(message.text)" (click)="reviewOptions($event)"></div>
+                            <div style="white-space: pre-line" [innerHTML]="paserLink(message.text) | sanitizeHtml" *ngIf="!esnuestro(message.text)"></div>
                         </div>
 
                         <div *ngIf="message.tipo == 2" [ngSwitch]="true">
@@ -59,17 +64,17 @@
                         </div>
                     </div>
                 </div>
-                <div class="button" *ngIf="message.buttons">
+                <div class="button" *ngIf="message.buttons; let j = index">
                     <div class="message-buttons-array">
-                        <div class="message-button-option" *ngFor="let button of message.buttons" [attr.action]="button.accion" [attr.state]="i+1==messages.length">
-                            {{button.texto}}
+                        <div class="message-button-option" *ngFor="let button of message.buttons" (click)="buttonMessageClick(button.accion,i + 1 == messages.length)" [ngClass]="{'disabled':i + 1 != messages.length,'selectable': false}">
+                            {{ button.texto }}
                         </div>
                     </div>
                 </div>
             </ng-container>
         </div>
         <chat-input (send)="sendMessage($event)" (dismiss)="closeChat()" (toggleAttOptions)="toggleAttOptions()" [focus]="focus" [menuPrincipal]="menuPrincipal"></chat-input>
-        <chat-adjuntos (showoutput)="closeAdjuntos($event)" [clientChat]="client.id" (send)="sendFile($event)"></chat-adjuntos>
+        <chat-adjuntos [clientChat]="client.id" (send)="sendFile($event)"></chat-adjuntos>
         <app-new-tarjeta [url]="nuestraUrl" [@slideInOut2]="menuStatet2" [deleteHandler]="ocultarTarjetas2">
         </app-new-tarjeta>
     </div>

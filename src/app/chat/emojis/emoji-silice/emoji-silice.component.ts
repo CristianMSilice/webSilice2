@@ -12,14 +12,14 @@ export class EmojiSiliceComponent implements OnInit {
   toggleemojimenu
   selected = 0
   limits = [
+    [128512, 128692, 128513],  // emojis
     [127747, 127776, 127748], // places
     [127789, 127868, 127822], // food
     [127968, 127984, 127969], // houses
     [128000, 128062, 128021], // animals
     [128066, 128145, 128100], // human
     [128147, 128255, 128161], // others
-    [128336, 128359, 128337], // time
-    [128512, 128692, 128513]  // emojis
+    [128336, 128359, 128337] // time
   ]
   emojis = [
   ]

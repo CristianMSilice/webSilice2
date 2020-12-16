@@ -39,6 +39,15 @@ export class ChatWidgetComponent implements OnInit {
   @ViewChild('widgetBody', { static: false }) widgetBody: ElementRef
   @ViewChild(ChatAdjuntosComponent, { static: false }) AdjuntosComponent: ChatAdjuntosComponent
   @Input() public theme: 'blueno' | 'greyno' | 'redno' = 'blueno'
+  @Input() public set visible(visible) {
+    this._visible = visible
+    if (this._visible) {
+      setTimeout(() => {
+        this.scrollToBottom(this.widgetBody.nativeElement, 200)
+        this.focusMessage()
+      }, 0)
+    }
+  }
   supportEmojis
   valido = false
   nuestraUrl = ''
@@ -55,9 +64,27 @@ export class ChatWidgetComponent implements OnInit {
   icon_cancel: string = GlobalService.ICON_CANCEL
   texto_cab: string = GlobalService.TEXTO_CAB
   isMobileResolution: boolean
-  pp = ' <p>Hola, bienvenido de nuevo asdf</p> '
   filetosend: HTMLInputElement
   menuPrincipal = { options: [{ texto: '', accion: '' }], enabled: false }
+  public _visible = false
+  public get visible() {
+    return this._visible
+  }
+
+  public focus = new Subject()
+  public operator = {
+    name: 'Operador',
+    status: 'online',
+    avatar: GlobalService.AVATAR_CHAT,
+  }
+  public client = {
+    id: '',
+    name: 'Invitado',
+    status: 'online',
+    avatar: '',
+  }
+  public messages = []
+
   constructor(
     private socketService: SocketService,
     private sanitizer: DomSanitizer,
@@ -65,150 +92,7 @@ export class ChatWidgetComponent implements OnInit {
     private encsessionService: EncsessionService,
     private cookieService: CookieService,
     @Inject(TOKEN) public _token?: string) {
-
   }
-  public _visible = false
-  public get visible() {
-    return this._visible
-  }
-  @Input() public set visible(visible) {
-    this._visible = visible
-    if (this._visible) {
-      setTimeout(() => {
-        this.scrollToBottom(this.widgetBody.nativeElement, 200)
-        this.focusMessage()
-      }, 0)
-    }
-  }
-
-  public focus = new Subject()
-
-  public operator = {
-    name: 'Operador',
-    status: 'online',
-    avatar: GlobalService.AVATAR_CHAT,
-  }
-
-  public client = {
-    id: '',
-    name: 'Invitado',
-    status: 'online',
-    avatar: '',
-  }
-
-  public messages = []
-
-  createbuttons(buttons) {
-    const div = document.createElement('div')
-    div.classList.add('message-buttons-array')
-    buttons.forEach(button => {
-      const div1 = document.createElement('div')
-      div1.classList.add('message-button-option')
-      div1.textContent = button.texto
-      div1.style.borderColor = button.color
-      div1.style.color = button.color
-      div1.setAttribute('action', button.accion)
-      div1.setAttribute('state', 'enabled')
-      div.appendChild(div1)
-    })
-
-    return div
-  }
-
-  reviewOptions(event) {
-    const button: Element = event.target
-    const state = button.getAttribute('state')
-    const message = {
-      value: button.getAttribute('action')
-    }
-    if (state == 'enabled') {
-      button.parentElement.childNodes.forEach((optionBtn: Element) => {
-        optionBtn.classList.add('disabled')
-        optionBtn.setAttribute('state', 'disabled')
-      })
-      button.classList.add('selectable')
-      this.sendMessage(message)
-    }
-  }
-
-  public addMessage(from, text: string, type: 'received' | 'sent', tipo, file_mime) {
-    const clave = '*$MARCO$*:'
-    if (this.messages == undefined) {this.messages = []}
-    if (text.includes(clave) && type == 'received') {
-      const stringify = text.substring(text.lastIndexOf(clave) + clave.length)
-      const div = document.createElement('div')
-      text = text.substring(0, text.lastIndexOf(clave))
-      div.textContent = text
-      let buttons
-      let drawButtons
-      try {
-        buttons = JSON.parse(stringify)
-        drawButtons = this.createbuttons(buttons.button)
-        console.log(buttons)
-        // if ( buttons.button.length > 0) {div.appendChild(drawButtons)}
-        buttons = buttons.button;
-        if (buttons.hasOwnProperty('menuPrincipal')) {
-          this.menuPrincipal.options = buttons.menuPrincipal
-          this.menuPrincipal.enabled = true
-        }
-      } catch (error) {
-        console.log('occurrió un error al convertir el JSON')
-        console.log(stringify)
-        console.log('este es el error que salió')
-        console.log(error)
-      }
-
-      const premessage = {
-        from,
-        text,
-        type,
-        tipo,
-        file_mime,
-        date: new Date().getTime(),
-      }
-      if ( buttons ) { premessage['buttons'] = buttons}
-      // text = div.innerHTML
-      this.messages.push(premessage)
-    } else {
-      console.log(this.messages)
-      this.messages.push({
-        from,
-        text,
-        type,
-        tipo,
-        file_mime,
-        date: new Date().getTime(),
-      })
-    }
-
-    let msg = {
-      from,
-      text,
-      type,
-      tipo,
-      file_mime,
-      date: new Date().getTime(),
-    }
-    let fila = {
-      from: from,
-      text: text,
-      type: type,
-      tipo: tipo,
-      file_mime: file_mime,
-      date: msg.date
-    }
-
-
-    this.trabajarMsg(fila)
-
-
-    setTimeout(() => {
-      try {
-        this.scrollToBottom(this.widgetBody.nativeElement, 200)
-      } catch (error) { }
-    }, 800)
-  }
-
   ngOnInit() {
     if (window.innerWidth < 768) {
       this.isMobileResolution = true
@@ -241,18 +125,17 @@ export class ChatWidgetComponent implements OnInit {
     }
     else {
       // SI exite la cokkie
-
       try {
         this.msgList = this.encsessionService.descodif(GlobalService.NM_COOKIE);
         this.cookieValue = this.cookieService.get(GlobalService.NM_COOKIE);
-
         this.client.id = this.cookieValue;
         this.misDatos()
+        this.msgList.forEach(msg=>{
+          let buttons= this.reviewIfthereAreButtons(msg.text,msg.type)
+          if(buttons){msg['buttons']=buttons}
+        })  
         this.messages = this.msgList
-
-
         setTimeout(() => {
-
           this.visible = true
           setTimeout(() => {
             this.scrollToBottom(this.widgetBody.nativeElement, 200)
@@ -277,6 +160,8 @@ export class ChatWidgetComponent implements OnInit {
       }
     }
   }
+
+
   private login() {
     this.socketService.getLogin2(this.client.name, this._token).subscribe(
       (data) => {
@@ -288,13 +173,10 @@ export class ChatWidgetComponent implements OnInit {
           this.cookieService.set(GlobalService.NM_COOKIE, this.client.id.toString(), expire);
           this.initIoConnection()
           console.log('almacenos la cookei')
-          // let texto = "Bienvenido " + this.client.name
-          // this.addMessage(this.operator, texto, 'received', 1,'')
-
           this.socketService.send(this.client, '/start', this._token)
           this.valido = true
         } else {
-          // console.log(data.mensaje)
+          console.log(data.mensaje)
         }
       },
       (error) => {
@@ -303,6 +185,78 @@ export class ChatWidgetComponent implements OnInit {
       () => { },
     )
   }
+  private createbuttons(stringify) {
+    let buttons;
+    buttons = JSON.parse(stringify)
+    buttons = buttons.button;
+    return buttons;
+  }
+  private reviewIfthereAreButtons(text, type) {
+    const clave = '*$MARCO$*:'
+    let buttons;
+    if (this.messages == undefined) { this.messages = [] }
+    if (text.includes(clave) && type == 'received') {
+      const stringify = text.substring(text.lastIndexOf(clave) + clave.length)
+      buttons = this.createbuttons(stringify)
+    }
+    return buttons
+  }
+  public addMessage(from, text: string, type: 'received' | 'sent', tipo, file_mime) {
+    let buttons = this.reviewIfthereAreButtons(text, type);
+    const premessage = {
+      from,
+      text,
+      type,
+      tipo,
+      file_mime,
+      date: new Date().getTime(),
+    }
+    if (buttons) { premessage['buttons'] = buttons }
+    this.messages.push(premessage)
+    let msg = {
+      from,
+      text,
+      type,
+      tipo,
+      file_mime,
+      date: new Date().getTime(),
+    }
+    let fila = {
+      from: from,
+      text: text,
+      type: type,
+      tipo: tipo,
+      file_mime: file_mime,
+      date: msg.date
+    }
+    this.trabajarMsg(fila)
+    setTimeout(() => {
+      try {
+        this.scrollToBottom(this.widgetBody.nativeElement, 200)
+      } catch (error) { }
+    }, 800)
+  }
+
+  private trabajarMsg(msg: any) {
+    this.msgList = this.encsessionService.descodif(GlobalService.NM_COOKIE);
+    if (this.msgList == undefined) {
+      this.msgList = []
+    }
+    else {
+      let i = 0
+
+      if (this.msgList.length > 110) {
+        for (let index = 110; index < this.msgList.length; index++) {
+          this.msgList.splice(i, 1)
+          i++
+        }
+      }
+    }
+    this.msgList.push(msg)
+    this.encsessionService.codif(this.msgList, GlobalService.NM_COOKIE);
+
+  }
+
   private misDatos() {
     this.socketService.getMisDatos(this.client.id, this._token).subscribe(
       (data) => {
@@ -348,11 +302,9 @@ export class ChatWidgetComponent implements OnInit {
     }
 
   }
-
   public focusMessage() {
     this.focus.next(true)
   }
-
   //  '<span><a href="https://t.me/adiper_bot" >   <img src="assets/te.png"  >    </a> </span>',
   public openMobil() {
     swal.fire({
@@ -374,7 +326,6 @@ export class ChatWidgetComponent implements OnInit {
     this.visible = true
 
   }
-
   public closeChat() {
     this.visible = false
   }
@@ -384,19 +335,22 @@ export class ChatWidgetComponent implements OnInit {
 
     $('#componetchat').hide()
   }
-
   public openButom() {
     $('.chatbubble').toggleClass('open')
     $('.bot_btclose').toggleClass('open')
     $('#componetchat').show()
   }
-
   selectComando = (comando) => {
     this.socketService.send(this.client, comando, this._token)
     this.addMessage(this.client, comando, 'sent', 1, '')
     this.ocultarTarjetas()
   }
-
+  buttonMessageClick(message,enabled){
+    let msg = {value:message};
+    if(enabled){
+    this.sendMessage(msg);
+    }
+  }
   public sendMessage(message) {
 
     if (message.value.trim() === '') {
@@ -411,7 +365,6 @@ export class ChatWidgetComponent implements OnInit {
     }
 
   }
-
   @HostListener('document:keypress', ['$event'])
   handleKeyboardEvent(event: KeyboardEvent) {
     if (event.key === '/') {
@@ -421,26 +374,6 @@ export class ChatWidgetComponent implements OnInit {
       this.closeChat()
     }
   }
-  private trabajarMsg(msg: any) {
-    this.msgList = this.encsessionService.descodif(GlobalService.NM_COOKIE);
-    if (this.msgList == undefined) {
-      this.msgList = []
-    }
-    else {
-      let i = 0
-
-      if (this.msgList.length > 110) {
-        for (let index = 110; index < this.msgList.length; index++) {
-          this.msgList.splice(i, 1)
-          i++
-        }
-      }
-    }
-    this.msgList.push(msg)
-    this.encsessionService.codif(this.msgList, GlobalService.NM_COOKIE);
-
-  }
-
   private initIoConnection(): void {
     this.socketService.initSocket()
 
@@ -513,9 +446,12 @@ export class ChatWidgetComponent implements OnInit {
   ocultarTarjetas2 = () => {
     this.menuStatet2 = this.menuStatet2 === 'out' ? 'in' : 'out'
   }
-
   paserLink(html: any): SafeHtml {
     var div = document.createElement('div')
+    const clave = '*$MARCO$*:'
+    if (html.includes(clave)) {
+      html = html.substring(0, html.lastIndexOf(clave))
+    }
     div.innerHTML = html
     // div.innerHTML  = this.sanitizer.sanitize(SecurityContext.HTML, html);
     div.childNodes.forEach((e: any) => {
@@ -542,6 +478,7 @@ export class ChatWidgetComponent implements OnInit {
   }
   sendFile(stringInput) {
     const input = JSON.parse(stringInput)
+
     switch (input.kind) {
       case 'image':
         this.addMessage(this.operator, input.source, 'sent', 2, input.type)
@@ -556,7 +493,5 @@ export class ChatWidgetComponent implements OnInit {
   }
   toggleAttOptions() {
     this.AdjuntosComponent.cargarAdjunto()
-  }
-  closeAdjuntos() {
   }
 }
