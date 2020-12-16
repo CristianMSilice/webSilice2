@@ -16,14 +16,28 @@ export class reviewFile {
     this.listener(input)
   }
 
-  public listener(input: Element) {
+  public listener(input: any) {
     input.addEventListener('change', () => {
       let accepted = this.reviewFile(input)
       if (!accepted) {
         this.file.errormessage.showError = true
-        this.file.errormessage.message = 'Solo se permiten PDF, Video e Imagenes'
+        this.file.errormessage.message = 'Solo se permiten Videos e Imagenes'
+      }
+      let excededsize = this.reviewsize(input, 5);
+      if(!excededsize){
+        this.file.errormessage.showError = true
+        this.file.errormessage.message = 'El máximo tamaño permitido es 5 MB'
+      }
+      if(accepted && excededsize){
+        this.file.enabled = true
+        this.file.errormessage.showError = false
+        this.generarVistaPrevia(this.file.kindfile, input.files[0])
       }
     })
+  }
+  private reviewsize(input, maxsize):Boolean{
+    console.log(input.files[0].size/1024/1024 <= maxsize);
+    return input.files[0].size/1024/1024 <= maxsize;
   }
   private reviewFile(input): Boolean {
     let accepted = false
@@ -32,10 +46,7 @@ export class reviewFile {
       if (input.files[0]) {
         if (input.files[0].type.includes(kind)) {
           accepted = true
-          this.file.enabled = true
-          this.file.kindfile = kind
-          this.file.errormessage.showError = false
-          this.generarVistaPrevia(kind, input.files[0])
+          this.file.kindfile = kind          
         }
       } 
     })

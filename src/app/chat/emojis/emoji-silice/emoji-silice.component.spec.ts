@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ChatOptionsComponent } from './chat-options.component';
+import { EmojiSiliceComponent } from './emoji-silice.component';
 
-describe('ChatOptionsComponent', () => {
-  let component: ChatOptionsComponent;
-  let fixture: ComponentFixture<ChatOptionsComponent>;
+describe('EmojiSiliceComponent', () => {
+  let component: EmojiSiliceComponent;
+  let fixture: ComponentFixture<EmojiSiliceComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ChatOptionsComponent ]
+      declarations: [ EmojiSiliceComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ChatOptionsComponent);
+    fixture = TestBed.createComponent(EmojiSiliceComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

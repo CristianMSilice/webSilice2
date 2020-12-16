@@ -1,129 +1,87 @@
 <div class="wrapper-silice   {{ theme }}" id="componetchat" ngDraggable>
-  <div
-    class="chat-widget"
-    *ngIf="visible && !isMobileResolution"
-    [@fadeInOut]="visible"
-  >
-    <div class="chat-widget-header">
-      <div class="chat-widget-header-logo">
-        <img src="{{ avatar_cab }}" class="img-silice" />
-      </div>
-      <div class="chat-widget-header-name">
-        {{ texto_cab }}
-      </div>
-      <div class="chat-widget-close" (click)="closeChat()">&#10006;</div>
-    </div>
-
-    <div class="chat-widget-body" #widgetBody>
-        <ng-container *ngFor="let message of messages">
-          <div class="chat-message">
-            <div class="message"
-            [class.message-bot]="message.type === 'received'"
-            [class.message-user]="message.type === 'sent'"
-            [@fadeIn]
-          >
-              <div class="message-photo">
-                
-              </div>
-              
-                             
-              <div class="message-text" *ngIf="message.tipo == 1">
-                <div style="white-space: pre-line" [innerHTML]="paserLink(message.text) | sanitizeHtml"
-                  *ngIf="!esnuestro(message.text)" (click)=reviewOptions($event)></div>
-              </div>
-
-              <div *ngIf="message.tipo == 2" [ngSwitch]="true">
-                <div
-                  class="message-image"
-                  *ngSwitchCase="
-                    message.file_mime === 'image/gif' ||
-                    message.file_mime === 'image/webp' ||
-                    message.file_mime === 'image/png' ||
-                    message.file_mime === 'image/jpg' ||
-                    message.file_mime === 'image/jpeg'
-                  "
-                >
-                    <img src="{{ message.text }}"  />
-                </div>
-
-                <div *ngSwitchCase="message.file_mime === 'video/mp4'">
-                  <video controls style="max-width: 100%; max-height: 400px">
-                    <source
-                      [src]="message.text"
-                      type="{{ message.file_mime }}"
-                    />
-                  </video>
-                </div>
-
-                <div
-                  *ngSwitchCase="
-                    message.file_mime === 'audio/ogg; codecs=opus' ||
-                    message.file_mime === 'audio/mp3' ||
-                    message.file_mime === 'audio/ogg' ||
-                    message.file_mime === 'audio/mp4'
-                  "
-                >
-                  <audio controls style="max-width: 100%; max-height: 400px">
-                    <source
-                      [src]="message.text"
-                      type="{{ message.file_mime }}"
-                    />
-                  </audio>
-                </div>
-
-                <div *ngSwitchDefault>
-                  <button
-                    type="button"
-                    class="btn btn-float btn-float-lg btn-outline-pink"
-                    (click)="goToLink(message.text)"
-                  >
-                    <i class="fa fa-cloud-download"></i
-                    ><span>Descargar Fichero<br /> </span>
-                  </button>
-                </div>
-              </div>
-            <div class="message-time">
-              {{ message.date | date: 'short' }}
+    <div class="chat-widget" *ngIf="visible && !isMobileResolution" [@fadeInOut]="visible">
+        <div class="chat-widget-header">
+            <div class="chat-widget-header-logo">
+                <img src="{{ avatar_cab }}" class="img-silice" />
             </div>
-          </div>
-          </div>
-          
-        </ng-container>
-    </div>
-        <chat-input
-          (send)="sendMessage($event)"
-          (dismiss)="closeChat()"
-          (toggleAttOptions)="toggleAttOptions()"
-          [focus]="focus"
-        ></chat-input>
-        <chat-adjuntos 
-        (showoutput)="closeAdjuntos($event)"  [clientChat]="client.id"
-        
-        (send)="sendFile($event)" ></chat-adjuntos>
-       
-    <app-new-tarjeta
-      [url]="nuestraUrl"
-      [@slideInOut2]="menuStatet2"
-      [deleteHandler]="ocultarTarjetas2"
-    >
-    </app-new-tarjeta>
-  </div>
+            <div class="chat-widget-header-name">
+                {{ texto_cab }}
+            </div>
+            <div class="chat-widget-close" (click)="closeChat()">&#10006;</div>
+        </div>
 
-  <div
-    class="chatbubble open"
-    #btnbubble
-    (click)="openChat()"
-    *ngIf="!visible && !isMobileResolution"
-    [@fadeInOut]="!visible"
-  ></div>
-  <div
-    class="chatbubblemovil open"
-    #btnbubble
-    (click)="openMobil()"
-    *ngIf="!visible && isMobileResolution"
-    [@fadeInOut]="!visible"
-  ></div>
-  <!--  <div class="bot_btclose open" *ngIf="!visible && !isMobileResolution " [@fadeInOut]="!visible ">
+        <div class="chat-widget-body" #widgetBody>
+            <ng-container *ngFor="let message of messages; let i = index">
+                <div class="chat-message">
+                    <div class="message" [class.message-bot]="message.type === 'received'" [class.message-user]="message.type === 'sent'" [@fadeIn]>
+                        <div class="message-photo">
+                            <div class="background" *ngIf="message.type === 'received'"></div>
+                            <div class="traje1" *ngIf="message.type === 'received'"></div>
+                            <div class="traje2" *ngIf="message.type === 'received'"></div>
+                            <div class="body" *ngIf="message.type === 'received'"></div>
+                        </div>
+                        <div class="message-text" *ngIf="message.tipo == 1">
+                            <div style="white-space: pre-line" [innerHTML]="paserLink(message.text) | sanitizeHtml" *ngIf="!esnuestro(message.text)"></div>
+                        </div>
+
+                        <div *ngIf="message.tipo == 2" [ngSwitch]="true">
+                            <div class="message-image" *ngSwitchCase="
+                  message.file_mime === 'image/gif' ||
+                  message.file_mime === 'image/webp' ||
+                  message.file_mime === 'image/png' ||
+                  message.file_mime === 'image/jpg' ||
+                  message.file_mime === 'image/jpeg'
+                ">
+                                <img src="{{ message.text }}" />
+                            </div>
+
+                            <div *ngSwitchCase="message.file_mime === 'video/mp4'">
+                                <video controls style="max-width: 100%; max-height: 400px">
+                  <source [src]="message.text" type="{{ message.file_mime }}" />
+                </video>
+                            </div>
+
+                            <div *ngSwitchCase="
+                  message.file_mime === 'audio/ogg; codecs=opus' ||
+                  message.file_mime === 'audio/mp3' ||
+                  message.file_mime === 'audio/ogg' ||
+                  message.file_mime === 'audio/mp4'
+                ">
+                                <audio controls style="max-width: 100%; max-height: 400px">
+                  <source [src]="message.text" type="{{ message.file_mime }}" />
+                </audio>
+                            </div>
+
+                            <div *ngSwitchDefault>
+                                <button type="button" class="btn btn-float btn-float-lg btn-outline-pink" (click)="goToLink(message.text)">
+                  <i class="fa fa-cloud-download"></i
+                  ><span>Descargar Fichero<br /> </span>
+                </button>
+                            </div>
+                        </div>
+                        <div class="message-time">
+                            {{ message.date | date: 'short' }}
+                        </div>
+                    </div>
+                </div>
+                <div class="button" *ngIf="message.buttons; let j = index">
+                    <div class="message-buttons-array">
+                        <div class="message-button-option" *ngFor="let button of message.buttons" (click)="buttonMessageClick(button.accion,i + 1 == messages.length)" [ngClass]="{'disabled':i + 1 != messages.length,'selectable': false}">
+                            {{ button.texto }}
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
+        </div>
+        <chat-input (send)="sendMessage($event)" (dismiss)="closeChat()" (toggleAttOptions)="toggleAttOptions()" [focus]="focus" [menuPrincipal]="menuPrincipal"></chat-input>
+        <chat-adjuntos [clientChat]="client.id" (send)="sendFile($event)"></chat-adjuntos>
+        <app-new-tarjeta [url]="nuestraUrl" [@slideInOut2]="menuStatet2" [deleteHandler]="ocultarTarjetas2">
+        </app-new-tarjeta>
+    </div>
+
+    <div class="chatbubble open" #btnbubble (click)="openChat()" *ngIf="!visible && !isMobileResolution" [@fadeInOut]="!visible"></div>
+    <div class="chatbubblemovil open" #btnbubble (click)="openMobil()" *ngIf="!visible && isMobileResolution" [@fadeInOut]="!visible"></div>
+    <!--  <div class="bot_btclose open" *ngIf="!visible && !isMobileResolution " [@fadeInOut]="!visible ">
 
         <a (click)="closeButom() "><img src="{{icon_cancel}}"> </a>
 

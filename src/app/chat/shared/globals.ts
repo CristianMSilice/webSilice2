@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
+import { Injectable } from '@angular/core'
 
-@Injectable() 
+@Injectable()
 export class GlobalService {
     
    //public static API_ENDPOINT='api-widget/';

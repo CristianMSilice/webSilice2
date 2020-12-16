@@ -7,7 +7,7 @@ import {
   Output,
   SimpleChanges,
   ViewChild,
-} from '@angular/core' 
+} from '@angular/core'
 import { reviewFile } from './utils/reviewfile'
 import { SocketService } from '../shared/services/socket.service'
 import { TOKEN } from '../shared/services/config'
@@ -28,6 +28,7 @@ export class ChatAdjuntosComponent {
   // @Input() _token:string;
   file: reviewFile 
   icon_pdf : string = GlobalService.ICON_PDF;
+  enviando: boolean=false;
   constructor(private socketService: SocketService,
     @Inject(TOKEN) public _token?: string
     ) {
@@ -43,12 +44,13 @@ export class ChatAdjuntosComponent {
   
         
     }
+
+
   cargarAdjunto() {
     if (!this.file) {
       this.file = new reviewFile(this.inputFile.nativeElement, [
         'image',
         'video',
-        'pdf',
       ])
     }
     this.inputFile.nativeElement.click()
@@ -56,45 +58,30 @@ export class ChatAdjuntosComponent {
   cancelLoadFile(element: HTMLElement) {
     this.file.resetfile()
   }
-  sendFile(element: any, kind: String) {
-    // let src = element.lastChild.getAttribute('src')
-    let tostring = {
-      kind: this.file.file.kindfile,
-      type: this.file.getMime(),
-      source: this.file.LoadedFile,
+  sendFile() {
+    if (!this.enviando) {
+      this.enviando = true;
+      let tostring = {
+        kind: this.file.file.kindfile,
+        type: this.file.getMime(),
+        source: this.file.LoadedFile,
+      }
+
+      this.send.emit(JSON.stringify(tostring))
+      this.file.file.enabled = false
+      this.showoutput.emit(false)
+
+      let sendedFile = {
+        texto: this.file.LoadedFile,
+        file_mime: this.file.getMime(),
+        file_token: this._token,
+        iduser: this.clientChat
+      }
+      this.socketService.sendFile(sendedFile)
+      this.enviando = false;
     }
-    
-    this.send.emit(JSON.stringify(tostring))
-    this.file.file.enabled = false
-    this.showoutput.emit(false)
 
-    let sendedFile = {
-      texto: this.file.LoadedFile,
-      file_mime: this.file.getMime(),
-      file_token: this._token,
-      iduser: this.clientChat
-    }
-    this.socketService.sendFile(sendedFile)
 
-  
-   /* this.socketService.getLogin2('', this._token).subscribe(
-      (data) => {
-        if (!data.error) {
-          let sendedFile = {
-            texto: this.file.LoadedFile,
-            file_mime: this.file.getMime(),
-            file_token: this._token,
-            iduser: data.data.id
-          }
-          this.socketService.sendFile(sendedFile)
 
-        } else {
-        }
-      },
-      (error) => {
-        console.log(error.status)
-      },
-      () => {},*/
-     
   }
-}
+}  

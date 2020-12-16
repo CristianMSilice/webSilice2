@@ -1,0 +1,68 @@
+.emoji-container {
+    grid-template-columns: repeat(8, 1fr);
+    grid-auto-rows: 1.4em;
+    font-size: 1.4em;
+    position: absolute;
+    overflow: hidden;
+    width: 100%;
+    top: calc(100% - 40px - 2.4em * 4);
+    height: calc(2.4em * 4);
+    visibility: hidden;
+    display: none;
+    padding: 7px 7px 0px 7px;
+    border-radius: 10px 10px 0px 0px;
+    background: hsl(0, 0%, 95%);
+}
+
+.emoji-container.show {
+    visibility: visible;
+    display: grid;
+}
+
+.emoji-container .emoji-content {
+    border-bottom: 1px solid;
+    padding: 2px 2px 2px 0px;
+    font-size: 27px;
+    cursor: pointer;
+    width: 37px;
+    height: 46px;
+}
+
+.emoji-container .emoji-content .principal {
+    width: 1.4em;
+    border-radius: 5px 5px 0px 0px;
+}
+
+.emoji-container .emoji-content .principal.show {
+    background-color: hsla(0, 0%, 0%, 20%);
+}
+
+.emoji-container .emoji-content .emojis::-webkit-scrollbar-thumb {
+    background-color: hsl(227, 13%, 86%);
+}
+
+.emoji-container .emoji-content .emojis::-webkit-scrollbar {
+    width: 10px;
+}
+
+.emoji-container .emoji-content .emojis {
+    visibility: hidden;
+    display: none;
+    display: grid !important;
+    width: 100%;
+    flex-wrap: wrap;
+    grid-template-columns: repeat(7, 14.28%);
+    grid-auto-rows: 1fr;
+    position: absolute;
+    left: 0;
+    top: 1.5em;
+    overflow-y: auto;
+    height: calc(2.4em * 4 - 33px * 4.5);
+    padding: 0.5em;
+    font-size: 33px;
+}
+
+.emoji-container .emoji-content .emojis.show {
+    visibility: visible;
+    display: block;
+}

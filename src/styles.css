@@ -4,64 +4,73 @@
 @import '~material-design-icons/iconfont/material-icons.css';
 html,
 body {
-  margin: 0;
-  width: 100vw;
-  height: 100vh;
-  overflow: hidden;
-  --main-color: #ee0a0c;
-  --attachedFilesTitle: #a80000;
-  --buttonsColor: #ee0a0c;
-  /* #A80000;*/
-  --btclose-visibility: visible;
-  --scrollcolor: hsl(223, 12%, 86%);
+    margin: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    --main-color: #ee0a0c;
+    --attachedFilesTitle: #a80000;
+    --buttonsColor: #ee0a0c;
+    --btclose-visibility: visible;
+    --scrollcolor: hsl(223, 12%, 86%);
+    /* #A80000;*/
+    --btclose-visibility: visible;
+    --scrollcolor: hsl(223, 12%, 86%);
+    --suitBotColor1: hsl(210, 92%, 53%);
+    --suitBotColor2: hsl(210, 92%, 20%);
 }
 
 body {
-  font-family: 'Open Sans', sans-serif;
+    font-family: 'Open Sans', sans-serif;
 }
 
 * {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 .pr-1 {
-  padding: 0em 1em 0em 0em;
+    padding: 0em 1em 0em 0em;
 }
 
 .message-buttons-array {
-  padding: 0.1em;
-  margin: 0.1em 0px;
-  width: 100%;
-  font-weight: bold;
-  font-size: 0.9em;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
+    padding: 0.1em;
+    margin: 0.1em 0px;
+    width: 100%;
+    font-weight: bold;
+    font-size: 0.9em;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
 }
+
 .message-buttons-array .message-button-option {
-  padding: 8px;
-  margin: 5px 3px;
-  border: 1px solid;
-  border-radius: 50vmin;
-  color: var(--buttonsColor);
-  background-color: hsla(0, 0%, 0%, 5%);
+    padding: 8px;
+    margin: 5px 3px;
+    border: 1px solid;
+    border-radius: 50vmin;
+    color: var(--buttonsColor);
+    background-color: hsla(0, 0%, 0%, 5%);
 }
 
 .message-buttons-array .message-button-option:hover {
-  cursor: pointer;
-  background-color: hsla(0, 0%, 0%, 10%);
+    cursor: pointer;
+    background-color: hsla(0, 0%, 0%, 10%);
 }
+
 .message-button-option.disabled {
-  color: hsla(0,0%,20%) !important;
-  border: 1px solid hsla(0,0%,20%) !important;
+    color: hsla(0, 0%, 20%) !important;
+    border: 1px solid hsla(0, 0%, 20%) !important;
 }
+
 .message-button-option.disabled:hover {
-  cursor: auto;
-  background-color: hsla(0,0%,0%,5%);
+    cursor: auto;
+    background-color: hsla(0, 0%, 0%, 5%);
 }
+
 .message-button-option.disabled.selectable {
-  background-color: hsla(0,0%,60%);
+    background-color: hsla(0, 0%, 60%);
 }
+
 .message-button-option.disabled.selectable:hover {
-  background-color: hsl(0,0%,60%) !important;
+    background-color: hsl(0, 0%, 60%) !important;
 }

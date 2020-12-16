@@ -1,0 +1,8 @@
+<div class="emoji-container" [ngClass]="{'show':toggleemojimenu}">
+    <div class="emoji-content" *ngFor="let emoji of emojis; let i = index">
+        <div class="principal" [innerHTML]="emoji.principal" [ngClass]="{'show':i === selected}" (click)="changeSelected(i)"></div>
+        <div class="emojis" [ngClass]="{'show':i === selected}">
+            <div class="emoji" *ngFor="let Semoji of emoji.emojivalues" [innerHtml]="Semoji" (click)="addemoji(Semoji)"></div>
+        </div>
+    </div>
+</div>

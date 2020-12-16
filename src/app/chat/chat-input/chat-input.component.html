@@ -1,40 +1,30 @@
-<div class="chat-widget-input-container" [ngClass]="{'showOptions':showOptions==true}">
-  <input
-    type="text"
-    placeholder="Ingresa aquí tu mensaje..."
-    id="message"
-    class="chat-widget-input"
-    #message
-    (keydown.enter)="onSubmit($event)"
-    (keyup.enter)="message.value = ''"
-    (keyup.escape)="dismiss.emit()"
-  >
+<div class="chat-widget-input-container" [ngClass]="{ showOptions: showOptions == true }">
+    <input type="text" placeholder="Ingresa aquí tu mensaje..." id="message" class="chat-widget-input" #message (keydown.enter)="onSubmit($event)" (keyup.enter)="message.value = ''" (keyup.escape)="dismiss.emit()" />
 
-  <div class="buttons-options" [ngClass]="{'showOptions':showOptions==true,'removeEmojis':!supportEmojis}">
+    <div class="buttons-options" [ngClass]="{
+      showOptions: showOptions == true,
+      removeEmojis: !supportEmojis
+    }">
+        <div *ngIf="showOptions == true && supportEmojis">
+            <div class="option-showed backgroundImage" (click)="toggleEmojisMenu()">
+                <img src="{{ icon_emoji }}" width="20px" />
+            </div>
+        </div>
 
-      <div *ngIf="showOptions==true && supportEmojis">
-        <div class="option-showed backgroundImage  "
-          (click)="toggleEmojisMenu()"
-        >
-        <img src="{{ icon_emoji }}"    width="20px"  />
-      </div>
-      </div> 
+        <div *ngIf="showOptions == true">
+            <div class="option-showed backgroundImage attached" (click)="toggleAttachedOptions()">
+                <img src="{{ icon_attached }}" width="20px" />
+            </div>
+        </div>
 
-      <div *ngIf="showOptions==true">
-        <div class="option-showed backgroundImage attached"
-          (click)="toggleAttachedOptions()"
-        >
-        <img src="{{ icon_attached }}"    width="20px"  />
-      </div>
-      </div> 
-
-    <div class="options option-showed" (click)="toggleOptions()" [ngClass]="{'showOptions':showOptions==true}">
-      <div class="line line1"></div>
-      <div class="line line2"></div>
-      <div class="line line3"></div>
+        <div class="options option-showed" (click)="toggleOptions()" [ngClass]="{ showOptions: showOptions == true }">
+            <div class="line line1"></div>
+            <div class="line line2"></div>
+            <div class="line line3"></div>
+        </div>
+        <div class="option-showed backgroundImage" (click)="onSubmit($event)">
+            <img src="{{ icon_send }}" width="20px" />
+        </div>
     </div>
-    <div class="option-showed backgroundImage    " (click)="onSubmit($event)">
-      <img src="{{ icon_send }}"    width="20px"  />
-    </div>
-  </div>
+    <app-emoji-silice [toggleemojimenu]="toggleemojimenu"></app-emoji-silice>
 </div>
