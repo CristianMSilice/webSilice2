@@ -16,8 +16,8 @@ body {
     /* #A80000;*/
     --btclose-visibility: visible;
     --scrollcolor: hsl(223, 12%, 86%);
-    --suitBotColor1: hsl(210, 92%, 53%);
-    --suitBotColor2: hsl(210, 92%, 20%);
+    --suitBotColor1: hsl(359, 92%, 49%);
+    --suitBotColor2: hsl(359, 92%, 29%);
 }
 
 body {
