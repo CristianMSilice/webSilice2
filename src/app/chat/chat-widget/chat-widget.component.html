@@ -72,6 +72,7 @@
                     </div>
                 </div>
             </ng-container>
+            <div class="powered-by-silice"></div>
         </div>
         <chat-input (send)="sendMessage($event)" (dismiss)="closeChat()" (toggleAttOptions)="toggleAttOptions()" [focus]="focus" [menuPrincipal]="menuPrincipal"></chat-input>
         <chat-adjuntos [clientChat]="client.id" (send)="sendFile($event)"></chat-adjuntos>
