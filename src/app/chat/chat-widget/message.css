@@ -2,98 +2,78 @@
     margin: 1em;
     display: flex;
     flex-direction: column;
+    --with-photo:35px;
+    --color-bubble-message-chat:hsl(0,0%,100%);
 }
 
 .message {
     position: relative;
     width: 80%;
     border-radius: 10px;
-    padding: 10px;
+    padding: 10px var(--with-photo);
     display: flex;
     flex-direction: column;
     box-shadow: 0px 4px 10px -10px black;
+    --width-message-time:70px;
+    background-color: var(--color-bubble-message-chat);
+    color: black;
 }
+
 
 .message.message-user {
     align-items: flex-end;
     align-self: flex-end;
-    background-color: var(--main-color);
-    color: hsl(0, 0%, 95%);
 }
 
-.message.message-user::before {
-    right: 0;
-    clip-path: polygon(0 0, 100% 100%, 100% 0);
+.message .message-photo {
+    position: absolute;
+    width: var(--with-photo);
+    height: var(--with-photo);
+    border-radius: 50%;
+    top: 0px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    box-shadow: 2px 2px 12px hsl(0deg 0% 63%);
 }
 
+
+.chat-message .message .message-photo.bot{
+    background-image: url(../../../assets/logobanco.png);
+}
 .message.message-user .message-photo {
-    right: -30px;
+    right: calc(0px - var(--with-photo) / 2);
     background-image: url("/assets/user.svg");
 }
+.message.message-bot .message-photo {
+    left: calc(0px - var(--with-photo) / 2);
+}
+.message.message-user .message-time,.message.message-bot .message-time{ 
+    color: hsl(0, 0%, 40%);
+    position: absolute;
+    background: inherit;
+    width: var(--width-message-time);
+    padding: 1em;
+    border-radius: 20px;
+    text-align: center;
+   
+}
+
 
 .message.message-user .message-time {
-    color: hsl(0, 0%, 80%);
+    left: calc(0px - var(--width-message-time) / 3);
+    box-shadow: 2px 2px 12px hsl(0deg 0% 63%);
 }
+
+.message.message-bot .message-time {
+    right: calc(0px - var(--width-message-time) / 3);
+    box-shadow: -2px 2px 12px hsl(0deg 0% 63%);
+}
+
 
 .message.message-bot {
     align-items: flex-start;
     align-self: flex-start;
-    background-color: hsl(250, 13%, 91%);
-    color: black;
-}
-
-.message.message-bot::before {
-    left: 0;
-    clip-path: polygon(0 0, 0% 100%, 100% 0);
-}
-
-.message.message-bot .message-photo {
-    left: -30px;
-}
-
-.message.message-bot .message-photo .traje1,
-.message.message-bot .message-photo .traje2,
-.message.message-bot .message-photo .background,
-.message.message-bot .message-photo .body {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-}
-
-.message.message-bot .message-photo .traje1 {
-    clip-path: polygon(10% 100%, 20% 58%, 42% 58%, 46% 100%, 53% 100%, 58% 58%, 80% 58%, 90% 100%);
-    background-color: var(--suitBotColor1);
-}
-
-.message.message-bot .message-photo .traje2 {
-    clip-path: polygon(30% 100%, 40% 75%, 34% 64%, 42% 58%, 47% 100%, 53% 100%, 58% 58%, 66% 64%, 60% 75%, 70% 100%);
-    background-color: var(--suitBotColor2);
-}
-
-.message.message-bot .message-photo .background {
-    background-color: #cbe2ffff;
-}
-
-.message.message-bot .message-photo .body {
-    background-image: url(./../../../assets/BotBody.svg);
-    background-size: 100%;
-    background-repeat: no-repeat;
-    background-position: center;
-}
-
-.message.message-bot .message-time {
-    color: hsl(0, 0%, 40%);
-}
-
-.message::before {
-    content: '';
-    position: absolute;
-    width: 30px;
-    height: 15px;
-    background: inherit;
-    bottom: -7px;
 }
 
 .message .message-time {
@@ -104,16 +84,8 @@
     text-align: right;
 }
 
-.message .message-photo {
-    position: absolute;
-    width: 30px;
-    height: 30px;
-    clip-path: circle(50% at 50% 50%);
-    bottom: -32px;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: 100%;
-}
+
+
 
 .message .message-image img {
     max-width: 100%;
@@ -137,3 +109,15 @@
 .message .video-message:focus {
     outline: none;
 }
+
+/* mobil  */
+.message {
+    width: 95%;
+}
+.message .message-time.mobil{
+    background-color: var(--headerTextColor);
+    color: white;
+    padding: 5px 2px;
+    font-size: 13px;
+}
+

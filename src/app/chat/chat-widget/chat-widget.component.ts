@@ -38,8 +38,8 @@ export class ChatWidgetComponent implements OnInit {
   //@ViewChild('bottom') bottom: ElementRef
   //@ViewChild('scrollMe') private myScrollContainer: ElementRef; 
   // @ViewChild('scrollMe', { static: false, read: ElementRef }) private myScrollContainer: ElementRef;
-  @ViewChild('widgetBody', {static: false}) widgetBody: ElementRef
-  @ViewChild(ChatAdjuntosComponent, {static: false}) AdjuntosComponent : ChatAdjuntosComponent 
+  @ViewChild('widgetBody', { static: false }) widgetBody: ElementRef
+  @ViewChild(ChatAdjuntosComponent, { static: false }) AdjuntosComponent: ChatAdjuntosComponent
   @Input() public theme: 'blueno' | 'greyno' | 'redno' = 'blueno'
   supportEmojis;
   valido: boolean = false;
@@ -56,12 +56,41 @@ export class ChatWidgetComponent implements OnInit {
   avatar_cab: string = GlobalService.AVATAR_CAB;
   icon_cancel: string = GlobalService.ICON_CANCEL;
   texto_cab: string = GlobalService.TEXTO_CAB;
-   
+  close_able_chat = GlobalService.CLOSE_ABLE_CHAT;
+  public _visible = true
+
   isMobileResolution: boolean;
   pp: string = ' <p>Hola, bienvenido de nuevo asdf</p> ';
   filetosend: HTMLInputElement;
   menuPrincipal = { options: [{ texto: '', accion: '' }], enabled: false }
-  public _visible = false
+  innerWidth: number
+  constructor(
+    private socketService: SocketService,
+    private sanitizer: DomSanitizer,
+    public linkifyService: NgxLinkifyjsService,
+    private encsessionService: EncsessionService,
+    private cookieService: CookieService,
+    @Inject(TOKEN) public _token?: string) { }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event) { this.calcResize() }
+  ngOnInit() {
+    this.calcResize();
+    this.comprobarDatos()
+  }
+
+
+  calcResize() {
+    this.isMobileResolution = window.innerWidth <= 768;
+
+    this.close_able_chat = (this.isMobileResolution)
+      ? true
+      : GlobalService.CLOSE_ABLE_CHAT;
+
+    console.log(window.innerWidth, this.isMobileResolution)
+  }
+
+
   public get visible() {
     return this._visible
   }
@@ -80,39 +109,32 @@ export class ChatWidgetComponent implements OnInit {
   }
   public messages = []
 
-  constructor(
-    private socketService: SocketService,
-    private sanitizer: DomSanitizer,
-    public linkifyService: NgxLinkifyjsService,
-    private encsessionService: EncsessionService,
-    private cookieService: CookieService, 
-    @Inject(TOKEN) public _token?: string) {}
 
-  createbuttons(buttons){
+  createbuttons(buttons) {
     let div = document.createElement('div');
     div.classList.add('message-buttons-array');
     buttons.forEach(button => {
-      let div1 =  document.createElement('div');
+      let div1 = document.createElement('div');
       div1.classList.add('message-button-option');
       div1.textContent = button.texto;
-      div1.style.borderColor=button.color;
-      div1.style.color=button.color;
+      div1.style.borderColor = button.color;
+      div1.style.color = button.color;
       div1.setAttribute('action', button.accion);
       div1.setAttribute('state', 'enabled');
       div.appendChild(div1)
     });
-    
+
     return div;
   }
 
-  reviewOptions(event){
-    let button :Element = event.target;
+  reviewOptions(event) {
+    let button: Element = event.target;
     let state = button.getAttribute('state');
     let message = {
       value: button.getAttribute('action')
     };
-    if(state == 'enabled'){
-      button.parentElement.childNodes.forEach((optionBtn :Element) =>{
+    if (state == 'enabled') {
+      button.parentElement.childNodes.forEach((optionBtn: Element) => {
         optionBtn.classList.add('disabled');
         optionBtn.setAttribute('state', 'disabled');
       })
@@ -121,20 +143,8 @@ export class ChatWidgetComponent implements OnInit {
     }
   }
 
-  
-  ngOnInit() {
-    if (window.innerWidth < 768) {
-      this.isMobileResolution = true
-    } else {
-      this.isMobileResolution = false
-    }
 
-    setTimeout(() => (this._visible = false), 1000)  //cambiado
-    if (!this.isMobileResolution) {
-     
-      this.comprobarDatos()
-    }
-  }
+  
   private comprobarDatos() {
     if (!this.cookieService.check(GlobalService.NM_COOKIE)) {
       this.valido = false
@@ -148,7 +158,7 @@ export class ChatWidgetComponent implements OnInit {
           '',
         )
       }, 1500)
-   
+
       this.encsessionService.remove
       this.encsessionService.codif(this.msgList, GlobalService.NM_COOKIE)
       this.login()
@@ -157,8 +167,7 @@ export class ChatWidgetComponent implements OnInit {
       // SI exite la cokkie
       try {
         this.msgList = this.encsessionService.descodif(GlobalService.NM_COOKIE);
-        if (this.msgList==undefined)
-        {
+        if (this.msgList == undefined) {
           this.valido = false
           setTimeout(() => {
             //Texto inicial que se indica englobal para iniciar el chat
@@ -170,30 +179,29 @@ export class ChatWidgetComponent implements OnInit {
               '',
             )
           }, 1500)
-          this.msgList=[]
+          this.msgList = []
           this.encsessionService.remove
           this.encsessionService.codif(this.msgList, GlobalService.NM_COOKIE);
           this.login()
         }
-        else
-        {
+        else {
           this.cookieValue = this.cookieService.get(GlobalService.NM_COOKIE);
-    
+
           this.client.id = this.cookieValue;
           this.misDatos()
           this.messages = this.msgList
-        //   console.log(this.msgList)
-         
+          //   console.log(this.msgList)
+
           setTimeout(() => {
-            
+
             this._visible = true //cambiado
             setTimeout(() => {
-              this.scrollToBottom(this.widgetBody.nativeElement,200)
+              this.scrollToBottom(this.widgetBody.nativeElement, 200)
               this.focusMessage()
             }, 0)
           }, 1500)
         }
-       
+
       } catch (error) {
         this.valido = false
         setTimeout(() => {
@@ -228,7 +236,7 @@ export class ChatWidgetComponent implements OnInit {
           // let texto = "Bienvenido " + this.client.name
           //this.addMessage(this.operator, texto, 'received', 1,'')
 
-         // this.socketService.send(this.client, '/start', this._token)
+          // this.socketService.send(this.client, '/start', this._token)
           this.valido = true
         } else {
           console.log(data.mensaje)
@@ -251,21 +259,21 @@ export class ChatWidgetComponent implements OnInit {
     return buttons
   }
 
-  public addMessage(from, text:string, type: 'received' | 'sent', tipo, file_mime) {
+  public addMessage(from, text: string, type: 'received' | 'sent', tipo, file_mime) {
     let clave = '*$MARCO$*:';
 
-    if (this.messages==undefined) this.messages=[];
- 
-    
-    if ( text!=undefined &&  (text.includes(clave)) && type == 'received') {
-      let stringify =text.substring(text.lastIndexOf(clave)+clave.length);
+    if (this.messages == undefined) this.messages = [];
+
+
+    if (text != undefined && (text.includes(clave)) && type == 'received') {
+      let stringify = text.substring(text.lastIndexOf(clave) + clave.length);
       let buttons = JSON.parse(stringify);
       let drawButtons = this.createbuttons(buttons.button);
       let div = document.createElement('div');
-      text = text.substring(0,text.lastIndexOf(clave))
-      div.textContent=text;
+      text = text.substring(0, text.lastIndexOf(clave))
+      div.textContent = text;
       console.log(buttons.button.length);
-      (buttons.button.length > 0) ? div.appendChild(drawButtons):'';
+      (buttons.button.length > 0) ? div.appendChild(drawButtons) : '';
       text = div.innerHTML;
       this.messages.push({
         from,
@@ -275,8 +283,8 @@ export class ChatWidgetComponent implements OnInit {
         file_mime,
         date: new Date().getTime(),
       })
-    }else{
-       
+    } else {
+
       this.messages.push({
         from,
         text,
@@ -284,33 +292,33 @@ export class ChatWidgetComponent implements OnInit {
         tipo,
         file_mime,
         date: new Date().getTime(),
-      })  
+      })
     }
 
     let msg = {
-       from,
-       text,
-       type,
-       tipo,
-       file_mime,
-       date: new Date().getTime(),
-     }
-     let fila = {
-       from: from,
-       text: text,
-       type: type,
-       tipo:  tipo,
-       file_mime: file_mime,
-       date: msg.date
-     }
-      
-       
-       this.trabajarMsg(fila);
-      
+      from,
+      text,
+      type,
+      tipo,
+      file_mime,
+      date: new Date().getTime(),
+    }
+    let fila = {
+      from: from,
+      text: text,
+      type: type,
+      tipo: tipo,
+      file_mime: file_mime,
+      date: msg.date
+    }
+
+
+    this.trabajarMsg(fila);
+
 
     setTimeout(() => {
       try {
-        this.scrollToBottom(this.widgetBody.nativeElement,200);
+        this.scrollToBottom(this.widgetBody.nativeElement, 200);
       } catch (error) { }
     }, 800);
   }
@@ -404,7 +412,12 @@ export class ChatWidgetComponent implements OnInit {
     this._visible = true //cambiado
 
   }
-  public closeChat() {
+  public closeChat(event?) {
+    if(event){
+      this._visible = !this._visible
+      return
+    }
+    
     this._visible = false //cambiado
   }
   public closeButom() {
@@ -423,10 +436,10 @@ export class ChatWidgetComponent implements OnInit {
     this.addMessage(this.client, comando, 'sent', 1, '')
     this.ocultarTarjetas()
   }
-  buttonMessageClick(message,enabled){
-    let msg = {value:message};
-    if(enabled){
-    this.sendMessage(msg);
+  buttonMessageClick(message, enabled) {
+    let msg = { value: message };
+    if (enabled) {
+      this.sendMessage(msg);
     }
   }
   public sendMessage(message) {

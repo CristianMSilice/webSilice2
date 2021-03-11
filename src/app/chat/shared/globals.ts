@@ -6,7 +6,7 @@ export class GlobalService {
    //public static API_ENDPOINT='api-widget/';
     //public static  SOCKET_ENDPOINT = 'http://localhost:3000/'; 
     public static NM_COOKIE='__multibank_chat__';
-    public static TEXTO_CAB='Multibank';
+    public static TEXTO_CAB='PAU';
     public static CONTACT_WAS='+50764940686';
    // public static CONTACT_TEL='@Hygeia112_bot';
    
@@ -23,7 +23,7 @@ export class GlobalService {
     public static ICON_CANCEL= './assets/cancel.png';
     
     //public static TXT_INICIAL='Hola, soy Eva de Adiper.  ¿Cómo puedo ayudarle?  Le agradecería que me facilite un nickname para dirigirme más fácilmente a usted.';
-    public static TXT_INICIAL="Bienvenid@, hablar conmigo es muy fácil, dime Hola y te explicaré cómo ayudarte."; 
+    public static TXT_INICIAL=`Bienvenid@ a <strong style="color:var(--headerTextColor)">silice<strong>`; 
      public static API_ENDPOINT='https://node1.smallshi.com/api-widget/';
      public static  SOCKET_ENDPOINT = 'https://node1.smallshi.com:1442/';
     //public static API_ENDPOINT='http://localhost:3000/api-widget/';
@@ -31,5 +31,7 @@ export class GlobalService {
 // public static API_ENDPOINT='https://api-wiget-demo.smallshi.com/api-widget/';
      
   //  public static  SOCKET_ENDPOINT = 'https://api-wiget-demo.smallshi.com:1442';
+
+  public static CLOSE_ABLE_CHAT =false
     
 }   

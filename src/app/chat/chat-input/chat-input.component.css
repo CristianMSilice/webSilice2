@@ -57,9 +57,14 @@
 }
 
 .buttons-options .backgroundImage {
+    mask-position: center;
+    mask-repeat: no-repeat;
+    mask-size: 80%;
+
     background-position: center;
     background-size: 80%;
     background-repeat: no-repeat;
+    
     justify-self: center;
 }
 

@@ -1,24 +1,23 @@
-<div class="wrapper-silice   {{ theme }}" id="componetchat" ngDraggable>
-    <div class="chat-widget" *ngIf="visible && !isMobileResolution" [@fadeInOut]="visible">
+<div class="wrapper-silice   {{ theme }}" id="componetchat" >
+    <div class="chat-widget"  [@fadeInOut]="visible" [ngClass]="{'movile':isMobileResolution, 'close':visible}">
         <div class="chat-widget-header">
-            <div class="chat-widget-header-logo">
+            <div class="chat-widget-header-logo" (click)="closeChat($event)">
                 <img src="{{ avatar_cab }}" class="img-silice" />
             </div>
-            <div class="chat-widget-header-name">
-                {{ texto_cab }}
+            <div class="chat-widget-header-name" *ngIf="  ! isMobileResolution">
+                <strong>{{ texto_cab }}</strong>
+                <small>Asistente virtual</small>
             </div>
-            <div class="chat-widget-close" (click)="closeChat()">&#10006;</div>
+            <div class="chat-widget-close" *ngIf="close_able_chat &&  ! isMobileResolution" (click)="closeChat()">&#10006;</div>
         </div>
 
         <div class="chat-widget-body" #widgetBody>
             <ng-container *ngFor="let message of messages; let i = index">
                 <div class="chat-message">
                     <div class="message" [class.message-bot]="message.type === 'received'" [class.message-user]="message.type === 'sent'" [@fadeIn]>
-                        <div class="message-photo">
-                            <div class="background" *ngIf="message.type === 'received'"></div>
-                            <div class="traje1" *ngIf="message.type === 'received'"></div>
-                            <div class="traje2" *ngIf="message.type === 'received'"></div>
-                            <div class="body" *ngIf="message.type === 'received'"></div>
+                        <div class="message-photo" [class.bot]="message.type === 'received'">
+                            <div class="bot" *ngIf="message.type === 'received'"></div>
+                            
                         </div>
                         <div class="message-text" *ngIf="message.tipo == 1">
                             <div style="white-space: pre-line" [innerHTML]="paserLink(message.text) | sanitizeHtml" *ngIf="!esnuestro(message.text)"></div>
@@ -59,8 +58,8 @@
                 </button>
                             </div>
                         </div>
-                        <div class="message-time">
-                            {{ message.date | date: 'short' }}
+                        <div class="message-time" [ngClass]="{'mobil':isMobileResolution}">
+                            {{ message.date | date: 'h:mm a' }}
                         </div>
                     </div>
                 </div>
@@ -79,17 +78,9 @@
         <app-new-tarjeta [url]="nuestraUrl" [@slideInOut2]="menuStatet2" [deleteHandler]="ocultarTarjetas2">
         </app-new-tarjeta>
     </div>
-
-    <div class="chatbubble open" #btnbubble (click)="openChat()" *ngIf="!visible && !isMobileResolution" [@fadeInOut]="!visible"></div>
-    <div class="chatbubblemovil open" #btnbubble (click)="openMobil()" *ngIf="!visible && isMobileResolution" [@fadeInOut]="!visible"></div>
-    <!--  <div class="bot_btclose open" *ngIf="!visible && !isMobileResolution " [@fadeInOut]="!visible ">
-
-        <a (click)="closeButom() "><img src="{{icon_cancel}}"> </a>
-
+    <div *ngIf=" ! isMobileResolution">
+        <div class="chatbubble open" #btnbubble (click)="openChat()" *ngIf="!visible && close_able_chat" [@fadeInOut]="!visible"></div>
     </div>
+    
 
-    <div class="bot_text agent-launcher " *ngIf="!visible && !isMobileResolution " [@fadeInOut]="!visible ">
-        <img alt="Avi " src="assets/question.svg ">
-        <p>¿En qué podemos ayudarte? Pincha aquí y te atenderemos en seguida</p>
-    </div>-->
 </div>

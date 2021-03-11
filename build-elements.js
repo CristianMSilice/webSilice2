@@ -24,14 +24,16 @@ const concat = require('concat');
     await fs.copy('./src/assets/logopau.png', './dist/elements/assets/logopau.png')
     await fs.copy('./src/assets/logobanco.png', './dist/elements/assets/logobanco.png')
     await fs.copy('./src/assets/sendIcon.svg', './dist/elements/assets/sendIcon.svg')
-    await fs.copy('./src/assets/logoBot1.svg', './dist/elements/assets/logoBot1.svg') 
-    await fs.copy('./src/assets/user.svg', './dist/elements/assets/user.svg') 
-    await fs.copy('./src/assets/pdfIcon.svg', './dist/elements/assets/pdfIcon.svg') 
-    await fs.copy('./src/assets/attachedIcon.svg', './dist/elements/assets/attachedIcon.svg') 
-    await fs.copy('./src/assets/emojiIcon.svg', './dist/elements/assets/emojiIcon.svg') 
+    await fs.copy('./src/assets/logoBot1.svg', './dist/elements/assets/logoBot1.svg')
+    await fs.copy('./src/assets/user.svg', './dist/elements/assets/user.svg')
+    await fs.copy('./src/assets/pdfIcon.svg', './dist/elements/assets/pdfIcon.svg')
+    await fs.copy('./src/assets/attachedIcon.svg', './dist/elements/assets/attachedIcon.svg')
+    await fs.copy('./src/assets/emojiIcon.svg', './dist/elements/assets/emojiIcon.svg')
     await fs.copy('./src/assets/wa.png', './dist/elements/assets/wa.png')
     await fs.copy('./src/assets/te.png', './dist/elements/assets/te.png')
     await fs.copy('./src/assets/me.png', './dist/elements/assets/me.png')
+    await fs.copy('./src/assets/BotBody.svg', './dist/elements/assets/BotBody.svg')
+    await fs.copy('./src/assets/silice-09.png', './dist/elements/assets/silice-09.png')
 
 
 

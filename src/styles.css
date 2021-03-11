@@ -8,17 +8,18 @@ body {
     width: 100vw;
     height: 100vh;
     overflow: hidden;
-    --main-color: #ee0a0c;
-    --attachedFilesTitle: #a80000;
-    --buttonsColor: #ee0a0c;
-    --btclose-visibility: visible;
+    --main-color: #636365;
+    --attachedFilesTitle: #636365;
+    --buttonsColor: #636365;
     --scrollcolor: hsl(223, 12%, 86%);
-    --headerTextColor: hsl(0, 100%, 100%);
-    /* #A80000;*/
-    --btclose-visibility: visible;
+    --headerBackgroundColor: hsl(0deg 0% 100%);
+    --headerTextColor: hsl(27, 69%, 50%);
+    --btclose-visibility: hidden;
     --scrollcolor: hsl(223, 12%, 86%);
-    --suitBotColor1: hsl(359, 92%, 49%);
-    --suitBotColor2: hsl(359, 92%, 29%);
+    --suitBotColor1: hsl(228, 93%, 23%);
+    --suitBotColor2: hsl(228, 93%, 43%);
+    --chatBackgroundColor:  hsl(0, 0%, 90%);
+
 }
 
 body {
