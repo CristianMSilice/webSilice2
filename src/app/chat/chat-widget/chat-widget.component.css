@@ -432,11 +432,11 @@ chat-input {
     right: 0;
     bottom: -22px;
     background-color: HSLA(0, 0%, 50%, 40%);
-    mask: url(./../../../assets/silice-09.png);
+    mask: url("/assets/silice-09.png");
     mask-position: center bottom;
     mask-size: contain;
     mask-repeat: no-repeat;
-    -webkit-mask: url(./../../../assets/silice-09.png);
+    -webkit-mask: url("/assets/silice-09.png");
     -webkit-mask-position: center bottom;
     -webkit-mask-size: contain;
     -webkit-mask-repeat: no-repeat;

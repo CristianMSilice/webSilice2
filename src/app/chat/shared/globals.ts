@@ -11,7 +11,6 @@ export class GlobalService {
    // public static CONTACT_TEL='@Hygeia112_bot';
    
     //public static AVATAR_CAB='/assets/bankblanco.png';
-    //public static AVATAR_CHAT='assets/logoadiper.png'; //./assets/logochat_red.svg`
 
     
     public static AVATAR_CAB='./assets/logobanco.png';

@@ -15,16 +15,14 @@ const concat = require('concat');
 
     await fs.copy('./demo.html', './dist/elements/index.html')
     await fs.copy('./angular-elements-logo.png', './dist/elements/angular-elements-logo.png')
+    await fs.copy('./src/styles.css', './dist/elements/_chat.scss')
 
     await fs.copy('./src/assets/config.json', './dist/elements/config.json')
-        //await fs.copy('./src/assets/logoadiper.png', './dist/elements/assets/logoadiper.png')
     await fs.copy('./src/assets/logochat_red.svg', './dist/elements/assets/logochat_red.svg')
     await fs.copy('./src/assets/logochat_white.svg', './dist/elements/assets/logochat_white.svg')
     await fs.copy('./src/assets/cancel.png', './dist/elements/assets/cancel.png')
-    await fs.copy('./src/assets/logopau.png', './dist/elements/assets/logopau.png')
     await fs.copy('./src/assets/logobanco.png', './dist/elements/assets/logobanco.png')
     await fs.copy('./src/assets/sendIcon.svg', './dist/elements/assets/sendIcon.svg')
-    await fs.copy('./src/assets/logoBot1.svg', './dist/elements/assets/logoBot1.svg')
     await fs.copy('./src/assets/user.svg', './dist/elements/assets/user.svg')
     await fs.copy('./src/assets/pdfIcon.svg', './dist/elements/assets/pdfIcon.svg')
     await fs.copy('./src/assets/attachedIcon.svg', './dist/elements/assets/attachedIcon.svg')

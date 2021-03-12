@@ -39,7 +39,7 @@
 
 
 .chat-message .message .message-photo.bot{
-    background-image: url(../../../assets/logobanco.png);
+    background-image: url("/assets/BotBody.svg");
 }
 .message.message-user .message-photo {
     right: calc(0px - var(--with-photo) / 2);
