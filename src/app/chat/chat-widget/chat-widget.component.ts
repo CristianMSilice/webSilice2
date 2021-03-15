@@ -77,6 +77,7 @@ export class ChatWidgetComponent implements OnInit {
   ngOnInit() {
     this.calcResize();
     this.comprobarDatos()
+    this.DOMLOADED();
   }
 
 
@@ -584,5 +585,16 @@ export class ChatWidgetComponent implements OnInit {
   }
   toggleAttOptions() {
     this.AdjuntosComponent.cargarAdjunto()
+  }
+
+  DOMLOADED(){
+    document.addEventListener("DOMContentLoaded", function(event) {
+      let elements = Array.from(document.querySelectorAll('.main-rotator'));
+      let elementsToShow= [];
+      elements.forEach(Element => {
+        if(Element.getAttribute('data-chatweb') == 'true')elementsToShow.push(Element)
+      })
+      console.log(elementsToShow)
+    });
   }
 }
