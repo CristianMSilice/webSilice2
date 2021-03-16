@@ -20,7 +20,7 @@
                             
                         </div>
                         <div class="message-text" *ngIf="message.tipo == 1">
-                            <div style="white-space: pre-line" [innerHTML]="paserLink(message.text) | sanitizeHtml" *ngIf="!esnuestro(message.text)"></div>
+                            <div style="white-space: pre-line" [innerHTML]="paserLink(message.text) " *ngIf="!esnuestro(message.text)"></div>
                         </div>
 
                         <div *ngIf="message.tipo == 2" [ngSwitch]="true">

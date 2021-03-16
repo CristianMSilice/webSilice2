@@ -539,26 +539,30 @@ export class ChatWidgetComponent implements OnInit {
     this.menuStatet2 = this.menuStatet2 === 'out' ? 'in' : 'out'
   }
   paserLink(html: any): SafeHtml {
-    var div = document.createElement('div')
-    const clave = '*$MARCO$*:'
-    if (html.includes(clave)) {
-      html = html.substring(0, html.lastIndexOf(clave))
-    }
-    div.innerHTML = html
-    // div.innerHTML  = this.sanitizer.sanitize(SecurityContext.HTML, html);
-    div.childNodes.forEach((e: any) => {
+    // var div = document.createElement('div')
+    // const clave = '*$MARCO$*:'
+    // if (html.includes(clave)) {
+    //   html = html.substring(0, html.lastIndexOf(clave))
+    // }
+    // div.innerHTML = html
+    // // div.innerHTML  = this.sanitizer.sanitize(SecurityContext.HTML, html);
+    // div.childNodes.forEach((e: any) => {
 
-      if (e.textContent.trim() !== '' && e.textContent.includes('www.')) {
-        let a =
-          this.linkifyService.linkify(e.textContent) ||
-          this.linkifyService.linkify(e.innerText)
-        let temporalNode = document.createElement('span')
-        temporalNode.innerHTML = a
-        e.replaceWith(temporalNode)
-      }
-    })
-    return div.innerHTML
-    // return html
+    //   if (e.textContent.trim() !== '' && e.textContent.includes('www.')) {
+    //     let a =
+    //       this.linkifyService.linkify(e.textContent) ||
+    //       this.linkifyService.linkify(e.innerText)
+    //     let temporalNode = document.createElement('span')
+    //     temporalNode.innerHTML = a
+    //     e.replaceWith(temporalNode)
+    //   }
+    // })
+    // return div.innerHTML
+    // // return html
+
+    var div = document.createElement("div");
+    div.innerHTML = this.sanitizer.sanitize(SecurityContext.HTML, html);
+    return this.linkifyService.linkify(div.textContent) || this.linkifyService.linkify(div.innerText);
   }
   esnuestro(texto): boolean {
     return texto.includes('url.pau.zone')

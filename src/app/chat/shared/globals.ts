@@ -22,7 +22,7 @@ export class GlobalService {
     public static ICON_CANCEL= './assets/cancel.png';
     
     //public static TXT_INICIAL='Hola, soy Eva de Adiper.  ¿Cómo puedo ayudarle?  Le agradecería que me facilite un nickname para dirigirme más fácilmente a usted.';
-    public static TXT_INICIAL=`Bienvenid@ a <strong style="color:var(--headerTextColor)">silice<strong>`; 
+    public static TXT_INICIAL=`Hola 🤩Soy Silice, antes de que empecemos a hablar, dime cuál es tu nombre.`; 
      public static API_ENDPOINT='https://node1.smallshi.com/api-widget/';
      public static  SOCKET_ENDPOINT = 'https://node1.smallshi.com:1442/';
     //public static API_ENDPOINT='http://localhost:3000/api-widget/';
