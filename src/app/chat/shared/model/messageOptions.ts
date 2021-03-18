@@ -1,8 +1,18 @@
+export interface messageCookieService{
+        from:string;
+        text:string;
+        type:string;
+        tipo:string;
+        file_mime:string;
+        date: number;
+        options: messageOptions
+}
+
 export interface messageOptions{
     button?: Array<buttonOption>;
     menuPrincipal?:Array<menuPrincipalOption>;
     superMensaje?:superMensajeOpption;
-    hidden?:boolean;
+    show?:boolean;
 }
 
 interface buttonOption{

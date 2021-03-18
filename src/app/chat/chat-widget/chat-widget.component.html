@@ -13,7 +13,7 @@
 
         <div class="chat-widget-body" #widgetBody>
             <ng-container *ngFor="let message of messages; let i = index">
-                <div class="chat-message"  *ngIf="message.text !='' " >
+                <div class="chat-message"  *ngIf="message.text !='' && message.options.show" >
                     <div class="message"  [class.message-bot]="message.type === 'received'" [class.message-user]="message.type === 'sent'" [@fadeIn]>
                         <div class="message-photo" [class.bot]="message.type === 'received'">
                             <div class="bot" *ngIf="message.type === 'received'"></div>
@@ -63,21 +63,21 @@
                         </div>
                     </div>
                 </div>
-                <ng-container *ngIf="messagesOptions[i] && !messagesOptions[i].hidden ; let j = index ">
-                <div class="button" >
+                <ng-container >
+                <div class="button" *ngIf="message.options.button">
                     <div class="message-buttons-array">
-                        <div class="message-button-option" *ngFor="let button of messagesOptions[i].button" (click)="buttonMessageClick(button.accion,i + 1 == messages.length)" [ngClass]="{'disabled':i + 1 != messages.length,'selectable': false}">
+                        <div class="message-button-option" *ngFor="let button of message.options.button" (click)="buttonMessageClick(button.accion,i + 1 == messages.length)" [ngClass]="{'disabled':i + 1 != messages.length,'selectable': false}">
                             {{ button.texto }}
                         </div>
                     </div>
                 </div>
-                <div class="super-message" *ngIf="messagesOptions[i].superMensaje" >
-                    <div class="background" [style.background-image]="'url('+ messagesOptions[i].superMensaje.Image +')'"></div>
+                <div class="super-message" *ngIf="message.options.superMensaje" >
+                    <div class="background" [style.background-image]="'url('+ message.options.superMensaje.Image +')'"></div>
                         <div class="titulo">
-                                {{messagesOptions[i].superMensaje.titulo}}
+                                {{message.options.superMensaje.titulo}}
                         </div>
                         <div class="contenido">
-                            {{messagesOptions[i].superMensaje.mensaje}}
+                            {{message.options.superMensaje.mensaje}}
                         </div>
                 </div>   
                 </ng-container>

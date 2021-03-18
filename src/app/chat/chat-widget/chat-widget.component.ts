@@ -25,7 +25,7 @@ import { NgxLinkifyjsService } from 'ngx-linkifyjs'
 
 import { EncsessionService } from '../shared/helpers/encsession.service'
 import { ChatAdjuntosComponent } from '../chat-adjuntos/chat-adjuntos.component'
-import { messageOptions } from "../shared/model/messageOptions";
+import { messageOptions, messageCookieService} from "../shared/model/messageOptions";
 import { unique } from 'jquery'
 @Component({
   selector: 'chat-widget',
@@ -50,7 +50,7 @@ export class ChatWidgetComponent implements OnInit {
   action = Action;
   banderaScroll = true;
 
-  msgList: any[] = [];
+  msgList: Array <messageCookieService>= [];
   messageContent: string;
   ioConnection: any;
   menuStatet: string = 'out';
@@ -87,8 +87,7 @@ export class ChatWidgetComponent implements OnInit {
     status: 'online',
     avatar: '',
   }
-  public messages = []
-  public messagesOptions: Array<messageOptions> = []
+  public messages:Array<messageCookieService> = []
 
 
   constructor(
@@ -111,10 +110,10 @@ export class ChatWidgetComponent implements OnInit {
   public comunicationWebWidget(message) {
     if (message.trim() === '')return
     if (!this.valido) {
-      this.addMessage(this.client, message, 'sent', 1, '', true)
+      this.addMessage(this.client, message, 'sent', 1, '', false)
     } else {
       this.socketService.send(this.client, message, this._token)
-      this.addMessage(this.client, message, 'sent', 1, '', true)
+      this.addMessage(this.client, message, 'sent', 1, '', false)
     }
   }
 
@@ -132,8 +131,6 @@ export class ChatWidgetComponent implements OnInit {
     this.close_able_chat = (this.isMobileResolution)
       ? true
       : GlobalService.CLOSE_ABLE_CHAT;
-
-    console.log(window.innerWidth, this.isMobileResolution)
   }
 
   createbuttons(buttons) {
@@ -214,7 +211,7 @@ export class ChatWidgetComponent implements OnInit {
           this.client.id = this.cookieValue;
           this.misDatos()
           this.messages = this.msgList
-          //   console.log(this.msgList)
+          console.log(this.messages)
 
           setTimeout(() => {
 
@@ -272,7 +269,9 @@ export class ChatWidgetComponent implements OnInit {
     )
   }
 
-  public addMessage(from, text: string, type: 'received' | 'sent', tipo, file_mime, hidden?) {
+  public addMessage(from, text: string, type: 'received' | 'sent', tipo, file_mime, show?) {
+    console.log(show == undefined)
+    if(show == undefined)show=true;
     let clave = '*$MARCO$*:';
     let options
 
@@ -281,18 +280,8 @@ export class ChatWidgetComponent implements OnInit {
       options = JSON.parse(stringify);
       text = text.substring(0, text.lastIndexOf(clave))
     }
-    console.log(hidden)
-    if(hidden){
-      if(options==undefined)options={};
-      options['hidden'] = true;
-    }
-    console.log(options)
-    if(options == undefined)this.messagesOptions.push();
-    if(options != undefined)this.messagesOptions.push(options);
-      
-    
-    console.log(this.messagesOptions)
-
+    if(options == undefined) options= {};
+    options['show'] = show;
     if (this.messages == undefined) this.messages = []
     this.messages.push({
       from,
@@ -301,23 +290,17 @@ export class ChatWidgetComponent implements OnInit {
       tipo,
       file_mime,
       date: new Date().getTime(),
+      options:options
     });
 
-    let msg = {
-      from,
-      text,
-      type,
-      tipo,
-      file_mime,
-      date: new Date().getTime(),
-    }
-    let fila = {
+    let fila:messageCookieService = {
       from: from,
       text: text,
       type: type,
       tipo: tipo,
       file_mime: file_mime,
-      date: msg.date
+      date: new Date().getTime(),
+      options: options
     }
 
     this.trabajarMsg(fila);
