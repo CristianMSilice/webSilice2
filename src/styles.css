@@ -13,12 +13,12 @@ body {
     --buttonsColor: #636365;
     --scrollcolor: hsl(223, 12%, 86%);
     --headerBackgroundColor: hsl(0deg 0% 100%);
-    --headerTextColor: hsl(27, 69%, 50%);
+    --headerTextColor: hsl(18, 100%, 58%);
     --btclose-visibility: hidden;
     --scrollcolor: hsl(223, 12%, 86%);
     --suitBotColor1: hsl(228, 93%, 23%);
     --suitBotColor2: hsl(228, 93%, 43%);
-    --chatBackgroundColor:  hsl(0, 0%, 90%);
+    --chatBackgroundColor:  hsl(0, 0%, 93%);
 
 }
 

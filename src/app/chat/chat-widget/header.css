@@ -1,16 +1,15 @@
 .chat-widget {
+    --margin-chat: 5px;
     display: grid;
-    /* resize: both;
-    overflow: auto; */
+    grid-template-rows: -webkit-min-content 1fr 40px;
     grid-template-rows: min-content 1fr 40px;
-    min-width: 474px;
-    max-width: 100%;
-    width: calc(25vw + 50px);
+    width: calc(100% - var(--margin-chat) * 2);
+    margin: 0 calc(var(--margin-chat) );
     max-height: 100vh;
     height: 100vh;
     border-radius: 10px;
     font-family: sans-serif;
-    transition:  height 200ms ease;
+    transition: height .2s ease;
     
 }
 .chat-widget::-webkit-scrollbar-thumb {
@@ -25,7 +24,7 @@
 .chat-widget-header {
     --border-radius:30px;
     --margin-radius:20%;
-    --relacion-body-header:70%;
+    --relacion-body-header:77.9%;
     cursor: move;
     display: flex;
     position: relative;
@@ -50,7 +49,7 @@
 }
 .chat-widget-header-logo{
     --Margin:15px;
-    --size:125px;
+    --size:calc(6.5vmin + 30px);
     width: var(--size);
     height: var(--size);
     display: flex;

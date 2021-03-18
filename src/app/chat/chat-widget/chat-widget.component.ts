@@ -5,6 +5,7 @@ import {
   Input,
   OnInit,
   ViewChild,
+  NgZone,
 } from '@angular/core'
 import { Subject } from 'rxjs'
 import { fadeIn, fadeInOut } from '../animations'
@@ -24,6 +25,8 @@ import { NgxLinkifyjsService } from 'ngx-linkifyjs'
 
 import { EncsessionService } from '../shared/helpers/encsession.service'
 import { ChatAdjuntosComponent } from '../chat-adjuntos/chat-adjuntos.component'
+import { messageOptions } from "../shared/model/messageOptions";
+import { unique } from 'jquery'
 @Component({
   selector: 'chat-widget',
   templateUrl: './chat-widget.component.html',
@@ -64,32 +67,8 @@ export class ChatWidgetComponent implements OnInit {
   filetosend: HTMLInputElement;
   menuPrincipal = { options: [{ texto: '', accion: '' }], enabled: false }
   innerWidth: number
-  constructor(
-    private socketService: SocketService,
-    private sanitizer: DomSanitizer,
-    public linkifyService: NgxLinkifyjsService,
-    private encsessionService: EncsessionService,
-    private cookieService: CookieService,
-    @Inject(TOKEN) public _token?: string) { }
-
-  @HostListener('window:resize', ['$event'])
-  onResize(event) { this.calcResize() }
-  ngOnInit() {
-    this.calcResize();
-    this.comprobarDatos()
-    this.DOMLOADED();
-  }
 
 
-  calcResize() {
-    this.isMobileResolution = window.innerWidth <= 768;
-
-    this.close_able_chat = (this.isMobileResolution)
-      ? true
-      : GlobalService.CLOSE_ABLE_CHAT;
-
-    console.log(window.innerWidth, this.isMobileResolution)
-  }
 
 
   public get visible() {
@@ -109,7 +88,53 @@ export class ChatWidgetComponent implements OnInit {
     avatar: '',
   }
   public messages = []
+  public messagesOptions: Array<messageOptions> = []
 
+
+  constructor(
+    private socketService: SocketService,
+    private sanitizer: DomSanitizer,
+    public linkifyService: NgxLinkifyjsService,
+    private encsessionService: EncsessionService,
+    private cookieService: CookieService,
+    private zone: NgZone,
+    @Inject(TOKEN) public _token?: string) {
+
+    window['angularComponentReference'] = {
+      zone: this.zone,
+      componentFn: (value) => this.comunicationWebWidget(value),
+      component: this,
+    };
+
+  }
+
+  public comunicationWebWidget(message) {
+    if (message.trim() === '')return
+    if (!this.valido) {
+      this.addMessage(this.client, message, 'sent', 1, '', true)
+    } else {
+      this.socketService.send(this.client, message, this._token)
+      this.addMessage(this.client, message, 'sent', 1, '', true)
+    }
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event) { this.calcResize() }
+
+  ngOnInit() {
+    this.calcResize();
+    this.comprobarDatos()
+  }
+
+  calcResize() {
+    this.isMobileResolution = window.innerWidth <= 768;
+
+    this.close_able_chat = (this.isMobileResolution)
+      ? true
+      : GlobalService.CLOSE_ABLE_CHAT;
+
+    console.log(window.innerWidth, this.isMobileResolution)
+  }
 
   createbuttons(buttons) {
     let div = document.createElement('div');
@@ -144,8 +169,6 @@ export class ChatWidgetComponent implements OnInit {
     }
   }
 
-
-  
   private comprobarDatos() {
     if (!this.cookieService.check(GlobalService.NM_COOKIE)) {
       this.valido = false
@@ -222,7 +245,6 @@ export class ChatWidgetComponent implements OnInit {
     }
   }
 
-
   private login() {
     this.socketService.getLogin2(this.client.name, this._token).subscribe(
       (data) => {
@@ -249,52 +271,37 @@ export class ChatWidgetComponent implements OnInit {
       () => { },
     )
   }
-  private reviewIfthereAreButtons(text, type) {
-    const clave = '*$MARCO$*:'
-    let buttons;
-    if (this.messages == undefined) { this.messages = [] }
-    if (text.includes(clave) && type == 'received') {
-      const stringify = text.substring(text.lastIndexOf(clave) + clave.length)
-      buttons = this.createbuttons(stringify)
-    }
-    return buttons
-  }
 
-  public addMessage(from, text: string, type: 'received' | 'sent', tipo, file_mime) {
+  public addMessage(from, text: string, type: 'received' | 'sent', tipo, file_mime, hidden?) {
     let clave = '*$MARCO$*:';
-
-    if (this.messages == undefined) this.messages = [];
-
+    let options
 
     if (text != undefined && (text.includes(clave)) && type == 'received') {
       let stringify = text.substring(text.lastIndexOf(clave) + clave.length);
-      let buttons = JSON.parse(stringify);
-      let drawButtons = this.createbuttons(buttons.button);
-      let div = document.createElement('div');
+      options = JSON.parse(stringify);
       text = text.substring(0, text.lastIndexOf(clave))
-      div.textContent = text;
-      console.log(buttons.button.length);
-      (buttons.button.length > 0) ? div.appendChild(drawButtons) : '';
-      text = div.innerHTML;
-      this.messages.push({
-        from,
-        text,
-        type,
-        tipo,
-        file_mime,
-        date: new Date().getTime(),
-      })
-    } else {
-
-      this.messages.push({
-        from,
-        text,
-        type,
-        tipo,
-        file_mime,
-        date: new Date().getTime(),
-      })
     }
+    console.log(hidden)
+    if(hidden){
+      if(options==undefined)options={};
+      options['hidden'] = true;
+    }
+    console.log(options)
+    if(options == undefined)this.messagesOptions.push();
+    if(options != undefined)this.messagesOptions.push(options);
+      
+    
+    console.log(this.messagesOptions)
+
+    if (this.messages == undefined) this.messages = []
+    this.messages.push({
+      from,
+      text,
+      type,
+      tipo,
+      file_mime,
+      date: new Date().getTime(),
+    });
 
     let msg = {
       from,
@@ -313,9 +320,7 @@ export class ChatWidgetComponent implements OnInit {
       date: msg.date
     }
 
-
     this.trabajarMsg(fila);
-
 
     setTimeout(() => {
       try {
@@ -414,11 +419,11 @@ export class ChatWidgetComponent implements OnInit {
 
   }
   public closeChat(event?) {
-    if(event){
+    if (event) {
       this._visible = !this._visible
       return
     }
-    
+
     this._visible = false //cambiado
   }
   public closeButom() {
@@ -591,14 +596,4 @@ export class ChatWidgetComponent implements OnInit {
     this.AdjuntosComponent.cargarAdjunto()
   }
 
-  DOMLOADED(){
-    document.addEventListener("DOMContentLoaded", function(event) {
-      let elements = Array.from(document.querySelectorAll('.main-rotator'));
-      let elementsToShow= [];
-      elements.forEach(Element => {
-        if(Element.getAttribute('data-chatweb') == 'true')elementsToShow.push(Element)
-      })
-      console.log(elementsToShow)
-    });
-  }
 }
