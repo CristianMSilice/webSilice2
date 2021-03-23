@@ -16,7 +16,7 @@ import { GlobalService } from '../shared/globals'
 @Component({
   selector: 'chat-adjuntos',
   templateUrl: './chat-adjuntos.component.html',
-  styleUrls: ['./chat-adjuntos.component.css'],
+  styleUrls: ['./chat-adjuntos.component.scss'],
 })
 export class ChatAdjuntosComponent {
  

@@ -4,7 +4,7 @@ import {  Output,  Input } from '@angular/core';
 @Component({
   selector: 'app-chat-preguntas',
   templateUrl: './chat-preguntas.component.html',
-  styleUrls: ['./chat-preguntas.component.css'],
+  styleUrls: ['./chat-preguntas.component.scss'],
  
 })
 export class ChatPreguntasComponent implements OnInit {

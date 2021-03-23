@@ -3,7 +3,7 @@ import { SiblingService } from './../../shared/services/sibling.service'
 @Component({
   selector: 'app-emoji-silice',
   templateUrl: './emoji-silice.component.html',
-  styleUrls: ['./emoji-silice.component.css']
+  styleUrls: ['./emoji-silice.component.scss']
 })
 export class EmojiSiliceComponent implements OnInit {
 

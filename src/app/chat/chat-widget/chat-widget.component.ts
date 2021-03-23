@@ -31,9 +31,9 @@ import { unique } from 'jquery'
   selector: 'chat-widget',
   templateUrl: './chat-widget.component.html',
   styleUrls: [
-    './header.css',
-    './message.css',
-    './chat-widget.component.css'],
+    './header.scss',
+    './message.scss',
+    './chat-widget.component.scss'],
   providers: [EncsessionService],
   animations: [fadeInOut, fadeIn, SlideInOutAnimation],
 })

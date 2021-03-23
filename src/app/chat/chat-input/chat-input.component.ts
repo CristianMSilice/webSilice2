@@ -17,7 +17,7 @@ import { Subscription } from 'rxjs/Subscription'
   selector: 'chat-input',
   templateUrl: `./chat-input.component.html`,
   encapsulation: ViewEncapsulation.None,
-  styleUrls: ['./chat-input.component.css'],
+  styleUrls: ['./chat-input.component.scss'],
 })
 export class ChatInputComponent implements OnInit {
   @Input() public buttonText = '↩︎'
