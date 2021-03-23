@@ -23,12 +23,13 @@ import { NosotrosComponent } from './web/pages/nosotros/nosotros.component';
 import { NoticiasComponent } from './web/pages/noticias/noticias.component';
 import { SolucionesComponent } from './web/pages/soluciones/soluciones.component';
 import { HeaderComponent } from './web/components/header/header.component';
-import { NavComponent } from './web/components/header/nav/nav.component'
+import { NavComponent } from './web/components/header/nav/nav.component';
+import { SliderComponent } from './web/components/principalSlider/slider/slider.component'
 
 @NgModule({
   imports: [BrowserModule, BrowserAnimationsModule, ElementModule, HttpClientModule, HttpModule, NgxLinkifyjsModule.forRoot(),
     NgxWebstorageModule.forRoot()],
-  declarations: [AppComponent, EncabezadosComponent, WebComponent, BlogComponent, CasosComponent, CasosDeExitoComponent, ExperienciaComponent, LaboratorioComponent, NosotrosComponent, NoticiasComponent, SolucionesComponent, HeaderComponent, NavComponent],
+  declarations: [AppComponent, EncabezadosComponent, WebComponent, BlogComponent, CasosComponent, CasosDeExitoComponent, ExperienciaComponent, LaboratorioComponent, NosotrosComponent, NoticiasComponent, SolucionesComponent, HeaderComponent, NavComponent, SliderComponent],
   providers: [
     ConfigService,
     EncsessionService,

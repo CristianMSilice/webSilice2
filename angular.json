@@ -61,7 +61,7 @@
               }
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.scss"
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js"
@@ -112,7 +112,7 @@
             "tsConfig": "src/tsconfig.spec.json",
             "karmaConfig": "src/karma.conf.js",
             "styles": [
-              "styles.css"
+              "styles.scss"
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js"
@@ -171,5 +171,10 @@
   "defaultProject": "chat-widget",
   "cli": {
     "analytics": "0d4d26ce-04a8-414a-bb88-57327565eac5"
+  },
+  "schematics": {
+    "@schematics/angular:component": {
+      "styleext": "scss"
+    }
   }
 }
