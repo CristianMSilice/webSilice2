@@ -1,0 +1,29 @@
+.consultoria {
+    &-wrapper { justify-content: flex-start; }
+    
+    .section-title {
+        text-align: center;
+
+        strong { color: $primary-color; }
+
+        p {
+            font: {
+                family: $primary-font;
+                weight: 300;
+            }
+            letter-spacing: 1.2px;
+        }
+
+        @include respond-to($vp-max) {
+            @include width-constrain($vp-max);
+        }
+    }
+
+    .features-list {
+        ul { 
+            justify-content: center; 
+
+            li { @include flex-all(column, center, center); }
+        }       
+    }
+}

@@ -1,0 +1,76 @@
+// Base - Order is important
+// ------------------------------------------------------------
+
+@import "base/fonts";
+@import "base/settings";
+@import "base/mixins";
+@import "base/effects";
+@import "base/base";
+
+// Utils
+// ------------------------------------------------------------
+
+@import "utils/alignments";
+@import "utils/buttons";
+@import "utils/colors";
+@import "utils/icons";
+@import "utils/images";
+@import "utils/keyframes";
+@import "utils/lists";
+@import "utils/masks";
+@import "utils/modal";
+@import "utils/titles";
+@import "utils/tooltip";
+@import "utils/visibility";
+
+// Layouts
+// ------------------------------------------------------------
+
+@import "layout/content";
+@import "layout/footer";
+@import "layout/hamburguer";
+@import "layout/header";
+@import "layout/menu";
+
+// Modules
+// ------------------------------------------------------------
+
+@import "modules/breadcrumbs";
+@import "modules/cards";
+@import "modules/cases";
+@import "modules/chat";
+@import "modules/contact";
+@import "modules/features";
+@import "modules/form";
+@import "modules/hero";
+@import "modules/modal";
+@import "modules/partners";
+@import "modules/quicklinks";
+@import "modules/slider";
+@import "modules/team";
+@import "modules/timeline";
+@import "modules/widgets";
+
+// Pages
+// ------------------------------------------------------------
+
+@import "pages/alianzas";
+@import "pages/consultoria";
+@import "pages/home";
+@import "pages/laboratorio";
+@import "pages/news";
+@import "pages/nosotros";
+@import "pages/presencia";
+@import "pages/sedes";
+@import "pages/soluciones";
+
+// Themes
+// ------------------------------------------------------------
+
+@import "themes/dark";
+@import "themes/light";
+
+// Overrides
+// ------------------------------------------------------------
+
+@import "overrides";

@@ -1,0 +1,30 @@
+.page.home {      
+    overflow: hidden;
+
+    &:after { content: none; }
+
+    @include mask-fullsize { background-color: rgba($c-black, .3); }
+
+    .site-content__row--inner { display: block; }
+
+    .site-header { background-color: transparent; }
+
+    .site-content { height: 100vh; }
+
+    .module { height: 100%; }    
+    
+    .site-header {
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+    
+    @include respond-to($vp-large) { 
+        .site-header {
+            &__row--inner {
+                // flex-direction: column;
+                // height: auto;
+            }
+        }
+    }
+}

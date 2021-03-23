@@ -1,0 +1,130 @@
+ul {
+    &.items-list,
+    .content-list & { @include stripped-list; }
+}
+
+.features-list { 
+    ul {
+        @include stripped-list;
+
+        li { 
+            @include flex-all($align: center, $wrap: wrap); 
+            margin: .875rem 0;
+            text-align: left;
+
+            svg, img { 
+                display: block;
+                flex: none; 
+                position: relative;
+                top: 8px;
+                width: 75px;
+                margin: 0 1rem 1rem 0;
+            }
+
+            p { margin: 0; }
+
+            .item-text {
+                p:first-child {
+                    font: {
+                        family: $primary-font;
+                        weight: 700;
+                    }
+                }
+
+                p:last-child {
+                    font: {
+                        family: $primary-font;
+                        weight: 400;
+                    }
+                }
+            }
+
+            @include respond-to($vp-large) {
+                li { 
+                    flex-wrap: nowrap;
+                    padding: 0 2.5rem; 
+                }
+            }
+        }
+    }
+
+    &__column { 
+        ul { 
+            @include flex-all(column); 
+        }
+    }
+
+    &__row { 
+        ul { 
+            @include flex-all(column); 
+
+            @include respond-to($vp-mid) {
+                flex-direction: row;
+                justify-content: space-around;
+                flex-wrap: wrap;
+            }
+
+            @include respond-to($vp-large) { 
+                flex-wrap: nowrap; 
+                justify-content: flex-start;
+            }
+        }
+
+        &_2 { 
+            ul { flex-wrap: wrap; }
+
+            li { flex: 0 1 50%; }
+        }
+    }
+
+    &__square {
+        ul {
+            li {
+                display: block;
+                flex: none;
+                width: 178px;
+                height: 178px;
+                margin: 1rem;
+                padding: 0;
+                text-align: center;
+                box-shadow: 0 0 100px rgba($c-grey, .2);
+
+                a {
+                    @include flex-all(column, center, center);
+                    width: 100%;
+                    height: 100%;
+                    text: {
+                        align: center;
+                        decoration: none;
+                    }
+
+                    @include mask {
+                        top: 100%;
+                        left: 0;
+                        width: 0;
+                        height: 5px;
+                        background-color: $primary-color;
+                        transition: width .5s;
+                    }
+
+                    @include hover {
+                        &:before { width: 100%; }
+                    }
+                }
+
+                svg {
+                    width: 50px;
+                    height: 50px;
+                    fill: $primary-color;
+                }
+            }
+
+            @include respond-to($vp-large) {
+                li {
+                    &:first-child { margin-left: 0; }
+                    &:last-child { margin-right: 0; }
+                }
+            }
+        }
+    }
+}

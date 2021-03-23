@@ -1,0 +1,18 @@
+.dark {
+    .site-header .logo a { background-image: url($header-logo-image-white); }
+
+    .site-footer .logo__name { background-image: url($footer-logo-image-white); }
+
+    @include respond-to($vp-large) {
+        .primary-menu {
+            .menu {
+                > li {                
+                    > a {
+                        padding: 0;
+                        color: $c-white;
+                    }
+                }
+            }
+        }
+    }
+}

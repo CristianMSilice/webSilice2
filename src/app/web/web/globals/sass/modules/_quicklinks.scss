@@ -1,0 +1,135 @@
+.quicklinks {
+    &-wrapper {
+        .row > .row-inner { padding: 0; }
+        
+        @include respond-to($vp-large) {
+            position: absolute;
+            z-index: 10;
+            bottom: 0;
+            left: 0;
+        }
+
+        .content {
+            &-list {
+                ul { 
+                    @include flex-all(column);
+                    @include stripped-list;
+                    position: relative;
+                }
+
+                li {
+                    width: 100%;
+                    height: 65px;
+
+                    @include hover {
+                        .content-text { 
+                            // height: 200px;
+                            bottom: 110px;
+                            opacity: 1;
+                            // transform: translateY(calc(110px + 200px));
+                        }
+                    }
+
+                    &:last-child a .item-inner:after { content: none; }
+
+                    a {
+                        @include flex-all(column, center, center);
+                        position: initial;
+                        width: 100%;
+                        height: 100%;
+                        text: {
+                            transform: uppercase;
+                            decoration: none;
+                        }
+                        background-color: $secondary-color;
+
+                        .item-inner {
+                            @include sweep-to-top(.4s, $primary-color, $color-over-primary);
+                            @include flex-all(column, center, center);
+                            width: 100%;
+                            height: 100%;
+                            line-height: 1.125;
+
+                            @include mask("after") {
+                                top: 50%;
+                                right: 0;
+                                width: 1px;
+                                height: 20px;
+                                background-color: rgba($c-white, .22);
+                                transform: translateY(-50%);
+                            }
+
+                        }
+
+                        .first-line { 
+                            font-size: 10px; 
+                            letter-spacing: 9.06px;
+                            color: $primary-color;
+                        }
+
+                        .second-line {
+                            font: {
+                                size: 14px;
+                                family: $primary-font;
+                            }
+                            letter-spacing: 12px;
+                            color: $color-over-secondary;
+                            transition: letter-spacing .5s;
+                        }
+
+                        @include hover {
+                            .first-line { 
+                                color: rgba($color-over-primary, .5);
+                                letter-spacing: 9.06px; 
+                            }
+
+                            .second-line { letter-spacing: 9px; }
+                        }
+                    }
+                }
+
+                @include respond-to($vp-large) {
+                    ul {
+                        flex-direction: row;
+                        
+                        li { 
+                            width: 290px; 
+                            height: 110px;
+                        }
+                    }
+                }
+            }
+
+            &-text {
+                display: none;
+                position: fixed;
+                z-index: -1;
+                bottom: -110px;
+                left: 0;
+                width: 870px;
+                height: 200px; 
+                padding: 2rem;
+                font-size: 1.25rem;
+                text: {
+                    align: center;
+                    transform: none;
+                }
+                box-shadow: 0 0 60px rgba($c-black, .1);
+                color: $c-text;
+                background-color: $c-white;
+                opacity: 0;
+                transition: all .5s;
+                transform: translateY(0);
+
+                strong { 
+                    font-weight: 400;
+                    color: $primary-color;
+                }
+            }
+
+            @include respond-to($vp-large) {
+                &-text { @include flex-all(column, center, center); }
+            }
+        }
+    }
+}

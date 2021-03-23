@@ -1,0 +1,155 @@
+.site-footer {
+    position: relative;
+    z-index: 9;
+    width: 100%;
+    display: none; // For testing
+
+    .site-title {
+        margin-bottom: 0;
+    }
+
+    .logo {
+        @include flex-all($align: center);
+        position: relative;
+        z-index: -1;
+        padding: 0 1rem;
+        height: 75px;
+
+        &__name {
+            @include image-replace(
+                $footer-logo-width,
+                $footer-logo-height,
+                $footer-logo-image-dark
+            );
+            margin: 0 auto;
+        }
+    }
+
+    .footer-tools {
+        @include flex-all(column, flex-end, flex-end);
+        position: relative;
+    }
+
+    .social-links {
+        width: 100%;
+        background-color: $secondary-color;
+        transform: none;
+        transition: transform 0.5s;
+
+        &-wrapper {
+            width: 100%;
+        }
+
+        ul {
+            @include flex-all($justify: center);
+            @include stripped-list;
+            padding: 0.8rem 0;
+        }
+
+        li {
+            a {
+                display: block;
+                width: 100%;
+                margin: 0.5rem;
+                text-align: center;
+
+                svg {
+                    width: 20px;
+                    height: 20px;
+                    fill: $color-over-primary;
+                    transition: fill 0.5s;
+                }
+
+                @include hover {
+                    svg {
+                        fill: $primary-color;
+                    }
+                }
+            }
+        }
+    }
+
+    .footer-column {
+        flex: 1;
+    }
+
+    @include respond-to($vp-large) {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: calc(100% - #{$sidebar-width});
+
+        .social-links {
+            position: fixed;
+            z-index: 2;
+            bottom: 0;
+            right: 0;
+            width: 75px;
+            transform: translateY(100%);
+
+            ul {
+                flex-direction: column;
+            }
+
+            li a {
+                margin: 0.5rem 0;
+            }
+        }
+
+        .footer-column {
+            &:last-child {
+                @include flex-all(row, flex-end, flex-end);
+
+                @include hover {
+                    .footer-tools {
+                        height: auto;
+                    }
+
+                    .social-links {
+                        transform: translateY(-75px);
+                    }
+
+                    .action-chat {
+                        &__svg svg {
+                            fill: $secondary-color;
+                        }
+
+                        &__text {
+                            transform: translateX(0);
+
+                            &:before {
+                                left: -15px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    @include respond-to($vp-max) {
+        overflow: hidden;
+        height: $footer-height;
+
+        &__row,
+        &__row--inner {
+            height: 100%;
+        }
+
+        &__row--inner {
+            @include flex-all($justify: space-between, $align: flex-end);
+        }
+
+        .site-title {
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-tools {
+            height: 75px;
+        }
+
+        .content-links {
+            padding-left: 16px;
+        }
+    }
+}

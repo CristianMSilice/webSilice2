@@ -1,0 +1,217 @@
+.hero {
+    position: relative;
+    background-color: $c-black;
+
+    &-wrapper {
+        .content {
+            &-play {
+                position: absolute;
+                // top: 400px;
+                top: 50%;
+                left: 50%;
+                z-index: 3;
+                transform: translate(-50%, -50%);
+                // transform: translateX(-50%);
+
+                .circle-rotator {
+                    @include bg-cover;
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    width: 628px;
+                    height: 628px;
+                    background: {
+                        image: url(/images/svgs/dots-white.svg);
+                        repeat: no-repeat;
+                        position: center;
+                        size: calc(100% - 4px) calc(100% - 4px);
+                    }
+                    transform: translate(-50%, -50%);
+
+                    svg {
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+                        
+                        circle {
+                            width: calc(100% - 4px);
+                            height: calc(100% - 4px);
+                            fill: none;
+                            stroke: $primary-color;
+                            stroke-width: 4;
+                            stroke-linecap: 4;
+                            stroke-dasharray: 0;
+                            stroke-dashoffset: 0;
+                        }
+                    }
+                }
+
+                .mask {
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    border-radius: 50%;
+                    box-shadow: 0 3px 37px rgba($c-black, .16);
+                    transform: translate(-50%, -50%);
+
+                    &-1 {
+                        width: 533px;
+                        height: 533px;
+                        background-color: rgba($c-white, .18);
+                    }
+
+                    &-2 {
+                        width: 380px;
+                        height: 380px;
+                        background-color: rgba($c-white, .34);
+                    }
+
+                    &-3 {
+                        width: 184px;
+                        height: 184px;
+                        background-color: rgba($c-white, .44);
+                    }
+                }
+
+                .content-links {
+                    @include flex-all($justify: center, $align: center);
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    width: 75px;
+                    height: 75px;
+                    border-radius: 50%;
+                    box-shadow: 0 3px 6px rgba($c-black, .3);
+                    background-color: rgba($c-white, .5);
+                    transform: translate(-50%, -50%);
+                }
+            }
+
+            &-image {
+                height: 100vh;
+
+                .swiper-wrapper, .swiper-container, .swiper-slide { 
+                    height: 100%; 
+                }
+
+                .swiper-container { position: initial; }
+                
+                .swiper-pagination-bullet-active,
+                .swiper-pagination-bullet {
+                    width: 26px;
+                    height: 26px;
+                    opacity: 1;
+                    background-color: $primary-color;
+                }
+
+                .swiper-pagination {
+                    @include flex-all($justify: center, $align: center);
+                    position: absolute;
+                    z-index: 5;
+                    top: 86px;
+                    bottom: auto;
+                    left: 50%;
+                    width: 628px;
+                    height: 628px;
+                    transform: translateX(-50%);
+                }
+
+                img {
+                    display: block;
+                    max-width: 100%;
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    opacity: .5;
+                }
+            }
+
+            &-text {          
+                position: absolute;
+                z-index: 2;
+                bottom: 130px;
+                left: 75px;
+
+                &:after {
+                    content: "";
+                    position: absolute;
+                    top: 100%;
+                    left: 0;
+                    width: 160px;
+                    height: 1px;
+                    background-color: $primary-color;
+                }
+
+                .name { 
+                    @include flex-all($align: center);
+                    margin: 0;
+                    font: {
+                        family: $secondary-font;
+                        weight: 900;
+                    }
+                    color: $c-white; 
+
+                    svg { margin-right: 8px; }
+                }
+
+                .text { 
+                    font-family: $primary-font; 
+                    letter-spacing: 2.46px;
+                    color: rgba($c-white, .84);
+                }
+            }
+        }
+    }
+}
+
+#rotatescroll { 
+    position:relative; 
+    width: 100%;
+    height: 100%;
+}
+#rotatescroll .viewport{ 
+    width:100vw; height:100vh;
+    position: relative; margin:0 auto; overflow:hidden;  pointer-events: none 
+}
+#rotatescroll .overview { position: absolute; width: 798px; list-style: none; margin: 0; padding: 0;  left: 0; top: 0; }
+#rotatescroll .overview li { 
+    
+    width: 1920px;
+    height: 1080px;
+     float: left; position: relative; 
+}
+#rotatescroll .overview li img { display: block; width: 100%; height: 100%; object-fit: cover;}
+#rotatescroll .overlay {
+    /* background:url(/images/bg-rotatescroll.png) no-repeat 0 0;  */
+    pointer-events: none; position: absolute; left: 0; top: 0;
+    width: 100%; 
+    height: 100%;
+    /* background-size: cover; */
+}
+#rotatescroll .thumb,
+#rotatescroll .dot {
+    position: absolute; 
+    top: -3px; 
+    left: 137px; 
+    z-index: 100; 
+    width: 26px;  
+    height: 26px; 
+    border-radius: 50%;
+    background-color: $primary-color; 
+    cursor: pointer; 
+    touch-action: none; 
+    -ms-touch-action: none; 
+}
+
+#rotatescroll .dot {
+    width: 13px;
+    height: 13px;
+}
+
+#rotatescroll .dot span { display: none; }
+
+
+
+

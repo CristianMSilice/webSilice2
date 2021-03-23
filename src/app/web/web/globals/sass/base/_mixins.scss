@@ -1,0 +1,515 @@
+// ------------------------------------------------------------
+// Mixins
+// ------------------------------------------------------------
+// :: Lists
+// :: Hover
+// :: SVGs
+// :: Alignment
+// :: Visibillity
+// :: Width
+// :: ../../images
+// :: Pseudo Elements
+// :: Responsive
+// :: Fonts
+// :: Flex
+// These are all general utility mixins that do not require a specific class or ID, or much of any
+// particular code order at all
+
+// -------------------------------------------------------
+// List styles
+// -------------------------------------------------------
+
+// Removes the default browser styling from a list.  
+// Useful to use in conjunction with flex declarations.
+
+@mixin stripped-list {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+// -------------------------------------------------------
+// Hovers
+// -------------------------------------------------------
+// NOTE: these (mostly) all support the @content directive, so you can
+// feed multiple extra lines of styling through the mixin and have them
+// applied.
+
+// Applies styling to both the :hover and :focus states of an element.
+// This is the preferred method, as it fores for keyboard users as well as mouse users.
+//
+// $descriptor - passes additional classes, IDs, or other identifiers for the element to
+//  apply hover-state effects to.  OPTIONAL
+
+@mixin hover($descriptor: null) {
+
+	@if $descriptor != null {
+		&:hover, 
+		&:focus,
+		&#{$descriptor} {
+			@content;
+		} 
+	} @else {
+		&:hover, 
+		&:focus {
+			@content;
+		}
+	}
+}
+
+// Changes the hover color of an element (and applies anything passed through @content)
+//
+// $color - the text color of the hovered element. REQUIRED
+// $descriptor - passes additional classes, IDs, or other identifiers for the element to
+//  apply hover-state effects to.  OPTIONAL
+
+@mixin hover-color($color, $descriptor: null) {
+	@include hover($descriptor) {
+		color: $color;
+		@content;
+	}
+}
+
+// Changes the background-color (and optionally text color) of an element (and applies anything 
+// passed through @content)
+//
+// $bg-color - the background color of the hovered element. REQUIRED
+// $text-color - the text color of the hovered element. OPTIONAL
+// $descriptor - passes additional classes, IDs, or other identifiers for the element to
+//  apply hover-state effects to.  OPTIONAL
+
+@mixin hover-bg-color($bg-color, $text-color: null, $descriptor: null) {
+	@include hover($descriptor){
+		background-color: $bg-color;
+		color: $text-color;
+		@content;
+	}
+}
+
+// Adds an underline effect on hover (useful for links etc.)
+//
+// $descriptor - passes additional classes, IDs, or other identifiers for the element to
+//  apply hover-state effects to.  OPTIONAL
+
+@mixin hover-underline($descriptor: null) {
+	text-decoration: none;
+	
+	@include hover($descriptor) {
+		text-decoration: underline; 
+	}
+}
+	
+// -------------------------------------------------------
+// SVG icons
+// -------------------------------------------------------
+// Turns an object into a specifically sized and colored SVG-based icon.  Useful for social media buttons, etc.
+
+// SIZE-based half of the svg-icon pair of mixins.
+//
+// $width - the width of the ENTIRE desired icon area (i.e. including padding on the sides).  REQUIRED
+// $height - the height of the ENTIRE desired icon area (i.e. including padding on the top/bottom).  REQUIRED
+// $padding - the distance between the outside edge of the icon area and the icon SVG itself.  OPTIONAL
+
+@mixin svg-icon-size($width: auto, $height: auto, $padding: 0) {
+	display: inline-block;
+	overflow: hidden;
+
+	svg {
+		display: block;
+		width: $width;
+		height: $height;
+		padding: $padding;
+	}
+}
+
+// STYLE-based half of the svg-icon pair of mixins.
+//
+// $fill-color - the color of the default state SVG. OPTIONAL
+// $bg-color - the background color of the default state of the entire icon object (not the SVG).  OPTIONAL
+// $hover-fill - the color of the hover state SVG.  OPTIONAL
+// $hover-bg - the background color of the hover state of the entire icon object (not the SVG).  OPTIONAL
+// $roundness - option to curve the edges of the icon object. use 100% to create an oval.  OPTIONAL 
+
+@mixin svg-icon-style($fill-color: null, $bg-color: null, $hover-fill: null, $hover-bg: null, $roundness: null) {
+	background-color: $bg-color;
+	color: $fill-color;
+
+	@if $roundness { border-radius: $roundness; }
+	
+	svg { fill: $fill-color; }
+
+	@include hover {
+		background-color: $hover-bg;
+		color: $hover-fill;
+
+		svg { fill: $hover-fill; }
+	}
+}
+	
+// Unified mixin of the 2 base svg-icon mixins.  See above for variable usage.
+
+@mixin svg-icon(
+		$width: auto, 
+		$height: auto, 
+		$padding: 0, 
+		$fill-color: null, 
+		$bg-color: null, 
+		$hover-fill: null, 
+		$hover-bg: null, 
+		$roundness: null
+	) {
+	@include svg-icon-size($width, $height, $padding);
+	@include svg-icon-style($fill-color, $bg-color, $hover-fill, $hover-bg, $roundness);
+}
+	
+// -------------------------------------------------------
+// Alignment and general positioning
+// -------------------------------------------------------
+
+// Generic clear fix.  Use to clear floats and things.  
+
+@mixin clearfix {
+	&:before, &:after {
+		content: "";
+		display: table;
+	}
+	
+	&:after { clear: both; }
+}
+
+// Used to effectively hide an object visually but still allow it to be seen by 
+// screenreaders and other things.  
+// This is often preferable to display: none, but not always.
+
+@mixin hidden { 
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	margin: -1px;
+	padding: 0;
+	border: 0;
+	overflow: hidden;
+	clip: rect(0 0 0 0);
+}
+
+
+// A simple and responsive-friendly way to make an object fill the screen width up to a certain point,
+// and then centered above that point.
+//
+// $width - the point at width the 100% stretching stops. Default of $site-width defined in _settings.scss. OPTIONAL
+// $padding - amount of padding on the sides to offset the width calculations.  Does not have to be symmetrical
+//	but DOES have to be declared where you are using width-constrain.  OPTIONAL
+//	i.e. @include width-constran($padding: 20px); padding: 0 5px 0 15px; 
+// $percent-width - if you don't want the object to be 100% wide you can define that % here.  Can sometimes
+//	be used as a more responsive-friendly shorthand in some circumstances. OPTIONAL
+
+@mixin width-constrain($width: $site-width, $padding: null, $percent-width: 100%) {
+	box-sizing: border-box;
+	margin: {
+		left: auto;
+		right: auto;
+	}
+	width: $percent-width;
+	max-width: $width;
+
+	@if $padding {
+		padding: {
+			left: $padding;
+			right: $padding;
+		}
+	}
+}
+
+// -------------------------------------------------------
+// Backgrounds, ../../images, etc.
+// -------------------------------------------------------
+
+// Used to replace an object visually with an image, but retain the text of the object for screenreaders etc.
+// Height and width usually match the image you're using to replace the content but not always!
+//
+// $width - width of the object after image replacement.  REQUIRED
+//	NOTE: if the viewport is narrower than it will be 100% wide
+// $height - height of the object after image replacement.  REQUIRED
+// $image - file path of the image intended to be displayed.  OPTIONAL
+
+@mixin image-replace($width: null, $height: null, $image: null) {
+	@include bg-contain;
+	display: block;
+	overflow: hidden;
+	height: $height;
+	width: $width;
+	max-width: 100%;
+	white-space: nowrap;
+	text-indent: 200%;
+	font-size: .1rem;
+	color: transparent;
+	background: {
+		position: center center;
+		repeat: no-repeat;
+	}
+	
+	@if $image {
+		background-image: url('#{$image}');
+	}
+}
+
+// Simple single-line to have the background-image cover the full element
+
+@mixin bg-cover{
+	background: {
+		repeat: no-repeat;
+		position: center center;
+		size: cover;
+	}
+}
+
+// Simple single-line to have the background-image contained within the full element
+
+@mixin bg-contain {
+	background: {
+		repeat: no-repeat;
+		position: center center;
+		size: contain;
+	}
+}
+
+// Takes a certain number of sequential child items and gives them an appropriate background image that 
+// matches the specified pattern.  Often used for quicklinks. REQUIRES consistently named background ../../images.
+// e.g.
+// #qlinks
+// first-child -> qlinks1.jpg
+// second-child -> qlinks2.jpg
+// etc.
+//
+// $num - the number of items you'll be looking through. REQUIRED
+// $name - the core of the name of the ../../images used for background ../../images. REQUIRED
+// $format - the file format of the ../../images used (must be same for all). OPTIONAL
+// $path - the directory path of the ../../images used (must be same for all). OPTIONAL
+// $bg-sizing - if keyword "cover" or "contain" is used, will apply the previous background-position
+//	shortcut mixins.  OPTIONAL
+// $descriptor - pass any parameter to have the rule apply to a child of the sequentially determined element.
+//  i.e. a link that is the child of a list item.  OPTIONAL
+
+@mixin sequential-bg(
+		$num, 
+		$name, 
+		$format: "png", 
+		$path: "/pics/", 
+		$bg-sizing: null, 
+		$descriptor: null
+	) {
+
+	@if $descriptor {
+		@if $bg-sizing == cover {
+			#{$descriptor} { @include bg-cover; }
+		} @else if $bg-sizing == contain {
+			#{$descriptor} { @include bg-contain; }
+		}
+	}
+	@else {
+		@if $bg-sizing == cover {
+			@include bg-cover;
+		} @else if $bg-sizing == contain {
+			@include bg-contain;
+		}
+	}
+
+	@for $i from 1 through $num {
+		&:nth-of-type(#{$i}) #{$descriptor} { background-image: url('#{$path}#{$name}#{$i}.#{$format}'); }
+	}
+}
+
+// -------------------------------------------------------
+// Pseudo-content and masks
+// -------------------------------------------------------
+
+
+// Creates a basic blank pseudo-element and declares just enough stuff to get it working.
+// Used as a base for more complex matte mixins.
+//
+// $pseudo - the pseudo-content slot to be used, either "before" or "after", depending no design needs. OPTIONAL
+
+@mixin pseudo($pseudo: "before"){
+	&:#{$pseudo}{
+		content: "";
+		display: block;
+		@content;
+	}
+}
+
+// A modification of the previous mixin that creates pseudo-content in BOTH before and after slots.
+
+@mixin pseudo-both{
+	&:before, &:after{
+		content: "";
+		display: block;
+		@content;
+	}
+}
+
+// Creates a basic pseudo-element to be used for blocking or matteing other content.
+// ex: solid color overlays or background ../../images.
+// Not all (or even most) pseudo-content declarations will need to use this mixin.
+//
+// $pseudo - the pseudo-content slot to be used, either "before" or "after", depending no design needs. OPTIONAL
+
+@mixin mask($pseudo: "before") {
+	position: relative;
+	
+	@include pseudo($pseudo) { 
+		position: absolute; 
+		@content;
+	}
+}
+
+// A modification of the previous mixin, but expands it to be the full size of the parent element.
+//
+// $pseudo - the pseudo-content slot to be used, either "before" or "after", depending no design needs. OPTIONAL
+
+@mixin mask-fullsize($pseudo: "before") {
+	@include mask($pseudo) {
+		width: 100%;
+		height: 100%;
+		top: 0;
+		left: 0;
+		@content;
+	}
+}
+
+// -------------------------------------------------------
+// Media queries and Responsiveness
+// -------------------------------------------------------
+// Note: These should always use the size variables from _settings.scss
+
+
+// Show all @content from a defined size UP.
+// This is BY FAR the most preferable media querie option to use.  
+//
+// $media-min - the size from which the included @content will begin to process.  REQUIRED
+
+@mixin respond-to($media-min) {
+	@media screen and (min-width: $media-min) {
+		@content;
+	}
+}
+
+// Show all @content from a defined size DOWN.
+//
+// $media-max - the size from which the included @content will STOP processing.  REQUIRED
+
+@mixin respond-to-max($media-max) {
+	@media screen and (max-width: $media-max - 1px) {
+		@content;
+	}
+}
+
+// Show all @content from between two sizes.
+//
+// $media-min - the size from which the included @content will begin to process.  REQUIRED
+// $media-max - the size from which the included @content will STOP processing.  REQUIRED
+
+@mixin respond-to-min-max($media-min, $media-max) {
+	@media screen and (min-width: $media-min) and (max-width: $media-max - 1px) {
+		@content;
+	}
+}
+
+// Simple one-line declaration to hide something UP TO a specific width.
+// i.e. above #width it will show.
+// NOTE: objects hidden this way will NOT be visible to screenreaders
+//
+// $width - the size at which the object will begin to show.  REQUIRED
+
+@mixin hide-to($width) {
+	@include respond-to-max($width) { display: none; }
+}
+
+// Three more mixins that apply the previous mixin to the standardized widths.
+
+@mixin hide-small { @include hide-to($vp-mid); }
+@mixin hide-mid { @include hide-to($vp-large); }
+@mixin hide-large { @include hide-to($vp-max); }
+
+// ------------------------------------------------------------
+// Text and font size functions
+// ------------------------------------------------------------
+
+// Adjusts font-sizes fluidly across mobile, tablet, and desktop based on defined ratios
+// and a final desired desktop size.
+//
+// $small-ratio - the ratio of the mobile font size to the desktop font size. OPTIONAL
+// $mid-ratio - the ratio of the tablet font size to the desktop font size. OPTIONAL
+// $final-size - the desired size of the font on desktop size. OPTIONAL
+
+@mixin scale-font($small-ratio: .5, $mid-ratio: .75, $final-size: 1rem) {
+	font-size: $small-ratio * $final-size;
+
+	@include respond-to($vp-mid) { font-size: $mid-ratio * $final-size; }
+	@include respond-to($vp-large) { font-size: $final-size; }
+}
+
+@mixin scale-font-heading($name) {
+	@if $name == colossal {
+		@include scale-font($small-ratio: .5, $mid-ratio: .75, $final-size: $size-colossal);
+	} @else if $name ==	gigant {
+		@include scale-font($small-ratio: .5, $mid-ratio: .75, $final-size: $size-gigant);
+	} @else if $name ==	huge {
+		@include scale-font($small-ratio: .5, $mid-ratio: .75, $final-size: $size-huge);
+	} @else if $name ==	large {
+		@include scale-font($small-ratio: .85, $mid-ratio: .75, $final-size: $size-large);
+	} @else if $name ==	bigger {
+		@include scale-font($small-ratio: .85, $mid-ratio: .75, $final-size: $size-bigger);
+	} @else if $name ==	big {
+		@include scale-font($small-ratio: .85, $mid-ratio: .75, $final-size: $size-big);
+	}
+}
+
+// Converts a px size value to an equivalent em ratio.
+// NOTE: since this uses @return it should be used as part of a parameter value
+// i.e. font-size: emify(36px, 18px);
+//
+// $target - the intended px value you want to convert. REQUIRED
+// $context - If you do NOT want the base size assumption of "1em" to be 16px, define it here. OPTIONAL 
+// $unit - The type of unit you want this output as.  Should really only be either em or rem. 
+
+@function emify($target, $context: $base-font-size, $unit: rem) {
+	@if $target == 0 { @return 0 }
+	@return $target / $context + $unit;
+}
+
+//----------------------------------------------------------------------
+
+// Flexbox Suite
+//
+// This all-in-one mixin defines the most common flex variables as a single
+// declaration.  Default values can be declared as null.  These are checked 
+// for and skipped. 
+//
+// The order is:
+// D - "direction" - flex-direction
+// J - "justify" - justify-content
+// A - "align" - align-items
+// W - "wrap" - flex-wrap
+//
+// $inline: true will make it inline-flex instead of "normal" flex;
+
+@mixin flex-all($direction: null, $justify: null, $align: null, $wrap: null, $inline: null) {
+	@if $inline == true {
+		display: inline-flex;
+	} @else {
+		display: flex;
+	}
+	
+	@if $direction != null {
+		flex-direction: $direction;
+	}
+	@if $justify != null {
+		justify-content: $justify;
+	}
+	@if $align != null {
+		align-items: $align;
+	}
+	@if $wrap != null {
+		flex-wrap: $wrap;
+	}
+}

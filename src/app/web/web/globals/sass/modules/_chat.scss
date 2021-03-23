@@ -1,7 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
 
-@import "app/web/web/globals/sass/app.scss";
-
 @import url(https://fonts.googleapis.com/css?family=Open+Sans);
 @import url(https://fonts.googleapis.com/icon?family=Material+Icons);
 html,
@@ -21,7 +19,6 @@ body {
     --suitBotColor1: hsl(228, 93%, 23%);
     --suitBotColor2: hsl(228, 93%, 43%);
     --chatBackgroundColor:  hsl(0, 0%, 93%);
-    --width-chat-widget:474px;
 
 }
 
@@ -78,8 +75,4 @@ body {
 
 .message-button-option.disabled.selectable:hover {
     background-color: hsl(0, 0%, 60%) !important;
-}
-
-web.web-view{
-    width: calc(100vw - var(--width-chat-widget));
 }

@@ -1,0 +1,102 @@
+.timeline {
+    &-wrapper {
+        overflow: hidden;
+        -webkit-overflow-scrolling: touch;
+
+        &::-webkit-scrollbar {
+            display: none;
+        }
+
+        .row-inner { max-width: 100%; }
+    }
+    
+    .swiper-slide { margin-left: 4.75rem; }
+
+    .item {
+        @include flex-all(column, center);
+        flex: none;
+        width: 480px; 
+        height: 500px;
+
+        @include mask {
+            top: 50%;
+            left: calc((-4.75rem / 2) - (21px / 2));
+            width: 21px;
+            height: 21px;
+            margin-top: calc(29px / 2);
+            border-radius: 50%;
+            border: 5px solid $c-white;
+            box-sizing: border-box;
+            background-color: $primary-color;
+            transform: translateY(-50%);
+        }
+
+        &-summary {
+            @include flex-all(column, center);
+            position: relative;
+            z-index: 2;
+            min-height: 360px;
+            padding: 2rem;
+            // border: 10px solid $c-grey-light;
+            border-radius: 20px;
+            background-color: $c-white;
+            box-shadow: 0 0 80px rgba($c-black, .1);
+        }
+    }
+
+    .name { 
+        margin: 0 0 .5rem; 
+        font: {
+            size: 1.375rem;
+            family: $primary-font;
+            weight: 600;
+        }
+        color: $c-black;
+
+        strong {
+            font-weight: 900;
+            color: $primary-color;
+        }
+    }
+
+    .text {
+        letter-spacing: 1.2px;
+    }
+
+    .time {
+        display: block;
+        font: {
+            size: 2.25rem;
+            family: $primary-font;
+            weight: 900;
+        }
+        text-align: right;
+        color: $c-black;
+
+        time {
+            @include flex-all($align: flex-end);
+            @include scale-font($small-ratio: .5, $mid-ratio: .75, $final-size: 7.75rem);
+            position: absolute;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            height: 100px;
+            color: $c-grey-light;
+        }
+    }
+
+    .content {
+        &-body { 
+            @include flex-all($align: center); 
+            @include mask {
+                top: 50%;
+                left: 0;
+                width: 100%;
+                height: 8px;
+                margin-top: calc(29px / 2);
+                background-color: $c-grey-light;
+                transform: translateY(-50%);
+            }
+        }
+    }
+}
