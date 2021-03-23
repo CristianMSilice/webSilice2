@@ -34,7 +34,7 @@
       }
     },
     "chat-widget": {
-      "root": "",
+      "root": "chatWidget/",
       "sourceRoot": "/src",
       "projectType": "application",
       "prefix": "app",

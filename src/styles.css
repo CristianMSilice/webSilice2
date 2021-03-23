@@ -2,6 +2,7 @@
 
 @import url(https://fonts.googleapis.com/css?family=Open+Sans);
 @import url(https://fonts.googleapis.com/icon?family=Material+Icons);
+@import url(https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap);
 html,
 body {
     margin: 0;
@@ -19,6 +20,7 @@ body {
     --suitBotColor1: hsl(228, 93%, 23%);
     --suitBotColor2: hsl(228, 93%, 43%);
     --chatBackgroundColor:  hsl(0, 0%, 93%);
+    --width-chat-widget:474px;
 
 }
 
@@ -75,4 +77,92 @@ body {
 
 .message-button-option.disabled.selectable:hover {
     background-color: hsl(0, 0%, 60%) !important;
+}
+
+web.web-view{
+    width: calc(100vw - var(--width-chat-widget));
+}
+
+
+/* WEB VIEW VARIABLES */
+
+
+
+body{
+/* Responsive*/    
+--vp-small				: 320px;	/* small size */
+--vp-mid					: 768px;	/* mid size*/
+--vp-large				: 1024px;	/* large size*/
+
+--vp-max					: 1350px;	/* max viewport*/
+
+--site-width				: var(--vp-max);
+
+/* Spacing*/
+--site-padding           : 50px;
+
+/* Sidebar*/
+--sidebar-width          : 474px;
+
+/* Header & Footer Sizes*/
+--header-height          : 75px;
+--footer-height          : 110px;
+--header-subtitle-height : 200px;
+
+/* Logos Sizes*/
+
+--header-logo-width		: 100px;
+--header-logo-height		: 23px;
+--footer-logo-width		: 180px;
+--footer-logo-height		: 25px;
+
+/* Colors*/
+
+--c-white                : rgb(255,255,255);
+--c-black                : rgb(0,0,0);
+--c-grey                 : rgb(104, 104, 104);
+--c-grey-mid             : rgb(241, 241, 241);
+--c-grey-light           : rgb(248, 248, 248);
+--c-yellow               : rgb(255, 198, 0);
+--c-text                 : rgb(48, 48, 48);
+
+--primary-color			: rgb(255, 108, 43);
+--color-over-primary		: var(--c-white);
+
+--secondary-color		: rgb(85, 87, 89);
+--color-over-secondary	: var(--c-white);
+
+/* Social Colors*/
+
+--facebook				: rgb(24,119,242);
+--twitter				: rgb(29,161,242);
+--youtube				: rgb(255,0,0);
+--instagram				: rgb(215,53,118);
+
+/* Logos ../../../public/images*/
+
+--header-logo-image-white: "../../../public/images/silice-header-logo-white.png";
+--footer-logo-image-white: "../../../public/images/silice-slogan-white.png";
+
+--header-logo-image-dark : "../../../public/images/silice-header-logo-orange.png";
+--footer-logo-image-dark : "../../../public/images/silice-slogan-dark.png";
+
+
+/* Fonts*/
+
+
+--primary-font			 : 'Montserrat', sans-serif;
+--secondary-font          : Arial Black, Arial, Helvetica, sans-serif;
+
+--base-font-size			 : 16px;
+
+--size-huge               : 3rem; /* 48px*/
+--size-large              : 2.375rem; /* 38px*/
+--size-bigger             : 2rem; /* 32px*/
+--size-big                : 1.625rem; /* 26px*/
+--size-medium             : 1.25rem; /* 20px*/
+--size-base               : 1rem; /* 16px*/
+--size-small              : 0.75rem; /* 12px*/
+--size-tiny               : 0.625rem; /* 10px*/
+--size-wee                : 0.5rem; /* 8px*/
 }

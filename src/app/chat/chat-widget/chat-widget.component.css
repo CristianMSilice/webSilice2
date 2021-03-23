@@ -172,10 +172,11 @@ body.agent-568bdc7311fbbe5cfe9a0442869172a2 .custom-background-hover:hover {
 
 .wrapper-silice {
     position: fixed;
-    /*   top: 0;*/
+    /* top: 0; */
+    right: 0;
     bottom: 0;
-    height: auto;
-    width: auto;
+    height: 100%;
+    width: var(--width-chat-widget);
     z-index: 223223 !important;
     /* height: 100vh;
     width: 100vw;*/
