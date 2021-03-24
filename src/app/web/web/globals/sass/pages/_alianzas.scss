@@ -1,0 +1,236 @@
+.alianzas {
+    overflow: hidden;
+
+    .section-title {
+        @include width-constrain(900px);
+        text-align: center;
+
+        strong { color: $primary-color; }
+
+        p {
+            font: {
+                family: $primary-font;
+                weight: 300;
+            }
+            letter-spacing: 1.2px;
+        }
+    }
+
+    .section-1 {
+        @include bg-cover;
+        position: relative;
+        text-align: center;
+
+        .content-image img {
+            max-width: 500px;
+        }
+
+        @include respond-to($vp-max) {
+            padding: 0 3rem;
+            background: {
+                image: url(/images/map-2.jpg);
+                position: center 8rem;
+                size: 100% auto;
+            }
+
+            ul {
+                padding: 2rem 0;
+
+                &:nth-of-type(1) {
+                    padding-right: 320px;
+                }
+
+                &:nth-of-type(2) {
+                    padding-left: 320px;
+
+                    li { flex-direction: row-reverse; }
+
+                    .item-text { text-align: right; }
+
+                    img { margin: 0 0 0 1rem; }
+                }
+            }
+
+            .content-image {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+
+                img { max-width: 700px; }
+            }
+        }
+    }
+
+    .section-2 {
+        ul {
+            @include width-constrain(660px);
+            flex-direction: row;
+            justify-content: center;
+            flex-wrap: wrap;
+            
+            li { 
+                @include flex-all(column, center, center);
+                margin: .5rem; 
+
+                .icon { 
+                    margin: 0 0 .5rem; 
+
+                    img, svg { margin: 0; }
+                }
+
+                p {
+                    margin: 0;
+                    line-height: 1.2;
+
+                    &:nth-of-type(1) {
+                        font: {
+                            size: 1rem;
+                            family: $primary-font;
+                            weight: 700;
+                        }
+                    }
+
+                    &:nth-of-type(2) {
+                        font: {
+                            size: .875rem;
+                            family: $primary-font;
+                            weight: 300;
+                        }
+                    }
+                }
+            }
+        }
+
+        .content-image img { max-width: 100%; }
+
+        @include respond-to($vp-large) {
+            margin-top: -8rem;
+
+            ul {
+                flex-wrap: wrap;
+
+                li { margin: 1rem; }
+            }
+        }
+
+        @include respond-to($vp-max) {
+            @include flex-all($align: center);
+
+            .content-image { margin-left: -200px; }
+        }
+    }
+
+    .section-3 {
+        @include bg-cover;
+        padding: 4rem 0;
+        text-align: center;
+
+        .content-links { 
+            flex-direction: column; 
+            align-items: center;
+        }
+
+        @include respond-to($vp-large) {
+            background: {
+                size: 100% auto;
+                image: url(/images/map-2.jpg);
+            }
+
+            .partners-list { padding: 10rem 0 0; }
+        }
+    }
+
+    .partners-list {
+        @include flex-all($justify: space-around, $align: center, $wrap: wrap);
+        @include stripped-list;
+        padding: 2rem 0;
+
+        li { margin: 4rem 0; }
+
+        .item-btn { 
+            @include flex-all(column, center, center);
+            position: relative;
+
+            > .icon {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+        }
+
+        .item-summary { 
+            @include flex-all($justify: center, $align: center); 
+            position: relative;
+            width: 300px;
+            padding: 1rem 0;
+            border-radius: 50px;
+            box-shadow: 0 0 80px rgba($c-black, .2);
+            line-height: 1;
+            background-color: $c-white;
+
+            .icon { margin-right: .5rem; }
+
+            em { 
+                display: block; 
+                font-style: normal;
+            }
+        }
+
+        p { 
+            @include width-constrain(400px); 
+            margin-top: 3rem;
+            font-size: .875rem;
+            text-align: center;
+        }
+
+        @include respond-to($vp-large) {
+            li { margin: 0; }
+        }
+    }
+
+    .section-4 {
+        @include flex-all($align: center);
+        height: 100vh;
+
+        .section-title { 
+            max-width: 50%; 
+            padding: 0 2rem;
+        }
+
+        @include respond-to($vp-large) {
+            padding: 0;
+            background: {
+                image: url(/images/consultoria-robot.jpg);
+                repeat: no-repeat;
+                position: 150% bottom;
+            }
+
+            .section-title {
+                margin-left: 0;
+                text-align: left;
+            }
+
+            .content-links { 
+                justify-content: flex-start; 
+
+                .action { margin: 0; }
+            }
+        }
+    }
+
+    .features-list__column {
+        @include flex-all($justify: center, $align: center, $wrap: wrap);
+
+        @include respond-to($vp-max) {
+            flex-wrap: nowrap;
+        }
+    }
+
+    .features-list {
+        position: relative;
+        
+        ul li { flex-wrap: nowrap; }
+    }
+}

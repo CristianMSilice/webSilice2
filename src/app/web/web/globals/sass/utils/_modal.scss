@@ -1,0 +1,36 @@
+.modal {
+    @include flex-all($justify: center, $align: center);
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 99999;
+    background: rgba(0, 0, 0, 0.6);
+}
+
+.modal-content {
+    @include flex-all;
+
+    iframe {
+        display: block;
+        flex: none;
+        width: 300px;
+        height: 200px;
+        box-shadow: 0 0 80px rgba($primary-color, 0.3);
+    }
+
+    @include respond-to($vp-mid) {
+        iframe {
+            width: 600px;
+            height: 300px;
+        }
+    }
+
+    @include respond-to($vp-large) {
+        iframe {
+            width: 900px;
+            height: 600px;
+        }
+    }
+}

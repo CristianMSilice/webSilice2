@@ -1,0 +1,65 @@
+.presence {
+    &-wrapper {
+        @include mask-fullsize {
+            position: fixed;
+            z-index: -1;
+            background: {
+                image: url(/images/map.png);
+                position: right calc(100% - 40px);
+                repeat: no-repeat;
+            }
+        }
+    }
+
+    .item {
+        @include flex-all(column, center, center);
+        flex: 1;
+        margin: 2rem 0;
+        padding: 0 1rem;
+        text-align: center;
+
+        &-summary {
+            margin-left: 1rem;
+        }
+
+        @include respond-to($vp-mid) {
+            flex: 0 1 50%;
+        }
+
+        @include respond-to($vp-large) {
+            flex: 0 1 33.3333%;
+            flex-direction: row;
+            text-align: left;
+        }
+    }
+
+    .content {
+        &-body { @include flex-all($justify: space-around, $wrap: wrap); }
+
+        @include respond-to($vp-large) {
+            &-body { justify-content: space-between; }
+        }
+    }
+
+    .icon { margin: 0 0 2rem; }
+
+    .number {
+        font: {
+            size: 2.3125rem;
+            family: $primary-font;
+            weight: 900;
+        }
+        letter-spacing: 1.57px;
+        color: $primary-color;
+    }
+
+    .name {
+        margin: .75rem 0 0;
+        font: {
+            size: 1.125rem;
+            family: $primary-font;
+            weight: 400;
+        }
+        letter-spacing: 1.2px;
+    }
+}

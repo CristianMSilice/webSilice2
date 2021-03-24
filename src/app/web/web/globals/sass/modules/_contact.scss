@@ -1,0 +1,90 @@
+.contact {
+    &-wrapper {
+        @include bg-contain;
+        background-image: url(/images/presencia-map.png);
+    }
+
+    .content-inner { 
+        @include width-constrain(700px); 
+        margin-right: 9%;
+    }
+
+    .content-form {        
+        z-index: 2;
+        width: 100%;
+        padding: 2rem;
+        box-shadow: 0 0 100px rgba($c-black, .1);
+        background-color: $c-white;
+
+        @include mask {
+            top: 50%;
+            left: 50%;
+            width: calc(100% + 24px);
+            height: calc(100% + 25px);
+            background-color: rgba($c-white, .3);
+            transform: translate(-50%, -50%);
+        }
+
+        .action-links { 
+            display: flex; 
+
+            .action { 
+                color: $color-over-primary; 
+            }
+        }
+    }
+
+    .content-newsletter {
+        margin-top: 2rem;
+
+        .form {
+            @include flex-all; 
+
+            .form-item { 
+                margin: 0;
+
+                &:last-child { flex: none; }
+            }
+
+            input { margin: 0; } 
+        }
+        
+    }
+
+    .content-social {
+        padding: 2rem 0 0;
+        text-align: center;
+
+        .title {
+            margin-bottom: 1rem;
+            font: {
+                size: .75rem;
+                weight: 400;
+            }
+            color: $c-black;
+
+            strong {
+                font-weight: 400;
+                color: $primary-color;
+            }
+        }
+
+        .items-list {
+            @include flex-all($justify: center);
+        }
+
+        a {
+            margin: 0 .25rem;
+
+            svg {
+                width: 20px;
+                height: 20px;
+                fill: $c-black;
+            }
+
+            @include hover {
+                svg { fill: $primary-color; }
+            }
+        }
+    }
+}

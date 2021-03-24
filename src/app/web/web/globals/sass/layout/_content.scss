@@ -1,0 +1,50 @@
+.site-sub-section {
+    position: relative;
+    z-index: 2;
+    padding: 0;
+    text-align: center;
+    color: $c-black;
+
+    .sub-section__inner {
+        @include flex-all(row-reverse, flex-start, center, $inline: true);
+        @include width-constrain(790px);
+        border-radius: 60px;
+        box-shadow: 0 0 100px rgba($c-black, .13);
+        background-color: $c-white;
+    }
+
+    .sub-section {
+        &-title {
+            display: block;
+            flex: none;
+            margin: 0;
+            padding: .5rem 1rem;
+            font: {
+                size: 1rem;
+                weight: 600;
+            }
+            border-radius: 60px;
+            color: $color-over-primary;
+            background-color: $primary-color;
+            transition: padding .5s;
+
+            @include hover {
+                padding: .5rem 1.5rem;
+            }
+
+            a {
+                @include flex-all($justify: center, $align: center);
+                width: 100%;
+                text-decoration: none;
+                color: $c-white;
+
+                @include hover-color(darken($primary-color, 30%));
+            }
+        }
+
+        &-content { 
+            flex: 1;
+            text-align: center; 
+        }
+    }
+}

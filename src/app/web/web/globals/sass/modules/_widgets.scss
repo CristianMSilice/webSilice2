@@ -1,0 +1,95 @@
+.widget {
+    margin-bottom: 2.5rem;
+    padding: 2rem;
+    border-radius: 20px;
+    background-color: $c-white;
+
+    h3 { 
+        font: {
+            size: 1.5rem;
+            weight: 900;
+        }
+        text-transform: uppercase;
+        margin: 0 0 1rem;
+    }
+
+    &.social {
+        .items-list {
+            @include flex-all;
+            margin-bottom: 1rem;
+
+            li { margin: 0 1.25rem 0 0; }
+
+            a {
+                @include hover {
+                    svg { fill: $primary-color; }
+                }
+            }
+
+            svg {
+                fill: $secondary-color;
+            }
+        }
+    }
+
+    .subscribe {
+        form { 
+            @include flex-all; 
+
+            input[type="email"] {
+                flex: 1;
+                background-color: $c-grey-mid;
+            }
+
+            input[type="submit"] {
+                flex: none;
+                width: 145px;
+                color: $color-over-primary;
+                background-color: $primary-color;
+            }
+        }
+    }
+
+    &.views {
+        li {
+            margin-bottom: 1rem;
+
+            &:last-child { margin-bottom: 0; }
+
+            .item {
+                @include flex-all; 
+                
+                img {
+                    flex: none;
+                    width: 86px;
+                    height: 86px;
+                    margin-right: .875rem;
+                    border-radius: 50%;
+                    object-fit: cover;
+                }
+
+                .summary {
+                    flex: 1;
+
+                    h4 {
+                        margin: 0;
+                        font-size: 1rem;
+                        line-height: 1.25;
+                    }
+
+                    time {
+                        font: {
+                            size: .75rem;
+                            weight: 300;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.widgets-news {
+    flex: none;
+    width: 394px;
+}

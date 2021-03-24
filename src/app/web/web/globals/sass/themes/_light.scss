@@ -1,0 +1,35 @@
+.light {
+    .quicklinks-wrapper {    
+        .content {
+            &-list {
+                li a {
+                    background-color: transparent;
+
+                    .first-line { color: $c-text; }
+                    .second-line { color: $primary-color; }
+
+                    .item-inner:after { background-color: rgba($c-text, .22); }
+
+                    @include hover {
+
+                        .first-line { color: rgba($color-over-primary, .5); }    
+                        .second-line { color: $color-over-primary; }
+                    }
+                }
+            }
+        }
+    }
+
+    @include respond-to($vp-large) {
+        .primary-menu {
+            > ul {
+                > li {                
+                    > a {
+                        padding: 0;
+                        color: $c-text;
+                    }
+                }
+            }
+        }
+    }
+}

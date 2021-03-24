@@ -1,0 +1,76 @@
+.title {
+    margin: 0;
+    line-height: 120%;
+
+    a {
+        text-decoration: none;
+        color: inherit;
+    }
+}
+
+.site-title {
+    &-wrapper {
+        width: 100%;
+        height: 200px;
+
+        .site-title,
+        .site-subtitle {         
+            position: relative;
+            z-index: 2;   
+            margin-bottom: 0;
+            font-weight: 600;
+            color: $c-black;
+
+            strong { 
+                font-weight: inherit;
+                color: $primary-color; 
+            }
+        }
+
+        .site-title { 
+            color: $primary-color; 
+
+            @include mask {
+                top: 100%;
+                left: 0;
+                width: 27px;
+                height: 5px;
+                background-color: $primary-color;
+            }
+        }
+
+        .site-subtitle { margin-bottom: .5rem; }
+
+        .motto {
+            display: block;
+            position: relative;
+            z-index: 2;
+            padding: 0 $site-padding;
+            letter-spacing: 1.2px;
+            font-size: .875rem;
+            text-align: center;
+            color: $secondary-color;
+        }
+    }
+
+    @include respond-to($vp-large) {
+        &-wrapper {
+            @include flex-all ($align: center);
+        }
+
+        &-column {
+            &:first-child {
+                flex: none;
+                width: 485px;
+                padding: 0 $site-padding;
+                text-align: left;
+            }
+
+            &:last-child {
+                flex: 1;
+                padding: 0 $site-padding;
+                text-align: center;
+            }
+        }
+    }
+}

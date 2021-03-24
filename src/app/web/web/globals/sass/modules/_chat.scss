@@ -1,0 +1,78 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+@import url(https://fonts.googleapis.com/icon?family=Material+Icons);
+html,
+body {
+    margin: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    --main-color: #636365;
+    --attachedFilesTitle: #636365;
+    --buttonsColor: #636365;
+    --scrollcolor: hsl(223, 12%, 86%);
+    --headerBackgroundColor: hsl(0deg 0% 100%);
+    --headerTextColor: hsl(18, 100%, 58%);
+    --btclose-visibility: hidden;
+    --scrollcolor: hsl(223, 12%, 86%);
+    --suitBotColor1: hsl(228, 93%, 23%);
+    --suitBotColor2: hsl(228, 93%, 43%);
+    --chatBackgroundColor:  hsl(0, 0%, 93%);
+
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.pr-1 {
+    padding: 0em 1em 0em 0em;
+}
+
+.message-buttons-array {
+    padding: 0.1em;
+    margin: 0.1em 0px;
+    width: 100%;
+    font-weight: bold;
+    font-size: 0.9em;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.message-buttons-array .message-button-option {
+    padding: 8px;
+    margin: 5px 3px;
+    border: 1px solid;
+    border-radius: 50vmin;
+    color: var(--buttonsColor);
+    background-color: hsla(0, 0%, 0%, 5%);
+}
+
+.message-buttons-array .message-button-option:hover {
+    cursor: pointer;
+    background-color: hsla(0, 0%, 0%, 10%);
+}
+
+.message-button-option.disabled {
+    color: hsla(0, 0%, 20%) !important;
+    border: 1px solid hsla(0, 0%, 20%) !important;
+}
+
+.message-button-option.disabled:hover {
+    cursor: auto;
+    background-color: hsla(0, 0%, 0%, 5%);
+}
+
+.message-button-option.disabled.selectable {
+    background-color: hsla(0, 0%, 60%);
+}
+
+.message-button-option.disabled.selectable:hover {
+    background-color: hsl(0, 0%, 60%) !important;
+}
