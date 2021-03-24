@@ -3,7 +3,7 @@ import { Component } from '@angular/core'
 @Component({
   selector: 'app-root',
   template: `
-    <web class="web-view"></web>
+    <router-outlet></router-outlet>
     <chat-widget [theme]="theme"></chat-widget>
      
   `,

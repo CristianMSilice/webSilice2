@@ -25,20 +25,60 @@ import { SolucionesComponent } from './web/pages/soluciones/soluciones.component
 import { HeaderComponent } from './web/components/header/header.component';
 import { NavComponent } from './web/components/header/nav/nav.component';
 import { SliderComponent } from './web/components/principalSlider/slider/slider.component'
+import { RouterModule ,Routes} from '@angular/router';
+import { HomeComponent } from './web/pages/home/home.component'
+
+const routes: Routes = [
+  {path: 'home', component:WebComponent,
+  children:[
+    {path:'nosotros', component:NosotrosComponent},
+    {path:'laboratorio', component:LaboratorioComponent},
+    {path:'soluciones', component:SolucionesComponent},
+    {path:'casos', component:CasosComponent},
+    {path:'experiencia', component:ExperienciaComponent},
+    {path:'home', component:HomeComponent},
+    {path:'blog', component:BlogComponent},
+    {path:'casos', component:CasosComponent}
+  ]  
+},
+{path:'**', redirectTo:'/home/home',pathMatch:'full'}
+];
 
 @NgModule({
-  imports: [BrowserModule, BrowserAnimationsModule, ElementModule, HttpClientModule, HttpModule, NgxLinkifyjsModule.forRoot(),
-    NgxWebstorageModule.forRoot()],
-  declarations: [AppComponent, EncabezadosComponent, WebComponent, BlogComponent, CasosComponent, CasosDeExitoComponent, ExperienciaComponent, LaboratorioComponent, NosotrosComponent, NoticiasComponent, SolucionesComponent, HeaderComponent, NavComponent, SliderComponent],
+  imports: [
+    RouterModule.forRoot(routes),
+    BrowserModule,
+    BrowserAnimationsModule,
+    ElementModule,
+    HttpClientModule,
+    HttpModule,
+    NgxLinkifyjsModule.forRoot(),
+    NgxWebstorageModule.forRoot()
+  ],
+  declarations: [AppComponent,
+     EncabezadosComponent,
+     WebComponent,
+     BlogComponent,
+     CasosComponent,
+     CasosDeExitoComponent,
+     ExperienciaComponent,
+     LaboratorioComponent,
+     NosotrosComponent,
+     NoticiasComponent,
+     SolucionesComponent,
+     HeaderComponent,
+     NavComponent,
+     SliderComponent,
+     HomeComponent
+    ],
+  
   providers: [
     ConfigService,
     EncsessionService,
     CookieService,
     { provide: 'CONFIGPATH', useValue: './assets/config.json' },
-
     { provide: 'APIURL-VAR', useValue: 'TOKEN' },
-    {
-      provide: TOKEN, useFactory: ConfigFactory,
+    { provide: TOKEN, useFactory: ConfigFactory,
       deps: [ConfigService, 'CONFIGPATH', 'APIURL-VAR']
     }
   ],

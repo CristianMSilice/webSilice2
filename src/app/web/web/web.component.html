@@ -1,15 +1,4 @@
 <div class="home dark page">
     <web-header></web-header>            
-    <main id="content_main" class="site-content" aria-label="Contenido Principal">
-        <div class="site-content__row">
-            <div class="site-content__row--inner carousel-wrapper-main">    
-                <web-slider
-                [width]="'100%'"
-                [height]="'125%'"
-                [sliderItem]="_sliderItems"
-                ></web-slider>
-            </div>
-        </div>
-    </main>
-    <!-- <Footer /> -->
+    <router-outlet></router-outlet>
 </div>

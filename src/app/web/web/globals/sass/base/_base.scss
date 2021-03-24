@@ -35,7 +35,7 @@ body {
         display: grid;
         position: relative;
         overflow: hidden;
-        grid-template-columns: 1fr 1fr $sidebar-width;
+        grid-template-columns: 0px 0px 1fr $sidebar-width;
         grid-template-areas:
         "header  header  sidebar"
         "content content sidebar";
