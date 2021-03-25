@@ -22,6 +22,7 @@ import { LaboratorioComponent } from './web/pages/laboratorio/laboratorio.compon
 import { NosotrosComponent } from './web/pages/nosotros/nosotros.component';
 import { NoticiasComponent } from './web/pages/noticias/noticias.component';
 import { SolucionesComponent } from './web/pages/soluciones/soluciones.component';
+import { SolutionsComponent } from './web/components/solutions/solutions.component';
 import { HeaderComponent } from './web/components/header/header.component';
 import { NavComponent } from './web/components/header/nav/nav.component';
 import { SliderComponent } from './web/components/principalSlider/slider/slider.component'
@@ -70,6 +71,7 @@ const routes: Routes = [
      NosotrosComponent,
      NoticiasComponent,
      SolucionesComponent,
+     SolutionsComponent,
      HeaderComponent,
      NavComponent,
      SliderComponent,
