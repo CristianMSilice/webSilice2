@@ -1,5 +1,5 @@
-<div class="wrapper-silice   {{ theme }}" id="componetchat" >
-    <div class="chat-widget"  [@fadeInOut]="visible" [ngClass]="{'movile':isMobileResolution, 'close':visible}">
+<div class="wrapper-silice   {{ theme }}" id="componetchat">
+    <div class="chat-widget" [@fadeInOut]="visible" [ngClass]="{'movile':isMobileResolution, 'close':visible}">
         <div class="chat-widget-header">
             <div class="chat-widget-header-logo" (click)="closeChat($event)">
                 <img src="{{ avatar_cab }}" class="img-silice" />
@@ -8,19 +8,22 @@
                 <strong>{{ texto_cab }}</strong>
                 <small>Asistente virtual</small>
             </div>
-            <div class="chat-widget-close" *ngIf="close_able_chat &&  ! isMobileResolution" (click)="closeChat()">&#10006;</div>
+            <div class="chat-widget-close" *ngIf="close_able_chat &&  ! isMobileResolution" (click)="closeChat()">
+                &#10006;</div>
         </div>
 
         <div class="chat-widget-body" #widgetBody>
             <ng-container *ngFor="let message of messages; let i = index">
-                <div class="chat-message"  *ngIf="message.text !='' && message.options.show" >
-                    <div class="message"  [class.message-bot]="message.type === 'received'" [class.message-user]="message.type === 'sent'" [@fadeIn]>
+                <div class="chat-message" *ngIf="message.text !='' && message.options.show">
+                    <div class="message" [class.message-bot]="message.type === 'received'"
+                        [class.message-user]="message.type === 'sent'" [@fadeIn]>
                         <div class="message-photo" [class.bot]="message.type === 'received'">
                             <div class="bot" *ngIf="message.type === 'received'"></div>
-                            
+
                         </div>
                         <div class="message-text" *ngIf="message.tipo == 1">
-                            <div style="white-space: pre-line" [innerHTML]="paserLink(message.text) " *ngIf="!esnuestro(message.text)"></div>
+                            <div style="white-space: pre-line" [innerHTML]="paserLink(message.text) "
+                                *ngIf="!esnuestro(message.text)"></div>
                         </div>
 
                         <div *ngIf="message.tipo == 2" [ngSwitch]="true">
@@ -36,8 +39,8 @@
 
                             <div *ngSwitchCase="message.file_mime === 'video/mp4'">
                                 <video controls style="max-width: 100%; max-height: 400px">
-                  <source [src]="message.text" type="{{ message.file_mime }}" />
-                </video>
+                                    <source [src]="message.text" type="{{ message.file_mime }}" />
+                                </video>
                             </div>
 
                             <div *ngSwitchCase="
@@ -47,15 +50,15 @@
                   message.file_mime === 'audio/mp4'
                 ">
                                 <audio controls style="max-width: 100%; max-height: 400px">
-                  <source [src]="message.text" type="{{ message.file_mime }}" />
-                </audio>
+                                    <source [src]="message.text" type="{{ message.file_mime }}" />
+                                </audio>
                             </div>
 
                             <div *ngSwitchDefault>
-                                <button type="button" class="btn btn-float btn-float-lg btn-outline-pink" (click)="goToLink(message.text)">
-                  <i class="fa fa-cloud-download"></i
-                  ><span>Descargar Fichero<br /> </span>
-                </button>
+                                <button type="button" class="btn btn-float btn-float-lg btn-outline-pink"
+                                    (click)="goToLink(message.text)">
+                                    <i class="fa fa-cloud-download"></i><span>Descargar Fichero<br /> </span>
+                                </button>
                             </div>
                         </div>
                         <div class="message-time" [ngClass]="{'mobil':isMobileResolution}">
@@ -63,36 +66,48 @@
                         </div>
                     </div>
                 </div>
-                <ng-container >
-                <div class="button" *ngIf="message.options.button">
-                    <div class="message-buttons-array">
-                        <div class="message-button-option" *ngFor="let button of message.options.button" (click)="buttonMessageClick(button.accion,i + 1 == messages.length)" [ngClass]="{'disabled':i + 1 != messages.length,'selectable': false}">
-                            {{ button.texto }}
+                <ng-container>
+                    <div class="button" *ngIf="message.options.button">
+                        <div class="message-buttons-array">
+                            <div class="message-button-option" *ngFor="let button of message.options.button"
+                                (click)="buttonMessageClick(button.accion,i + 1 == messages.length)"
+                                [ngClass]="{'disabled':i + 1 != messages.length,'selectable': false}">
+                                {{ button.texto }}
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="super-message" *ngIf="message.options.superMensaje" >
-                    <div class="background" [style.background-image]="'url('+ message.options.superMensaje.Image +')'"></div>
+                    <div class="super-message" *ngIf="message.options.superMensaje">
+                        <div class="background"
+                            [style.background-image]="'url('+ message.options.superMensaje.Image +')'"></div>
                         <div class="titulo">
-                                {{message.options.superMensaje.titulo}}
+                            {{message.options.superMensaje.titulo}}
                         </div>
                         <div class="contenido">
                             {{message.options.superMensaje.mensaje}}
                         </div>
-                </div>   
+                    </div>
+                    <ng-container *ngIf="message.options.actions">
+                        <div class="actions" *ngFor="let action of message.options.actions">
+                                <a class="background" [attr.href]="action.href" [attr.target]="_black" 
+                                [style.background-image]="'url('+ action.image +')'"></a>
+                        </div>
+                    </ng-container>
+
                 </ng-container>
-            
+
             </ng-container>
             <div class="powered-by-silice"></div>
         </div>
-        <chat-input (send)="sendMessage($event)" (dismiss)="closeChat()" (toggleAttOptions)="toggleAttOptions()" [focus]="focus" [menuPrincipal]="menuPrincipal"></chat-input>
+        <chat-input (send)="sendMessage($event)" (dismiss)="closeChat()" (toggleAttOptions)="toggleAttOptions()"
+            [focus]="focus" [menuPrincipal]="menuPrincipal"></chat-input>
         <chat-adjuntos [clientChat]="client.id" (send)="sendFile($event)"></chat-adjuntos>
         <app-new-tarjeta [url]="nuestraUrl" [@slideInOut2]="menuStatet2" [deleteHandler]="ocultarTarjetas2">
         </app-new-tarjeta>
     </div>
     <div *ngIf=" ! isMobileResolution">
-        <div class="chatbubble open" #btnbubble (click)="openChat()" *ngIf="!visible && close_able_chat" [@fadeInOut]="!visible"></div>
+        <div class="chatbubble open" #btnbubble (click)="openChat()" *ngIf="!visible && close_able_chat"
+            [@fadeInOut]="!visible"></div>
     </div>
-    
+
 
 </div>

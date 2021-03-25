@@ -11,8 +11,9 @@ export interface messageCookieService{
 export interface messageOptions{
     button?: Array<buttonOption>;
     menuPrincipal?:Array<menuPrincipalOption>;
-    superMensaje?:superMensajeOpption;
+    superMensaje?:superMensajeOption;
     show?:boolean;
+    actions?:Array<buttonToRedirect>;
 }
 
 interface buttonOption{
@@ -25,8 +26,14 @@ interface menuPrincipalOption{
     accion: String;
 }
 
-interface superMensajeOpption{
+interface superMensajeOption{
     titulo: String;
     mensaje: String;
     Image: String;
+}
+
+interface buttonToRedirect{
+    image: string;
+    href: string;
+    target:"_blank"|"_self";
 }
