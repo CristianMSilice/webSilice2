@@ -8,7 +8,12 @@ import { Component, OnInit } from '@angular/core';
 export class SedesComponent implements OnInit {
 
   constructor() { }
-
+  onSwiper(swiper) {
+    console.log(swiper);
+  }
+  onSlideChange() {
+    console.log('slide change');
+  }
   ngOnInit() {
   }
 

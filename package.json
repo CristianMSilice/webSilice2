@@ -49,6 +49,7 @@
         "rxjs-compat": "^6.2.1",
         "socket.io": "^2.0.3",
         "sweetalert2": "^8.8.7",
+        "swiper": "^6.5.0",
         "zone.js": "^0.8.26"
     },
     "devDependencies": {

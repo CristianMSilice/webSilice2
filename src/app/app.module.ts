@@ -1,16 +1,17 @@
 import { BrowserModule } from '@angular/platform-browser'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { NgModule } from '@angular/core'
-import { HttpClientModule } from '@angular/common/http'
-import { RouterModule, Routes } from '@angular/router';
 import { ElementModule } from './element.module'
-import { ConfigFactory, ConfigService, TOKEN } from './chat/shared/services/config'
 import { HttpModule } from '@angular/http'
 import { NgxLinkifyjsModule } from 'ngx-linkifyjs'
+import { HttpClientModule } from '@angular/common/http'
+import { NgxWebstorageModule } from 'ngx-webstorage'
+import { SwiperModule } from 'swiper/angular';
+import { RouterModule, Routes } from '@angular/router';
+
+import { ConfigFactory, ConfigService, TOKEN } from './chat/shared/services/config'
 import { CookieService } from 'ngx-cookie-service'
 import { EncsessionService } from './chat/shared/helpers/encsession.service';
-import { NgxWebstorageModule } from 'ngx-webstorage'
-
 
 import { AppComponent } from './app.component'
 import { BlogComponent } from './web/pages/blog/blog.component';
@@ -68,6 +69,7 @@ const routes: Routes = [
     ElementModule,
     HttpClientModule,
     HttpModule,
+    SwiperModule,
     NgxLinkifyjsModule.forRoot(),
     NgxWebstorageModule.forRoot()
   ],
