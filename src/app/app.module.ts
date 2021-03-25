@@ -26,27 +26,30 @@ import { SolutionsComponent } from './web/components/solutions/solutions.compone
 import { HeaderComponent } from './web/components/header/header.component';
 import { NavComponent } from './web/components/header/nav/nav.component';
 import { SliderComponent } from './web/components/principalSlider/slider/slider.component'
-import { RouterModule ,Routes} from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './web/pages/home/home.component'
 import { CaseStudiesComponent } from "./web/components/case-studies/case-studies.component";
 
 
 
 const routes: Routes = [
-  {path: 'home', component:WebComponent,
-  children:[
-    {path:'nosotros', component:NosotrosComponent},
-    {path:'laboratorio', component:LaboratorioComponent},
-    {path:'soluciones', component:SolucionesComponent},
-    {path:'casos', component:CasosComponent},
-    {path:'experiencia', component:ExperienciaComponent},
-    {path:'blog', component:BlogComponent},
-    {path:'casos', component:CasosComponent},
-    {path:'home', component:HomeComponent},
-    {path:'**', redirectTo:'/home/home',pathMatch:'full'}
-  ]  
-},
-{path:'**', redirectTo:'/home/home',pathMatch:'full'}
+  {
+    path: 'home', component: WebComponent,
+    children: [
+      { path: 'nosotros', component: NosotrosComponent, },
+      { path: 'trayectoria', component:NosotrosComponent},
+      // { path: 'equipo', component:TrayectoriaComponent},
+      { path: 'laboratorio', component: LaboratorioComponent },
+      { path: 'soluciones', component: SolucionesComponent },
+      { path: 'casos', component: CasosComponent },
+      { path: 'experiencia', component: ExperienciaComponent },
+      { path: 'blog', component: BlogComponent },
+      { path: 'casos', component: CasosComponent },
+      { path: 'home', component: HomeComponent },
+      { path: '**', redirectTo: '/home/home', pathMatch: 'full' }
+    ]
+  },
+  { path: '**', redirectTo: '/home/home', pathMatch: 'full' }
 ];
 
 @NgModule({
@@ -61,31 +64,31 @@ const routes: Routes = [
     NgxWebstorageModule.forRoot()
   ],
   declarations: [AppComponent,
-     EncabezadosComponent,
-     WebComponent,
-     BlogComponent,
-     CasosComponent,
-     CasosDeExitoComponent,
-     ExperienciaComponent,
-     LaboratorioComponent,
-     NosotrosComponent,
-     NoticiasComponent,
-     SolucionesComponent,
-     SolutionsComponent,
-     HeaderComponent,
-     NavComponent,
-     SliderComponent,
-     CaseStudiesComponent,
-     HomeComponent
-    ],
-  
+    EncabezadosComponent,
+    WebComponent,
+    BlogComponent,
+    CasosComponent,
+    CasosDeExitoComponent,
+    ExperienciaComponent,
+    LaboratorioComponent,
+    NosotrosComponent,
+    NoticiasComponent,
+    SolucionesComponent,
+    HeaderComponent,
+    NavComponent,
+    SliderComponent,
+    CaseStudiesComponent,
+    HomeComponent
+  ],
+
   providers: [
     ConfigService,
     EncsessionService,
     CookieService,
     { provide: 'CONFIGPATH', useValue: './assets/config.json' },
     { provide: 'APIURL-VAR', useValue: 'TOKEN' },
-    { provide: TOKEN, useFactory: ConfigFactory,
+    {
+      provide: TOKEN, useFactory: ConfigFactory,
       deps: [ConfigService, 'CONFIGPATH', 'APIURL-VAR']
     }
   ],
