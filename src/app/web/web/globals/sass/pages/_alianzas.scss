@@ -28,7 +28,7 @@
         @include respond-to($vp-max) {
             padding: 0 3rem;
             background: {
-                image: url(/images/map-2.jpg);
+                image: url(assets/images/map-2.jpg);
                 position: center 8rem;
                 size: 100% auto;
             }
@@ -134,7 +134,7 @@
         @include respond-to($vp-large) {
             background: {
                 size: 100% auto;
-                image: url(/images/map-2.jpg);
+                image: url(assets/images/map-2.jpg);
             }
 
             .partners-list { padding: 10rem 0 0; }
@@ -202,7 +202,7 @@
         @include respond-to($vp-large) {
             padding: 0;
             background: {
-                image: url(/images/consultoria-robot.jpg);
+                image: url(assets/images/consultoria-robot.jpg);
                 repeat: no-repeat;
                 position: 150% bottom;
             }

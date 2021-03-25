@@ -48,21 +48,12 @@
                 height: var(--size-slider-option);
                 position: absolute;
                 cursor: pointer;
+                z-index: 10;
                 border-radius: 50%;
                 background-color: var(--headerTextColor);
                 left: calc(50% - var(--size-slider-option) / 2);
                 top: calc(50% - var(--size-slider-option) / 2);
-                .pslider-tooltip {
-                    --sizeTooltip:300px;
-                    visibility: hidden;
-                    transform: scale(0);
-                    overflow: hidden;
-                    width: var(--sizeTooltip);
-                    height: var(--sizeTooltip);
-                    position: absolute;
-                    top: 0;
-                    left: 100%;
-                }
+
                 &.selectedOption {
                     margin: 1px solid var(--headerTextColor);
                     background-color: hsl(0, 0%, 50%, 50%);
@@ -77,24 +68,34 @@
                         left: calc(0px - var(--border-slider-option) / 2);
                         top: calc(0px - var(--border-slider-option) / 2);
                     }
-                    .pslider-tooltip {
-                        text-align: right;
-                        visibility: visible;
-                        overflow: visible;
-                        transform: scale(1);
-                        .content-links{
-                            flex-direction: column;
-                            position: absolute;
-                            top: calc(0px - var(--sizeTooltip) / 3);
-                            left: calc(0px - var(--sizeTooltip) / 3);
-                            z-index: 2;
+                }
+            }
+            .pslider-tooltip {
+                --sizeTooltip: 300px;
+                visibility: hidden;
+                transform: scale(0);
+                overflow: hidden;
+                width: var(--sizeTooltip);
+                height: var(--sizeTooltip);
+                position: absolute;
+                top: calc(50% - var(--sizeTooltip) / 2);
+                left: calc(50% - var(--sizeTooltip) / 2);
+                display: grid;
+                place-content: center;
+                &.selectedOption {
+                    text-align: right;
+                    visibility: visible;
+                    overflow: visible;
+                    transform: scale(1);
+                    .content-links {
+                        flex-direction: column;
+                        z-index: 2;
+                        padding: 0.35rem;
+                        letter-spacing: 0.1em;
+                        color: hsl(0deg 0% 100%);
+                        * {
                             padding: 0.35rem;
-                            letter-spacing: 0.1em;
-                            color: hsl(0deg 0% 100%);
-                            * {
-                                padding: 0.35rem;
-                                margin: 0.35rem;
-                            }
+                            margin: 0.35rem;
                         }
                     }
                 }

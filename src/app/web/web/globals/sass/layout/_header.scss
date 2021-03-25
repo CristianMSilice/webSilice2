@@ -26,6 +26,7 @@
 
     .site-menu-wrapper {
         flex: none;
+        width: 100%
     }
 
     @include respond-to($vp-large) {

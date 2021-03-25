@@ -1,7 +1,7 @@
 .contact {
     &-wrapper {
         @include bg-contain;
-        background-image: url(/images/presencia-map.png);
+        background-image: url(assets/images/presencia-map.png);
     }
 
     .content-inner { 

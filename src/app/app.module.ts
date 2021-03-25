@@ -17,6 +17,7 @@ import { BlogComponent } from './web/pages/blog/blog.component';
 import { CasosDeExitoComponent } from './web/pages/casos-de-exito/casos-de-exito.component';
 import { CasosComponent } from './web/pages/casos/casos.component';
 import { CaseStudiesComponent } from "./web/components/case-studies/case-studies.component";
+import { ContactoComponent } from './web/pages/experiencia/contacto/contacto.component';
 import { EncabezadosComponent } from './web/encabezados/encabezados.component';
 import { ExperienciaComponent } from './web/pages/experiencia/experiencia.component';
 import { EquipoComponent } from './web/pages/nosotros/equipo/equipo.component'
@@ -26,11 +27,14 @@ import { LaboratorioComponent } from './web/pages/laboratorio/laboratorio.compon
 import { NosotrosComponent } from './web/pages/nosotros/nosotros.component';
 import { NoticiasComponent } from './web/pages/noticias/noticias.component';
 import { NavComponent } from './web/components/header/nav/nav.component';
+import { SolutionsComponent } from './web/components/solutions/solutions.component';
 import { SolucionesComponent } from './web/pages/soluciones/soluciones.component';
 import { SliderComponent } from './web/components/principalSlider/slider/slider.component'
+import { SedesComponent } from './web/pages/experiencia/sedes/sedes.component';
 import { TrayectoriaComponent } from './web/pages/nosotros/trayectoria/trayectoria.component'
-import { WebComponent } from './web/web/web.component';
 import { TimelineComponent } from './web/components/timeline/timeline.component';
+import { TeamComponent } from './web/components/team/team.component';
+import { WebComponent } from './web/web/web.component';
 
 
 
@@ -39,12 +43,14 @@ const routes: Routes = [
     path: 'home', component: WebComponent,
     children: [
       { path: 'nosotros', component: NosotrosComponent, },
-      { path: 'trayectoria', component:TrayectoriaComponent},
-      { path: 'equipo', component:EquipoComponent},
+      { path: 'nosotros/trayectoria', component:TrayectoriaComponent},
+      { path: 'nosotros/equipo', component:EquipoComponent},
       { path: 'laboratorio', component: LaboratorioComponent },
       { path: 'soluciones', component: SolucionesComponent },
       { path: 'casos', component: CasosComponent },
       { path: 'experiencia', component: ExperienciaComponent },
+      { path: 'experiencia/sedes', component: SedesComponent },
+      { path: 'experiencia/contacto', component: ContactoComponent },
       { path: 'blog', component: BlogComponent },
       { path: 'casos', component: CasosComponent },
       { path: 'home', component: HomeComponent },
@@ -70,6 +76,7 @@ const routes: Routes = [
     CasosComponent,
     CasosDeExitoComponent,
     CaseStudiesComponent,
+    ContactoComponent,
     EncabezadosComponent,
     EquipoComponent,
     ExperienciaComponent,
@@ -80,9 +87,12 @@ const routes: Routes = [
     NoticiasComponent,
     NavComponent,
     SolucionesComponent,
+    SolutionsComponent,
     SliderComponent,
+    SedesComponent,
     TrayectoriaComponent,
     TimelineComponent,
+    TeamComponent,
     WebComponent,
   ],
 
