@@ -35,10 +35,10 @@ body {
         display: grid;
         position: relative;
         overflow: hidden;
-        grid-template-columns: 0px 0px 1fr $sidebar-width;
+        grid-template-columns: 1fr $sidebar-width;
         grid-template-areas:
-        "header  header  sidebar"
-        "content content sidebar";
+            "header  header  sidebar"
+            "content content sidebar";
 
         &:before,
         &:after {
@@ -53,7 +53,7 @@ body {
             width: 100%;
             height: 200px;
             box-shadow: 0 0 100px rgba($c-black, 0.08);
-            background: linear-gradient(to bottom, rgba(244,244,244,1) 0%,rgba(255,255,255,1) 100%);
+            background: linear-gradient(to bottom, rgba(244, 244, 244, 1) 0%, rgba(255, 255, 255, 1) 100%);
         }
 
         &:after {
@@ -71,21 +71,23 @@ body {
         background-color: $c-white;
     }
 
-    &-content { 
+    &-content {
         width: 100%;
-        grid-area: content; 
+        grid-area: content;
     }
 
     &-aside {
         @include bg-cover;
         position: relative;
         z-index: 50;
-        grid-area: sidebar;	
+        grid-area: sidebar;
         background-color: $c-white;
     }
 
     @include respond-to($vp-large) {
-        &-content { height: calc(100vh - #{$header-height}); }
+        &-content {
+            height: calc(100vh - #{$header-height});
+        }
     }
 }
 
@@ -131,6 +133,7 @@ h6 {
             height: 100%;
         }
     }
+    width: calc(100vw - var(--width-chat-widget));
 }
 
 .row,

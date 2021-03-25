@@ -63,7 +63,7 @@ export class ChatWidgetComponent implements OnInit {
   public _visible = true
 
   isMobileResolution: boolean;
-  pp: string = ' <p>Hola, bienvenido de nuevo asdf</p> ';
+  // pp: string = ' <p>Hola, bienvenido de nuevo asdf</p> ';
   filetosend: HTMLInputElement;
   menuPrincipal = { options: [{ texto: '', accion: '' }], enabled: false }
   innerWidth: number
@@ -131,39 +131,6 @@ export class ChatWidgetComponent implements OnInit {
     this.close_able_chat = (this.isMobileResolution)
       ? true
       : GlobalService.CLOSE_ABLE_CHAT;
-  }
-
-  createbuttons(buttons) {
-    let div = document.createElement('div');
-    div.classList.add('message-buttons-array');
-    buttons.forEach(button => {
-      let div1 = document.createElement('div');
-      div1.classList.add('message-button-option');
-      div1.textContent = button.texto;
-      div1.style.borderColor = button.color;
-      div1.style.color = button.color;
-      div1.setAttribute('action', button.accion);
-      div1.setAttribute('state', 'enabled');
-      div.appendChild(div1)
-    });
-
-    return div;
-  }
-
-  reviewOptions(event) {
-    let button: Element = event.target;
-    let state = button.getAttribute('state');
-    let message = {
-      value: button.getAttribute('action')
-    };
-    if (state == 'enabled') {
-      button.parentElement.childNodes.forEach((optionBtn: Element) => {
-        optionBtn.classList.add('disabled');
-        optionBtn.setAttribute('state', 'disabled');
-      })
-      button.classList.add('selectable');
-      this.sendMessage(message);
-    }
   }
 
   private comprobarDatos() {
@@ -270,7 +237,6 @@ export class ChatWidgetComponent implements OnInit {
   }
 
   public addMessage(from, text: string, type: 'received' | 'sent', tipo, file_mime, show?) {
-    console.log(show == undefined)
     if(show == undefined)show=true;
     let clave = '*$MARCO$*:';
     let options
@@ -280,6 +246,7 @@ export class ChatWidgetComponent implements OnInit {
       options = JSON.parse(stringify);
       text = text.substring(0, text.lastIndexOf(clave))
     }
+    
     if(options == undefined) options= {};
     options['show'] = show;
     if (this.messages == undefined) this.messages = []

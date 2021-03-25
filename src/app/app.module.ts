@@ -39,9 +39,10 @@ const routes: Routes = [
     {path:'soluciones', component:SolucionesComponent},
     {path:'casos', component:CasosComponent},
     {path:'experiencia', component:ExperienciaComponent},
-    {path:'home', component:HomeComponent},
     {path:'blog', component:BlogComponent},
-    {path:'casos', component:CasosComponent}
+    {path:'casos', component:CasosComponent},
+    {path:'home', component:HomeComponent},
+    {path:'**', redirectTo:'/home/home',pathMatch:'full'}
   ]  
 },
 {path:'**', redirectTo:'/home/home',pathMatch:'full'}
