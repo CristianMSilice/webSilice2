@@ -27,6 +27,9 @@ import { NavComponent } from './web/components/header/nav/nav.component';
 import { SliderComponent } from './web/components/principalSlider/slider/slider.component'
 import { RouterModule ,Routes} from '@angular/router';
 import { HomeComponent } from './web/pages/home/home.component'
+import { CaseStudiesComponent } from "./web/components/case-studies/case-studies.component";
+
+
 
 const routes: Routes = [
   {path: 'home', component:WebComponent,
@@ -69,6 +72,7 @@ const routes: Routes = [
      HeaderComponent,
      NavComponent,
      SliderComponent,
+     CaseStudiesComponent,
      HomeComponent
     ],
   
