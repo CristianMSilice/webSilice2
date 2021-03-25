@@ -73,6 +73,11 @@
         }
     }
 
+    .content-body,
+    .content-body > * {
+        @include flex-all;
+    }
+
     .swiper-container { overflow: visible; }
 }
 

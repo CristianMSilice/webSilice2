@@ -37,8 +37,8 @@ body {
         overflow: hidden;
         grid-template-columns: 1fr $sidebar-width;
         grid-template-areas:
-            "header  header  sidebar"
-            "content content sidebar";
+            "header  sidebar"
+            "content sidebar";
 
         &:before,
         &:after {

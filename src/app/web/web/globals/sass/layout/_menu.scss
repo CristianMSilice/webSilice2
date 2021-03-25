@@ -84,13 +84,14 @@
         .toogle-icon-menu { display: none; }
 
         > ul { 
-            @include flex-all; 
+            @include flex-all($justify: flex-end); 
             position: static;
             top: auto;
             left: auto;
             z-index: 9;
             width: 100%;
             height: 100%;
+            padding: 0 $site-padding;
             background-color: transparent;
             transform: none !important;
 

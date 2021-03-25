@@ -1,9 +1,11 @@
 .nosotros-wrapper {
     position: relative;
 
-    .items-list {
+    .items-list,
+    .items-list > * {
         @include flex-all($justify: center, $wrap: wrap);
         position: relative;
+        width: 100%;
         padding: 0 0 2rem;
     }
 

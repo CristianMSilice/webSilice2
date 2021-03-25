@@ -10,7 +10,7 @@
 
     .site-title {
         @include flex-all($justify: center, $align: center);
-        flex: 1;
+        flex: none;
         height: $header-height;
         margin: 0;
     }
@@ -25,7 +25,7 @@
     }
 
     .site-menu-wrapper {
-        flex: none;
+        flex: 1;
         width: 100%
     }
 
@@ -46,7 +46,7 @@
             flex-direction: row;
             justify-content: space-between;
             height: $header-height;
-            padding: 0 $site-padding;
+            padding: 0 0 0 $site-padding;
         }
 
         .logo {
