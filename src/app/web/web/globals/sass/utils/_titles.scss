@@ -29,7 +29,9 @@
 
         .site-title { 
             color: $primary-color; 
-
+            top: -55px;
+            left: -39px;
+            font-size: calc(2.7vmin + 1em);
             @include mask {
                 top: 100%;
                 left: 0;
