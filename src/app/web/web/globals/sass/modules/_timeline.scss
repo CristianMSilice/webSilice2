@@ -17,6 +17,7 @@
         flex: none;
         width: 480px; 
         height: 500px;
+        margin: 0 3rem 0 2rem;
 
         @include mask {
             top: 50%;

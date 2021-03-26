@@ -5,8 +5,9 @@
     }
 
     .profile {
-        @include width-constrain(330px);
         position: relative;
+        width: 350px;
+        margin: 0 2rem;
         text-align: center;
         color: $c-white;
 
@@ -76,6 +77,10 @@
     .content-body,
     .content-body > * {
         @include flex-all;
+    }
+
+    .content-body {
+        overflow: visible;
     }
 
     .swiper-container { overflow: visible; }
