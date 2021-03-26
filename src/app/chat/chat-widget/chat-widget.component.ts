@@ -25,9 +25,9 @@ import { NgxLinkifyjsService } from 'ngx-linkifyjs'
 
 import { EncsessionService } from '../shared/helpers/encsession.service'
 import { ChatAdjuntosComponent } from '../chat-adjuntos/chat-adjuntos.component'
-import { messageOptions, messageCookieService} from "../shared/model/messageOptions";
+import { messageOptions, messageCookieService } from "../shared/model/messageOptions";
 import { unique } from 'jquery'
-import { ActivatedRoute, Router } from '@angular/router'
+import { ActivatedRoute, NavigationStart, Router } from '@angular/router'
 @Component({
   selector: 'chat-widget',
   templateUrl: './chat-widget.component.html',
@@ -51,7 +51,7 @@ export class ChatWidgetComponent implements OnInit {
   action = Action;
   banderaScroll = true;
 
-  msgList: Array <messageCookieService>= [];
+  msgList: Array<messageCookieService> = [];
   messageContent: string;
   ioConnection: any;
   menuStatet: string = 'out';
@@ -88,7 +88,7 @@ export class ChatWidgetComponent implements OnInit {
     status: 'online',
     avatar: '',
   }
-  public messages:Array<messageCookieService> = []
+  public messages: Array<messageCookieService> = []
 
 
   constructor(
@@ -107,11 +107,18 @@ export class ChatWidgetComponent implements OnInit {
       componentFn: (value) => this.comunicationWebWidget(value),
       component: this,
     };
-
+    this.subscribeToSendUrlToPau();
   }
-
+  subscribeToSendUrlToPau() {
+    this.router.events.subscribe(e => {
+      if (e instanceof NavigationStart) {
+        console.log(`url: ${this.router.url}`)
+        this.comunicationWebWidget(`url: ${this.router.url}`);
+      }
+    })
+  }
   public comunicationWebWidget(message) {
-    if (message.trim() === '')return
+    if (message.trim() === '') return
     if (!this.valido) {
       this.addMessage(this.client, message, 'sent', 1, '', false)
     } else {
@@ -181,8 +188,6 @@ export class ChatWidgetComponent implements OnInit {
           this.client.id = this.cookieValue;
           this.misDatos()
           this.messages = this.msgList
-          console.log(this.messages)
-
           setTimeout(() => {
 
             this._visible = true //cambiado
@@ -240,7 +245,7 @@ export class ChatWidgetComponent implements OnInit {
   }
 
   public addMessage(from, text: string, type: 'received' | 'sent', tipo, file_mime, show?) {
-    if(show == undefined)show=true;
+    if (show == undefined) show = true;
     let clave = '*$MARCO$*:';
     let options
 
@@ -251,11 +256,11 @@ export class ChatWidgetComponent implements OnInit {
       text = text.substring(0, text.lastIndexOf(clave))
     }
     let redirect = false
-   
-    if(options == undefined) options= {};
-    if(options.redirect){
+
+    if (options == undefined) options = {};
+    if (options.redirect) {
       redirect = options.redirect
-      options.redirect = undefined      
+      options.redirect = undefined
     }
     options['show'] = show;
     if (this.messages == undefined) this.messages = []
@@ -266,10 +271,10 @@ export class ChatWidgetComponent implements OnInit {
       tipo,
       file_mime,
       date: new Date().getTime(),
-      options:options
+      options: options
     });
 
-    let fila:messageCookieService = {
+    let fila: messageCookieService = {
       from: from,
       text: text,
       type: type,
@@ -287,7 +292,7 @@ export class ChatWidgetComponent implements OnInit {
       } catch (error) { }
     }, 800);
 
-    if(redirect)this.router.navigate([redirect], { relativeTo: this.route });
+    if (redirect) this.router.navigate([redirect], { relativeTo: this.route });
   }
 
   private trabajarMsg(msg: any) {
@@ -406,23 +411,23 @@ export class ChatWidgetComponent implements OnInit {
   buttonMessageClick(message, enabled, hidden) {
     let msg = { value: message };
     if (enabled) {
-      this.sendMessage(msg,hidden=="true")
+      this.sendMessage(msg, hidden == "true")
     }
   }
-  public sendMessage(message,respHidden?) {
+  public sendMessage(message, respHidden?) {
     if (message.value.trim() === '') {
       return
     }
     if (!this.valido) {
       this.client.name = message.value.trim();
-      (respHidden==true)
-      ?this.addMessage(this.client, message.value, 'sent', 1, '',false)
-      :this.addMessage(this.client, message.value, 'sent', 1, '');
+      (respHidden == true)
+        ? this.addMessage(this.client, message.value, 'sent', 1, '', false)
+        : this.addMessage(this.client, message.value, 'sent', 1, '');
     } else {
       this.socketService.send(this.client, message.value, this._token);
-      (respHidden==true)
-      ?this.addMessage(this.client, message.value, 'sent', 1, '',false)
-      :this.addMessage(this.client, message.value, 'sent', 1, '');
+      (respHidden == true)
+        ? this.addMessage(this.client, message.value, 'sent', 1, '', false)
+        : this.addMessage(this.client, message.value, 'sent', 1, '');
     }
 
   }
