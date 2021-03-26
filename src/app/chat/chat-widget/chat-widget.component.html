@@ -70,7 +70,7 @@
                     <div class="button" *ngIf="message.options.button">
                         <div class="message-buttons-array">
                             <div class="message-button-option" *ngFor="let button of message.options.button"
-                                (click)="buttonMessageClick(button.accion,i + 1 == messages.length)"
+                                (click)="buttonMessageClick(button.accion,i + 1 == messages.length,button['hidden'])"
                                 [ngClass]="{'disabled':i + 1 != messages.length,'selectable': false}">
                                 {{ button.texto }}
                             </div>

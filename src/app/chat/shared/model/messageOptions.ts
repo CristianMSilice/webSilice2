@@ -14,12 +14,14 @@ export interface messageOptions{
     superMensaje?:superMensajeOption;
     show?:boolean;
     actions?:Array<buttonToRedirect>;
+    redirect:String;
 }
 
 interface buttonOption{
     Color: String;
     texto: String;
     accion: String;
+    hidden?:"true";
 }
 interface menuPrincipalOption{
     texto: String;

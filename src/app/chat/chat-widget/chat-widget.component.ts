@@ -27,6 +27,7 @@ import { EncsessionService } from '../shared/helpers/encsession.service'
 import { ChatAdjuntosComponent } from '../chat-adjuntos/chat-adjuntos.component'
 import { messageOptions, messageCookieService} from "../shared/model/messageOptions";
 import { unique } from 'jquery'
+import { ActivatedRoute, Router } from '@angular/router'
 @Component({
   selector: 'chat-widget',
   templateUrl: './chat-widget.component.html',
@@ -97,6 +98,8 @@ export class ChatWidgetComponent implements OnInit {
     private encsessionService: EncsessionService,
     private cookieService: CookieService,
     private zone: NgZone,
+    private router: Router,
+    private route: ActivatedRoute,
     @Inject(TOKEN) public _token?: string) {
 
     window['angularComponentReference'] = {
@@ -247,8 +250,13 @@ export class ChatWidgetComponent implements OnInit {
       console.log(options)
       text = text.substring(0, text.lastIndexOf(clave))
     }
-    
+    let redirect = false
+   
     if(options == undefined) options= {};
+    if(options.redirect){
+      redirect = options.redirect
+      options.redirect = undefined      
+    }
     options['show'] = show;
     if (this.messages == undefined) this.messages = []
     this.messages.push({
@@ -278,6 +286,8 @@ export class ChatWidgetComponent implements OnInit {
         this.scrollToBottom(this.widgetBody.nativeElement, 200);
       } catch (error) { }
     }, 800);
+
+    if(redirect)this.router.navigate([redirect], { relativeTo: this.route });
   }
 
   private trabajarMsg(msg: any) {
@@ -393,23 +403,26 @@ export class ChatWidgetComponent implements OnInit {
     this.addMessage(this.client, comando, 'sent', 1, '')
     this.ocultarTarjetas()
   }
-  buttonMessageClick(message, enabled) {
+  buttonMessageClick(message, enabled, hidden) {
     let msg = { value: message };
     if (enabled) {
-      this.sendMessage(msg);
+      this.sendMessage(msg,hidden=="true")
     }
   }
-  public sendMessage(message) {
-
+  public sendMessage(message,respHidden?) {
     if (message.value.trim() === '') {
       return
     }
     if (!this.valido) {
-      this.client.name = message.value.trim()
-      this.addMessage(this.client, message.value, 'sent', 1, '')
+      this.client.name = message.value.trim();
+      (respHidden==true)
+      ?this.addMessage(this.client, message.value, 'sent', 1, '',false)
+      :this.addMessage(this.client, message.value, 'sent', 1, '');
     } else {
-      this.socketService.send(this.client, message.value, this._token)
-      this.addMessage(this.client, message.value, 'sent', 1, '')
+      this.socketService.send(this.client, message.value, this._token);
+      (respHidden==true)
+      ?this.addMessage(this.client, message.value, 'sent', 1, '',false)
+      :this.addMessage(this.client, message.value, 'sent', 1, '');
     }
 
   }

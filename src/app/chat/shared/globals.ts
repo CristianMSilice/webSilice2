@@ -25,7 +25,8 @@ export class GlobalService {
     public static TXT_INICIAL=`Hola 🤩Soy Silice, antes de que empecemos a hablar, dime cuál es tu nombre.`;
     // *$MARCO$*:{
     //   "button":[
-    //     {"color":"#3366cc","texto":"accion","accion":"primera"}
+    //     {"color":"#3366cc","texto":"Hidden","accion":"Cristian","hidden":"true"},
+    //     {"color":"#3366cc","texto":"Normal","accion":"Cristian"}
     //   ],
     //   "menuPrincipal":[
     //     {"texto":"conoce a Alfredito","accion":"Alfredito"},
@@ -39,10 +40,16 @@ export class GlobalService {
     //   "actions":[
     //     {
     //       "image":"https://as.com/deporteyvida/imagenes/2018/02/28/portada/1519830649_122505_1519830777_noticia_normal.jpg",
-    //       "href":"/laboratorio",
+    //       "href":"/home/laboratorio",
     //       "target": "_self"
+    //     },
+    //     {
+    //       "image":"https://as.com/deporteyvida/imagenes/2018/02/28/portada/1519830649_122505_1519830777_noticia_normal.jpg",
+    //       "href":"http://www.facebook.com",
+    //       "target": "_blank"
     //     }
-    //   ]
+    //   ],
+    //   "redirect":"/home/laboratorio"
     // }
     // `; 
      public static API_ENDPOINT='https://node1.smallshi.com/api-widget/';
