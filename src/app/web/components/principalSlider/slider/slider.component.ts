@@ -7,8 +7,8 @@ import {sliderItem  } from "../../../models/sliderItem";
   styleUrls: ['./slider.component.scss']
 })
 export class SliderComponent implements OnInit {
-@Input() width:string ='100%';
-@Input() height:string ='125%';
+@Input() width:string ;
+@Input() height:string ;
 @Input() sliderItem:Array<sliderItem>=[];
   math=Math;
   selectedOption: number = 0

@@ -1,17 +1,20 @@
-<article class="profile" aria-labelledby="team_profile_1">   
-    <div class="summary-wrapper">
-        <figure class="image"><img src="assets/images/equipo/equipo-sergio.jpg" alt="Sergio Alvano" /></figure>
-        <div class="summary">
-            <h4 class="name" id="team_profile_1">Sergio Alvano</h4>
-            <div class="position">CEO</div>
+<ng-container *ngFor="let option of sliderItem; index as i">
+    <article class="profile" aria-labelledby="team_profile_1">
+        <div class="summary-wrapper">
+            <figure class="image"><img src="assets/images/equipo/equipo-{{option.image}}" alt="{{option.name}}" />
+            </figure>
+            <div class="summary">
+                <h4 class="name">{{option.name}}</h4>
+                <div class="position">{{option.position}}</div>
+            </div>
+            <div class="content-links">
+                <button class="action action-primary" (click)="SiblingService.sendClick(option.name)">Ver más</button>
+            </div>
         </div>
-        <div class="content-links">
-            <button class="action action-primary" (click)="SiblingService.sendClick('Sergio Alvano')">Ver más</button>
-        </div>
-    </div>
-</article>
+    </article>
+</ng-container>
 
-<article class="profile" aria-labelledby="team_profile_2">   
+<!-- <article class="profile" aria-labelledby="team_profile_2">   
     <div class="summary-wrapper">
         <figure class="image"><img src="assets/images/equipo/equipo-diana.jpg" alt="Diana Castellanos" /></figure>
         <div class="summary">
@@ -22,56 +25,4 @@
             <button class="action action-primary" (click)="SiblingService.sendClick('Diana Castellanos')">Ver más</button>
         </div>
     </div>
-</article>
-
-<article class="profile" aria-labelledby="team_profile_3">   
-    <div class="summary-wrapper">
-        <figure class="image"><img src="assets/images/equipo/equipo-fernando.jpg" alt="Fernando Fernández" /></figure>
-        <div class="summary">
-            <h4 class="name" id="team_profile_3">Fernando Fernández</h4>
-            <div class="position">Lider de Desarrollo</div>
-        </div>
-        <div class="content-links">
-            <button class="action action-primary" (click)="SiblingService.sendClick('Fernando Fernández')">Ver más</button>
-        </div>
-    </div>
-</article>
-
-<article class="profile" aria-labelledby="team_profile_4">   
-    <div class="summary-wrapper">
-        <figure class="image"><img src="assets/images/equipo/equipo-juan.jpg" alt="Juan Antonio Blanco" /></figure>
-        <div class="summary">
-            <h4 class="name" id="team_profile_4">Juan Antonio Blanco</h4>
-            <div class="position">Country Manager España</div>
-        </div>
-        <div class="content-links">
-            <button class="action action-primary" (click)="SiblingService.sendClick('Juan Antonio Blanco')">Ver más</button>
-        </div>
-    </div>
-</article>
-
-<article class="profile" aria-labelledby="team_profile_5">   
-    <div class="summary-wrapper">
-        <figure class="image"><img src="assets/images/equipo/equipo-alvaro.jpg" alt="Álvaro Andrés Ortíz" /></figure>
-        <div class="summary">
-            <h4 class="name" id="team_profile_5">Álvaro Andrés Ortíz</h4>
-            <div class="position">Country Manager Colombia</div>
-        </div>
-        <div class="content-links">
-            <button class="action action-primary" (click)="SiblingService.sendClick('Álvaro Andrés Ortíz')">Ver más</button>
-        </div>
-    </div>
-</article>
-
-<article class="profile" aria-labelledby="team_profile_5">   
-    <div class="summary-wrapper">
-        <figure class="image"><img src="assets/images/equipo/equipo-jonatan.jpg" alt="Jonathan Díaz" /></figure>
-        <div class="summary">
-            <h4 class="name" id="team_profile_5">Jonathan Díaz</h4>
-            <div class="position">Country Manager Panamá</div>
-        </div>
-        <div class="content-links">
-            <button class="action action-primary" (click)="SiblingService.sendClick('Jonathan Díaz')">Ver más</button>
-        </div>
-    </div>
-</article>
+</article> -->
