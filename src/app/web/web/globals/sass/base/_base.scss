@@ -186,6 +186,8 @@ h6 {
     @include flex-all(column, center, center);
     padding: 0;
     height: calc(100% - #{$header-subtitle-height});
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 .full-screen {

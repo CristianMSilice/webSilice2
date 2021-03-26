@@ -10,6 +10,8 @@
     }
 
     .item {
+        flex: 1;
+
         .icon-hexagon {
             position: absolute;
             top: 50%;
@@ -72,7 +74,7 @@
         }
     }
 
-    @include respond-to($vp-large) {
+    @include respond-to($vp-max) {
         .item {
             width: 16%;
             margin: 0 1rem;
