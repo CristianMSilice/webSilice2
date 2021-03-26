@@ -8,9 +8,20 @@ import { SiblingService } from 'src/app/chat/shared/services/sibling.service';
 })
 export class TeamComponent implements OnInit {
 
-  constructor(private SiblingService:SiblingService) { }
 
+
+  sliderItem: Array<any> = [
+    { image: "sergio.jpg", name: "Sergio Alvano", position: "CEO" },
+    { image: "diana.jpg", name: "Diana Castellanos", position: "Responsable de alianzas estratégica" },
+    { image: "fernando.jpg", name: "Fernando Fernández", position: "Lider de Desarrollo" },
+    { image: "juan.jpg", name: "Juan Antonio Blanco", position: "Country Manager España" },
+    { image: "alvaro.jpg", name: "Álvaro Andrés Ortíz", position: "Country Manager Colombia" },
+    { image: "jonatan.jpg", name: "Jonathan Díaz", position: "Country Manager Panamá" },
+  ]
+
+  constructor(private SiblingService: SiblingService) {
+  }
   ngOnInit() {
   }
-  
+
 }
