@@ -130,6 +130,9 @@
         }
     }
 
+    .content-list,
+    .content-list > * { @include flex-all; }
+
     .swiper-container { 
         overflow: visible; 
         margin: 0;

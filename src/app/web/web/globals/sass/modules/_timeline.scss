@@ -85,18 +85,17 @@
         }
     }
 
-    .content {
-        &-body { 
-            @include flex-all($align: center); 
-            @include mask {
-                top: 50%;
-                left: 0;
-                width: 100%;
-                height: 8px;
-                margin-top: calc(29px / 2);
-                background-color: $c-grey-light;
-                transform: translateY(-50%);
-            }
+    .content-body,
+    .content-body > * { 
+        @include flex-all($align: center); 
+        @include mask {
+            top: 50%;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            margin-top: calc(29px / 2);
+            background-color: $c-grey-light;
+            transform: translateY(-50%);
         }
     }
 }

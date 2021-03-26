@@ -26,6 +26,7 @@ import { HomeComponent } from './web/pages/home/home.component'
 import { HeaderComponent } from './web/components/header/header.component';
 import { LaboratorioComponent } from './web/pages/laboratorio/laboratorio.component';
 import { NosotrosComponent } from './web/pages/nosotros/nosotros.component';
+import { FeaturesComponent } from './web/components/features/features.component';
 import { NoticiasComponent } from './web/pages/noticias/noticias.component';
 import { NavComponent } from './web/components/header/nav/nav.component';
 import { SolutionsComponent } from './web/components/solutions/solutions.component';
@@ -86,6 +87,7 @@ const routes: Routes = [
     HomeComponent,
     LaboratorioComponent,
     NosotrosComponent,
+    FeaturesComponent,
     NoticiasComponent,
     NavComponent,
     SolucionesComponent,
