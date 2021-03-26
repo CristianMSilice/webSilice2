@@ -80,23 +80,22 @@
         display: flex;
     }
 
-    @include respond-to($vp-large) {      
+    @include respond-to($vp-mid) {      
         .toogle-icon-menu { display: none; }
 
         > ul { 
-            @include flex-all($justify: flex-end); 
+            @include flex-all($justify: space-around); 
             position: static;
             top: auto;
             left: auto;
             z-index: 9;
             width: 100%;
             height: 100%;
-            padding: 0 $site-padding;
             background-color: transparent;
             transform: none !important;
 
             > li { 
-                margin: 0 2rem 0 0; 
+                margin: 0; 
                 padding: .5rem 0;
                 position: relative;
 
@@ -123,6 +122,19 @@
         > ul li:focus-within > .sub-menu,
         > ul li .sub-menu:hover,
         > ul li .sub-menu:focus { top: 100%; }
+    }
+
+    @include respond-to($site-width) {      
+        .toogle-icon-menu { display: none; }
+
+        > ul { 
+            justify-content: flex-end;
+            padding: 0 $site-padding;
+
+            > li { 
+                margin: 0 2rem 0 0; 
+            }
+        }
     }
 }
 

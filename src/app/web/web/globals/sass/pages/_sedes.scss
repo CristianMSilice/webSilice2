@@ -1,6 +1,8 @@
 .sedes {
     &-wrapper {
         justify-content: flex-start;
+        overflow-y: scroll;
+        overflow-x: hidden;
     }
 
     .swiper-container {
@@ -51,12 +53,12 @@
     }
 
     .content-info {
-        @include flex-all;
-        padding-left: $site-padding;
+        @include flex-all(column, center, center);
+        padding: 0 $site-padding;
 
         .address {
             flex: none;
-            width: 540px;
+            width: 100%;
             padding-top: calc(3.75rem + 10px);
 
             .title { 
@@ -103,8 +105,21 @@
 
         .info { 
             flex: 1; 
-            padding: 3rem 0 0 $site-padding;
-            text-align: right;
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        @include respond-to($site-width) {
+            flex-direction: row;
+            justify-content: space-between;
+            padding: 0  0 0 $site-padding;
+
+            .address { width: 540px; }
+
+            .info { 
+                padding: 3rem 0 0 $site-padding; 
+                text-align: right;
+            }
         }
     }
 }

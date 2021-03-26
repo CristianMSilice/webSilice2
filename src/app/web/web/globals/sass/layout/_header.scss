@@ -11,7 +11,7 @@
     .site-title {
         @include flex-all($justify: center, $align: center);
         flex: none;
-        height: $header-height;
+        height: 55px;
         margin: 0;
     }
 
@@ -29,9 +29,9 @@
         width: 100%
     }
 
-    @include respond-to($vp-large) {
+    @include respond-to($vp-mid) {
         width: 100%;
-        height: $header-height;
+        height: 100px;
 
         .site-title,
         .site-title a {
@@ -43,14 +43,25 @@
         }
 
         &__row--inner {
-            flex-direction: row;
-            justify-content: space-between;
-            height: $header-height;
-            padding: 0 0 0 $site-padding;
+            flex-direction: column;
+            justify-content: space-around;
         }
 
         .logo {
             padding: 0;
         }
+    }
+
+    @include respond-to($site-width) {
+        height: $header-height;
+
+        &__row--inner {
+            flex-direction: row; 
+            justify-content: space-between;
+            height: $header-height;
+            padding: 0 0 0 $site-padding;
+        }
+
+        .site-title { height: 75px; }
     }
 }
