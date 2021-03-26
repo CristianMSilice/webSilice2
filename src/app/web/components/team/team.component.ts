@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SiblingService } from 'src/app/chat/shared/services/sibling.service';
 
 @Component({
   selector: 'team',
@@ -7,9 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TeamComponent implements OnInit {
 
-  constructor() { }
+  constructor(private SiblingService:SiblingService) { }
 
   ngOnInit() {
   }
-
+  
 }

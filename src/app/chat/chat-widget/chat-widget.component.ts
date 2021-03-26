@@ -23,6 +23,8 @@ import { CookieService } from 'ngx-cookie-service'
 import swal from 'sweetalert2'
 import { NgxLinkifyjsService } from 'ngx-linkifyjs'
 
+
+import { SiblingService } from '../shared/services/sibling.service'
 import { EncsessionService } from '../shared/helpers/encsession.service'
 import { ChatAdjuntosComponent } from '../chat-adjuntos/chat-adjuntos.component'
 import { messageOptions, messageCookieService } from "../shared/model/messageOptions";
@@ -100,15 +102,18 @@ export class ChatWidgetComponent implements OnInit {
     private zone: NgZone,
     private router: Router,
     private route: ActivatedRoute,
+    private SiblingService: SiblingService,
     @Inject(TOKEN) public _token?: string) {
-
+      
     window['angularComponentReference'] = {
       zone: this.zone,
       componentFn: (value) => this.comunicationWebWidget(value),
       component: this,
     };
     this.subscribeToSendUrlToPau();
+    this.subscribeToSendClickToPau();
   }
+
   subscribeToSendUrlToPau() {
     this.router.events.subscribe(e => {
       if (e instanceof NavigationStart) {
@@ -117,6 +122,14 @@ export class ChatWidgetComponent implements OnInit {
       }
     })
   }
+
+  subscribeToSendClickToPau(){
+    this.SiblingService.sendClick$.subscribe((text)=>{
+      console.log(text)
+      this.comunicationWebWidget(text);
+    })
+  }
+
   public comunicationWebWidget(message) {
     if (message.trim() === '') return
     if (!this.valido) {
