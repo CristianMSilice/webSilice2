@@ -117,6 +117,7 @@ export class ChatWidgetComponent implements OnInit {
   subscribeToSendUrlToPau() {
     this.router.events.subscribe(e => {
       if (e instanceof NavigationStart) {
+        let route = this.router.url.replace(/\//g,"-");
         console.log(`url: ${this.router.url}`)
         this.comunicationWebWidget(`url: ${this.router.url}`);
       }
@@ -272,7 +273,6 @@ export class ChatWidgetComponent implements OnInit {
 
     if (options == undefined) options = {};
     if (options.redirect) {
-      redirect = options.redirect.replace(/-/g,"/");
       options.redirect = undefined
     }
     options['show'] = show;
