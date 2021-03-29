@@ -5,7 +5,12 @@
             [width]="'100%'"
             [height]="'125%'"
             [sliderItem]="_sliderItems"
+            (openModalEmmiter)="openModal($event)"
             ></web-slider>
         </div>
     </div>
 </main>
+
+<modal [(showModal)]="showModal">
+    <h1>prueba</h1>
+</modal>

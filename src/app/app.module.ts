@@ -39,6 +39,7 @@ import { TimelineComponent } from './web/components/timeline/timeline.component'
 import { TeamComponent } from './web/components/team/team.component';
 import { VenueComponent } from './web/components/venue/venue.component'
 import { WebComponent } from './web/web/web.component';
+import { ModalComponent } from './web/components/modal/modal.component';
 
 
 
@@ -103,6 +104,7 @@ const routes: Routes = [
     TeamComponent,
     VenueComponent,
     WebComponent,
+    ModalComponent,
   ],
 
   providers: [

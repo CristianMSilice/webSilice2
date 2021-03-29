@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, EventEmitter, Output  } from '@angular/core';
 import {sliderItem  } from "../../../models/sliderItem";
 
 @Component({
@@ -10,6 +10,7 @@ export class SliderComponent implements OnInit {
 @Input() width:string ;
 @Input() height:string ;
 @Input() sliderItem:Array<sliderItem>=[];
+@Output() openModalEmmiter = new EventEmitter<boolean>();
   math=Math;
   selectedOption: number = 0
   IntervalTime ;
@@ -32,6 +33,10 @@ export class SliderComponent implements OnInit {
   newOptionSelected(i){
     this.selectedOption=i;
     this.inicialiceTimer(this.IntervalTime);
+  }
+
+  openModal() {
+    this.openModalEmmiter.emit(true);
   }
 
 }

@@ -8,6 +8,7 @@ import { sliderItem } from '../../models/sliderItem';
 export class HomeComponent implements OnInit {
 
   constructor() { }
+  showModal=false;
   Img_url: String = 'assets/images/slider/'
   _sliderItems: Array<sliderItem> = [
     {
@@ -38,6 +39,10 @@ export class HomeComponent implements OnInit {
 
   ]
   ngOnInit() {
+  }
+
+  openModal($event){
+    this.showModal = true;
   }
 
 }
