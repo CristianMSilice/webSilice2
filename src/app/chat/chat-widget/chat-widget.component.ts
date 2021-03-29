@@ -273,6 +273,7 @@ export class ChatWidgetComponent implements OnInit {
 
     if (options == undefined) options = {};
     if (options.redirect) {
+      redirect = options.redirect;
       options.redirect = undefined
     }
     options['show'] = show;
