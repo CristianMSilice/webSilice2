@@ -7,6 +7,7 @@ import { NgxLinkifyjsModule } from 'ngx-linkifyjs'
 import { HttpClientModule } from '@angular/common/http'
 import { NgxWebstorageModule } from 'ngx-webstorage'
 import { RouterModule, Routes } from '@angular/router';
+import { ParticlesModule } from 'angular-particle';
 
 import { ConfigFactory, ConfigService, TOKEN } from './chat/shared/services/config'
 import { CookieService } from 'ngx-cookie-service'
@@ -74,7 +75,8 @@ const routes: Routes = [
     HttpClientModule,
     HttpModule,
     NgxLinkifyjsModule.forRoot(),
-    NgxWebstorageModule.forRoot()
+    NgxWebstorageModule.forRoot(),
+    ParticlesModule
   ],
   declarations: [AppComponent,
     BlogComponent,

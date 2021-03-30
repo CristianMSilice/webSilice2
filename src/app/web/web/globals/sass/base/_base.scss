@@ -44,32 +44,43 @@ body {
         &:after {
             content: "";
             position: absolute;
-            top: 0;
-            left: 0;
             z-index: 1;
         }
 
         &:before {
-            top: $header-height;
+            top: 100px;
+            left: 0;
             width: 100%;
-            height: 20.76vh;
+            height: 23.76vh;
             box-shadow: 0 0 100px rgba($c-black, 0.08);
             background: linear-gradient(to bottom, rgba(244, 244, 244, 1) 0%, rgba(255, 255, 255, 1) 100%);
         }
 
         &:after {
+            @include bg-cover;
+            // top: -190px;
+            top: -20vh;
+            left: -293px;
             z-index: 1;
-            background-image: url(assets/images/circle-bg__header.png);
-            width: 23vw;
-            height: 40vh;
-            background-size: 100%;
-            background-repeat: no-repeat;
+            background-image: url(assets/images/svgs/circle-bg__header.svg);
+            width: 700px;
+            height: 700px;
+            transform-origin: center center;
+            transition: transform .5s;
+            animation: rotate-center 50s infinite linear;
         }
     }
 
     @include respond-to($site-width) {
+        &:before { 
+            top: $header-height; 
+            height: 20.76vh;
+        }
 
-        &:before { top: $header-height; }
+        &:after {
+            top: -20vh;
+            left: -170px;
+        }
     }
 }
 
@@ -80,7 +91,7 @@ body {
     }
 
     &-content {
-        width: 100%;
+        width: calc(100vw - var(--width-chat-widget));
         grid-area: content;
     }
 
@@ -95,6 +106,19 @@ body {
     @include respond-to($vp-large) {
         &-content {
             height: calc(100vh - #{$header-height});
+        }
+    }
+
+    @include respond-to($vp-max) {
+        &-content {
+            &__row {
+                height: 100%;
+            }
+            &__row--inner {
+                // display: grid;
+                // grid-template-rows: 200px 1fr;
+                height: 100%;
+            }
         }
     }
 }
@@ -149,20 +173,6 @@ h6 {
     h6 {
         font-size: .75rem;
     }
-}
-
-.site-content {
-    @include respond-to($vp-max) {
-        &__row {
-            height: 100%;
-        }
-        &__row--inner {
-            // display: grid;
-            // grid-template-rows: 200px 1fr;
-            height: 100%;
-        }
-    }
-    width: calc(100vw - var(--width-chat-widget));
 }
 
 .row,
