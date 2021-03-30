@@ -28,8 +28,7 @@ import { SiblingService } from '../shared/services/sibling.service'
 import { EncsessionService } from '../shared/helpers/encsession.service'
 import { ChatAdjuntosComponent } from '../chat-adjuntos/chat-adjuntos.component'
 import { messageOptions, messageCookieService } from "../shared/model/messageOptions";
-import { unique } from 'jquery'
-import { ActivatedRoute, NavigationStart, Router } from '@angular/router'
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router'
 @Component({
   selector: 'chat-widget',
   templateUrl: './chat-widget.component.html',
@@ -116,9 +115,10 @@ export class ChatWidgetComponent implements OnInit {
 
   subscribeToSendUrlToPau() {
     this.router.events.subscribe(e => {
-      if (e instanceof NavigationStart) {
-        console.log(`url: ${this.router.url}`)
-        this.comunicationWebWidget(`url: ${this.router.url}`);
+      if (e instanceof NavigationEnd) {
+        let route = this.router.url.replace(/\//g,"-");
+        console.log(`url: ${route}`)
+        this.comunicationWebWidget(`url: ${route}`);
       }
     })
   }
@@ -272,7 +272,7 @@ export class ChatWidgetComponent implements OnInit {
 
     if (options == undefined) options = {};
     if (options.redirect) {
-      redirect = options.redirect
+      redirect = options.redirect;
       options.redirect = undefined
     }
     options['show'] = show;
