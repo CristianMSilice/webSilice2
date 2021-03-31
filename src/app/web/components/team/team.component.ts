@@ -4,7 +4,7 @@ import { SiblingService } from 'src/app/chat/shared/services/sibling.service';
 @Component({
   selector: 'team',
   templateUrl: './team.component.html',
-  styleUrls: ['./team.component.css']
+  styleUrls: ['./team.component.scss']
 })
 export class TeamComponent implements OnInit {
 
@@ -18,10 +18,44 @@ export class TeamComponent implements OnInit {
     { image: "alvaro.jpg", name: "Álvaro Andrés Ortíz", position: "Country Manager Colombia" },
     { image: "jonatan.jpg", name: "Jonathan Díaz", position: "Country Manager Panamá" },
   ]
-
+  selectedOption = 0;
+  sliderItemRealLength: number;
+  itemsShowed = 4;
+  translateFlag = true;
   constructor(private SiblingService: SiblingService) {
   }
   ngOnInit() {
+    this.prepareArray(this.itemsShowed);
+  }
+
+  prepareArray(items) {
+    let a = JSON.parse(JSON.stringify(this.sliderItem))
+    this.sliderItemRealLength = a.length;
+    for (let i = 0; i < items; i++) {
+      a.push(this.sliderItem[i])
+      a.unshift(this.sliderItem[this.sliderItem.length - i - 1])
+    } 
+    this.sliderItem = a;
+    this.selectedOption = - this.itemsShowed;
+  }
+
+  step(num) {
+    let step = this.selectedOption + parseInt(num);
+    if (step > 0 || step <= - this.sliderItemRealLength -1) {
+      step = this.fakeRound(step);
+      setTimeout(() => {
+        this.translateFlag=true;
+        step = this.selectedOption + parseInt(num);
+        this.selectedOption = step;
+      },10);
+    }
+    this.selectedOption = step;
+  }
+  fakeRound(step) {
+    this.translateFlag = false;
+    if (step > 0) step = - this.sliderItemRealLength;
+    else if (step <= - this.sliderItemRealLength -1 ) step = 0;
+    return step;
   }
 
 }

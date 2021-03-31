@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'timeline',
   templateUrl: './timeline.component.html',
-  styleUrls: ['./timeline.component.css']
+  styleUrls: ['./timeline.component.scss']
 })
 export class TimelineComponent implements OnInit {
 
@@ -24,8 +24,12 @@ export class TimelineComponent implements OnInit {
     {text:"El año donde el mundo nos retó a innovar. Año del mayor crecimiento global de SILICE. Más de 35 Proyectos Omnicanales, Más de 10 mercados. Más de 3.000.000 ciudadanos conectados gracias a PAU y su ecosistema Omnicanal. Aprendizaje, reinvención y crecimiento constante.", name:"El año del Covid",time:"2020"},
     {text:"Comprometidos con un nuevo año para seguir escribiendo nuestra historia, para seguir construyendo ecosistemas digitales que contribuyan a construir una sociedad mejor, listos para los nuevos retos y aprendizajes venideros. ¿Te unes?", name:"Listos para innovar",time:"2021"},
   ]
-
+  selectedOption = 0;
   ngOnInit() {
   }
-
+  step(num) {
+    let step = this.selectedOption + parseInt(num) ;
+    if(step < 0 || step > this.data.length - 1) return
+    this.selectedOption = step;
+  }
 }

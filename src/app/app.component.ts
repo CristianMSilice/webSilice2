@@ -11,7 +11,7 @@ import { Component, OnInit } from '@angular/core'
 })
 export class AppComponent implements OnInit {
   public theme = 'red'
-  ngOnInit() {}
+  public YT: any;
   width: number = 100;
   height: number = 100;
   myStyle: Object = {
@@ -134,4 +134,19 @@ export class AppComponent implements OnInit {
     },
     "retina_detect": true
   };
+  
+  ngOnInit() {
+    this.loadYT_API()
+  }
+
+  loadYT_API() {
+    var tag = document.createElement('script');
+    tag.src = 'https://www.youtube.com/iframe_api';
+    var firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+  }
+
+
+
 }

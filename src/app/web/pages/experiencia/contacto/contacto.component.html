@@ -14,25 +14,25 @@
             <section class="contact features content" aria-labelledby="contact_header">      
                 <div class="content-inner">   
                     <div class="content-form">
-                        <form class="form">
+                        <form class="form" [formGroup]="contactForm" >
                             <div class="form-inner">
                                 <h2 class="form-title">¿Estás listo para llevar tu negocio al siguiente nivel? <strong>¡Contáctanos!</strong></h2>
 
                                 <div class="form-item">
-                                    <input type="text" name="name" placeholder="Nombre"/>
-                                    <input type="email" name="email" placeholder="Email"/>
+                                    <input type="text"  formControlName="name" name="name" placeholder="Nombre"/>
+                                    <input type="email" formControlName="email" name="email" placeholder="Email"/>
                                 </div>
 
                                 <div class="form-item">
-                                    <input type="text" name="Asunto" placeholder="Asunto"/>
+                                    <input type="text" formControlName="Asunto" name="Asunto" placeholder="Asunto"/>
                                 </div>
 
                                 <div class="form-item">
-                                    <input type="text" name="Mensaje" placeholder="Mensaje"/>
+                                    <input type="text" formControlName="Mensaje" name="Mensaje" placeholder="Mensaje"/>
                                 </div>
 
                                 <div class="form-item action-links">
-                                    <button class="action action-primary">Enviar</button>
+                                    <button class="action action-primary" (click)="sendContactForm()">Enviar</button>
                                 </div>
                             </div>
                         </form>
@@ -40,13 +40,13 @@
 
                     <div class="content-newsletter">
                         <h2 class="form-title"><strong>Suscríbete</strong> In velit posuere luctus arcu fames eros eget platea gravida</h2>
-                        <form class="form">
+                        <form class="form" [formGroup]="subscribeForm">
                             <div class="form-item">
-                                <input type="email" name="email" placeholder="Correo Electrónico"/>
+                                <input type="email" formControlName="email" name="email" placeholder="Correo Electrónico"/>
                             </div>
 
                             <div class="form-item">
-                                <button class="form-btn">Suscribirme</button>
+                                <button class="form-btn" (click)="sendSubscribeForm()">Suscribirme</button>
                             </div>
                         </form>
                     </div>

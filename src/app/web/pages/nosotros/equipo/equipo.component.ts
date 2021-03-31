@@ -9,6 +9,8 @@ export class EquipoComponent implements OnInit {
 
   constructor() { }
 
+
+  
   ngOnInit() {
   }
 
