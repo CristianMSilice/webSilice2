@@ -36,6 +36,7 @@ import { LaboratorioComponent } from './web/pages/laboratorio/laboratorio.compon
 import { ModalComponent } from './web/components/modal/modal.component'
 import { NavComponent } from './web/components/header/nav/nav.component'
 import { NosotrosComponent } from './web/pages/nosotros/nosotros.component'
+import { NoticiasComponent } from './web/pages/noticias/noticias.component'
 import { PanamaComponent } from './web/components/locations/panama/panama.component'
 import { PageEspanaComponent } from './web/pages/experiencia/sedes/page-espana/page-espana.component';
 import { PageColombiaComponent } from './web/pages/experiencia/sedes/page-colombia/page-colombia.component';
@@ -102,6 +103,7 @@ const routes: Routes = [
     NosotrosComponent,
     FeaturesComponent,
     NavComponent,
+    NoticiasComponent,
     SolucionesComponent,
     SolutionsComponent,
     SliderComponent,
