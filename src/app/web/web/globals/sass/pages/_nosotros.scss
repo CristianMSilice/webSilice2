@@ -81,11 +81,16 @@
         }
     }
 
-    @include respond-to($vp-max) {
+    @include respond-to($vp-large) {
+        .item {
+            margin: 0 1rem;
+        }
+    }
+
+    @include respond-to($site-width) {
         .item {
             flex: none;
             width: 16%;
-            margin: 0 1rem;
             height: 260px;
         }
 

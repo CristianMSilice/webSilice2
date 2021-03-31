@@ -30,6 +30,15 @@
         border-radius: 40px;
         box-shadow: 0 0 100px rgba($c-black, .16);
 
+        @include hover {                       
+            .icon-plus { transition: rotate-center cubic-bezier(0.175, 0.885, 0.32, 1.275) .5s; }
+
+            .item-hover { 
+                opacity: 1;
+                transform: translateY(0); 
+            }
+        }        
+
         &-img {
             @include flex-all(column, center, center);
         }
@@ -78,21 +87,14 @@
 
             .action { margin: .5rem 0 0; }
         }
-
-        @include hover {            
-            .item-hover { 
-                opacity: 1;
-                transform: translateY(0); 
-            }
-        }
     }
 
     .features {
         li {
             position: absolute;
             z-index: 2;
-            top: 0;
-            left: 0;
+            top: 1rem;
+            left: 1rem;
 
             &.active {
                 .content-feature {
@@ -107,11 +109,14 @@
             }
         }
 
-        .icon-plus svg {
-            display: block;
-            cursor: pointer;
-            transform-origin: center 50%;
+        .icon-plus {
+            transform-origin: 50% 50%;
             transition: transform 1s;
+
+            svg {
+                display: block;
+                cursor: pointer;
+            }
         }
 
         .content-feature {

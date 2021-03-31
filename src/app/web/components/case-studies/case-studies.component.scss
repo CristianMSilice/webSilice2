@@ -158,10 +158,12 @@
     }
 }
 
-@media (max-width: 1540px) {
+@media (max-width: 1600px) {
     .case-tabs {
         .case-tabs-container {
             .case-tabs-body {
+                top: 45px;
+
                 article.case-tab-option {
                     .case-content-image {
                         .case-image {
