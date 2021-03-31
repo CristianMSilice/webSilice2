@@ -1,5 +1,7 @@
 <ng-container *ngFor="let option of sliderItem; index as i">
-    <article class="profile" aria-labelledby="team_profile_1">
+    <article class="profile" 
+    [ngClass]="{'translate': translateFlag}"
+    [style.transform]="'translate(' + 390 * selectedOption + 'px ,0px)'">
         <div class="summary-wrapper">
             <figure class="image"><img src="assets/images/equipo/equipo-{{option.image}}" alt="{{option.name}}" />
             </figure>
@@ -14,15 +16,11 @@
     </article>
 </ng-container>
 
-<!-- <article class="profile" aria-labelledby="team_profile_2">   
-    <div class="summary-wrapper">
-        <figure class="image"><img src="assets/images/equipo/equipo-diana.jpg" alt="Diana Castellanos" /></figure>
-        <div class="summary">
-            <h4 class="name" id="team_profile_2">Diana Castellanos</h4>
-            <div class="position">Responsable de alianzas estratégicas</div>
-        </div>
-        <div class="content-links">
-            <button class="action action-primary" (click)="SiblingService.sendClick('Diana Castellanos')">Ver más</button>
-        </div>
+<div class="controls">
+    <div class="arrow arrowleft">
+        <img src="assets/images/svgs/arrowIcon.png" alt="left" (click)="step(1)">
     </div>
-</article> -->
+    <div class="arrow arrowright">
+        <img src="assets/images/svgs/arrowIcon.png" alt="right" (click)="step(-1)">
+    </div>
+</div>

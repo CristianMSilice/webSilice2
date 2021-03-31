@@ -6,11 +6,15 @@ import { HttpModule } from '@angular/http'
 import { NgxLinkifyjsModule } from 'ngx-linkifyjs'
 import { HttpClientModule } from '@angular/common/http'
 import { NgxWebstorageModule } from 'ngx-webstorage'
+import { ReactiveFormsModule, FormsModule } from '@angular/forms'
+
 import { RouterModule, Routes } from '@angular/router';
 
 import { ConfigFactory, ConfigService, TOKEN } from './chat/shared/services/config'
 import { CookieService } from 'ngx-cookie-service'
 import { EncsessionService } from './chat/shared/helpers/encsession.service';
+import { MailService } from './web/Services/mail.service'
+import { SiblingsService } from './web/Services/siblings.service'
 
 import { AppComponent } from './app.component'
 import { BlogComponent } from './web/pages/blog/blog.component';
@@ -40,6 +44,7 @@ import { TeamComponent } from './web/components/team/team.component';
 import { VenueComponent } from './web/components/venue/venue.component'
 import { WebComponent } from './web/web/web.component';
 import { ModalComponent } from './web/components/modal/modal.component';
+import { YouTubeVideoComponent } from './web/components/you-tube-video/you-tube-video.component';
 
 
 
@@ -75,7 +80,9 @@ const routes: Routes = [
     HttpClientModule,
     HttpModule,
     NgxLinkifyjsModule.forRoot(),
-    NgxWebstorageModule.forRoot()
+    NgxWebstorageModule.forRoot(),
+    ReactiveFormsModule,
+    FormsModule
   ],
   declarations: [AppComponent,
     BlogComponent,
@@ -105,18 +112,21 @@ const routes: Routes = [
     VenueComponent,
     WebComponent,
     ModalComponent,
+    YouTubeVideoComponent,
   ],
 
   providers: [
     ConfigService,
-    EncsessionService,
     CookieService,
     { provide: 'CONFIGPATH', useValue: './assets/config.json' },
     { provide: 'APIURL-VAR', useValue: 'TOKEN' },
     {
       provide: TOKEN, useFactory: ConfigFactory,
       deps: [ConfigService, 'CONFIGPATH', 'APIURL-VAR']
-    }
+    },
+    EncsessionService,
+    MailService,
+    SiblingsService
   ],
   bootstrap: [AppComponent],
 })

@@ -1,4 +1,4 @@
-.containerModalAndKey{
+.containerModalAndKey {
     position: fixed;
     width: 100vw;
     height: 100vh;
@@ -11,32 +11,30 @@
     display: none;
     transition: filter 200ms ease;
     transition-delay: 50ms;
-    filter:opacity(0) ;
-    &.showModal{
-        visibility:  visible;
+    filter: opacity(0);
+    &.showModal {
+        visibility: visible;
         display: grid;
-        filter:opacity(1)
+        filter: opacity(1);
     }
-    .content{
+    .content {
         width: min-content;
         height: min-content;
         border-radius: 20px;
-        box-shadow: 4px 4px 5px 0px hsl(0deg 0% 12%);
-        background: whitesmoke;
+        box-shadow: 0px 0px 50px -11px var(--headerTextColor);
+        background: hsl(0deg 0% 96%);
         position: relative;
+        overflow: hidden;
     }
-
-    
 }
 
-
-.close{
+.close {
     position: absolute;
     top: 0;
     right: 0;
     color: white;
-    background-color: hsl(0deg 0% 22%);       
+    background-color: hsl(0deg 0% 22%);
     padding: 0px 7px;
     font-size: 14px;
-    border-top-right-radius:inherit;
+    border-top-right-radius: inherit;
 }

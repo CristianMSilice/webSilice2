@@ -1,6 +1,8 @@
 <div class="pslider-container" [style.width]="'100%'" [style.height]="'100%'">
     <div class="slider-content">
-        <div *ngFor="let option of data" [style.transform]="'translate('+ -100 * selectedOption +'%,0px)'">
+        <div *ngFor="let option of data" 
+        class="translate"
+        [style.transform]="'translate('+ -100 * selectedOption +'%,0px)'">
             <article class="item">
                 <span class="time">{{option.time}}
                     <time data-time="">{{option.time}}</time>
@@ -11,5 +13,14 @@
                 </div>
             </article>
         </div>
+    </div>
+</div>
+
+<div class="controls">
+    <div class="arrow arrowleft">
+        <img src="assets/images/svgs/arrowIcon.png" alt="left" (click)="step(-1)">
+    </div>
+    <div class="arrow arrowright">
+        <img src="assets/images/svgs/arrowIcon.png" alt="right" (click)="step(1)">
     </div>
 </div>

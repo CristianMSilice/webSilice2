@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { SiblingsService } from '../../Services/siblings.service';
 
 @Component({
   selector: 'modal',
@@ -6,18 +7,21 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./modal.component.scss']
 })
 export class ModalComponent implements OnInit {
-
-  constructor() { }
+  showModal: boolean = false;
+  @Input() show_internal_close: boolean = true;
+  constructor(private siblingsService: SiblingsService) { }
 
   ngOnInit() {
+    this.siblingsService.showModal$.subscribe((value: boolean) => {
+      this.showModal = value;
+    })
   }
-  @Input() showModal:boolean= false;
-  reviewClose($event){
-    if (! $event.target.classList.contains('containerModalAndKey')) return;
+  reviewClose($event) {
+    if (!$event.target.classList.contains('containerModalAndKey')) return;
     this.close();
   }
-  close(){
-    this.showModal=false;
+  close() {
+    this.siblingsService.modifyModal(false);
   }
 
 }

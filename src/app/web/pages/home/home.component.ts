@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { sliderItem } from '../../models/sliderItem';
+// import { SiblingsService } from '../../Services/siblings.service';
 @Component({
   selector: 'home',
   templateUrl: './home.component.html',
@@ -7,9 +8,13 @@ import { sliderItem } from '../../models/sliderItem';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
-  showModal=false;
+  constructor(
+    // private siblingsService:SiblingsService
+    ) { }
+  
+  
   Img_url: String = 'assets/images/slider/'
+  showModal=false;
   _sliderItems: Array<sliderItem> = [
     {
       Image: this.Img_url + 'slide-municipio360.jpg', text: 'Atención gubernamental', title: 'Municipio 360',
@@ -39,10 +44,17 @@ export class HomeComponent implements OnInit {
 
   ]
   ngOnInit() {
+    // this.subscribeShowModal();
   }
 
-  openModal($event){
-    this.showModal = true;
-  }
+  // subscribeShowModal(){
+  //   this.siblingsService.showModal$.subscribe((value)=>{
+  //     this.showModal= value;
+  //   })
+  // }
+  
+
+  
+
 
 }
