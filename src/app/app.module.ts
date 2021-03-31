@@ -37,7 +37,6 @@ import { FeaturesComponent } from './web/components/features/features.component'
 import { HeaderComponent } from './web/components/header/header.component'
 import { SolutionsComponent } from './web/components/solutions/solutions.component'
 import { GlobalStatsComponent } from './web/components/global-stats/global-stats.component'
-import { ContactFormComponent } from './web/components/contact-form/contact-form.component'
 import { PanamaComponent } from './web/components/locations/panama/panama.component'
 import { ColombiaComponent } from './web/components/locations/colombia/colombia.component'
 import { EspanaComponent } from './web/components/locations/espana/espana.component';
@@ -86,7 +85,6 @@ const routes: Routes = [
     CasosComponent,
     CaseStudiesComponent,
     ContactoComponent,
-    ContactFormComponent,
     EncabezadosComponent,
     EquipoComponent,
     ExperienciaComponent,

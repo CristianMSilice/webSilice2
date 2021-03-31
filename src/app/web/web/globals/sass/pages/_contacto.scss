@@ -5,8 +5,6 @@
     }
 
     .content-inner { 
-        @include width-constrain(700px); 
-        margin-right: 9%;
     }
 
     .content-form {        
@@ -85,6 +83,14 @@
             @include hover {
                 svg { fill: $primary-color; }
             }
+        }
+    }
+
+    @include respond-to($vp-large) {     
+        margin-left: calc(25vw - (#{$site-padding} * 2));
+
+        .content-inner {   
+            @include width-constrain(700px); 
         }
     }
 }
