@@ -25,7 +25,6 @@ import { SolucionesComponent } from './web/pages/soluciones/soluciones.component
 import { CasosComponent } from './web/pages/casos/casos.component'
 import { BlogComponent } from './web/pages/blog/blog.component'
 import { ExperienciaComponent } from './web/pages/experiencia/experiencia.component'
-import { SedesComponent } from './web/pages/experiencia/sedes/sedes.component'
 import { ContactoComponent } from './web/pages/experiencia/contacto/contacto.component'
 
 import { CaseStudiesComponent } from "./web/components/case-studies/case-studies.component"
@@ -98,7 +97,6 @@ const routes: Routes = [
     NosotrosComponent,
     FeaturesComponent,
     NavComponent,
-    SedesComponent,
     SolucionesComponent,
     SolutionsComponent,
     SliderComponent,

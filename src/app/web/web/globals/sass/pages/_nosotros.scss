@@ -10,7 +10,13 @@
     }
 
     .item {
+        @include underline-from-left($border-size: 1px, $border-color: $primary-color, $apply-to: ".name");
         flex: 1;
+        cursor: pointer;
+
+        @include hover {
+            .name { color: $primary-color; }
+        }
 
         .icon-hexagon {
             position: absolute;
@@ -47,6 +53,7 @@
                     size: 1.125rem;
                     weight: 600;
                 }
+                transition: color .5s ease-in-out;
             }
 
             .icon {
