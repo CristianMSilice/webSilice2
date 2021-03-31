@@ -3,6 +3,8 @@ export class sliderItem {
     title: String;
     text: String;
     button:buttonSliderItem;
+    class:string;
+
 }
 
 class buttonSliderItem{

@@ -21,8 +21,7 @@
                 cursor: pointer;
                 z-index: 10;
                 border-radius: 50%;
-                
-    z-index: 9999999;
+                z-index: 99;
                 background-color: var(--headerTextColor);
                 left: calc(50% - var(--size-slider-option) / 2);
                 top: calc(50% - var(--size-slider-option) / 2);
@@ -51,8 +50,9 @@
                 width: var(--sizeTooltip);
                 height: var(--sizeTooltip);
                 position: absolute;
-                top: calc(50% - var(--sizeTooltip) / 2);
-                left: calc(50% - var(--sizeTooltip) / 2);
+                z-index: 999;
+                // top: calc(50% - var(--sizeTooltip) / 2);
+                // left: calc(50% - var(--sizeTooltip) / 2);
                 display: grid;
                 place-content: center;
                 &.selectedOption {

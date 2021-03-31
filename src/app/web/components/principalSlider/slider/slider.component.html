@@ -3,8 +3,8 @@
         <div class="slider-content">
             <div *ngFor="let option of sliderItem; index as i" class="image"
                 [style.transform]="'translate('+ -100 * selectedOption +'%,0px)'">
-                <img [src]="option.Image">
-            </div>
+                <img [src]="option.Image">   
+            </div>    
         </div>
         <div class="slider-controller-container">
             <div class="slider-options">
@@ -13,15 +13,14 @@
                         (click)="newOptionSelected(i)"
                         [style.transform]="'translate(' + math.cos( ((i*360/ sliderItem.length) - 90 )  * 2 * math.PI / 360) * 200 +'px,' + math.sin(((i*360/ sliderItem.length) - 90) * 2 * math.PI / 360)*  200 + 'px)'">
                     </div>
-                    <div class="pslider-tooltip "
+                    <!-- <div class="pslider-tooltip {{option.class}}"
                     [ngClass]="{'selectedOption':selectedOption == i}"
                     [style.transform]="'translate(' + math.cos( ((i*360/ sliderItem.length) - 90 )  * 2 * math.PI / 360) * 200 +'px,' + math.sin(((i*360/ sliderItem.length) - 90) * 2 * math.PI / 360)*  200 + 'px)'">
                         <div class="content-links">
-                            <p><strong>{{option.title}}</strong></p>
-                            <p>{{option.text}}</p>
+                            <span><strong>{{option.text}}</strong>{{option.title}}</span>
                             <a class="action action-primary" target="_blank">{{option.button.text}}</a>
                         </div>
-                    </div>
+                    </div> -->
                 </ng-container>
             </div>
             <div class="main-rotator" data-chatweb="true">
