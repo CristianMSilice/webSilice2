@@ -6,44 +6,45 @@ import { HttpModule } from '@angular/http'
 import { NgxLinkifyjsModule } from 'ngx-linkifyjs'
 import { HttpClientModule } from '@angular/common/http'
 import { NgxWebstorageModule } from 'ngx-webstorage'
-import { RouterModule, Routes } from '@angular/router';
-import { ParticlesModule } from 'angular-particle';
+import { RouterModule, Routes } from '@angular/router'
+import { ParticlesModule } from 'angular-particle'
 
 import { ConfigFactory, ConfigService, TOKEN } from './chat/shared/services/config'
 import { CookieService } from 'ngx-cookie-service'
-import { EncsessionService } from './chat/shared/helpers/encsession.service';
+import { EncsessionService } from './chat/shared/helpers/encsession.service'
 
 import { AppComponent } from './app.component'
-import { BlogComponent } from './web/pages/blog/blog.component';
-import { CasosDeExitoComponent } from './web/pages/casos-de-exito/casos-de-exito.component';
-import { CasosComponent } from './web/pages/casos/casos.component';
-import { CaseStudiesComponent } from "./web/components/case-studies/case-studies.component";
-import { ContactoComponent } from './web/pages/experiencia/contacto/contacto.component';
-import { ContactFormComponent } from './web/components/contact-form/contact-form.component'
-import { EncabezadosComponent } from './web/encabezados/encabezados.component';
-import { ExperienciaComponent } from './web/pages/experiencia/experiencia.component';
-import { EquipoComponent } from './web/pages/nosotros/equipo/equipo.component'
-import { GlobalStatsComponent } from './web/components/global-stats/global-stats.component'
+import { WebComponent } from './web/web/web.component'
 import { HomeComponent } from './web/pages/home/home.component'
-import { HeaderComponent } from './web/components/header/header.component';
-import { LaboratorioComponent } from './web/pages/laboratorio/laboratorio.component';
-import { NosotrosComponent } from './web/pages/nosotros/nosotros.component';
-import { FeaturesComponent } from './web/components/features/features.component';
-import { NoticiasComponent } from './web/pages/noticias/noticias.component';
-import { NavComponent } from './web/components/header/nav/nav.component';
-import { SolutionsComponent } from './web/components/solutions/solutions.component';
-import { SolucionesComponent } from './web/pages/soluciones/soluciones.component';
-import { SliderComponent } from './web/components/principalSlider/slider/slider.component'
-import { SedesComponent } from './web/pages/experiencia/sedes/sedes.component';
+import { EncabezadosComponent } from './web/encabezados/encabezados.component'
+import { NosotrosComponent } from './web/pages/nosotros/nosotros.component'
+import { EquipoComponent } from './web/pages/nosotros/equipo/equipo.component'
 import { TrayectoriaComponent } from './web/pages/nosotros/trayectoria/trayectoria.component'
-import { TimelineComponent } from './web/components/timeline/timeline.component';
-import { TeamComponent } from './web/components/team/team.component';
-import { VenueComponent } from './web/components/venue/venue.component'
-import { WebComponent } from './web/web/web.component';
-import { ModalComponent } from './web/components/modal/modal.component';
+import { LaboratorioComponent } from './web/pages/laboratorio/laboratorio.component'
+import { SolucionesComponent } from './web/pages/soluciones/soluciones.component'
+import { CasosComponent } from './web/pages/casos/casos.component'
+import { BlogComponent } from './web/pages/blog/blog.component'
+import { ExperienciaComponent } from './web/pages/experiencia/experiencia.component'
+import { SedesComponent } from './web/pages/experiencia/sedes/sedes.component'
+import { ContactoComponent } from './web/pages/experiencia/contacto/contacto.component'
 
-
-
+import { CaseStudiesComponent } from "./web/components/case-studies/case-studies.component"
+import { ModalComponent } from './web/components/modal/modal.component'
+import { TimelineComponent } from './web/components/timeline/timeline.component'
+import { TeamComponent } from './web/components/team/team.component'
+import { NavComponent } from './web/components/header/nav/nav.component'
+import { SliderComponent } from './web/components/principalSlider/slider/slider.component'
+import { FeaturesComponent } from './web/components/features/features.component'
+import { HeaderComponent } from './web/components/header/header.component'
+import { SolutionsComponent } from './web/components/solutions/solutions.component'
+import { GlobalStatsComponent } from './web/components/global-stats/global-stats.component'
+import { ContactFormComponent } from './web/components/contact-form/contact-form.component'
+import { PanamaComponent } from './web/components/locations/panama/panama.component'
+import { ColombiaComponent } from './web/components/locations/colombia/colombia.component'
+import { EspanaComponent } from './web/components/locations/espana/espana.component';
+import { PageEspanaComponent } from './web/pages/experiencia/sedes/page-espana/page-espana.component';
+import { PageColombiaComponent } from './web/pages/experiencia/sedes/page-colombia/page-colombia.component';
+import { PagePanamaComponent } from './web/pages/experiencia/sedes/page-panama/page-panama.component'
 
 const routes: Routes = [
   {
@@ -56,7 +57,9 @@ const routes: Routes = [
       { path: 'soluciones', component: SolucionesComponent },
       { path: 'casos', component: CasosComponent },
       { path: 'experiencia', component: ExperienciaComponent },
-      { path: 'experiencia/sedes', component: SedesComponent },
+      { path: 'experiencia/sedes', component: PagePanamaComponent },
+      { path: 'experiencia/sedes/colombia', component: PageColombiaComponent },
+      { path: 'experiencia/sedes/espana', component: PageEspanaComponent },
       { path: 'experiencia/contacto', component: ContactoComponent },
       { path: 'blog', component: BlogComponent },
       { path: 'casos', component: CasosComponent },
@@ -65,7 +68,7 @@ const routes: Routes = [
     ]
   },
   { path: '**', redirectTo: '/home/home', pathMatch: 'full' }
-];
+]
 
 @NgModule({
   imports: [
@@ -82,7 +85,6 @@ const routes: Routes = [
   declarations: [AppComponent,
     BlogComponent,
     CasosComponent,
-    CasosDeExitoComponent,
     CaseStudiesComponent,
     ContactoComponent,
     ContactFormComponent,
@@ -95,18 +97,22 @@ const routes: Routes = [
     LaboratorioComponent,
     NosotrosComponent,
     FeaturesComponent,
-    NoticiasComponent,
     NavComponent,
+    SedesComponent,
     SolucionesComponent,
     SolutionsComponent,
     SliderComponent,
-    SedesComponent,
     TrayectoriaComponent,
     TimelineComponent,
     TeamComponent,
-    VenueComponent,
     WebComponent,
     ModalComponent,
+    PanamaComponent,
+    ColombiaComponent,
+    EspanaComponent,
+    PageEspanaComponent,
+    PageColombiaComponent,
+    PagePanamaComponent,
   ],
 
   providers: [
