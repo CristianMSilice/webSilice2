@@ -34,6 +34,7 @@
         "@sweetalert2/ngx-sweetalert2": "^5.0.1",
         "@types/jquery": "^3.3.30",
         "@webcomponents/custom-elements": "^1.1.0",
+        "angular-particle": "^1.0.4",
         "angular2-draggable": "^2.2.2",
         "concat": "^1.0.3",
         "core-js": "^2.5.4",

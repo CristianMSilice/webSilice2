@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ContactFormComponent } from './contact-form.component';
+import { PageEspanaComponent } from './page-espana.component';
 
-describe('ContactFormComponent', () => {
-  let component: ContactFormComponent;
-  let fixture: ComponentFixture<ContactFormComponent>;
+describe('PageEspanaComponent', () => {
+  let component: PageEspanaComponent;
+  let fixture: ComponentFixture<PageEspanaComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ContactFormComponent ]
+      declarations: [ PageEspanaComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ContactFormComponent);
+    fixture = TestBed.createComponent(PageEspanaComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

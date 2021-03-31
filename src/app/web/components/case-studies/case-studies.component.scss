@@ -1,5 +1,5 @@
 .case-tabs {
-    --height-case-tab-list-controller: 2em;
+    --height-case-tab-list-controller: 3em;
     --heigth-image-article-selected: 20vw;
     position: absolute;
     width: calc(100vw - var(--width-chat-widget));
@@ -9,17 +9,20 @@
     display: grid;
     grid-template-columns: 1fr;
     place-items: center;
+
     .case-tabs-container {
         width: calc(100% - 10vw);
         height: calc(100% - 5vh);
         position: relative;
+
         .case-tabs-body {
             position: absolute;
-            top: 27px;
+            top: 80px;
             left: 0;
             width: 100%;
             height: calc(100% - var(--height-case-tab-list-controller) - 10vh);
             z-index: 10;
+
             article.case-tab-option {
                 border-radius: 20px;
                 background: hsl(0deg 0% 100%);
@@ -27,35 +30,44 @@
                 display: grid;
                 grid-template-columns: 1fr var(--heigth-image-article-selected);
                 grid-template-rows: 100%;
-                max-width: 100%;
-                max-height: 100%;
+                width: 100%;
+                height: 100%;
                 opacity: 0;
                 position: absolute;
                 overflow: hidden;
                 transition: opacity 200ms ease;
+
                 &.selected {
+                    z-index: 9;
                     opacity: 1;
                 }
+
                 .case-content-content {
                     width: 100%;
                     height: 100%;
+
                     .case-content-summary {
                         max-width: 100%;
-                        max-height: 100%;
+                        height: 100%;
                         padding: 0.5em 2em;
-                        display: grid;
-                        grid-template-columns: 100%;
-                        grid-template-rows: min-content min-content 1fr min-content;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+
                         .case-name {
                             color: var(--headerTextColor);
                             margin: 0 0 12px 0;
                         }
+
                         .case-company {
                             margin: 0 0 8px 0;
                         }
+
                         .case-text {
                             width: 100%;
-                            height: 100%;
+                            height: auto;
+                            margin: 2rem 0;
+                            padding-right: 3rem;
                             overflow-y: auto;
                             &::-webkit-scrollbar {
                                 width: 1em;
@@ -66,14 +78,21 @@
                         }
                     }
                 }
+                
                 .case-content-image {
                     width: 100%;
                     height: 100%;
                     overflow: hidden;
                     .case-image {
+                        height: 100%;
                         clip-path: circle(
                             var(--heigth-image-article-selected) at var(--heigth-image-article-selected) 53%
                         );
+
+                        img {
+                            display: block;
+                            height: 100%;
+                        }
                     }
                     .case-avatar {
                         position: absolute;
@@ -85,8 +104,9 @@
                         top: 48%;
                         box-shadow: 0px 0px 10px grey;
                         overflow: hidden;
-                        left: 60%;
+                        left: 66%;
                         background-position: -5%;
+
                         img {
                             min-width: 100%;
                             min-height: 100%;
@@ -101,25 +121,49 @@
 
         ul.case-tab-list-controller {
             position: absolute;
-            bottom: 0;
+            bottom: 1rem;
             width: 100%;
             height: var(--height-case-tab-list-controller);
-            overflow-x: auto;
+            // overflow-x: auto;
             display: flex;
             flex-direction: row;
-            flex-wrap: nowrap;
-            flex-shrink: 0;
-            justify-content: space-evenly;
+            justify-content: center;
+            align-items: center;
             text-decoration: none;
             list-style: none;
+            margin: 0;
+
+            li {
+                flex: 1;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                max-width: 250px;
+                height: 100%;
+                cursor: pointer;
+                transition: background-color .5s ease-in-out;
+
+                &:hover,
+                &:focus {
+                    color: white;
+                    background-color: rgb(255, 108, 43);
+                    box-shadow: 0 0 100px rgba(0,0,0,.2);
+                }
+            }
         }
+    }
+
+    .case-content-links {
+        .action { margin: 0; }
     }
 }
 
-@media (max-width: 1540px) {
+@media (max-width: 1600px) {
     .case-tabs {
         .case-tabs-container {
             .case-tabs-body {
+                top: 45px;
+
                 article.case-tab-option {
                     .case-content-image {
                         .case-image {
