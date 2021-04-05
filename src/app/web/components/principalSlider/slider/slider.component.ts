@@ -22,14 +22,14 @@ export class SliderComponent implements OnInit {
 
   ngOnInit() {
     this.inicialiceTimer(this.IntervalTime);
-    if(window.innerWidth<1600)this.sliderSize=140;
+    if(window.innerWidth<1600)this.sliderSize=130;
   }
 
   inicialiceTimer(timer) {
     if (timer) clearInterval(this.IntervalTime)
     this.IntervalTime = setInterval(() => {
       this.selectedOption = (this.selectedOption + 1) % this.sliderItem.length;
-    }, 5000);
+    }, 50000);
   }
 
   newOptionSelected(i) {
