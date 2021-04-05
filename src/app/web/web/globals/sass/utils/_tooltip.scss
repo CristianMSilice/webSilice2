@@ -1,65 +1,65 @@
-.tooltip {
-    min-height: 0;
-    overflow: hidden;
-    visibility: hidden;
-    opacity: 0;
-    transition: all 0.5s;
-    transition-delay: 0.5s;
+// .tooltip {
+//     min-height: 0;
+//     overflow: hidden;
+//     visibility: hidden;
+//     opacity: 0;
+//     transition: all 0.5s;
+//     transition-delay: 0.5s;
 
-    &-home {
-        position: absolute;
-        width: 500px;
+//     &-home {
+//         position: absolute;
+//         width: 500px;
 
-        > * {
-            align-items: center;
-        }
-    }
-}
+//         > * {
+//             align-items: center;
+//         }
+//     }
+// }
 
 .x-center {
-    .tooltip {
+    // .tooltip {
         left: 50%;
         transform: translateX(-50%);
-    }
+    // }
 }
 
 .x-left {
-    .tooltip {
+    // .tooltip {
         right: 100%;
 
         > * {
             align-items: flex-end;
             text-align: right;
         }
-    }
+    // }
 }
 
 .x-right {
-    .tooltip {
+    // .tooltip {
         left: 100%;
 
         > * {
             align-items: flex-start;
             text-align: left;
         }
-    }
+    // }
 }
 
 .y-center {
-    .tooltip {
+    // .tooltip {
         top: 50%;
         transform: translateY(50%);
-    }
+    // }
 }
 
 .y-top {
-    .tooltip {
+    // .tooltip {
         bottom: calc(100% + (100px + 1.35rem));
-    }
+    // }
 }
 
 .y-bottom {
-    .tooltip {
+    // .tooltip {
         top: calc(100% + (100px + 1.35rem));
-    }
+    // }
 }
