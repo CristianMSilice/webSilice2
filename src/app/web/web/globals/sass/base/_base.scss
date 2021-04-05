@@ -66,14 +66,14 @@ body {
             width: 700px;
             height: 700px;
             transform-origin: center center;
-            transition: transform .5s;
+            transition: transform 0.5s;
             animation: rotate-center 50s infinite linear;
         }
     }
 
     @include respond-to($site-width) {
-        &:before { 
-            top: $header-height; 
+        &:before {
+            top: $header-height;
             height: 20.76vh;
         }
 
@@ -148,13 +148,13 @@ h4 {
     font-size: 1rem;
 }
 h5 {
-    font-size: .875rem;
+    font-size: 0.875rem;
 }
 h6 {
-    font-size: .75rem;
+    font-size: 0.75rem;
 }
 
-@include respond-to($site-width) {    
+@include respond-to($site-width) {
     h1 {
         font-size: 3rem;
     }
@@ -171,7 +171,7 @@ h6 {
         font-size: 1rem;
     }
     h6 {
-        font-size: .75rem;
+        font-size: 0.75rem;
     }
 }
 
@@ -244,3 +244,22 @@ h6 {
     width: 100%;
     height: 100%;
 }
+
+@media (max-width: 1600px) and (min-width: 768px) {
+    .page {
+        &:before {
+            height: 15vh;
+        }
+
+        &:after {
+            width: 500px;
+            height: 400px;
+            top: -6vh;
+            left: -168px;
+        }
+    }
+    .module {
+        height: 100%;
+    }
+}
+

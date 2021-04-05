@@ -1,7 +1,7 @@
 <ng-container *ngFor="let option of sliderItem; index as i">
     <article class="profile" 
     [ngClass]="{'translate': translateFlag}"
-    [style.transform]="'translate(' + 390 * selectedOption + 'px ,0px)'">
+    [style.transform]="'translate(' + width * selectedOption + 'px ,0px)'">
         <div class="summary-wrapper">
             <figure class="image"><img src="assets/images/equipo/equipo-{{option.image}}" alt="{{option.name}}" />
             </figure>
@@ -17,10 +17,10 @@
 </ng-container>
 
 <!-- <div class="controls"> -->
-    <div class="arrow arrowleft">
-        <img src="assets/images/svgs/arrowIcon.png" alt="left" (click)="step(1)">
+    <div class="arrow arrowleft" (click)="step(1)">
+        <img src="assets/images/svgs/arrowIcon.png" alt="left" >
     </div>
-    <div class="arrow arrowright">
-        <img src="assets/images/svgs/arrowIcon.png" alt="right" (click)="step(-1)">
+    <div class="arrow arrowright" (click)="step(-1)">
+        <img src="assets/images/svgs/arrowIcon.png" alt="right" >
     </div>
 <!-- </div> -->

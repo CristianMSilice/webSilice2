@@ -14,21 +14,21 @@
         height: 23.76vh;
 
         .site-title,
-        .site-subtitle {         
+        .site-subtitle {
             position: relative;
-            z-index: 2;   
+            z-index: 2;
             margin-bottom: 0;
             font-weight: 600;
             color: $c-black;
 
-            strong { 
+            strong {
                 font-weight: inherit;
-                color: $primary-color; 
+                color: $primary-color;
             }
         }
 
-        .site-title { 
-            color: $primary-color; 
+        .site-title {
+            color: $primary-color;
             font-size: 3.5vmin;
 
             @include mask {
@@ -40,7 +40,9 @@
             }
         }
 
-        .site-subtitle { margin-bottom: .5rem; }
+        .site-subtitle {
+            margin-bottom: 0.5rem;
+        }
 
         .motto {
             display: block;
@@ -48,7 +50,7 @@
             z-index: 2;
             padding: 0 5px;
             letter-spacing: 1.2px;
-            font-size: .75rem;
+            font-size: 0.75rem;
             text-align: center;
             color: $secondary-color;
         }
@@ -56,7 +58,7 @@
 
     @include respond-to($vp-mid) {
         &-wrapper {
-            @include flex-all ($align: center);
+            @include flex-all($align: center);
         }
 
         &-column {
@@ -67,10 +69,12 @@
                 flex: none;
                 justify-content: center;
                 width: 17vw;
-                padding: 0 0 0 .625rem;
+                padding: 0 0 0 0.625rem;
                 text-align: left;
 
-                .title { margin-top: 1rem; }
+                .title {
+                    margin-top: 1rem;
+                }
             }
 
             &:last-child {
@@ -87,10 +91,12 @@
 
             .motto {
                 padding: 0 $site-padding;
-                font-size: .875rem;
+                font-size: 0.875rem;
             }
 
-            .site-title { font-size: calc(2.7vmin + 1em); }
+            .site-title {
+                font-size: calc(2.7vmin + 1em);
+            }
         }
 
         &-column {
@@ -99,7 +105,21 @@
                 width: calc(25vw - (#{$site-padding} * 2));
                 padding: 0 $site-padding;
 
-                .title { margin-top: 0; }
+                .title {
+                    margin-top: 0;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 1600px) and (min-width: 768px) {
+    .site-title {
+        &-wrapper {
+            height: 15vh;
+            .motto {
+                position: absolute;
+                visibility: hidden;
             }
         }
     }

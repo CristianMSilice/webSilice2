@@ -22,9 +22,15 @@ export class TeamComponent implements OnInit {
   sliderItemRealLength: number;
   itemsShowed = 4;
   translateFlag = true;
+  width=390
+
   constructor(private SiblingService: SiblingService) {
   }
+
+
+  
   ngOnInit() {
+    if(window.innerWidth < 1600)this.width=330;
     this.prepareArray(this.itemsShowed);
   }
 

@@ -1,3 +1,14 @@
-team{
+team {
     position: relative;
+}
+
+@media (min-width: 769px) and (max-width: 1600px) {
+    section.team.content {
+        margin: 1em 0 1em 0;
+    }
+    .fixed-row {
+        height:100% ;
+        position: absolute;
+        top: 0;
+    }
 }

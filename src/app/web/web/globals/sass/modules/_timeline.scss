@@ -7,15 +7,19 @@
             display: none;
         }
 
-        .row-inner { max-width: 100%; }
+        .row-inner {
+            max-width: 100%;
+        }
     }
-    
-    .swiper-slide { margin-left: 4.75rem; }
+
+    .swiper-slide {
+        margin-left: 4.75rem;
+    }
 
     .item {
         @include flex-all(column, center);
         flex: none;
-        width: 480px; 
+        width: 480px;
         height: 500px;
         margin: 0 3rem 0 2rem;
 
@@ -41,12 +45,12 @@
             // border: 10px solid $c-grey-light;
             border-radius: 20px;
             background-color: $c-white;
-            box-shadow: 0 0 80px rgba($c-black, .1);
+            box-shadow: 0 0 80px rgba($c-black, 0.1);
         }
     }
 
-    .name { 
-        margin: 0 0 .5rem; 
+    .name {
+        margin: 0 0 0.5rem;
         font: {
             size: 1.375rem;
             family: $primary-font;
@@ -76,7 +80,7 @@
 
         time {
             @include flex-all($align: flex-end);
-            @include scale-font($small-ratio: .5, $mid-ratio: .75, $final-size: 7.75rem);
+            @include scale-font($small-ratio: 0.5, $mid-ratio: 0.75, $final-size: 7.75rem);
             position: absolute;
             z-index: 1;
             top: 0;
@@ -87,8 +91,8 @@
     }
 
     .content-body,
-    .content-body > * { 
-        @include flex-all($align: center); 
+    .content-body > * {
+        @include flex-all($align: center);
         @include mask {
             top: 50%;
             left: 0;
@@ -103,5 +107,29 @@
     .content-body > * {
         width: 100% !important;
         height: 500px !important;
+    }
+}
+
+@media (max-width: 1600px) and (min-width: 768px) {
+    .timeline {
+        .item {
+            justify-content: flex-start;
+            margin: 1.5em 3rem 0 2rem;
+            transform: scale(0.9);
+            height: 455px;
+            &::before{
+                left:calc((-4.75rem / 2) - (84px / 2));
+            }
+        }
+        .time {
+            time {
+                top: -65px;
+                font-size: 3.2em;
+                left: 9px;
+            }
+        }
+        .item-summary{
+            padding:1.4em;
+        }
     }
 }
