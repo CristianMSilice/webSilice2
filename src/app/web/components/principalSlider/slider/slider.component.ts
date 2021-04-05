@@ -15,20 +15,21 @@ export class SliderComponent implements OnInit {
   math = Math;
   selectedOption: number = 0
   IntervalTime;
-
+  sliderSize=200;
 
   constructor(private siblingsService: SiblingsService) {
   }
 
   ngOnInit() {
     this.inicialiceTimer(this.IntervalTime);
+    if(window.innerWidth<1600)this.sliderSize=140;
   }
 
   inicialiceTimer(timer) {
     if (timer) clearInterval(this.IntervalTime)
     this.IntervalTime = setInterval(() => {
       this.selectedOption = (this.selectedOption + 1) % this.sliderItem.length;
-    }, 5000);
+    }, 50000);
   }
 
   newOptionSelected(i) {

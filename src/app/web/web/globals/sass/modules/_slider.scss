@@ -143,11 +143,7 @@
         transform: translateX(-50%);
 
         .name {
-            @include scale-font(
-                $small-ratio: 0.5,
-                $mid-ratio: 0.75,
-                $final-size: 4.5rem
-            );
+            @include scale-font($small-ratio: 0.5, $mid-ratio: 0.75, $final-size: 4.5rem);
             margin: 0 0 1rem;
             font-weight: 900;
             text-transform: uppercase;
@@ -349,7 +345,30 @@
     }
 }
 
+.slider-options {
+    .content-links {
+        display: none;
+    }
+}
 
-.slider-options { 
-    .content-links { display: none; }
+@media (max-width: 1600px) and (min-width: 768px) {
+    .carousel-wrapper-main {
+        .content-circles {
+            .circle {
+                &.one {
+                    width: 300px;
+                    height: 300px;
+                }
+
+                &.two {
+                    width: 400px;
+                    height: 400px;
+                }
+            }
+            .circle-border {
+                width: 400px;
+                height: 400px;
+            }
+        }
+    }
 }

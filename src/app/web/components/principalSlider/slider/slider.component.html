@@ -1,45 +1,58 @@
 <ng-container>
     <div class="pslider-container" [style.width]="width" [style.height]="height">
         <div class="slider-content">
-            <div *ngFor="let option of sliderItem; index as i" class="image"
-                [style.transform]="'translate('+ -100 * selectedOption +'%,0px)'">
-                <img [src]="option.Image">
-            </div>
+            <ng-container *ngFor="let option of sliderItem; index as i">
+                <div class="image" [style.transform]="'translate('+ -100 * selectedOption +'%,0px)'">
+                    <img [src]="option.Image">
+                </div>
+                <div class="slider-content-text" [ngClass]="{'show': selectedOption == i}">
+                    <div class="text-title">{{option.title}}</div>
+                    <div class="text-description">{{option.text}}</div>
+                </div>
+            </ng-container>
         </div>
         <div class="slider-controller-container">
             <div class="slider-options">
+
                 <ng-container *ngFor="let option of sliderItem; index as i">
-                    <div class="slider-option" [ngClass]="{'selectedOption':selectedOption == i}"
-                        (click)="newOptionSelected(i)"
-                        [style.transform]="'translate(' + math.cos( ((i*360/ sliderItem.length) - 90 )  * 2 * math.PI / 360) * 200 +'px,' + math.sin(((i*360/ sliderItem.length) - 90) * 2 * math.PI / 360)*  200 + 'px)'">
-                    </div>
-                    <div class="pslider-tooltip "
+                    <div class="slider-option " 
                     [ngClass]="{'selectedOption':selectedOption == i}"
-                    [style.transform]="'translate(' + math.cos( ((i*360/ sliderItem.length) - 90 )  * 2 * math.PI / 360) * 200 +'px,' + math.sin(((i*360/ sliderItem.length) - 90) * 2 * math.PI / 360)*  200 + 'px)'">
-                        <div class="content-links">
-                            <p><strong>{{option.title}}</strong></p>
-                            <p>{{option.text}}</p>
+                        (click)="newOptionSelected(i)"
+                        [style.transform]="'translate(' + math.cos( ((i*360/ sliderItem.length) - 90 )  * 2 * math.PI / 360) * sliderSize +'px,' + math.sin(((i*360/ sliderItem.length) - 90) * 2 * math.PI / 360)*  sliderSize + 'px)'">
+                    </div>
+                    <div class="pslider-tooltip" [ngClass]="{'selectedOption':selectedOption == i}"
+                        [style.transform]="'translate(' + math.cos( ((i*360/ sliderItem.length) - 90 )  * 2 * math.PI / 360) * (sliderSize + 150) +'px,' + math.sin(((i*360/ sliderItem.length) - 90) * 2 * math.PI / 360)*  (sliderSize + 50) + 'px)'">
+                        <div class="content-slider-links">
+                            <h2>{{option.title}}</h2>
+                            <span>{{option.text}}</span>
                             <a class="action action-primary" target="_blank">{{option.button.text}}</a>
                         </div>
                     </div>
                 </ng-container>
+
             </div>
             <div class="main-rotator" data-chatweb="true">
                 <div class="content-play">
                     <button class="content-links" (click)="openModal()">
                         <div class="action action-play">
-                            <svg width="18.981" height="21.694" viewBox="0 0 18.981 21.694"><path d="M17.982,9.1,3.068.281A2.022,2.022,0,0,0,0,2.03v17.63a2.032,2.032,0,0,0,3.068,1.75L17.982,12.6A2.032,2.032,0,0,0,17.982,9.1Z" transform="translate(0 -0.002)" /></svg>
+                            <svg width="18.981" height="21.694" viewBox="0 0 18.981 21.694">
+                                <path
+                                    d="M17.982,9.1,3.068.281A2.022,2.022,0,0,0,0,2.03v17.63a2.032,2.032,0,0,0,3.068,1.75L17.982,12.6A2.032,2.032,0,0,0,17.982,9.1Z"
+                                    transform="translate(0 -0.002)" />
+                            </svg>
                             <span class="hidden">Play</span>
                         </div>
                     </button>
                 </div>
                 <div class="content-circles">
-                    <div class="svg-box"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80"><circle cx="40" cy="40" r="40"/></svg></div>
-        
+                    <div class="svg-box"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80">
+                            <circle cx="40" cy="40" r="40" />
+                        </svg></div>
+
                     <div class="circle one"></div>
                     <div class="circle two"></div>
                     <div class="circle three"></div>
-        
+
                     <div class="circle-border one"></div>
                     <div class="circle-border two"></div>
                     <div class="circle-border three"></div>

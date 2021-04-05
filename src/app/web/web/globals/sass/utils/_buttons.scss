@@ -38,7 +38,7 @@
             rgba(242, 89, 29, 1) 40%,
             rgba(242, 68, 0, 1) 100%
         );
-        transition: all 0.5s;
+        transition: color 0.5s;
 
         &:before {
             background: linear-gradient(
