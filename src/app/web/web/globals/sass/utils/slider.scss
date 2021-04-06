@@ -39,7 +39,7 @@
 
 .arrow {
     position: absolute;
-    --arrow-container-size: calc((100vw - var(--width-chat-widget)) * 0.09);
+    --arrow-container-size: calc((100vw - var(--width-chat-widget)) * 0.085);
     width: var(--arrow-container-size);
     height: 100%;
     --border-radius: 5vmax;
