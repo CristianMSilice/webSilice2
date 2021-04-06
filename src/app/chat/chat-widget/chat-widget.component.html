@@ -100,10 +100,12 @@
         </div>
         <chat-input (send)="sendMessage($event)" (dismiss)="closeChat()" (toggleAttOptions)="toggleAttOptions()"
             [focus]="focus" [menuPrincipal]="menuPrincipal" class="chat-widget-wrapper"></chat-input>
-        <chat-adjuntos [clientChat]="client.id" (send)="sendFile($event)"></chat-adjuntos>
-        <app-new-tarjeta [url]="nuestraUrl" [@slideInOut2]="menuStatet2" [deleteHandler]="ocultarTarjetas2">
-        </app-new-tarjeta>
+        <app-new-tarjeta [url]="nuestraUrl" [@slideInOut2]="menuStatet2" [deleteHandler]="ocultarTarjetas2"></app-new-tarjeta>
+        <chat-footer class="chat-footer"></chat-footer>
     </div>
+
+    <chat-adjuntos [clientChat]="client.id" (send)="sendFile($event)" class="chat-adjuntos-wrapper"></chat-adjuntos>
+
     <div *ngIf=" ! isMobileResolution">
         <div class="chatbubble open" #btnbubble (click)="openChat()" *ngIf="!visible && close_able_chat"
             [@fadeInOut]="!visible"></div>

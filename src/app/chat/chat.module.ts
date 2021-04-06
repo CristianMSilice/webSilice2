@@ -12,7 +12,8 @@ import { CookieService } from 'ngx-cookie-service'
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2'
 import { SanitizeHtmlPipe } from './pipe/sanitize-html.pipe'
 import { ChatAdjuntosComponent } from './chat-adjuntos/chat-adjuntos.component';
-import { EmojiSiliceComponent } from './emojis/emoji-silice/emoji-silice.component'
+import { EmojiSiliceComponent } from './emojis/emoji-silice/emoji-silice.component';
+import { ChatFooterComponent } from './chat-footer/chat-footer.component'
 
 @NgModule({
   imports: [CommonModule, AngularDraggableModule, SweetAlert2Module],
@@ -26,6 +27,7 @@ import { EmojiSiliceComponent } from './emojis/emoji-silice/emoji-silice.compone
     NewTarjetaComponent,
     ChatAdjuntosComponent,
     EmojiSiliceComponent,
+    ChatFooterComponent,
   ],
   providers: [SocketService, CookieService, SanitizeHtmlPipe],
   exports: [ChatWidgetComponent, ChatConfigComponent],
