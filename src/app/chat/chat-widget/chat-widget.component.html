@@ -28,12 +28,12 @@
 
                         <div *ngIf="message.tipo == 2" [ngSwitch]="true">
                             <div class="message-image" *ngSwitchCase="
-                  message.file_mime === 'image/gif' ||
-                  message.file_mime === 'image/webp' ||
-                  message.file_mime === 'image/png' ||
-                  message.file_mime === 'image/jpg' ||
-                  message.file_mime === 'image/jpeg'
-                ">
+                                message.file_mime === 'image/gif' ||
+                                message.file_mime === 'image/webp' ||
+                                message.file_mime === 'image/png' ||
+                                message.file_mime === 'image/jpg' ||
+                                message.file_mime === 'image/jpeg'
+                            ">
                                 <img src="{{ message.text }}" />
                             </div>
 
@@ -44,11 +44,11 @@
                             </div>
 
                             <div *ngSwitchCase="
-                  message.file_mime === 'audio/ogg; codecs=opus' ||
-                  message.file_mime === 'audio/mp3' ||
-                  message.file_mime === 'audio/ogg' ||
-                  message.file_mime === 'audio/mp4'
-                ">
+                                message.file_mime === 'audio/ogg; codecs=opus' ||
+                                message.file_mime === 'audio/mp3' ||
+                                message.file_mime === 'audio/ogg' ||
+                                message.file_mime === 'audio/mp4'
+                            ">
                                 <audio controls style="max-width: 100%; max-height: 400px">
                                     <source [src]="message.text" type="{{ message.file_mime }}" />
                                 </audio>
@@ -99,7 +99,7 @@
             <div class="powered-by-silice"></div>
         </div>
         <chat-input (send)="sendMessage($event)" (dismiss)="closeChat()" (toggleAttOptions)="toggleAttOptions()"
-            [focus]="focus" [menuPrincipal]="menuPrincipal"></chat-input>
+            [focus]="focus" [menuPrincipal]="menuPrincipal" class="chat-widget-wrapper"></chat-input>
         <chat-adjuntos [clientChat]="client.id" (send)="sendFile($event)"></chat-adjuntos>
         <app-new-tarjeta [url]="nuestraUrl" [@slideInOut2]="menuStatet2" [deleteHandler]="ocultarTarjetas2">
         </app-new-tarjeta>

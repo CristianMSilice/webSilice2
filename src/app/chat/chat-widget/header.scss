@@ -1,8 +1,8 @@
 .chat-widget {
     --margin-chat: 5px;
     display: grid;
-    grid-template-rows: -webkit-min-content 1fr 40px;
-    grid-template-rows: min-content 1fr 40px;
+    grid-template-rows: -webkit-min-content 1fr 70px;
+    grid-template-rows: min-content 1fr 70px;
     width: calc(100% - var(--margin-chat) * 2);
     margin: 0 calc(var(--margin-chat) );
     max-height: 100vh;
