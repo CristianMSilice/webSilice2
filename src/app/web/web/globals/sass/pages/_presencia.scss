@@ -33,13 +33,13 @@
         .items-list {
             @include flex-all;
             box-shadow: 0 3px 100px rgba($c-black, .1);
-            background-color: rgba($c-white, .6);
+            background-color: rgba($c-white, .3);
 
             li {
                 @include flex-all(column, center, center);
                 flex: 1;
                 height: 100px;
-                background-color: $c-white;
+                background-color: rgba($c-white, .3);
 
                 @include mask {
                     top: 50%;
@@ -365,3 +365,38 @@
 //         }
 //     }
 // }
+
+
+.dotCountry {
+    --size-dot-country: 8px;
+    --border-dot-country: 3px;
+    position: absolute;
+    width: var(--size-dot-country);
+    height: var(--size-dot-country);
+    background-color: var(--headerTextColor);
+    border-radius: 50%;
+    z-index: 100;
+    cursor: pointer;
+    &:after {
+        content: '';
+        width: calc(var(--size-dot-country) + var(--border-dot-country));
+        height: calc(var(--size-dot-country) + var(--border-dot-country));
+        position: absolute;
+        border: 1px solid var(--headerTextColor);
+        border-radius: 50%;
+        top: calc(0px - 0.5px - var(--border-dot-country) / 2);
+        left: calc(0px - 0.5px - var(--border-dot-country) / 2);
+    }
+}
+
+@media (max-width:1600px) and(min-width:768px){
+    .presencia .stats .title {
+        margin: 0.5rem 0 1rem;
+    }
+    ul.items-list {
+        transform: scale(0.8);
+    }
+    .presencia .map-details {
+        width: 400px;
+    }
+}

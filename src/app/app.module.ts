@@ -34,6 +34,7 @@ import { HomeComponent } from './web/pages/home/home.component'
 import { HeaderComponent } from './web/components/header/header.component'
 import { LaboratorioComponent } from './web/pages/laboratorio/laboratorio.component'
 import { ModalComponent } from './web/components/modal/modal.component'
+import { MapaMundiComponent } from './web/components/mapa-mundi/mapa-mundi.component';
 import { NavComponent } from './web/components/header/nav/nav.component'
 import { NosotrosComponent } from './web/pages/nosotros/nosotros.component'
 import { NoticiasComponent } from './web/pages/noticias/noticias.component'
@@ -119,6 +120,7 @@ const routes: Routes = [
     PageEspanaComponent,
     PageColombiaComponent,
     PagePanamaComponent,
+    MapaMundiComponent,
   ],
 
   providers: [
