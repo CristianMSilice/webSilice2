@@ -49,6 +49,12 @@ import { TeamComponent } from './web/components/team/team.component';
 import { TimelineComponent } from './web/components/timeline/timeline.component'
 import { WebComponent } from './web/web/web.component';
 import { YouTubeVideoComponent } from './web/components/you-tube-video/you-tube-video.component';
+import { Noticia1Component } from './web/pages/blog/noticia1/noticia1.component';
+import { Noticia2Component } from './web/pages/blog/noticia2/noticia2.component';
+import { Noticia3Component } from './web/pages/blog/noticia3/noticia3.component';
+import { Noticia4Component } from './web/pages/blog/noticia4/noticia4.component';
+import { Noticia5Component } from './web/pages/blog/noticia5/noticia5.component';
+import { Noticia6Component } from './web/pages/blog/noticia6/noticia6.component';
 
 const routes: Routes = [
   {
@@ -66,6 +72,12 @@ const routes: Routes = [
       { path: 'experiencia/sedes/espana', component: PageEspanaComponent },
       { path: 'experiencia/contacto', component: ContactoComponent },
       { path: 'blog', component: BlogComponent },
+      { path: 'blog/reinventarse-a-traves-de-la-innovacion-el-nuevo-reto-de-la-humanidad-en-el-2021', component: Noticia1Component },
+      { path: 'blog/covid19-motor-de-la-innovacion-en-el-sector-salud', component: Noticia2Component },
+      { path: 'blog/por-que-es-indispensable-para-tu-negocio-dar-el-paso-a-la-omnicanalidad', component: Noticia3Component },
+      { path: 'blog/a-buen-emprendedor-decisiones-valientes', component: Noticia4Component },
+      { path: 'blog/un-evolutivo-que-ha-cambiado-las-reglas-de-juego-de-la-era-digital-de-manera-definitiva', component: Noticia5Component },
+      { path: 'blog/por-que-la-comunicacion-digital-es-indispensable-dentro-de-tu-estrategia-de-transformacion-digital', component: Noticia6Component },
       { path: 'casos', component: CasosComponent },
       { path: 'home', component: HomeComponent },
       { path: '**', redirectTo: '/home/home', pathMatch: 'full' }
@@ -119,6 +131,12 @@ const routes: Routes = [
     PageEspanaComponent,
     PageColombiaComponent,
     PagePanamaComponent,
+    Noticia1Component,
+    Noticia2Component,
+    Noticia3Component,
+    Noticia4Component,
+    Noticia5Component,
+    Noticia6Component,
   ],
 
   providers: [

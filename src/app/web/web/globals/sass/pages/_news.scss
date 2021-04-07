@@ -3,7 +3,99 @@
         overflow-y: scroll;
         justify-content: flex-start;
 
-        &.padding-row .row > .row-inner { padding: 0; }
+        &.padding-row .row > .row-inner { padding: 0; }        
+
+        .item-author {
+            @include flex-all($align: center, $inline: true);
+            height: 40px;
+            padding-right: 1rem;
+            border-radius: 30px;
+            box-shadow: 0 0 50px rgba($c-black, .12);
+            background-color: $c-white;
+
+            .author {
+                @include flex-all($direction: column, $justify: space-around);
+                font-size: .75rem;
+                line-height: 1.2;
+
+                &-name { font-weight: 700; }
+            }
+
+            img {
+                width: 40px;
+                height: 40px;
+                margin-right: .75rem;
+                border: 2px solid $c-white;
+                border-radius: 50%;
+                object-fit: cover;
+            }
+        }
+
+        .item-author-footer {
+            @include flex-all;
+            margin: 2rem 0;
+            padding: 2rem 0;
+            border: {
+                top: 1px dashed rgba(lighten($c-black, 10%), .12);
+                bottom: 1px dashed rgba(lighten($c-black, 10%), .12);
+            }
+
+            img {
+                display: block;
+                width: 260px;
+                height: 260px;
+            }
+
+            .author {
+                @include flex-all(column, space-between);
+                flex: 1;
+                padding: 2rem;
+                box-shadow: 0 0 100px rgba($c-black, .12);
+
+                .author-details > * { display: block; }
+            }
+
+            .author-name {
+                font: {
+                    size: 1.4375rem;
+                    weight: 600;
+                }
+
+                strong { 
+                    font-weight: 600;
+                    color: $primary-color; 
+                }
+            }
+
+            .social {
+                .items-list {
+                    @include flex-all;
+
+                    svg {
+                        width: 34px;
+                        height: 34px;
+                        fill: $secondary-color;
+                    }
+
+                    a {
+                        margin-right: 1rem;
+                        cursor: pointer;
+
+                        @include hover {
+                            svg { fill: $primary-color; }
+                        }
+                    }
+                }
+            }
+
+            .social-title {
+                margin: 0;
+                font: {
+                    size: 1rem;
+                    weight: 500;
+                }
+            }
+        }
 
         time {
             font: {
@@ -61,6 +153,25 @@
             }
 
             p { font-weight: 300; }
+
+            a { 
+                text-decoration: none;
+                color: $c-white; 
+
+                @include mask {
+                    top: 100%;
+                    left: 50%;
+                    width: 0;
+                    height: 1px;
+                    background-color: $c-white;
+                    transform: translateX(-50%);
+                    transition: width .5s;
+                }
+
+                @include hover {
+                    &:before { width: 20%; }
+                }
+            }
         }
 
         .item-image {
@@ -101,6 +212,24 @@
             h3 { 
                 margin: 0; 
                 font-size: 1.375rem;
+            }
+
+            a {
+                text-decoration: none;
+                color: $secondary-color; 
+
+                @include mask {
+                    top: 100%;
+                    left: 0;
+                    width: 0;
+                    height: 1px;
+                    background-color: $secondary-color;
+                    transition: width .5s;
+                }
+
+                @include hover-color($c-black) {
+                    &:before { width: 100px; }
+                }
             }
         }
     }
@@ -147,6 +276,24 @@
                 font-size: 1rem;
                 margin: 0 0 1rem; 
             }
+
+            a {
+                text-decoration: none;
+                color: $secondary-color; 
+
+                @include mask {
+                    top: calc(100% + 2px);
+                    left: 0;
+                    width: 0;
+                    height: 1px;
+                    background-color: $secondary-color;
+                    transition: width .5s;
+                }
+
+                @include hover-color($c-black) {
+                    &:before { width: 100px; }
+                }
+            }
         }  
 
         .item { margin-bottom: 1.5rem; }
@@ -170,32 +317,6 @@
             border-radius: 10px;
             background-color: $c-white;
         }
-
-        .item-author {
-            @include flex-all($align: center, $inline: true);
-            height: 40px;
-            padding-right: 1rem;
-            border-radius: 30px;
-            box-shadow: 0 0 50px rgba($c-black, .12);
-            background-color: $c-white;
-
-            .author {
-                @include flex-all($direction: column, $justify: space-around);
-                font-size: .75rem;
-                line-height: 1.2;
-
-                &-name { font-weight: 700; }
-            }
-
-            img {
-                width: 40px;
-                height: 40px;
-                margin-right: .75rem;
-                border: 2px solid $c-white;
-                border-radius: 50%;
-                object-fit: cover;
-            }
-        }
     }
 
     .item-image img {
@@ -203,5 +324,27 @@
         max-width: 100%;
         width: 100%;
         object-fit: cover;
+    }
+}
+
+.news-wrapper {  
+    &.internal {
+        height: 100%;
+
+        .content-details {
+            @include width-constrain($vp-large);
+            position: relative;
+            margin-top: -4rem;
+            border-radius: 20px;
+            background-color: $c-white;
+
+            &-inner {
+                padding: $site-padding;
+            }
+        }
+
+        .content-body {
+            padding: 0 0 2rem;
+        }
     }
 }
