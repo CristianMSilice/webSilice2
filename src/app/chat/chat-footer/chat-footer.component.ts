@@ -6,10 +6,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./chat-footer.component.scss']
 })
 export class ChatFooterComponent implements OnInit {
+  showContent: boolean = false;
 
   constructor() { }
 
   ngOnInit() {
   }
 
+  toggleChatFooter() {
+    this.showContent =!this.showContent
+  }
 }

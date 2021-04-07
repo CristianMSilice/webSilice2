@@ -20,10 +20,12 @@
             overflow: hidden;
             flex-grow: 1;
             flex-shrink: 0;
+            background-color: black;
             img {
                 min-width: 100%;
                 min-height: 100%;
                 object-fit: cover;
+                opacity: .7;
             }
         }
 

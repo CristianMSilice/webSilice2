@@ -50,18 +50,12 @@ body {
     margin: 5px 3px;
     border: 1px solid;
     border-radius: 50vmin;
-    color: var(--buttonsColor);
-    background-color: hsla(0, 0%, 0%, 5%);
+    color: white;
 }
 
 .message-buttons-array .message-button-option:hover {
     cursor: pointer;
     background-color: hsla(0, 0%, 0%, 10%);
-}
-
-.message-button-option.disabled {
-    color: hsla(0, 0%, 20%) !important;
-    border: 1px solid hsla(0, 0%, 20%) !important;
 }
 
 .message-button-option.disabled:hover {

@@ -1,8 +1,9 @@
 .items-list {
     display: flex;
+    position: relative;
+    z-index: 999;
     width: 100%;
     height: 100%;
-    background-color: #fff;
 }
 
 .item { 
@@ -15,9 +16,11 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        position: relative;
+        z-index: 2;
         width: 100%;
         height: 100%;
-        position: relative;
+        background-color: #fff;
 
         &:before {
             content: "";
@@ -37,11 +40,304 @@
             fill: #000;
         }
     }
+
+    &.active {
+        .item-content {
+            transform: translateY(0);
+        }
+    }
 }
 
 .item-svg {
     svg { 
         fill: var(--headerTextColor);
         transition: fill .5s;
+    }
+}
+
+.item-content {
+    position: absolute;
+    bottom: 100%;
+    left: 0;
+    width: 100%;
+    height: 93vh;
+    overflow-y: auto;
+    color: white;
+    background-color: rgba(0,0,0,.9);
+    transform: translateY(100%);
+    transition: transform .5s;
+
+    .item-content-inner {
+        padding: 2rem;
+    }
+
+    .title {
+        margin: 0;
+        padding: 0 0 2rem;
+        font: {
+            size: 1rem;
+            weight: 500;
+        }
+        text-transform: uppercase;
+    }
+}
+
+.settings {
+    .option {
+        margin: 0 0 2rem;
+    }
+
+    .option-text {
+        line-height: 1.5;
+
+        > * {
+            display: block;
+        }
+
+        .first-line {
+            font-size: 1rem;
+        }
+
+        .second-line {
+            font-size: .875rem;
+            opacity: .6;
+        }
+    }
+
+    .option-checkbox {
+        margin-bottom: .5rem;
+
+        .toggle {
+            position: relative;
+            width: 110px;
+            height: 30px;
+            margin: 0;
+            padding: 0;
+            border: 0;
+            border-radius: 30px;
+            cursor: pointer;
+            background-color: black;
+
+            &:before {
+                content: "Off";
+                position: absolute;
+                top: 50%;
+                right: 17px;
+                color: white;
+                transform: translateY(-50%);
+            }
+
+            span {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                position: relative;
+                z-index: 2;
+                width: 60px;
+                height: 100%;
+                font-weight: 500;
+                border-radius: 30px;
+                color: rgb(0, 0, 0);
+                background-color: var(--headerTextColor);
+                transition: all 0.2s cubic-bezier(0.8, 0.4, 0.3, 1.25), background 0.15s ease;
+            }
+
+            &.active {
+                span { 
+                    background: white;
+                    transform: translateX(50px); 
+                }
+            }
+        }      
+    }
+}
+
+.audios {
+    .audio-cover {
+        .image {
+            display: flex;
+            align-items: center;
+
+            img {
+                display: block;
+                flex: none;
+                max-width: 45%;
+                width: 100%;
+                height: 20vh;
+                object-fit: cover;
+            }
+
+            .image-caption {
+                flex: 1;
+                padding: 0 1rem; 
+    
+                > * { 
+                    display: block; 
+                    letter-spacing: .1em;
+                }
+
+                .first-line {
+                    min-height: 50px;
+                    font: {
+                        size: 1.125rem;
+                        weight: 500;
+                    }
+                }
+
+                .second-line {
+                    margin-bottom: .125rem;
+                    font: {
+                        size: .875rem;
+                        weight: 300;
+                    }
+                }
+
+                .third-line {
+                    font: {
+                        size: .75rem;
+                        weight: 300;
+                    }
+                    opacity: .5;
+                }
+            }
+        }
+    }
+
+    .audio-option {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        min-height: 80px;
+        margin-top: 1rem;
+        padding: 1rem;
+        color: white;
+        background-color: #1E1E1E;
+
+        .text {
+            flex: 1;
+
+            > * {
+                display: block;
+            }
+
+            .first-line {
+                font-weight: 500;
+                letter-spacing: .125em;
+            }
+
+            .second-line {
+                font: {
+                    size: .875rem;
+                    weight: 300;
+                }
+                opacity: .5;
+            }
+        }
+
+        .btn-audio {
+            flex: none;
+            border: 0;
+            background-color: transparent;
+            cursor: pointer;
+
+            .btn-audio-circle {
+                fill: white;
+                opacity: .7;
+                transition: fill .5s;
+            }
+
+            .btn-audio-play {
+                fill: black;
+                transition: fill .5s;
+            }
+
+            &:hover,
+            &:focus {
+                .btn-audio-circle { fill: var(--headerTextColor); }
+                .btn-audio-play { fill: white; }
+            }
+        }
+    }
+}
+
+.videos {
+    .video {
+        margin: 0 0 1rem;
+
+        iframe,
+        video {
+            display: block;
+            width: 100%;
+            height: 200px;
+            opacity: .5;
+            transition: all .5s;
+        }
+
+        &.active {
+            iframe,
+            video {
+                height: 400px;
+                opacity: 1;
+            }
+        }
+
+        &:hover,
+        &:focus {
+            iframe,
+            video {
+                opacity: 1;
+            }
+        }
+    }
+}
+
+.links {
+    .link {
+        position: relative;
+        margin-bottom: 1rem;
+
+        &:hover,
+        &:focus {
+            .image img {
+                transform: scale(.8);
+            }
+        }
+    }
+
+    .image {
+        display: flex;
+        align-items: center;
+        height: 100px;
+
+        img {
+            display: block;
+            width: 100px;
+            height: 100px;
+            margin-right: 1rem;
+            border-radius: 50%;
+            object-fit: cover;
+            transition: all .5s;
+        }
+
+        .image-caption {
+            > * { 
+                display: block; 
+                letter-spacing: .125em;
+            }
+
+            .first-line { font-weight: 600; }
+
+            a {
+                font-size: .875rem;
+                color: white;
+                text-decoration: none;
+
+                &:hover,
+                &:focus {
+                    color: var(--headerTextColor);
+                }
+            }
+        }
     }
 }
