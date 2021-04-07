@@ -10,6 +10,13 @@
         .row-inner {
             max-width: 100%;
         }
+
+        @include respond-to($site-width) {
+            .row {
+                display: flex;
+                align-items: center;
+            }
+        }
     }
 
     .swiper-slide {
