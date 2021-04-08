@@ -39,18 +39,20 @@
 // 2d Transitions
 
 // Forward
-@mixin forward($duration: .3s, $distance: 8px, $descriptor: null) {
+@mixin forward($duration: 0.3s, $distance: 8px, $descriptor: null) {
 	@include hacks;
 	transition: {
 		duration: $duration;
 		property: transform;
 	}
 
-	@include hover($descriptor) { transform: translateX($distance); }
+	@include hover($descriptor) {
+		transform: translateX($distance);
+	}
 }
 
 // Backward
-@mixin backward($duration: .3s, $distance: 8px, $descriptor: null) {
+@mixin backward($duration: 0.3s, $distance: 8px, $descriptor: null) {
 	@include forward($duration, #{-$distance}, $descriptor);
 }
 
@@ -58,18 +60,26 @@
 @mixin bob-keyframes($distance) {
 	@at-root {
 		@keyframes bob {
-			0% { transform: translateY(#{$distance}); }
-			50% { transform: translateY(#{$distance/2}); }
-			100% { transform: translateY(#{$distance}); }
+			0% {
+				transform: translateY(#{$distance});
+			}
+			50% {
+				transform: translateY(#{$distance/2});
+			}
+			100% {
+				transform: translateY(#{$distance});
+			}
 		}
 
 		@keyframes bob-float {
-			100% { transform: translateY(#{$distance}); }
+			100% {
+				transform: translateY(#{$distance});
+			}
 		}
 	}
 }
 
-@mixin bob($duration1: .3s, $duration2: 1.5s, $distance: -8px, $descriptor: null) {
+@mixin bob($duration1: 0.3s, $duration2: 1.5s, $distance: -8px, $descriptor: null) {
 	@include hacks;
 	@include bob-keyframes($distance);
 
@@ -93,17 +103,17 @@
 
 	@include hover($descriptor) {
 		transform: scale($scale);
-		transition-timing-function: cubic-bezier(.47,2.02,.31,-0.36);
+		transition-timing-function: cubic-bezier(0.47, 2.02, 0.31, -0.36);
 	}
 }
 
 // Bounce In
-@mixin bounce-in($duration: .5s, $scale: 1.2, $descriptor: null) {
+@mixin bounce-in($duration: 0.5s, $scale: 1.2, $descriptor: null) {
 	@include bounce-base($duration, $scale, $descriptor);
 }
 
 // Bounce Out
-@mixin bounce-out($duration: .5s, $scale: .8, $descriptor: null) {
+@mixin bounce-out($duration: 0.5s, $scale: 0.8, $descriptor: null) {
 	@include bounce-base($duration, $scale, $descriptor);
 }
 
@@ -111,13 +121,17 @@
 @mixin buzz-keyframes($distance, $spin) {
 	@at-root {
 		@keyframes buzz {
-			50% { transform: translateX(#{$distance}) rotate(#{$spin}); }
-			100% { transform: translateX(#{-$distance}) rotate(#{-$spin}); }
+			50% {
+				transform: translateX(#{$distance}) rotate(#{$spin});
+			}
+			100% {
+				transform: translateX(#{-$distance}) rotate(#{-$spin});
+			}
 		}
 	}
 }
 
-@mixin buzz($duration: .15s, $distance: 3px, $spin: 2deg, $descriptor: null) {
+@mixin buzz($duration: 0.15s, $distance: 3px, $spin: 2deg, $descriptor: null) {
 	@include hacks;
 	@include buzz-keyframes($distance, $spin);
 	@include hover($descriptor) {
@@ -134,21 +148,41 @@
 @mixin buzz-out-keyframes($distance, $spin) {
 	@at-root {
 		@keyframes buzz-out {
-			10% { transform: translateX(#{$distance}) rotate(#{$spin}); }
-			20% { transform: translateX(#{-$distance}) rotate(#{-$spin}); }
-			30% { transform: translateX(#{$distance}) rotate(#{$spin}); }
-			40% { transform: translateX(#{-$distance}) rotate(#{-$spin}); }
-			50% { transform: translateX(#{$distance*(2/3)}) rotate(#{$spin/2}); }
-			60% { transform: translateX(#{-$distance*(2/3)}) rotate(#{-$spin/2}); }
-			70% { transform: translateX(#{$distance*(2/3)}) rotate(#{$spin/2}); }
-			80% { transform: translateX(#{-$distance*(2/3)}) rotate(#{-$spin/2}); }
-			90% { transform: translateX(#{$distance*(1/3)}) rotate(0); }
-			100% { transform: translateX(#{-$distance*(1/3)}) rotate(0); }
+			10% {
+				transform: translateX(#{$distance}) rotate(#{$spin});
+			}
+			20% {
+				transform: translateX(#{-$distance}) rotate(#{-$spin});
+			}
+			30% {
+				transform: translateX(#{$distance}) rotate(#{$spin});
+			}
+			40% {
+				transform: translateX(#{-$distance}) rotate(#{-$spin});
+			}
+			50% {
+				transform: translateX(#{$distance * (2/3)}) rotate(#{$spin/2});
+			}
+			60% {
+				transform: translateX(#{-$distance * (2/3)}) rotate(#{-$spin/2});
+			}
+			70% {
+				transform: translateX(#{$distance * (2/3)}) rotate(#{$spin/2});
+			}
+			80% {
+				transform: translateX(#{-$distance * (2/3)}) rotate(#{-$spin/2});
+			}
+			90% {
+				transform: translateX(#{$distance * (1/3)}) rotate(0);
+			}
+			100% {
+				transform: translateX(#{-$distance * (1/3)}) rotate(0);
+			}
 		}
 	}
 }
 
-@mixin buzz-out($duration: .75s, $distance: 3px, $spin: 2deg, $descriptor: null) {
+@mixin buzz-out($duration: 0.75s, $distance: 3px, $spin: 2deg, $descriptor: null) {
 	@include hacks;
 	@include buzz-out-keyframes($distance, $spin);
 	@include hover($descriptor) {
@@ -162,7 +196,7 @@
 }
 
 // Float
-@mixin float($duration: .3s, $distance: -8px, $descriptor: null) {
+@mixin float($duration: 0.3s, $distance: -8px, $descriptor: null) {
 	@include hacks;
 	transition: {
 		duration: $duration;
@@ -170,52 +204,66 @@
 		timing-function: ease-out;
 	}
 
-	@include hover($descriptor) { transform: translateY($distance); }
+	@include hover($descriptor) {
+		transform: translateY($distance);
+	}
 }
 
 // Grow
-@mixin grow($duration: .3s, $scale: 1.1, $descriptor: null) {
+@mixin grow($duration: 0.3s, $scale: 1.1, $descriptor: null) {
 	@include hacks;
 	transition: {
 		duration: $duration;
 		property: transform;
 	}
 
-	@include hover($descriptor) { transform: scale($scale); }
+	@include hover($descriptor) {
+		transform: scale($scale);
+	}
 }
 
 // Shrink
-@mixin shrink($duration: .3s, $scale: .9, $descriptor: null) {
+@mixin shrink($duration: 0.3s, $scale: 0.9, $descriptor: null) {
 	@include grow($duration, $scale, $descriptor);
 }
 
 // Grow Rotate
-@mixin grow-rotate($duration: .3s, $scale: 1.1, $rotation: 4deg, $descriptor: null) {
+@mixin grow-rotate($duration: 0.3s, $scale: 1.1, $rotation: 4deg, $descriptor: null) {
 	@include hacks;
 	transition: {
 		duration: $duration;
 		property: transform;
 	}
 
-	@include hover($descriptor) { transform: scale($scale) rotate($rotation); }
+	@include hover($descriptor) {
+		transform: scale($scale) rotate($rotation);
+	}
 }
 
 // Hang
 @mixin hang-keyframes($distance) {
 	@at-root {
 		@keyframes hang {
-			0% { transform: translateY(#{$distance}); }
-			50% { transform: translateY(#{$distance/2}); }
-			100% { transform: translateY(#{$distance}); }
+			0% {
+				transform: translateY(#{$distance});
+			}
+			50% {
+				transform: translateY(#{$distance/2});
+			}
+			100% {
+				transform: translateY(#{$distance});
+			}
 		}
 
 		@keyframes hang-sink {
-			100% { transform: translateY(#{$distance}); }
+			100% {
+				transform: translateY(#{$distance});
+			}
 		}
 	}
 }
 
-@mixin hang($duration1: .3s, $duration2: 1.5s, $distance: 8px, $descriptor: null) {
+@mixin hang($duration1: 0.3s, $duration2: 1.5s, $distance: 8px, $descriptor: null) {
 	@include hacks;
 	@include hang-keyframes($distance);
 	@include hover($descriptor) {
@@ -236,7 +284,9 @@
 @mixin pop-keyframes($scale) {
 	@at-root {
 		@keyframes pop {
-			50% { transform: scale(#{$scale}); }
+			50% {
+				transform: scale(#{$scale});
+			}
 		}
 	}
 }
@@ -255,12 +305,12 @@
 }
 
 // Pop
-@mixin pop($duration: .3s, $scale: 1.2, $descriptor: null) {
+@mixin pop($duration: 0.3s, $scale: 1.2, $descriptor: null) {
 	@include pop-base($duration, $scale, $descriptor);
 }
 
 // Push
-@mixin push($duration: .3s, $scale: .8, $descriptor: null) {
+@mixin push($duration: 0.3s, $scale: 0.8, $descriptor: null) {
 	@include pop-base($duration, $scale, $descriptor);
 }
 
@@ -268,12 +318,14 @@
 @mixin pulse-keyframes($scale) {
 	@at-root {
 		@keyframes pulse {
-			to { transform: scale(#{$scale}); }
+			to {
+				transform: scale(#{$scale});
+			}
 		}
 	}
 }
 
-@mixin pulse-base( $scale, $duration: .3s, $descriptor: null) {
+@mixin pulse-base($scale, $duration: 0.3s, $descriptor: null) {
 	@include hacks;
 	@include pulse-keyframes($scale);
 	@include hover($descriptor) {
@@ -288,12 +340,12 @@
 }
 
 // Pulse Grow
-@mixin pulse-grow($duration: .3s, $scale: 1.1, $descriptor: null) {
+@mixin pulse-grow($duration: 0.3s, $scale: 1.1, $descriptor: null) {
 	@include pulse-base($scale, $descriptor);
 }
 
 // Pulse Shrink
-@mixin pulse-shrink($duration: .3s, $scale: .9, $descriptor: null) {
+@mixin pulse-shrink($duration: 0.3s, $scale: 0.9, $descriptor: null) {
 	@include pulse-base($scale, $descriptor);
 }
 
@@ -301,13 +353,17 @@
 @mixin pulse2-keyframes($pulse-min, $pulse-max) {
 	@at-root {
 		@keyframes pulse2 {
-			25% { transform: scale(#{$pulse-max}); }
-			75% { transform: scale(#{$pulse-min}); }
+			25% {
+				transform: scale(#{$pulse-max});
+			}
+			75% {
+				transform: scale(#{$pulse-min});
+			}
 		}
 	}
 }
 
-@mixin pulse($duration: 1s, $pulse-min: .9, $pulse-max: 1.1, $descriptor: null) {
+@mixin pulse($duration: 1s, $pulse-min: 0.9, $pulse-max: 1.1, $descriptor: null) {
 	@include hacks;
 	@include pulse2-keyframes($pulse-min, $pulse-max);
 	@include hover($descriptor) {
@@ -321,18 +377,20 @@
 }
 
 // Rotate
-@mixin rotate($duration: .3s, $rotation: 4deg, $descriptor: null) {
+@mixin rotate($duration: 0.3s, $rotation: 4deg, $descriptor: null) {
 	@include hacks;
 	transition: {
 		duration: $duration;
 		property: transform;
 	}
 
-	@include hover($descriptor) { transform: rotate($rotation); }
+	@include hover($descriptor) {
+		transform: rotate($rotation);
+	}
 }
 
 // Sink
-@mixin sink($duration: .3s, $distance: 8px, $descriptor: null) {
+@mixin sink($duration: 0.3s, $distance: 8px, $descriptor: null) {
 	@include hacks;
 	transition: {
 		duration: $duration;
@@ -340,28 +398,32 @@
 		timing-function: ease-out;
 	}
 
-	@include hover($descriptor) { transform: translateY($distance); }
+	@include hover($descriptor) {
+		transform: translateY($distance);
+	}
 }
 
 // Skew
-@mixin skew($duration: .3s, $rotation: 10deg, $descriptor: null) {
+@mixin skew($duration: 0.3s, $rotation: 10deg, $descriptor: null) {
 	@include hacks;
 	transition: {
 		duration: $duration;
 		property: transform;
 	}
 
-	@include hover($descriptor) { transform: skew($rotation); }
+	@include hover($descriptor) {
+		transform: skew($rotation);
+	}
 }
 
 // Skew Backward
-@mixin skew-backward($duration: .3s, $rotation: 10deg, $descriptor: null) {
+@mixin skew-backward($duration: 0.3s, $rotation: 10deg, $descriptor: null) {
 	@include skew($duration, $rotation, $descriptor);
 	transition-origin: 0 100%;
 }
 
 // Skew Forward
-@mixin skew-forward($duration: .3s, $rotation: -10deg, $descriptor: null) {
+@mixin skew-forward($duration: 0.3s, $rotation: -10deg, $descriptor: null) {
 	@include skew($duration, $rotation, $descriptor);
 	transition-origin: 0 100%;
 }
@@ -381,12 +443,24 @@
 @mixin wobble-skew-keyframes($distance) {
 	@at-root {
 		@keyframes wobble-skew {
-			16.65% { transform: skew(#{$distance}); }
-			33.3% { transform: skew(#{-$distance/(6/5)}); }
-			49.95% { transform: skew(#{$distance/2}); }
-			66.6% { transform: skew(#{-$distance/3}); }
-			83.25% { transform: skew(#{$distance/6}); }
-			100% { transform: skew(0); }
+			16.65% {
+				transform: skew(#{$distance});
+			}
+			33.3% {
+				transform: skew(#{-$distance/(6/5)});
+			}
+			49.95% {
+				transform: skew(#{$distance/2});
+			}
+			66.6% {
+				transform: skew(#{-$distance/3});
+			}
+			83.25% {
+				transform: skew(#{$distance/6});
+			}
+			100% {
+				transform: skew(0);
+			}
 		}
 	}
 }
@@ -394,12 +468,24 @@
 @mixin wobble-translateX-keyframes($distance) {
 	@at-root {
 		@keyframes wobble-translateX {
-			16.65% { transform: translateX(#{$distance}); }
-			33.3% { transform: translateX(#{-$distance/(6/5)}); }
-			49.95% { transform: translateX(#{$distance/2}); }
-			66.6% { transform: translateX(#{-$distance/3}); }
-			83.25% { transform: translateX(#{$distance/6}); }
-			100% { transform: translateX(0); }
+			16.65% {
+				transform: translateX(#{$distance});
+			}
+			33.3% {
+				transform: translateX(#{-$distance/(6/5)});
+			}
+			49.95% {
+				transform: translateX(#{$distance/2});
+			}
+			66.6% {
+				transform: translateX(#{-$distance/3});
+			}
+			83.25% {
+				transform: translateX(#{$distance/6});
+			}
+			100% {
+				transform: translateX(0);
+			}
 		}
 	}
 }
@@ -407,12 +493,24 @@
 @mixin wobble-translateY-keyframes($distance) {
 	@at-root {
 		@keyframes wobble-translateY {
-			16.65% { transform: translateY(#{$distance}); }
-			33.3% { transform: translateY(#{-$distance/(6/5)}); }
-			49.95% { transform: translateY(#{$distance/2}); }
-			66.6% { transform: translateY(#{-$distance/3}); }
-			83.25% { transform: translateY(#{$distance/6}); }
-			100% { transform: translateY(0); }
+			16.65% {
+				transform: translateY(#{$distance});
+			}
+			33.3% {
+				transform: translateY(#{-$distance/(6/5)});
+			}
+			49.95% {
+				transform: translateY(#{$distance/2});
+			}
+			66.6% {
+				transform: translateY(#{-$distance/3});
+			}
+			83.25% {
+				transform: translateY(#{$distance/6});
+			}
+			100% {
+				transform: translateY(0);
+			}
 		}
 	}
 }
@@ -420,12 +518,24 @@
 @mixin wobble-translate-keyframes($distanceX, $distanceY) {
 	@at-root {
 		@keyframes wobble-translate {
-			16.65% { transform: translate(#{$distanceX}, #{$distanceY}); }
-			33.3% { transform: translate(#{-$distanceX/(6/5)}, #{-$distanceY/(6/5)}); }
-			49.95% { transform: translate(#{$distanceX/2}, #{$distanceY/2}); }
-			66.6% { transform: translate(#{-$distanceX/3}, #{-$distanceY/3}); }
-			83.25% { transform: translate(#{$distanceX/6}, #{$distanceY/6}); }
-			100% { transform: translate(0, 0); }
+			16.65% {
+				transform: translate(#{$distanceX}, #{$distanceY});
+			}
+			33.3% {
+				transform: translate(#{-$distanceX/(6/5)}, #{-$distanceY/(6/5)});
+			}
+			49.95% {
+				transform: translate(#{$distanceX/2}, #{$distanceY/2});
+			}
+			66.6% {
+				transform: translate(#{-$distanceX/3}, #{-$distanceY/3});
+			}
+			83.25% {
+				transform: translate(#{$distanceX/6}, #{$distanceY/6});
+			}
+			100% {
+				transform: translate(0, 0);
+			}
 		}
 	}
 }
@@ -502,20 +612,20 @@
 	@at-root {
 		@keyframes back-pulse {
 			50% {
-				background-color: rgba($color, .75);
+				background-color: rgba($color, 0.75);
 			}
 		}
 	}
 }
 
 @mixin back-pulse(
-		$duration: .5s, 
-		$bg-color: $primary-color, 
-		$text-color: $color-over-primary, 
-		$hover-bg: $secondary-color, 
-		$hover-text: $color-over-secondary, 
-		$descriptor: null
-	) {
+	$duration: 0.5s,
+	$bg-color: $primary-color,
+	$text-color: $color-over-primary,
+	$hover-bg: $secondary-color,
+	$hover-text: $color-over-secondary,
+	$descriptor: null
+) {
 	@include hacks;
 	@include back-pulse-keyframes($hover-bg);
 	overflow: hidden;
@@ -530,7 +640,7 @@
 		animation: {
 			name: "back-pulse";
 			duration: $duration;
-			delay: $duration*2;
+			delay: $duration * 2;
 			timing-function: linear;
 			iteration-count: infinite;
 		}
@@ -564,68 +674,98 @@
 	@include bg-base($duration, $hover-bg, $hover-text, $descriptor);
 
 	@include hover($descriptor) {
-		&:before { transition-timing-function: cubic-bezier(.52,1.64,.37,.66); }
+		&:before {
+			transition-timing-function: cubic-bezier(0.52, 1.64, 0.37, 0.66);
+		}
 	}
 }
 
 // Bounce To Bottom
-@mixin bounce-to-bottom($duration: .5s, $hover-bg: $secondary-color, $hover-text: $color-over-secondary, $descriptor: null) {
+@mixin bounce-to-bottom(
+	$duration: 0.5s,
+	$hover-bg: $secondary-color,
+	$hover-text: $color-over-secondary,
+	$descriptor: null
+) {
 	@include bg-bounce-base($duration, $hover-bg, $hover-text, $descriptor);
 
 	&:before {
 		transform: scaleY(0);
-		transform-origin: 50% 0;	
+		transform-origin: 50% 0;
 	}
 
 	@include hover($descriptor) {
-		&:before { transform: scaleY(1); }
+		&:before {
+			transform: scaleY(1);
+		}
 	}
 }
 
 // Bounce To Left
-@mixin bounce-to-left($duration: .5s, $hover-bg: $secondary-color, $hover-text: $color-over-secondary, $descriptor: null) {
+@mixin bounce-to-left(
+	$duration: 0.5s,
+	$hover-bg: $secondary-color,
+	$hover-text: $color-over-secondary,
+	$descriptor: null
+) {
 	@include bg-bounce-base($duration, $hover-bg, $hover-text, $descriptor);
 
 	&:before {
 		transform: scaleX(0);
-		transform-origin: 100% 50%;	
+		transform-origin: 100% 50%;
 	}
 
 	@include hover($descriptor) {
-		&:before { transform: scaleX(1); }
+		&:before {
+			transform: scaleX(1);
+		}
 	}
 }
 
 // Bounce To Right
-@mixin bounce-to-right($duration: .5s, $hover-bg: $secondary-color, $hover-text: $color-over-secondary, $descriptor: null) {
+@mixin bounce-to-right(
+	$duration: 0.5s,
+	$hover-bg: $secondary-color,
+	$hover-text: $color-over-secondary,
+	$descriptor: null
+) {
 	@include bg-bounce-base($duration, $hover-bg, $hover-text, $descriptor);
 
 	&:before {
 		transform: scaleX(0);
-		transform-origin: 0 50%;	
+		transform-origin: 0 50%;
 	}
 
 	@include hover($descriptor) {
-		&:before { transform: scaleX(1); }
+		&:before {
+			transform: scaleX(1);
+		}
 	}
 }
 
 // Bounce To Top
-@mixin bounce-to-top($duration: .5s, $hover-bg: $secondary-color, $hover-text: $color-over-secondary, $descriptor: null) {
+@mixin bounce-to-top(
+	$duration: 0.5s,
+	$hover-bg: $secondary-color,
+	$hover-text: $color-over-secondary,
+	$descriptor: null
+) {
 	@include bg-bounce-base($duration, $hover-bg, $hover-text, $descriptor);
 
 	&:before {
 		transform: scaleY(0);
-		transform-origin: 50% 100%;	
+		transform-origin: 50% 100%;
 	}
 
 	@include hover($descriptor) {
-		&:before { transform: scaleY(1); }
+		&:before {
+			transform: scaleY(1);
+		}
 	}
 }
 
 // Fade
-@mixin fade($duration: .3s, $hover-bg: $secondary-color, $hover-text: $color-over-secondary, $descriptor: null) {
+@mixin fade($duration: 0.3s, $hover-bg: $secondary-color, $hover-text: $color-over-secondary, $descriptor: null) {
 	@include hacks;
 	overflow: hidden;
 	transition: {
@@ -638,138 +778,186 @@
 
 // Radial In
 @mixin radial-in(
-		$duration: .3s, 
-		$bg-color: $primary-color, 
-		$text-color: $color-over-primary, 
-		$hover-bg: $secondary-color, 
-		$hover-text: $color-over-secondary, 
-		$descriptor: null
-	) {
+	$duration: 0.3s,
+	$bg-color: $primary-color,
+	$text-color: $color-over-primary,
+	$hover-bg: $secondary-color,
+	$hover-text: $color-over-secondary,
+	$descriptor: null
+) {
 	@include bg-base($duration, $bg-color, $text-color, $descriptor);
 	background: $hover-bg;
 	color: $hover-text;
 	overflow: hidden;
 
-	&:before { 
+	&:before {
 		transform: scale(2);
 		border-radius: 100%;
 	}
 
 	@include hover($descriptor) {
-		&:before { transform: scale(0); }
+		&:before {
+			transform: scale(0);
+		}
 	}
 }
 
 // Radial Out
-@mixin radial-out($duration: .3s, $hover-bg: $secondary-color, $hover-text: $color-over-secondary, $descriptor: null) {
+@mixin radial-out($duration: 0.3s, $hover-bg: $secondary-color, $hover-text: $color-over-secondary, $descriptor: null) {
 	@include bg-base($duration, $hover-bg, $hover-text, $descriptor);
 	overflow: hidden;
 
-	&:before { 
-		transform: scale(0); 
+	&:before {
+		transform: scale(0);
 		border-radius: 100%;
 	}
 
 	@include hover($descriptor) {
-		&:before { transform: scale(2); }
+		&:before {
+			transform: scale(2);
+		}
 	}
 }
 
 // Rectangle In
 @mixin rectangle-in(
-		$duration: .3s, 
-		$bg-color: $primary-color, 
-		$text-color: $color-over-primary, 
-		$hover-bg: $secondary-color, 
-		$hover-text: $color-over-secondary, 
-		$descriptor: null
-	) {
+	$duration: 0.3s,
+	$bg-color: $primary-color,
+	$text-color: $color-over-primary,
+	$hover-bg: $secondary-color,
+	$hover-text: $color-over-secondary,
+	$descriptor: null
+) {
 	@include bg-base($duration, $bg-color, $text-color, $descriptor);
 	background: $hover-bg;
 	color: $hover-text;
 
-	&:before { transform: scale(1); }
+	&:before {
+		transform: scale(1);
+	}
 
 	@include hover($descriptor) {
-		&:before { transform: scale(0); }
+		&:before {
+			transform: scale(0);
+		}
 	}
 }
 
 // Rectangle Out
-@mixin rectangle-out($duration: .3s, $hover-bg: $secondary-color, $hover-text: $color-over-secondary, $descriptor: null) {
+@mixin rectangle-out(
+	$duration: 0.3s,
+	$hover-bg: $secondary-color,
+	$hover-text: $color-over-secondary,
+	$descriptor: null
+) {
 	@include bg-base($duration, $hover-bg, $hover-text, $descriptor);
 
-	&:before { transform: scale(0); }
+	&:before {
+		transform: scale(0);
+	}
 
 	@include hover($descriptor) {
-		&:before { transform: scale(1); }
+		&:before {
+			transform: scale(1);
+		}
 	}
 }
 
 // Shutter In Horizontal
 @mixin shutter-in-horizontal(
-		$duration: .3s, 
-		$bg-color: $primary-color, 
-		$text-color: $color-over-primary, 
-		$hover-bg: $secondary-color, 
-		$hover-text: $color-over-secondary, 
-		$descriptor: null
-	) {
+	$duration: 0.3s,
+	$bg-color: $primary-color,
+	$text-color: $color-over-primary,
+	$hover-bg: $secondary-color,
+	$hover-text: $color-over-secondary,
+	$descriptor: null
+) {
 	@include bg-base($duration, $bg-color, $hover-text, $descriptor);
 	background: $hover-bg;
 	color: $text-color;
 
-	&:before { transform: scaleX(1); }
+	&:before {
+		transform: scaleX(1);
+	}
 
 	@include hover($descriptor) {
-		&:before { transform: scaleX(0); }
+		&:before {
+			transform: scaleX(0);
+		}
 	}
 }
 
 // Shutter In Vertical
 @mixin shutter-in-vertical(
-		$duration: .3s, 
-		$bg-color: $primary-color, 
-		$text-color: $color-over-primary, 
-		$hover-bg: $secondary-color, 
-		$hover-text: $color-over-secondary, 
-		$descriptor: null
-	) {
+	$duration: 0.3s,
+	$bg-color: $primary-color,
+	$text-color: $color-over-primary,
+	$hover-bg: $secondary-color,
+	$hover-text: $color-over-secondary,
+	$descriptor: null
+) {
 	@include bg-base($duration, $bg-color, $hover-text, $descriptor);
 	background: $hover-bg;
 	color: $text-color;
 
-	&:before { transform: scaleY(1); }
+	&:before {
+		transform: scaleY(1);
+	}
 
 	@include hover($descriptor) {
-		&:before { transform: scaleY(0); }
+		&:before {
+			transform: scaleY(0);
+		}
 	}
 }
 
 // Shutter Out Horizontal
-@mixin shutter-out-horizontal($duration: .3s, $hover-bg: $secondary-color, $hover-text: $color-over-secondary, $descriptor: null) {
+@mixin shutter-out-horizontal(
+	$duration: 0.3s,
+	$hover-bg: $secondary-color,
+	$hover-text: $color-over-secondary,
+	$descriptor: null
+) {
 	@include bg-base($duration, $hover-bg, $hover-text, $descriptor);
 
-	&:before { transform: scaleX(0); }
+	&:before {
+		transform: scaleX(0);
+	}
 
 	@include hover($descriptor) {
-		&:before { transform: scaleX(1); }
+		&:before {
+			transform: scaleX(1);
+		}
 	}
 }
 
 // Shutter Out Vertical
-@mixin shutter-out-vertical($duration: .3s, $hover-bg: $secondary-color, $hover-text: $color-over-secondary, $descriptor: null) {
+@mixin shutter-out-vertical(
+	$duration: 0.3s,
+	$hover-bg: $secondary-color,
+	$hover-text: $color-over-secondary,
+	$descriptor: null
+) {
 	@include bg-base($duration, $hover-bg, $hover-text, $descriptor);
 
-	&:before { transform: scaleY(0); }
+	&:before {
+		transform: scaleY(0);
+	}
 
 	@include hover($descriptor) {
-		&:before { transform: scaleY(1); }
+		&:before {
+			transform: scaleY(1);
+		}
 	}
 }
 
 // Sweep To Top
-@mixin sweep-to-top($duration: .3s, $hover-bg: $secondary-color, $hover-text: $color-over-secondary, $descriptor: null) {
+@mixin sweep-to-top(
+	$duration: 0.3s,
+	$hover-bg: $secondary-color,
+	$hover-text: $color-over-secondary,
+	$descriptor: null
+) {
 	@include bg-base($duration, $hover-bg, $hover-text, $descriptor);
 
 	&:before {
@@ -778,12 +966,19 @@
 	}
 
 	@include hover($descriptor) {
-		&:before { transform: scaleY(1); }
+		&:before {
+			transform: scaleY(1);
+		}
 	}
 }
 
 // Sweep To Bottom
-@mixin sweep-to-bottom($duration: .3s, $hover-bg: $secondary-color, $hover-text: $color-over-secondary, $descriptor: null) {
+@mixin sweep-to-bottom(
+	$duration: 0.3s,
+	$hover-bg: $secondary-color,
+	$hover-text: $color-over-secondary,
+	$descriptor: null
+) {
 	@include bg-base($duration, $hover-bg, $hover-text, $descriptor);
 
 	&:before {
@@ -792,12 +987,19 @@
 	}
 
 	@include hover($descriptor) {
-		&:before { transform: scaleY(1); }
+		&:before {
+			transform: scaleY(1);
+		}
 	}
 }
 
 // Sweep To Left
-@mixin sweep-to-left($duration: .3s, $hover-bg: $secondary-color, $hover-text: $color-over-secondary, $descriptor: null) {
+@mixin sweep-to-left(
+	$duration: 0.3s,
+	$hover-bg: $secondary-color,
+	$hover-text: $color-over-secondary,
+	$descriptor: null
+) {
 	@include bg-base($duration, $hover-bg, $hover-text, $descriptor);
 
 	&:before {
@@ -806,12 +1008,19 @@
 	}
 
 	@include hover($descriptor) {
-		&:before { transform: scaleX(1); }
+		&:before {
+			transform: scaleX(1);
+		}
 	}
 }
 
 // Sweep To Right
-@mixin sweep-to-right($duration: .3s, $hover-bg: $secondary-color, $hover-text: $color-over-secondary, $descriptor: null) {
+@mixin sweep-to-right(
+	$duration: 0.3s,
+	$hover-bg: $secondary-color,
+	$hover-text: $color-over-secondary,
+	$descriptor: null
+) {
 	@include bg-base($duration, $hover-bg, $hover-text, $descriptor);
 
 	&:before {
@@ -820,40 +1029,36 @@
 	}
 
 	@include hover($descriptor) {
-		&:before { transform: scaleX(1); }
+		&:before {
+			transform: scaleX(1);
+		}
 	}
 }
 
 // Border effects
 
 // Border Fade
-@mixin border-fade($duration: .3s, $border-color: $primary-color, $border-width: 4px, $descriptor: null) {
+@mixin border-fade($duration: 0.3s, $border-color: $primary-color, $border-width: 4px, $descriptor: null) {
 	@include hacks;
 	transition: {
 		duration: $duration;
 		property: box-shadow;
 	}
-	box-shadow:
-		inset 0 0 0 $border-width transparent,
-		0 0 1px rgba(0, 0, 0, 0); // Hack to improve aliasing on mobile/tablet devices 
+	box-shadow: inset 0 0 0 $border-width transparent, 0 0 1px rgba(0, 0, 0, 0); // Hack to improve aliasing on mobile/tablet devices
 
 	@include hover($descriptor) {
-		box-shadow: 
-			inset 0 0 0 $border-width $border-color,
-			0 0 1px rgba(0, 0, 0, 0); // Hack to improve aliasing on mobile/tablet devices 
+		box-shadow: inset 0 0 0 $border-width $border-color, 0 0 1px rgba(0, 0, 0, 0); // Hack to improve aliasing on mobile/tablet devices
 	}
 }
 
 // Hollow
-@mixin hollow($duration: .3s, $border-color: $primary-color, $border-width: 4px, $descriptor: null) {
+@mixin hollow($duration: 0.3s, $border-color: $primary-color, $border-width: 4px, $descriptor: null) {
 	@include hacks;
 	transition: {
 		duration: $duration;
 		property: background;
 	}
-	box-shadow:
-		inset 0 0 0 $border-width $border-color,
-		0 0 1px rgba(0, 0, 0, 0); // Hack to improve aliasing on mobile/tablet devices 
+	box-shadow: inset 0 0 0 $border-width $border-color, 0 0 1px rgba(0, 0, 0, 0); // Hack to improve aliasing on mobile/tablet devices
 
 	@include hover($descriptor) {
 		background: none;
@@ -863,7 +1068,7 @@
 // Outline base
 @mixin outline-base($duration, $border-width, $border-color, $padding-width, $descriptor: null) {
 	@include hacks;
-	@include mask{
+	@include mask {
 		border: $border-color solid $border-width;
 		transition: {
 			duration: $duration;
@@ -881,15 +1086,15 @@
 	}
 }
 
-// Outline In 
+// Outline In
 @mixin outline-in(
-		$duration: .3s, 
-		$border-color: $primary-color, 
-		$border-width: 4px, 
-		$padding-width: 4px, 
-		$distance-ratio: 2, 
-		$descriptor: null
-	) {
+	$duration: 0.3s,
+	$border-color: $primary-color,
+	$border-width: 4px,
+	$padding-width: 4px,
+	$distance-ratio: 2,
+	$descriptor: null
+) {
 	@include outline-base($duration, $border-width, $border-color, $padding-width, $descriptor);
 
 	@include mask {
@@ -902,12 +1107,20 @@
 	}
 
 	@include hover($descriptor) {
-		&:before { opacity: 1; }
+		&:before {
+			opacity: 1;
+		}
 	}
 }
 
-// Outline Out 
-@mixin outline-out($duration: .3s, $border-color: $primary-color, $border-width: 4px, $padding-width: 4px, $descriptor: null) {
+// Outline Out
+@mixin outline-out(
+	$duration: 0.3s,
+	$border-color: $primary-color,
+	$border-width: 4px,
+	$padding-width: 4px,
+	$descriptor: null
+) {
 	@include outline-base($duration, $border-width, $border-color, $padding-width, $descriptor);
 
 	@include mask {
@@ -918,7 +1131,7 @@
 	}
 }
 
-// Overline/underline base 
+// Overline/underline base
 @mixin line-base($duration, $border-color, $border-size, $apply-to: "&") {
 	#{$apply-to} {
 		@include hacks;
@@ -937,8 +1150,14 @@
 	}
 }
 
-// Overline From Center 
-@mixin overline-from-center($duration: .3s, $border-color: $primary-color, $border-size: 4px, $descriptor: null, $apply-to: "&") {
+// Overline From Center
+@mixin overline-from-center(
+	$duration: 0.3s,
+	$border-color: $primary-color,
+	$border-size: 4px,
+	$descriptor: null,
+	$apply-to: "&"
+) {
 	@include line-base($duration, $border-color, $border-size, $apply-to);
 
 	#{$apply-to}:before {
@@ -956,8 +1175,14 @@
 	}
 }
 
-// Overline From Left 
-@mixin overline-from-left($duration: .3s, $border-color: $primary-color, $border-size: 4px, $descriptor: null, $apply-to: "&") {
+// Overline From Left
+@mixin overline-from-left(
+	$duration: 0.3s,
+	$border-color: $primary-color,
+	$border-size: 4px,
+	$descriptor: null,
+	$apply-to: "&"
+) {
 	@include line-base($duration, $border-color, $border-size, $apply-to);
 
 	#{$apply-to}:before {
@@ -968,12 +1193,20 @@
 	}
 
 	@include hover($descriptor) {
-		#{$apply-to}:before { right: 0; }
+		#{$apply-to}:before {
+			right: 0;
+		}
 	}
 }
 
-// Overline From Right 
-@mixin overline-from-right($duration: .3s, $border-color: $primary-color, $border-size: 4px, $descriptor: null, $apply-to: "&") {
+// Overline From Right
+@mixin overline-from-right(
+	$duration: 0.3s,
+	$border-color: $primary-color,
+	$border-size: 4px,
+	$descriptor: null,
+	$apply-to: "&"
+) {
 	@include line-base($duration, $border-color, $border-size, $apply-to);
 
 	#{$apply-to}:before {
@@ -984,12 +1217,20 @@
 	}
 
 	@include hover($descriptor) {
-		#{$apply-to}:before { left: 0; }
+		#{$apply-to}:before {
+			left: 0;
+		}
 	}
 }
 
-// Overline Reveal 
-@mixin overline-reveal($duration: .3s, $border-color: $primary-color, $border-size: 4px, $descriptor: null, $apply-to: "&") {
+// Overline Reveal
+@mixin overline-reveal(
+	$duration: 0.3s,
+	$border-color: $primary-color,
+	$border-size: 4px,
+	$descriptor: null,
+	$apply-to: "&"
+) {
 	@include line-base($duration, $border-color, $border-size, $apply-to);
 
 	#{$apply-to}:before {
@@ -1001,12 +1242,20 @@
 	}
 
 	@include hover($descriptor) {
-		#{$apply-to}:before { transform: translateY(0); }
+		#{$apply-to}:before {
+			transform: translateY(0);
+		}
 	}
 }
 
-// Underline From Center 
-@mixin underline-from-center($duration: .3s, $border-color: $primary-color, $border-size: 4px, $descriptor: null, $apply-to: "&") {
+// Underline From Center
+@mixin underline-from-center(
+	$duration: 0.3s,
+	$border-color: $primary-color,
+	$border-size: 4px,
+	$descriptor: null,
+	$apply-to: "&"
+) {
 	@include line-base($duration, $border-color, $border-size, $apply-to);
 
 	#{$apply-to}:before {
@@ -1024,8 +1273,14 @@
 	}
 }
 
-// Underline From Left 
-@mixin underline-from-left($duration: .3s, $border-color: $primary-color, $border-size: 4px, $descriptor: null, $apply-to: "&") {
+// Underline From Left
+@mixin underline-from-left(
+	$duration: 0.3s,
+	$border-color: $primary-color,
+	$border-size: 4px,
+	$descriptor: null,
+	$apply-to: "&"
+) {
 	@include line-base($duration, $border-color, $border-size, $apply-to);
 
 	#{$apply-to}:before {
@@ -1036,12 +1291,20 @@
 	}
 
 	@include hover($descriptor) {
-		#{$apply-to}:before { right: 0; }
+		#{$apply-to}:before {
+			right: 0;
+		}
 	}
 }
 
-// Underline From Right 
-@mixin underline-from-right($duration: .3s, $border-color: $primary-color, $border-size: 4px, $descriptor: null, $apply-to: "&") {
+// Underline From Right
+@mixin underline-from-right(
+	$duration: 0.3s,
+	$border-color: $primary-color,
+	$border-size: 4px,
+	$descriptor: null,
+	$apply-to: "&"
+) {
 	@include line-base($duration, $border-color, $border-size, $apply-to);
 
 	#{$apply-to}:before {
@@ -1052,12 +1315,20 @@
 	}
 
 	@include hover($descriptor) {
-		#{$apply-to}:before { left: 0; }
+		#{$apply-to}:before {
+			left: 0;
+		}
 	}
 }
 
-// Underline Reveal 
-@mixin underline-reveal($duration: .3s, $border-color: $primary-color, $border-size: 4px, $descriptor: null, $apply-to: "&") {
+// Underline Reveal
+@mixin underline-reveal(
+	$duration: 0.3s,
+	$border-color: $primary-color,
+	$border-size: 4px,
+	$descriptor: null,
+	$apply-to: "&"
+) {
 	@include line-base($duration, $border-color, $border-size, $apply-to);
 
 	#{$apply-to}:before {
@@ -1069,12 +1340,14 @@
 	}
 
 	@include hover($descriptor) {
-		#{$apply-to}:before { transform: translateY(0); }
+		#{$apply-to}:before {
+			transform: translateY(0);
+		}
 	}
 }
 
-// Reveal 
-@mixin reveal($duration: .1s, $border-color: $primary-color, $border-size: 4px, $descriptor: null, $apply-to: "&") {
+// Reveal
+@mixin reveal($duration: 0.1s, $border-color: $primary-color, $border-size: 4px, $descriptor: null, $apply-to: "&") {
 	@include line-base($duration, $border-color, $border-size, $apply-to);
 
 	#{$apply-to}:before {
@@ -1096,7 +1369,7 @@
 	}
 }
 
-// ripple base info 
+// ripple base info
 @mixin ripple-keyframes($distance, $opacity) {
 	@at-root {
 		@keyframes ripple {
@@ -1121,13 +1394,20 @@
 	}
 
 	@include hover($descriptor) {
-		&:before { animation-name: ripple; }
+		&:before {
+			animation-name: ripple;
+		}
 	}
-
 }
 
-// Ripple In 
-@mixin ripple-in($duration: 1s, $border-color: $primary-color, $border-width: 4px, $ripple-ratio: 3, $descriptor: null) {
+// Ripple In
+@mixin ripple-in(
+	$duration: 1s,
+	$border-color: $primary-color,
+	$border-width: 4px,
+	$ripple-ratio: 3,
+	$descriptor: null
+) {
 	$ripple-distance: $border-width * $ripple-ratio;
 	@include ripple-base($duration, $border-color, $border-width, 0, 1, $descriptor);
 
@@ -1140,8 +1420,14 @@
 	}
 }
 
-// Ripple Out 
-@mixin ripple-out($duration: 1s, $border-color: $primary-color, $border-width: 6px, $ripple-ratio: 2, $descriptor: null) {
+// Ripple Out
+@mixin ripple-out(
+	$duration: 1s,
+	$border-color: $primary-color,
+	$border-width: 6px,
+	$ripple-ratio: 2,
+	$descriptor: null
+) {
 	$ripple-distance: $border-width * $ripple-ratio;
 	@include ripple-base($duration, $border-color, $border-width, -$ripple-distance, 1, $descriptor);
 
@@ -1153,8 +1439,8 @@
 	}
 }
 
-// Round Corners 
-@mixin round-corners($duration: .3s, $radius: 1em, $descriptor: null) {
+// Round Corners
+@mixin round-corners($duration: 0.3s, $radius: 1em, $descriptor: null) {
 	@include hacks;
 	transition: {
 		duration: $duration;
@@ -1166,8 +1452,8 @@
 	}
 }
 
-// Trim 
-@mixin trim ($duration: .3s, $border-width: 4px, $gap-width: 4px, $gap-color: $color-over-primary, $descriptor: null){
+// Trim
+@mixin trim($duration: 0.3s, $border-width: 4px, $gap-width: 4px, $gap-color: $color-over-primary, $descriptor: null) {
 	@include hacks;
 
 	@include mask {
@@ -1184,26 +1470,40 @@
 	}
 
 	@include hover($descriptor) {
-		&:before { opacity: 1; }
+		&:before {
+			opacity: 1;
+		}
 	}
 }
 
 // Curl Effects
 
-// Curls base stuff 
-@mixin curl-base($duration, $reveal-area-color, $curl-line-color, $curl-transition-color, $curl-last-color, $curl-height, $curl-width, $shadow-amount, $curl-angle, $descriptor: null) {
+// Curls base stuff
+@mixin curl-base(
+	$duration,
+	$reveal-area-color,
+	$curl-line-color,
+	$curl-transition-color,
+	$curl-last-color,
+	$curl-height,
+	$curl-width,
+	$shadow-amount,
+	$curl-angle,
+	$descriptor: null
+) {
 	@include hacks;
 	@include mask {
 		pointer-events: none;
 		height: 0;
 		width: 0;
 		background: linear-gradient(
-			$curl-angle,
-			$reveal-area-color 45%,
-			$curl-line-color 50%,
-			$curl-transition-color 56%,
-			$curl-last-color 80%
-		), $reveal-area-color;
+				$curl-angle,
+				$reveal-area-color 45%,
+				$curl-line-color 50%,
+				$curl-transition-color 56%,
+				$curl-last-color 80%
+			),
+			$reveal-area-color;
 		transition: {
 			duration: $duration;
 			property: width, height;
@@ -1218,20 +1518,31 @@
 	}
 }
 
-// Curl Bottom Left 
+// Curl Bottom Left
 @mixin curl-bottom-left(
-		$duration: .3s, 
-		$reveal-area-color: $jack-white, 
-		$curl-line-color: rgb(170,170,170), 
-		$curl-transition-color: rgb(204,204,204), 
-		$curl-last-color: $jack-white, 
-		$curl-height: 25px, 
-		$curl-width: 25px, 
-		$shadow-distance: 1px, 
-		$shadow-amount: .4, 
-		$descriptor: null
-	) {
-	@include curl-base($duration, $reveal-area-color, $curl-line-color, $curl-transition-color, $curl-last-color, $curl-height, $curl-width, $shadow-amount, 45deg, $descriptor);
+	$duration: 0.3s,
+	$reveal-area-color: $jack-white,
+	$curl-line-color: rgb(170, 170, 170),
+	$curl-transition-color: rgb(204, 204, 204),
+	$curl-last-color: $jack-white,
+	$curl-height: 25px,
+	$curl-width: 25px,
+	$shadow-distance: 1px,
+	$shadow-amount: 0.4,
+	$descriptor: null
+) {
+	@include curl-base(
+		$duration,
+		$reveal-area-color,
+		$curl-line-color,
+		$curl-transition-color,
+		$curl-last-color,
+		$curl-height,
+		$curl-width,
+		$shadow-amount,
+		45deg,
+		$descriptor
+	);
 
 	&:before {
 		bottom: 0;
@@ -1240,20 +1551,31 @@
 	}
 }
 
-// Curl Bottom Right 
+// Curl Bottom Right
 @mixin curl-bottom-right(
-		$duration: .3s, 
-		$reveal-area-color: $jack-white, 
-		$curl-line-color: rgb(170,170,170), 
-		$curl-transition-color: rgb(204,204,204), 
-		$curl-last-color: $jack-white, 
-		$curl-height: 25px, 
-		$curl-width: 25px, 
-		$shadow-distance: 1px, 
-		$shadow-amount: .4, 
-		$descriptor: null
-	) {
-	@include curl-base($duration, $reveal-area-color, $curl-line-color, $curl-transition-color, $curl-last-color, $curl-height, $curl-width, $shadow-amount, 315deg, $descriptor);
+	$duration: 0.3s,
+	$reveal-area-color: $jack-white,
+	$curl-line-color: rgb(170, 170, 170),
+	$curl-transition-color: rgb(204, 204, 204),
+	$curl-last-color: $jack-white,
+	$curl-height: 25px,
+	$curl-width: 25px,
+	$shadow-distance: 1px,
+	$shadow-amount: 0.4,
+	$descriptor: null
+) {
+	@include curl-base(
+		$duration,
+		$reveal-area-color,
+		$curl-line-color,
+		$curl-transition-color,
+		$curl-last-color,
+		$curl-height,
+		$curl-width,
+		$shadow-amount,
+		315deg,
+		$descriptor
+	);
 
 	&:before {
 		bottom: 0;
@@ -1262,20 +1584,31 @@
 	}
 }
 
-// Curl Top Left 
+// Curl Top Left
 @mixin curl-top-left(
-		$duration: .3s, 
-		$reveal-area-color: $jack-white, 
-		$curl-line-color: rgb(170,170,170), 
-		$curl-transition-color: rgb(204,204,204), 
-		$curl-last-color: $jack-white, 
-		$curl-height: 25px, 
-		$curl-width: 25px, 
-		$shadow-distance: 1px, 
-		$shadow-amount: .4, 
-		$descriptor: null
-	) {
-	@include curl-base($duration, $reveal-area-color, $curl-line-color, $curl-transition-color, $curl-last-color, $curl-height, $curl-width, $shadow-amount, 135deg, $descriptor);
+	$duration: 0.3s,
+	$reveal-area-color: $jack-white,
+	$curl-line-color: rgb(170, 170, 170),
+	$curl-transition-color: rgb(204, 204, 204),
+	$curl-last-color: $jack-white,
+	$curl-height: 25px,
+	$curl-width: 25px,
+	$shadow-distance: 1px,
+	$shadow-amount: 0.4,
+	$descriptor: null
+) {
+	@include curl-base(
+		$duration,
+		$reveal-area-color,
+		$curl-line-color,
+		$curl-transition-color,
+		$curl-last-color,
+		$curl-height,
+		$curl-width,
+		$shadow-amount,
+		135deg,
+		$descriptor
+	);
 
 	&:before {
 		top: 0;
@@ -1284,20 +1617,31 @@
 	}
 }
 
-// Curl Top Right 
+// Curl Top Right
 @mixin curl-top-right(
-		$duration: .3s, 
-		$reveal-area-color: $jack-white, 
-		$curl-line-color: rgb(170,170,170), 
-		$curl-transition-color: rgb(204,204,204), 
-		$curl-last-color: $jack-white, 
-		$curl-height: 25px, 
-		$curl-width: 25px, 
-		$shadow-distance: 1px, 
-		$shadow-amount: .4, 
-		$descriptor: null
-	) {
-	@include curl-base($duration, $reveal-area-color, $curl-line-color, $curl-transition-color, $curl-last-color, $curl-height, $curl-width, $shadow-amount, 225deg, $descriptor);
+	$duration: 0.3s,
+	$reveal-area-color: $jack-white,
+	$curl-line-color: rgb(170, 170, 170),
+	$curl-transition-color: rgb(204, 204, 204),
+	$curl-last-color: $jack-white,
+	$curl-height: 25px,
+	$curl-width: 25px,
+	$shadow-distance: 1px,
+	$shadow-amount: 0.4,
+	$descriptor: null
+) {
+	@include curl-base(
+		$duration,
+		$reveal-area-color,
+		$curl-line-color,
+		$curl-transition-color,
+		$curl-last-color,
+		$curl-height,
+		$curl-width,
+		$shadow-amount,
+		225deg,
+		$descriptor
+	);
 
 	&:before {
 		top: 0;
@@ -1310,12 +1654,14 @@
 
 @mixin prep-icon($identifier) {
 	@include hacks;
-	#{$identifier} { transform: translateZ(0); }
+	#{$identifier} {
+		transform: translateZ(0);
+	}
 }
 
-// Icon Back/Forward 
+// Icon Back/Forward
 
-// Icon Back 
+// Icon Back
 @mixin icon-back-forward($identifier, $duration, $distance, $descriptor: null) {
 	@include prep-icon($identifier);
 	transition-duration: $duration;
@@ -1329,31 +1675,41 @@
 	}
 
 	@include hover($descriptor) {
-		#{$identifier} { transform: translateX($distance); }
+		#{$identifier} {
+			transform: translateX($distance);
+		}
 	}
 }
 
-// Icon Back 
-@mixin icon-back($identifier: svg, $duration: .1s, $distance: 4px, $descriptor: null) {
+// Icon Back
+@mixin icon-back($identifier: svg, $duration: 0.1s, $distance: 4px, $descriptor: null) {
 	@include icon-back-forward($identifier, $duration, #{-$distance}, $descriptor);
 }
 
-// Icon Forward 
-@mixin icon-forward($identifier: svg, $duration: .1s, $distance: 4px, $descriptor: null) {
+// Icon Forward
+@mixin icon-forward($identifier: svg, $duration: 0.1s, $distance: 4px, $descriptor: null) {
 	@include icon-back-forward($identifier, $duration, $distance, $descriptor);
 }
 
-// Icon Bob/Hang 
+// Icon Bob/Hang
 @mixin icon-bobhang-keyframes($distance) {
 	@at-root {
 		@keyframes icon-bobhang {
-			0% { transform: translateY($distance); }
-			50% { transform: translateY(calc(#{$distance}/3)); }
-			100% { transform: translateY($distance); }
+			0% {
+				transform: translateY($distance);
+			}
+			50% {
+				transform: translateY(calc(#{$distance}/ 3));
+			}
+			100% {
+				transform: translateY($distance);
+			}
 		}
 
 		@keyframes icon-bobhang-float {
-			100% { transform: translateY($distance); }
+			100% {
+				transform: translateY($distance);
+			}
 		}
 	}
 }
@@ -1364,7 +1720,6 @@
 	transition-duration: $duration;
 
 	@include hover($descriptor) {
-
 		#{$identifier} {
 			animation: {
 				name: icon-bobhang-float, icon-bobhang;
@@ -1379,18 +1734,18 @@
 	}
 }
 
-// Icon Bob 
-@mixin icon-bob($identifier: svg, $duration: .3s, $distance: 6px, $duration-ratio: 5, $descriptor: null) {
-	@include icon-bobhang($identifier, $duration, #{$distance*-1}, $duration-ratio, $descriptor);
+// Icon Bob
+@mixin icon-bob($identifier: svg, $duration: 0.3s, $distance: 6px, $duration-ratio: 5, $descriptor: null) {
+	@include icon-bobhang($identifier, $duration, #{$distance * -1}, $duration-ratio, $descriptor);
 }
 
-// Icon Hang 
-@mixin icon-hang($identifier: svg, $duration: .3s, $distance: 6px, $duration-ratio: 5, $descriptor: null) {
+// Icon Hang
+@mixin icon-hang($identifier: svg, $duration: 0.3s, $distance: 6px, $duration-ratio: 5, $descriptor: null) {
 	@include icon-bobhang($identifier, $duration, $distance, $duration-ratio, $descriptor);
 }
 
-// Icon Bounce 
-@mixin icon-bounce($identifier: svg, $duration: .3s, $scale: 1.5, $descriptor: null) {
+// Icon Bounce
+@mixin icon-bounce($identifier: svg, $duration: 0.3s, $scale: 1.5, $descriptor: null) {
 	@include prep-icon($identifier);
 	transition-duration: $duration;
 
@@ -1405,22 +1760,26 @@
 	@include hover($descriptor) {
 		#{$identifier} {
 			transform: scale($scale);
-			transition-timing-function: cubic-bezier(.47,2.02,.31,-0.36);
+			transition-timing-function: cubic-bezier(0.47, 2.02, 0.31, -0.36);
 		}
 	}
 }
 
-// Icon Buzz 
+// Icon Buzz
 @mixin icon-buzz-keyframes($distance, $angle) {
 	@at-root {
 		@keyframes icon-buzz {
-			50% { transform: translateX($distance) rotate($angle); }
-			100% { transform: translateX(#{-$distance}) rotate(#{-$angle}); }
+			50% {
+				transform: translateX($distance) rotate($angle);
+			}
+			100% {
+				transform: translateX(#{-$distance}) rotate(#{-$angle});
+			}
 		}
 	}
 }
 
-@mixin icon-buzz($identifier: svg, $duration: .3s, $distance: 3px, $angle: 2deg, $descriptor: null) {
+@mixin icon-buzz($identifier: svg, $duration: 0.3s, $distance: 3px, $angle: 2deg, $descriptor: null) {
 	@include prep-icon($identifier);
 	@include icon-buzz-keyframes($distance, $angle);
 	transition-duration: $duration;
@@ -1437,7 +1796,7 @@
 	}
 }
 
-// Icon Up/Down stuff 
+// Icon Up/Down stuff
 @mixin icon-vertical-keyframes($distance) {
 	@at-root {
 		@keyframes icon-vertical {
@@ -1469,23 +1828,25 @@
 	}
 }
 
-// Icon Down 
-@mixin icon-down($identifier: svg, $duration: .75s, $distance: 6px, $descriptor: null) {
+// Icon Down
+@mixin icon-down($identifier: svg, $duration: 0.75s, $distance: 6px, $descriptor: null) {
 	@include icon-vertical($identifier, $duration, $distance, $descriptor);
 }
 
-// Icon Up 
-@mixin icon-up($identifier: svg, $duration: .75s, $distance: -6px, $descriptor: null) {
+// Icon Up
+@mixin icon-up($identifier: svg, $duration: 0.75s, $distance: -6px, $descriptor: null) {
 	@include icon-vertical($identifier, $duration, $distance, $descriptor);
 }
 
-// Icon Drop 
-@mixin icon-drop($identifier: svg, $duration: .5s, $distance: -6px, $descriptor: null) {
+// Icon Drop
+@mixin icon-drop($identifier: svg, $duration: 0.5s, $distance: -6px, $descriptor: null) {
 	@include prep-icon($identifier);
 
 	@at-root {
 		@keyframes icon-drop {
-			0% { opacity: 0; }
+			0% {
+				opacity: 0;
+			}
 			50% {
 				opacity: 0;
 				transform: translateY(-100%);
@@ -1498,7 +1859,6 @@
 	}
 
 	@include hover($descriptor) {
-
 		#{$identifier} {
 			opacity: 0;
 			transition-duration: #{$duration/2};
@@ -1508,14 +1868,14 @@
 				delay: #{$duration/2};
 				fill-mode: forwards;
 				timing-function: ease-in-out;
-				timing-function: cubic-bezier(.52,1.64,.37,.66);
+				timing-function: cubic-bezier(0.52, 1.64, 0.37, 0.66);
 			}
 		}
 	}
 }
 
-// Icon Fade 
-@mixin icon-fade($identifier: svg, $duration: .5s, $icon-color: $secondary-color, $descriptor: null) {
+// Icon Fade
+@mixin icon-fade($identifier: svg, $duration: 0.5s, $icon-color: $secondary-color, $descriptor: null) {
 	@include prep-icon($identifier);
 
 	#{$identifier} {
@@ -1526,7 +1886,6 @@
 	}
 
 	@include hover($descriptor) {
-
 		#{$identifier} {
 			color: $icon-color;
 			fill: $icon-color;
@@ -1534,11 +1893,13 @@
 	}
 }
 
-// Icon Float/Sink Away 
+// Icon Float/Sink Away
 @mixin icon-floatsink-away-keyframes($distance) {
 	@at-root {
 		@keyframes icon-floatsink-away {
-			0% { opacity: 1; }
+			0% {
+				opacity: 1;
+			}
 			100% {
 				opacity: 0;
 				transform: translateY($distance);
@@ -1568,17 +1929,17 @@
 	}
 }
 
-// Icon Float Away 
-@mixin icon-float-away($identifier: svg, $duration: .5s, $distance: 1em, $descriptor: null) {
+// Icon Float Away
+@mixin icon-float-away($identifier: svg, $duration: 0.5s, $distance: 1em, $descriptor: null) {
 	@include floatsink-away($identifier, $duration, #{-$distance}, $descriptor);
 }
 
-// Icon Sink Away 
-@mixin icon-sink-away($identifier: svg, $duration: .5s, $distance: 1em, $descriptor: null) {
-	@include floatsink-away($identifier, $duration, $distance, $descriptor)
+// Icon Sink Away
+@mixin icon-sink-away($identifier: svg, $duration: 0.5s, $distance: 1em, $descriptor: null) {
+	@include floatsink-away($identifier, $duration, $distance, $descriptor);
 }
 
-// Icon Float/Sink 
+// Icon Float/Sink
 @mixin icon-float-sink($identifier, $duration, $distance, $descriptor: null) {
 	@include prep-icon($identifier);
 
@@ -1591,21 +1952,23 @@
 	}
 
 	@include hover($descriptor) {
-		#{$identifier} { transform: translateY($distance); }
+		#{$identifier} {
+			transform: translateY($distance);
+		}
 	}
 }
 
-// Icon Float 
-@mixin icon-float($identifier: svg, $duration: .3s, $distance: 4px, $descriptor: null) {
+// Icon Float
+@mixin icon-float($identifier: svg, $duration: 0.3s, $distance: 4px, $descriptor: null) {
 	@include icon-float-sink($identifier, $duration, #{-$distance}, $descriptor);
 }
 
-// Icon Sink 
-@mixin icon-sink($identifier: svg, $duration: .3s, $distance: 4px, $descriptor: null) {
+// Icon Sink
+@mixin icon-sink($identifier: svg, $duration: 0.3s, $distance: 4px, $descriptor: null) {
 	@include icon-float-sink($identifier, $duration, $distance, $descriptor);
 }
 
-// Icon Grow/Shrink 
+// Icon Grow/Shrink
 @mixin icon-grow-shrink($identifier, $duration, $scale, $descriptor: null) {
 	@include prep-icon($identifier);
 
@@ -1618,23 +1981,24 @@
 	}
 
 	@include hover($descriptor) {
-
-		#{$identifier} { transform: scale($scale); }
+		#{$identifier} {
+			transform: scale($scale);
+		}
 	}
 }
 
-// Icon Grow 
-@mixin icon-grow($identifier: svg, $duration: .3s, $scale: 1.3, $descriptor: null) {
+// Icon Grow
+@mixin icon-grow($identifier: svg, $duration: 0.3s, $scale: 1.3, $descriptor: null) {
 	@include icon-grow-shrink($identifier, $duration, $scale, $descriptor);
 }
 
-// Icon Shrink 
-@mixin icon-shrink($identifier: svg, $duration: .3s, $scale: .8, $descriptor: null) {
+// Icon Shrink
+@mixin icon-shrink($identifier: svg, $duration: 0.3s, $scale: 0.8, $descriptor: null) {
 	@include icon-grow-shrink($identifier, $duration, $scale, $descriptor);
 }
 
-// Icon Grow Rotate 
-@mixin icon-grow-rotate($identifier: svg, $duration: .3s, $scale: 1.5, $rotate: 12deg, $descriptor: null) {
+// Icon Grow Rotate
+@mixin icon-grow-rotate($identifier: svg, $duration: 0.3s, $scale: 1.5, $rotate: 12deg, $descriptor: null) {
 	@include prep-icon($identifier);
 
 	#{$identifier} {
@@ -1646,15 +2010,19 @@
 	}
 
 	@include hover($descriptor) {
-		#{$identifier} { transform: scale($scale) rotate($rotate); }
+		#{$identifier} {
+			transform: scale($scale) rotate($rotate);
+		}
 	}
 }
 
-// Icon Pop/Push 
+// Icon Pop/Push
 @mixin icon-poppush-keyframes($scale) {
 	@at-root {
 		@keyframes icon-poppush {
-			50% { transform: scale($scale); }
+			50% {
+				transform: scale($scale);
+			}
 		}
 	}
 }
@@ -1683,22 +2051,26 @@
 	}
 }
 
-// Icon Pop 
-@mixin icon-pop($identifier: svg, $duration: .3s, $scale: 1.5, $descriptor: null) {
+// Icon Pop
+@mixin icon-pop($identifier: svg, $duration: 0.3s, $scale: 1.5, $descriptor: null) {
 	@include icon-poppush($identifier, $duration, $scale, $descriptor);
 }
 
-// Icon Push 
-@mixin icon-push($identifier: svg, $duration: .3s, $scale: .5, $descriptor: null) {
+// Icon Push
+@mixin icon-push($identifier: svg, $duration: 0.3s, $scale: 0.5, $descriptor: null) {
 	@include icon-poppush($identifier, $duration, $scale, $descriptor);
 }
 
-// Icon Pulse 
+// Icon Pulse
 @mixin icon-pulse-keyframes($scale1, $scale2) {
 	@at-root {
 		@keyframes icon-pulse {
-			25% { transform: scale($scale1); }
-			75% { transform: scale($scale2); }
+			25% {
+				transform: scale($scale1);
+			}
+			75% {
+				transform: scale($scale2);
+			}
 		}
 	}
 }
@@ -1706,16 +2078,20 @@
 @mixin icon-pulse2-keyframes($scale) {
 	@at-root {
 		@keyframes icon-pulse2 {
-			to { transform: scale($scale); }
+			to {
+				transform: scale($scale);
+			}
 		}
 	}
 }
 
-@mixin icon-pulse($identifier: svg, $duration: 1s, $scale1: 1.3, $scale2: .8, $descriptor: null) {
+@mixin icon-pulse($identifier: svg, $duration: 1s, $scale1: 1.3, $scale2: 0.8, $descriptor: null) {
 	@include prep-icon($identifier);
 	@include icon-pulse-keyframes($scale1, $scale2);
 
-	#{$identifier} { transition-timing-function: ease-out; }
+	#{$identifier} {
+		transition-timing-function: ease-out;
+	}
 
 	@include hover($descriptor) {
 		#{$identifier} {
@@ -1729,12 +2105,14 @@
 	}
 }
 
-// Icon Pulse Shrink 
+// Icon Pulse Shrink
 @mixin icon-pulse2($identifier, $duration, $scale, $descriptor: null) {
 	@include prep-icon($identifier);
 	@include icon-pulse2-keyframes($scale);
 
-	#{$identifier} { transition-timing-function: ease-out; }
+	#{$identifier} {
+		transition-timing-function: ease-out;
+	}
 
 	@include hover($descriptor) {
 		#{$identifier} {
@@ -1749,19 +2127,18 @@
 	}
 }
 
-// Icon Pulse Grow 
-@mixin icon-pulse-grow($identifier: svg, $duration: .3s, $scale: 1.3, $descriptor: null) {
+// Icon Pulse Grow
+@mixin icon-pulse-grow($identifier: svg, $duration: 0.3s, $scale: 1.3, $descriptor: null) {
 	@include icon-pulse2($identifier, $duration, $scale, $descriptor);
 }
 
-// Icon Pulse Shrink 
-@mixin icon-pulse-shrink($identifier: svg, $duration: .3s, $scale: .8, $descriptor: null) {
+// Icon Pulse Shrink
+@mixin icon-pulse-shrink($identifier: svg, $duration: 0.3s, $scale: 0.8, $descriptor: null) {
 	@include icon-pulse2($identifier, $duration, $scale, $descriptor);
 }
 
-// Icon Rotate 
-@mixin icon-rotate($identifier: svg, $duration: .3s, $rotate: 20deg, $descriptor: null) {
-
+// Icon Rotate
+@mixin icon-rotate($identifier: svg, $duration: 0.3s, $rotate: 20deg, $descriptor: null) {
 	#{$identifier} {
 		transition: {
 			duration: $duration;
@@ -1771,36 +2148,63 @@
 	}
 
 	@include hover($descriptor) {
-		#{$identifier} { transform: rotate($rotate); }
+		#{$identifier} {
+			transform: rotate($rotate);
+		}
 	}
 }
 
-// Icon Spin 
+// Icon Spin
 @mixin icon-spin($identifier: svg, $duration: 1s, $descriptor: null) {
 	@include icon-rotate($identifier, $duration, 360deg, $descriptor);
 
-	#{$identifier} { transition-timing-function: ease-in-out; }
+	#{$identifier} {
+		transition-timing-function: ease-in-out;
+	}
 }
 
-// Icon Wobble 
+// Icon Wobble
 @mixin icon-wobble-keyframes($axis, $distance) {
 	@at-root {
 		@keyframes icon-wobble {
-
 			@if $axis == X {
-				16.65% { transform: translateX($distance); }
-				33.3% { transform: translateX(#{-$distance*(5/6)}); }
-				49.95% { transform: translateX(#{$distance*(2/3)}); }
-				66.6% { transform: translateX(#{-$distance*(1/3)}); }
-				83.25% { transform: translateX(#{$distance*(1/6)}); }
-				100% { transform: translateX(0); }
-			} @else if  $axis == Y {
-				16.65% { transform: translateY($distance); }
-				33.3% { transform: translateY(#{-$distance*(5/6)}); }
-				49.95% { transform: translateY(#{$distance*(2/3)}); }
-				66.6% { transform: translateY(#{-$distance*(1/3)}); }
-				83.25% { transform: translateY(#{$distance*(1/6)}); }
-				100% { transform: translateY(0); }
+				16.65% {
+					transform: translateX($distance);
+				}
+				33.3% {
+					transform: translateX(#{-$distance * (5/6)});
+				}
+				49.95% {
+					transform: translateX(#{$distance * (2/3)});
+				}
+				66.6% {
+					transform: translateX(#{-$distance * (1/3)});
+				}
+				83.25% {
+					transform: translateX(#{$distance * (1/6)});
+				}
+				100% {
+					transform: translateX(0);
+				}
+			} @else if $axis == Y {
+				16.65% {
+					transform: translateY($distance);
+				}
+				33.3% {
+					transform: translateY(#{-$distance * (5/6)});
+				}
+				49.95% {
+					transform: translateY(#{$distance * (2/3)});
+				}
+				66.6% {
+					transform: translateY(#{-$distance * (1/3)});
+				}
+				83.25% {
+					transform: translateY(#{$distance * (1/6)});
+				}
+				100% {
+					transform: translateY(0);
+				}
 			}
 		}
 	}
@@ -1814,7 +2218,7 @@
 		#{$identifier} {
 			animation: {
 				name: icon-wobble;
-				duration: $duration*3;
+				duration: $duration * 3;
 				timing-function: ease-in-out;
 				iteration-count: 1;
 			}
@@ -1822,51 +2226,50 @@
 	}
 }
 
-// Icon Wobble Vertical 
-@mixin icon-wobble-vertical($identifier: svg, $duration: .3s, $distance: 6px, $axis: Y, $descriptor: null) { 
+// Icon Wobble Vertical
+@mixin icon-wobble-vertical($identifier: svg, $duration: 0.3s, $distance: 6px, $axis: Y, $descriptor: null) {
 	@include icon-wobble($identifier, $duration, $distance, $axis, $descriptor);
 }
 
-// Icon Wobble Horizontal 
-@mixin icon-wobble-horizontal($identifier: svg, $duration: .3s, $distance: 6px, $axis: X, $descriptor: null) {
+// Icon Wobble Horizontal
+@mixin icon-wobble-horizontal($identifier: svg, $duration: 0.3s, $distance: 6px, $axis: X, $descriptor: null) {
 	@include icon-wobble($identifier, $duration, $distance, $axis, $descriptor);
 }
 
 // Shadow and Glow Transitions
 
-// Box Shadow Inset 
+// Box Shadow Inset
 @mixin box-shadow-inset(
-		$duration: .3s, 
-		$shadow-color: $jack-black, 
-		$shadow-intensity: .6, 
-		$shadow-distance: 2px, 
-		$shadow-radius: 2px, 
-		$descriptor: null
-	) {
+	$duration: 0.3s,
+	$shadow-color: $jack-black,
+	$shadow-intensity: 0.6,
+	$shadow-distance: 2px,
+	$shadow-radius: 2px,
+	$descriptor: null
+) {
 	@include hacks;
 	transition: {
 		duration: $duration;
 		property: box-shadow;
 	}
 
-	box-shadow: inset 0 0 0 $shadow-color,
-		0 0 1px rgba(0, 0, 0, 0); // Hack to improve aliasing on mobile/tablet devices 
+	box-shadow: inset 0 0 0 $shadow-color, 0 0 1px rgba(0, 0, 0, 0); // Hack to improve aliasing on mobile/tablet devices
 
 	@include hover($descriptor) {
 		box-shadow: inset $shadow-distance $shadow-distance $shadow-radius rgba($shadow-color, $shadow-intensity),
-		0 0 1px rgba(0, 0, 0, 0); // Hack to improve aliasing on mobile/tablet devices 
+			0 0 1px rgba(0, 0, 0, 0); // Hack to improve aliasing on mobile/tablet devices
 	}
 }
 
-// Box Shadow Outset 
+// Box Shadow Outset
 @mixin box-shadow-outset(
-		$duration: .3s, 
-		$shadow-color: $jack-black, 
-		$shadow-intensity: .6, 
-		$shadow-distance: 2px, 
-		$shadow-radius: 2px, 
-		$descriptor: null
-	) {
+	$duration: 0.3s,
+	$shadow-color: $jack-black,
+	$shadow-intensity: 0.6,
+	$shadow-distance: 2px,
+	$shadow-radius: 2px,
+	$descriptor: null
+) {
 	@include hacks;
 	transition: {
 		duration: $duration;
@@ -1878,15 +2281,15 @@
 	}
 }
 
-// Float Shadow 
+// Float Shadow
 @mixin float-shadow(
-		$duration: .3s, 
-		$shadow-width: 90%, 
-		$distance: 5px, 
-		$shadow-color: $jack-black, 
-		$shadow-intensity: .35, 
-		$descriptor: null
-	) {
+	$duration: 0.3s,
+	$shadow-width: 90%,
+	$distance: 5px,
+	$shadow-color: $jack-black,
+	$shadow-intensity: 0.35,
+	$descriptor: null
+) {
 	@include hacks;
 	z-index: 0;
 	transition: {
@@ -1898,11 +2301,15 @@
 		pointer-events: none;
 		z-index: -1;
 		top: 100%;
-		left: calc((100% - #{$shadow-width})/2);
-		height: $distance*2;
+		left: calc((100% - #{$shadow-width}) / 2);
+		height: $distance * 2;
 		width: $shadow-width;
 		opacity: 0;
-		background: radial-gradient(ellipse at center, rgba($shadow-color,$shadow-intensity) 0%,rgba($shadow-color,0) 80%);
+		background: radial-gradient(
+			ellipse at center,
+			rgba($shadow-color, $shadow-intensity) 0%,
+			rgba($shadow-color, 0) 80%
+		);
 		transition: {
 			duration: $duration;
 			property: transform, opacity;
@@ -1910,7 +2317,7 @@
 	}
 
 	@include hover($descriptor) {
-		transform: translateY(#{-$distance}); 
+		transform: translateY(#{-$distance});
 
 		&:before {
 			opacity: 1;
@@ -1919,13 +2326,25 @@
 	}
 }
 
-// Glow 
-@mixin glow($duration: .3s, $shadow-color: $jack-black, $shadow-intensity: .6, $shadow-radius: 8px, $descriptor: null) {
+// Glow
+@mixin glow(
+	$duration: 0.3s,
+	$shadow-color: $jack-black,
+	$shadow-intensity: 0.6,
+	$shadow-radius: 8px,
+	$descriptor: null
+) {
 	@include box-shadow-outset($duration, $shadow-color, $shadow-intensity, 0, $shadow-radius, $descriptor);
 }
 
-// Shadow 
-@mixin shadow($duration: .3s, $shadow-distance: 10px, $shadow-color: $jack-black, $shadow-intensity: .6, $descriptor: null) {
+// Shadow
+@mixin shadow(
+	$duration: 0.3s,
+	$shadow-distance: 10px,
+	$shadow-color: $jack-black,
+	$shadow-intensity: 0.6,
+	$descriptor: null
+) {
 	@include hacks;
 	transition: {
 		duration: $duration;
@@ -1937,15 +2356,15 @@
 	}
 }
 
-// Grow Shadow 
+// Grow Shadow
 @mixin grow-shadow(
-		$duration: .3s, 
-		$shadow-distance: 10px, 
-		$shadow-color: $jack-black, 
-		$shadow-intensity: .5, 
-		$scale: 1.1, 
-		$descriptor: null
-	) {
+	$duration: 0.3s,
+	$shadow-distance: 10px,
+	$shadow-color: $jack-black,
+	$shadow-intensity: 0.5,
+	$scale: 1.1,
+	$descriptor: null
+) {
 	@include shadow($duration, $shadow-distance, $shadow-color, $shadow-intensity);
 	transition-property: box-shadow, transform;
 
@@ -1954,8 +2373,14 @@
 	}
 }
 
-// Shadow Radial 
-@mixin shadow-radial($duration: .3s, $shadow-distance: 5px, $shadow-color: $jack-black, $shadow-intensity: .6, $descriptor: null){
+// Shadow Radial
+@mixin shadow-radial(
+	$duration: 0.3s,
+	$shadow-distance: 5px,
+	$shadow-color: $jack-black,
+	$shadow-intensity: 0.6,
+	$descriptor: null
+) {
 	@include hacks;
 	@include mask("before");
 	@include mask("after");
@@ -1977,12 +2402,20 @@
 
 	&:before {
 		bottom: 100%;
-		background: radial-gradient(ellipse at 50% 150%, rgba($shadow-color, $shadow-intensity) 0%, rgba($shadow-color, 0) 80%);
+		background: radial-gradient(
+			ellipse at 50% 150%,
+			rgba($shadow-color, $shadow-intensity) 0%,
+			rgba($shadow-color, 0) 80%
+		);
 	}
 
 	&:after {
 		top: 100%;
-		background: radial-gradient(ellipse at 50% -50%, rgba($shadow-color, $shadow-intensity) 0%, rgba($shadow-color, 0) 80%);
+		background: radial-gradient(
+			ellipse at 50% -50%,
+			rgba($shadow-color, $shadow-intensity) 0%,
+			rgba($shadow-color, 0) 80%
+		);
 	}
 
 	@include hover($descriptor) {
@@ -1995,7 +2428,7 @@
 
 // Speech Bubble Transitions
 
-// Bubble base 
+// Bubble base
 @mixin bubble-base($duration) {
 	@include hacks;
 	@include mask {
@@ -2008,8 +2441,14 @@
 	}
 }
 
-// Bubble Bottom 
-@mixin bubble-bottom($duration: .3s, $tip-height: 10px, $tip-width: 10px, $tip-color: $primary-color, $descriptor: null) {
+// Bubble Bottom
+@mixin bubble-bottom(
+	$duration: 0.3s,
+	$tip-height: 10px,
+	$tip-width: 10px,
+	$tip-color: $primary-color,
+	$descriptor: null
+) {
 	@include bubble-base($duration);
 
 	&:before {
@@ -2020,12 +2459,14 @@
 	}
 
 	@include hover($descriptor) {
-		&:before { transform: translateY($tip-height); }
+		&:before {
+			transform: translateY($tip-height);
+		}
 	}
 }
 
-// Bubble Top 
-@mixin bubble-top($duration: .3s, $tip-height: 10px, $tip-width: 10px, $tip-color: $primary-color, $descriptor: null) {
+// Bubble Top
+@mixin bubble-top($duration: 0.3s, $tip-height: 10px, $tip-width: 10px, $tip-color: $primary-color, $descriptor: null) {
 	@include bubble-base($duration);
 
 	&:before {
@@ -2036,12 +2477,20 @@
 	}
 
 	@include hover($descriptor) {
-		&:before { transform: translateY(-($tip-height)); }
+		&:before {
+			transform: translateY(-($tip-height));
+		}
 	}
 }
 
-// Bubble Left 
-@mixin bubble-left($duration: .3s, $tip-height: 10px, $tip-width: 10px, $tip-color: $primary-color, $descriptor: null) {
+// Bubble Left
+@mixin bubble-left(
+	$duration: 0.3s,
+	$tip-height: 10px,
+	$tip-width: 10px,
+	$tip-color: $primary-color,
+	$descriptor: null
+) {
 	@include bubble-base($duration);
 
 	&:before {
@@ -2052,12 +2501,20 @@
 	}
 
 	@include hover($descriptor) {
-		&:before { transform: translateX(-($tip-width)); }
+		&:before {
+			transform: translateX(-($tip-width));
+		}
 	}
 }
 
-// Bubble Right 
-@mixin bubble-right($duration: .3s, $tip-height: 10px, $tip-width: 10px, $tip-color: $primary-color, $descriptor: null) {
+// Bubble Right
+@mixin bubble-right(
+	$duration: 0.3s,
+	$tip-height: 10px,
+	$tip-width: 10px,
+	$tip-color: $primary-color,
+	$descriptor: null
+) {
 	@include bubble-base($duration);
 
 	&:before {
@@ -2068,12 +2525,20 @@
 	}
 
 	@include hover($descriptor) {
-		&:before { transform: translateX($tip-width); }
+		&:before {
+			transform: translateX($tip-width);
+		}
 	}
 }
 
-// Bubble Float Bottom 
-@mixin bubble-float-bottom($duration: .3s, $tip-height: 10px, $tip-width: 10px, $tip-color: $primary-color, $descriptor: null) {
+// Bubble Float Bottom
+@mixin bubble-float-bottom(
+	$duration: 0.3s,
+	$tip-height: 10px,
+	$tip-width: 10px,
+	$tip-color: $primary-color,
+	$descriptor: null
+) {
 	@include bubble-bottom($duration, $tip-height, $tip-width, $tip-color, $descriptor);
 	transition: {
 		duration: $duration;
@@ -2085,8 +2550,14 @@
 	}
 }
 
-// Bubble Float Top 
-@mixin bubble-float-top($duration: .3s, $tip-height: 10px, $tip-width: 10px, $tip-color: $primary-color, $descriptor: null) {
+// Bubble Float Top
+@mixin bubble-float-top(
+	$duration: 0.3s,
+	$tip-height: 10px,
+	$tip-width: 10px,
+	$tip-color: $primary-color,
+	$descriptor: null
+) {
 	@include bubble-top($duration, $tip-height, $tip-width, $tip-color, $descriptor);
 	transition: {
 		duration: $duration;
@@ -2098,8 +2569,14 @@
 	}
 }
 
-// Bubble Float Left 
-@mixin bubble-float-top($duration: .3s, $tip-height: 10px, $tip-width: 10px, $tip-color: $primary-color, $descriptor: null) {
+// Bubble Float Left
+@mixin bubble-float-top(
+	$duration: 0.3s,
+	$tip-height: 10px,
+	$tip-width: 10px,
+	$tip-color: $primary-color,
+	$descriptor: null
+) {
 	@include bubble-left($duration, $tip-height, $tip-width, $tip-color, $descriptor);
 	transition: {
 		duration: $duration;
@@ -2111,8 +2588,14 @@
 	}
 }
 
-// Bubble Float Right 
-@mixin bubble-float-top($duration: .3s, $tip-height: 10px, $tip-width: 10px, $tip-color: $primary-color, $descriptor: null) {
+// Bubble Float Right
+@mixin bubble-float-top(
+	$duration: 0.3s,
+	$tip-height: 10px,
+	$tip-width: 10px,
+	$tip-color: $primary-color,
+	$descriptor: null
+) {
 	@include bubble-right($duration, $tip-height, $tip-width, $tip-color, $descriptor);
 	transition: {
 		duration: $duration;
@@ -2121,5 +2604,17 @@
 
 	@include hover($descriptor) {
 		transform: translateX(-($tip-width));
+	}
+}
+
+@keyframes selectedpoint {
+	0%,
+	100% {
+		transform: scale(1);
+		opacity: 100%;
+	}
+	50% {
+		transform: scale(1.5);
+		opacity: 10%;
 	}
 }

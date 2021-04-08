@@ -377,6 +377,9 @@
     border-radius: 50%;
     z-index: 100;
     cursor: pointer;
+    transition: transform 2000ms ease;
+    animation: selectedpoint 2000ms infinite;
+
     &:after {
         content: '';
         width: calc(var(--size-dot-country) + var(--border-dot-country));
@@ -387,7 +390,14 @@
         top: calc(0px - 0.5px - var(--border-dot-country) / 2);
         left: calc(0px - 0.5px - var(--border-dot-country) / 2);
     }
+    &.selected{
+        animation: none;
+        transform: scale(2);
+    }
 }
+
+
+ 
 
 @media (max-width:1600px) and(min-width:768px){
     .presencia .stats .title {
