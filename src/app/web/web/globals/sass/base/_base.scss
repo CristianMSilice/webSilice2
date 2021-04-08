@@ -39,48 +39,6 @@ body {
         grid-template-areas:
             "header  sidebar"
             "content sidebar";
-
-        &:before,
-        &:after {
-            content: "";
-            position: absolute;
-            z-index: 1;
-        }
-
-        &:before {
-            top: 100px;
-            left: 0;
-            width: 100%;
-            height: 23.76vh;
-            box-shadow: 0 0 100px rgba($c-black, 0.08);
-            background: linear-gradient(to bottom, rgba(244, 244, 244, 1) 0%, rgba(255, 255, 255, 1) 100%);
-        }
-
-        &:after {
-            @include bg-cover;
-            // top: -190px;
-            top: -29vh;
-            left: -293px;
-            z-index: 1;
-            background-image: url(assets/images/svgs/circle-bg__header.svg);
-            width: 700px;
-            height: 700px;
-            transform-origin: center center;
-            transition: transform 0.5s;
-            animation: rotate-center 50s infinite linear;
-        }
-    }
-
-    @include respond-to($site-width) {
-        &:before {
-            top: $header-height;
-            height: 20.76vh;
-        }
-
-        &:after {
-            top: -20vh;
-            left: -170px;
-        }
     }
 }
 

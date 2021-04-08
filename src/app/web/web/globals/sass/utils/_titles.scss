@@ -59,6 +59,37 @@
     @include respond-to($vp-mid) {
         &-wrapper {
             @include flex-all($align: center);
+            position: relative;
+
+            &:before,
+            &:after {
+                content: "";
+                position: absolute;
+                z-index: 1;
+            }
+    
+            &:before {
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                box-shadow: 0 0 100px rgba($c-black, 0.08);
+                background: linear-gradient(to bottom, rgba(244, 244, 244, 1) 0%, rgba(255, 255, 255, 1) 100%);
+            }
+    
+            &:after {
+                @include bg-cover;
+                // top: -190px;
+                top: -350px;
+                left: -293px;
+                z-index: 1;
+                background-image: url(assets/images/svgs/circle-bg__header.svg);
+                width: 700px;
+                height: 700px;
+                transform-origin: center center;
+                transition: transform 0.5s;
+                animation: rotate-center 50s infinite linear;
+            }
         }
 
         &-column {
@@ -88,6 +119,11 @@
     @include respond-to($site-width) {
         &-wrapper {
             height: 20.76vh;
+    
+            &:after {
+                top: -280px;
+                left: -178px;
+            }
 
             .motto {
                 padding: 0 $site-padding;
