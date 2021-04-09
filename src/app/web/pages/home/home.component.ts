@@ -17,7 +17,7 @@ export class HomeComponent implements OnInit {
   showModal=false;
   _sliderItems: Array<sliderItem> = [
     {
-      Image: this.Img_url + 'slide-municipio360.jpg', mainText: 'Plataforma de Atención Gubernamental', mainTitle: 'Municipio 360',
+      Image: this.Img_url + 'slide-municipio360.jpg', mainTitle: 'Municipio 360', mainText: 'Plataforma de Atención Gubernamental', 
       button: { text: 'Conocer', callfuncion: 'prueba' },
       title: 'MUNICIPIO 360', text: 'Gobierno inclusivo, transparente, accesible y participativo',
     },
