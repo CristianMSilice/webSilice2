@@ -755,7 +755,7 @@
   </svg>
 
     <div class="data" id="DetailDataMapaMundi">
-        <section class="presencia content detail-country" *ngFor="let sede of sedes">
+        <section class="presencia content detail-country" *ngFor="let sede of sedes" (click)="pais()">
             <ng-container *ngIf="sede.choords.left">
                 <div class="map-details grid-details" [ngClass]="{'selectedCountry':selectedCountry == sede.name }" [style.transform]="myTransform(sede.choords.left,sede.choords.top)" [ngStyle]="{'transform-origin': sede.choords.left + 'px '+ sede.choords.top + 'px'}">
 

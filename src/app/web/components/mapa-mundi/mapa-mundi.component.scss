@@ -81,6 +81,8 @@
                         grid-column: 1/2;
                         img {
                             border-radius: var(--summary-detail-border-radius);
+                            width: calc(100% - 2em);
+                            height: 100%;
                         }
                     }
                     .summary-item-list-container {
@@ -104,7 +106,7 @@
                     left: 60%;
                     opacity: 1;
                     transform: scale(1) !important;
-                    top: calc(100% - 370px);
+                    top: calc(100% - 438px - 2em);
                 }
             }
         }

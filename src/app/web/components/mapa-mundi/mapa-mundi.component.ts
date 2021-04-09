@@ -34,11 +34,12 @@ export class MapaMundiComponent implements OnInit {
         choords: {left: undefined ,top:undefined}
       },
       {
-        name: 'spain', text: 'España', image: 'flag-panama.png', link: 'experiencia/sedes',
+        name: 'spain', text: 'España', image: 'flag-spain.png', link: 'experiencia/sedes',
         team: { userimage: 'equipo-juan.jpg', userName: 'Jonatan' },
         contry: [
-          { item: '+10 años', text: 'proyectos de transformación Digital' },
-          { item: '+15', text: 'Proyectos de Omnicanalidad con servicios a Nivel Nacional' }
+          { item: '+ de 20', text: 'años de trayectoria' },
+          { item: '+ de 10', text: 'proyectos de transformación digital a través de la omicanalidad en organizaciones públicas y privadas.' },
+          { item: '1er', text: ' Laboratorio de innovación, investigación y desarrollo SILICE' }
         ],
         choords: {left:undefined ,top:undefined}
       }
@@ -49,10 +50,14 @@ export class MapaMundiComponent implements OnInit {
     this.addCountries()
   }
 
-  pais(pais: string) {
+  pais(pais?: string) {
     // this.drawLine({... this.sedes.filter(e=>e.name==pais)[0]['choords']})
-    this.selectedCountry=pais;
-    console.log(pais)
+    if(pais){
+      this.selectedCountry=pais;
+    }
+    else{
+      this.selectedCountry="ninguno"
+    }
   }
 
   addCountries() {
