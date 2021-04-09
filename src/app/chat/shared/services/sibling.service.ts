@@ -18,6 +18,6 @@ export class SiblingService {
     this.emoji.next(emoji)
   }
   sendClick(text) {
-    this._sendClick.next(`(click): ${text}`)
+    this._sendClick.next(`click: ${text}`)
   }
 }
