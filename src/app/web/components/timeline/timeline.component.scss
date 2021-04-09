@@ -17,9 +17,11 @@
         left: auto;
         right: 0;
     }
-
-    img { transform: scale(.5); }
 }
+
+.arrow.arrowleft img { transform: scale(.5); }
+
+.arrow.arrowright img { transform: rotate(180deg) scale(.5); }
 
 @media (min-width: 1600px) {
     .arrow {
