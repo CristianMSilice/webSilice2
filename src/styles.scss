@@ -20,7 +20,7 @@ body {
     --scrollcolor: hsl(223, 12%, 86%);
     --suitBotColor1: hsl(228, 93%, 23%);
     --suitBotColor2: hsl(228, 93%, 43%);
-    --chatBackgroundColor:  hsl(0, 0%, 93%);
+    --chatBackgroundColor:  hsl(0, 0%, 97.3%);
     --width-chat-widget:380px;
 
     @include respond-to($site-width) {
@@ -62,8 +62,9 @@ body {
 }
 
 .message-buttons-array .message-button-option {
-    padding: 1rem 1.5rem;
+    padding: .5rem 1rem;
     margin: 5px 3px;
+    font-size: .75rem;
     border: 1px solid;
     border-radius: 50vmin;
     border: 0;
@@ -74,11 +75,6 @@ body {
 .message-buttons-array .message-button-option:hover {
     cursor: pointer;
     background-color: hsla(0, 0%, 0%, 10%);
-}
-
-.message-button-option.disabled {
-    // color: hsla(0, 0%, 20%) !important;
-    // border: 1px solid hsla(0, 0%, 20%) !important;
 }
 
 .message-button-option.disabled:hover {
@@ -96,4 +92,11 @@ body {
 
 web.web-view{
     width: calc(100vw - var(--width-chat-widget));
+}
+
+@media (min-width: 1600px) {
+    .message-buttons-array .message-button-option {
+        padding: 1rem 1.5rem;
+        font-size: 1rem;
+    }
 }

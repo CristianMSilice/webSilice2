@@ -158,13 +158,24 @@
     }
 }
 
-@media (max-width: 1600px) {
+@media (min-width: 1360px) and (max-width: 1600px) {
     .case-tabs {
         .case-tabs-container {
+            width: calc(100% - 2vw);
+
             .case-tabs-body {
-                top: 45px;
+                top: 1rem;
+                height: calc(100% - var(--height-case-tab-list-controller) - 2vh);
 
                 article.case-tab-option {
+                    .case-content-content {
+                        .case-content-summary {
+                            padding: 1.5em 2em;
+
+                            .case-text { margin: 0 0 1rem; }
+                        }
+                    }
+
                     .case-content-image {
                         .case-image {
                             clip-path: circle(
@@ -174,6 +185,8 @@
                     }
                 }
             }
+
+            ul.case-tab-list-controller { bottom: 0; }
         }
     }
 }

@@ -50,19 +50,31 @@
     background-color: hsl(0deg 0% 100%);
     transition: opacity 200ms ease;
     z-index: 300;
-    opacity: 25%;
+    cursor: pointer;
+    
     &:hover {
         opacity: 75%;
     }
     &.arrowleft {
         border-radius: 0px var(--border-radius) var(--border-radius) 0px;
         left: 0;
-        box-shadow: 15px 0px 10px hsl(0deg 0% 0% / 7%);
+        box-shadow: 15px 0px 10px hsl(0deg 0% 0% / 1%);
+
+        &:hover,
+        &:focus {
+            box-shadow: 15px 0px 10px hsl(0deg 0% 0% / 7%);
+        }
     }
     &.arrowright {
         border-radius: var(--border-radius) 0px 0px var(--border-radius);
         left: calc(100vw - var(--width-chat-widget) - var(--arrow-container-size));
-        box-shadow: -15px 0px 10px hsl(0deg 0% 0% / 7%);
+        box-shadow: -15px 0px 10px hsl(0deg 0% 0% / 1%);
+
+        &:hover,
+        &:focus {
+            box-shadow: -15px 0px 10px hsl(0deg 0% 0% / 7%);
+        }
+
         img {
             transform: rotate(180deg);
         }

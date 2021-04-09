@@ -29,7 +29,7 @@ export class SliderComponent implements OnInit {
     if (timer) clearInterval(this.IntervalTime)
     this.IntervalTime = setInterval(() => {
       this.selectedOption = (this.selectedOption + 1) % this.sliderItem.length;
-    }, 5000);
+    }, 500000);
   }
 
   newOptionSelected(i) {

@@ -2,12 +2,13 @@
     position: relative;
     z-index: 2;
     padding: 0;
+    font-size: .75rem;
     text-align: center;
     color: $c-black;
 
     .sub-section__inner {
         @include flex-all(row-reverse, flex-start, center, $inline: true);
-        @include width-constrain(790px);
+        @include width-constrain(600px);
         border-radius: 60px;
         box-shadow: 0 0 100px rgba($c-black, .13);
         background-color: $c-white;
@@ -20,7 +21,7 @@
             margin: 0;
             padding: .5rem 1rem;
             font: {
-                size: 1rem;
+                size: 1em;
                 weight: 600;
             }
             border-radius: 60px;
@@ -44,7 +45,14 @@
 
         &-content { 
             flex: 1;
+            font-size: 1em;
             text-align: center; 
         }
+    }
+
+    @include respond-to($site-width) {
+        font-size: 1rem; 
+
+        .sub-section__inner { max-width: 790px; }
     }
 }

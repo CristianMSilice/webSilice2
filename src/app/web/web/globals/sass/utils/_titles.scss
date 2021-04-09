@@ -48,7 +48,7 @@
             display: block;
             position: relative;
             z-index: 2;
-            padding: 0 5px;
+            padding: 0 $site-padding;
             letter-spacing: 1.2px;
             font-size: 0.75rem;
             text-align: center;
@@ -126,7 +126,6 @@
             }
 
             .motto {
-                padding: 0 $site-padding;
                 font-size: 0.875rem;
             }
 
@@ -149,13 +148,35 @@
     }
 }
 
-@media (max-width: 1600px) and (min-width: 768px) {
+@media (min-width: 768px) and (max-width: 1600px) {
     .site-title {
         &-wrapper {
-            height: 15vh;
+            height: 110px;
+            background-color: rgba($c-grey-mid, .5);
+
+            &:before,
+            &:after { content: none; }
+            
             .motto {
+                line-height: 1.7;
+            }
+        }
+
+        &-column {
+            &:first-child {
                 position: absolute;
-                visibility: hidden;
+                bottom: calc(100% + 41px);
+                right: calc(#{$site-padding} / 3);
+                z-index: 99;
+                width: auto;
+                height: auto;
+                padding: 0;
+
+                .title {
+                    font-size: 2.85vmin;
+
+                    &:before { content: none; }
+                }
             }
         }
     }

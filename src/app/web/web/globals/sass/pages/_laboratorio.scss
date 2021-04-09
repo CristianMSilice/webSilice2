@@ -1,95 +1,99 @@
-.laboratorio {
-    &-wrapper {
-        justify-content: flex-start;
+.laboratorio-wrapper {
+    justify-content: flex-start;
+    height: 100%;
+    overflow-y: scroll;
+
+    @include respond-to($site-width) {
         height: calc(100% - #{$header-subtitle-height});
-        overflow-y: scroll;
+    }
 
-        .intro {
-            padding: 0 2rem;
+    .intro {
+        padding: 0 2rem;
+        
+        .row-inner { padding: 0; }
+
+        .content-body {
+            @include flex-all(column, center);
+            padding: 0;
+            text-align: center;
+
+            h2 {
+                @include scale-font(
+                    $small-ratio: 0.8,
+                    $mid-ratio: 0.75,
+                    $final-size: 1.9375rem
+                );
+                font: {
+                    family: $primary-font;
+                    weight: 600;
+                }
+                letter-spacing: 2.33px;
+                color: $c-black;
+
+                strong {
+                    font-weight: 600;
+                    color: $primary-color;
+                }
+            }
+
+            h3 {
+                @include scale-font(
+                    $small-ratio: 0.5,
+                    $mid-ratio: 0.75,
+                    $final-size: 1rem
+                );
+                margin: 2rem 0 0;
+                font: {
+                    family: $primary-font;
+                    weight: 400;
+                }
+                color: $c-black;
+                letter-spacing: 1.2px;
+
+                strong {
+                    font-weight: 700;
+                    color: $primary-color;
+                }
+            }
+
+            p {
+                margin: 0.675rem 0;
+                letter-spacing: 1.2px;
+                color: $secondary-color;
+
+                strong { color: $c-black; }
+            }
+
+            ul li a p {
+                margin-top: 5px;
+            }
+        }
+
+        .content-inner { @include flex-all(column, center, center); }
+
+        .content-image {
+            img {
+                display: block;
+                max-width: 743px;
+                width: 100%;
+            }
+        }
+
+        @include respond-to($vp-max) {
+            .content-image {
+                img {
+                    display: block;
+                    max-width: none;
+                    width: auto;
+                }
+            }
+        }
+
+        @include respond-to($site-width) {
+            .content-body { text-align: right; }
             
-            .row-inner { padding: 0; }
-
-            .content {
-                &-body {
-                    @include flex-all(column, center);
-                    padding: 0;
-                    text-align: right;
-
-                    h2 {
-                        @include scale-font(
-                            $small-ratio: 0.8,
-                            $mid-ratio: 0.75,
-                            $final-size: 1.9375rem
-                        );
-                        font: {
-                            family: $primary-font;
-                            weight: 600;
-                        }
-                        letter-spacing: 2.33px;
-                        color: $c-black;
-
-                        strong {
-                            font-weight: 600;
-                            color: $primary-color;
-                        }
-                    }
-
-                    h3 {
-                        @include scale-font(
-                            $small-ratio: 0.5,
-                            $mid-ratio: 0.75,
-                            $final-size: 1rem
-                        );
-                        margin: 2rem 0 0;
-                        font: {
-                            family: $primary-font;
-                            weight: 400;
-                        }
-                        color: $c-black;
-                        letter-spacing: 1.2px;
-
-                        strong {
-                            font-weight: 700;
-                            color: $primary-color;
-                        }
-                    }
-
-                    p {
-                        margin: 0.675rem 0;
-                        letter-spacing: 1.2px;
-                        color: $secondary-color;
-
-                        strong { color: $c-black; }
-                    }
-
-                    ul li a p {
-                        margin-top: 5px;
-                    }
-                }
-
-                .content-image {
-                    img {
-                        display: block;
-                        max-width: 743px;
-                        width: 100%;
-                    }
-                }
-
-                @include respond-to($vp-large) {
-                    &-inner {
-                        @include flex-all(row-reverse, space-between, center);
-                    }
-                }
-
-                @include respond-to($vp-max) {
-                    .content-image {
-                        img {
-                            display: block;
-                            max-width: none;
-                            width: auto;
-                        }
-                    }
-                }
+            .content-inner {
+                @include flex-all(row-reverse, space-between, center);
             }
         }
     }
