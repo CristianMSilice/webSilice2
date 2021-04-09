@@ -757,7 +757,7 @@
     <div class="data" id="DetailDataMapaMundi">
         <section class="presencia content detail-country" *ngFor="let sede of sedes" (click)="pais()">
             <ng-container *ngIf="sede.choords.left">
-                <div class="map-details grid-details" [ngClass]="{'selectedCountry':selectedCountry == sede.name }" [style.transform]="myTransform(sede.choords.left,sede.choords.top)" [ngStyle]="{'transform-origin': sede.choords.left + 'px '+ sede.choords.top + 'px'}">
+                <div class="map-details grid-details" [ngClass]="{'selectedCountry':selectedCountry == sede.name }" [style.transform]="myTransform(sede.choords.left,sede.choords.top,0.1)" [ngStyle]="{'transform-origin': sede.choords.left + 'px '+ sede.choords.top + 'px'}">
 
                     <div class="title title-details">
                         <img src="assets/images/presencia/{{sede.image}}" alt="{{sede.text}}" />
@@ -781,8 +781,8 @@
                 </div>
             </ng-container>
         </section>
+        <div class="dotCountry" *ngFor="let sede of sedes" (click)="pais(sede.name)" [style.top.px]="sede.choords.top" [style.left.px]="sede.choords.left"></div>
     </div>
 
-    <!-- <canvas class="lineCanvas" [ngClass]="{'opacity1':changeCanvas}" id="lineCanvas" width="1000" height="1000"></canvas> -->
 
 </div>

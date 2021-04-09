@@ -48,6 +48,7 @@ export class MapaMundiComponent implements OnInit {
   changeCanvas=false;
   ngOnInit() {
     this.addCountries()
+    setTimeout(()=>{this.selectedCountry = this.sedes[Math.floor(Math.random()*(this.sedes.length))].name},5000);
   }
 
   pais(pais?: string) {
@@ -66,36 +67,17 @@ export class MapaMundiComponent implements OnInit {
       if (!this.countries) return
       clearInterval(prueba)
       this.countries.forEach((country) => {
-        this.drawCircle(country)
+        this.newSizeDotsContry(country)
       })
     }, 200);
   }
 
-  drawCircle(child: SVGPathElement) {
+  newSizeDotsContry(child) {
     let web = document.querySelector('web');
-   
-
     let name = child.getAttribute('title').toLowerCase()
-    let _size = child.getBoundingClientRect();
-    let size = this.newSizeDotsContry(_size, child, web,name);
-    
-    let div = document.createElement('div');
-    div.classList.add('dotCountry');
-    div.style.top = `${size.top}px`;
-    div.style.left = `${size.left}px`;
-
-    div.addEventListener('click', event => {
-      this.pais(name);
-    });
-    web.append(div)
-  }
-  newSizeDotsContry(size, child, web,name) {
+    let size = child.getBoundingClientRect();
     let websize = web.getBoundingClientRect();
-    // ************ OPEN CANVAS ****************//
-    // let offsiteCanvas = document.querySelector('experiencia div.relative.w100.h100').getBoundingClientRect();
-    // let mh = 1000/offsiteCanvas.height;
-    // let mw = 1000/offsiteCanvas.width;
-    // ************ CLOSE CANVAS ****************//
+    
     let _size = {
       top: size.top + (size.height / 2) - 5.5 - websize.top,
       left: size.left + (size.width / 2) - 5.5 - websize.left
@@ -113,15 +95,7 @@ export class MapaMundiComponent implements OnInit {
     let detailDataMapaMundi =document.querySelector('#DetailDataMapaMundi').getBoundingClientRect();
     this.sedes.filter(e=>e.name==name)[0]['choords'].top = _size.top - detailDataMapaMundi.top ;
     this.sedes.filter(e=>e.name==name)[0]['choords'].left = _size.left - detailDataMapaMundi.left ;
-
-
-    // ************ OPEN CANVAS ****************//
-    // if(! this.sedes.filter(e=>e.name==name)[0]['choords']) this.sedes.filter(e=>e.name==name)[0]['choords'] = {}
-    // this.sedes.filter(e=>e.name==name)[0]['choords'].top = (_size.top*1.163 - offsiteCanvas.top  ) * mh;
-    // this.sedes.filter(e=>e.name==name)[0]['choords'].left = (_size.left - offsiteCanvas.left ) * mw;
-    // this.drawLine({... this.sedes.filter(e=>e.name==name)[0]['choords']})
-    // ************ CLOSE CANVAS ****************//
-    
+  
     _size = {
       top: _size.top  - websize.top,
       left: _size.left - websize.left
@@ -132,30 +106,8 @@ export class MapaMundiComponent implements OnInit {
 
 
 
-  drawLine({left,top}){
-    let y=(250 + top)/2 ;
-    let x=750;
-    let canvas:HTMLCanvasElement= document.querySelector('#lineCanvas');
-    this.changeCanvas=false;
-    setTimeout(() => {
-      var ctx = canvas.getContext('2d')
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      ctx.beginPath()
-      ctx.lineJoin = "round";
-      ctx.lineWidth = 2;
-      ctx.strokeStyle = "rgb(255, 105, 41)";
-      ctx.moveTo(left,top)
-      ctx.lineTo(left,y)
-      ctx.moveTo(left,y)
-      ctx.lineTo(x,y)
-      ctx.stroke();
-      this.changeCanvas=true;
-    }, 600);
-    
-  }
-
-  myTransform(x,y): SafeStyle {
-    return this._sanitizer.bypassSecurityTrustStyle(`scale(0.1) translate(${x}px,${y}px) `);
+  myTransform(x,y,s): SafeStyle {
+    return this._sanitizer.bypassSecurityTrustStyle(`scale(${s}) translate(${x}px,${y}px) `);
   }
 
 
