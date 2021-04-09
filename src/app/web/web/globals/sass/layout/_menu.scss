@@ -102,7 +102,14 @@
                 position: relative;
                 line-height: 1;
 
-                &:last-child { margin-right: 0; }
+                &:last-child { 
+                    margin-right: 0; 
+
+                    .sub-menu {
+                        left: auto;
+                        right: 0;
+                    }
+                }
 
                 > a { 
                     padding: 0 0 .5rem;
@@ -141,8 +148,21 @@
             > li { 
                 margin: 0 2rem 0 0; 
                 padding: .5rem 0;
+
+                a {
+                    padding: .5rem 0;
+                }
             }
         }
+    }
+}
+
+.site-menu-wrapper {
+    @include respond-to($site-width) {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        height: 100%;
     }
 }
 

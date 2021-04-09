@@ -71,11 +71,12 @@
             justify-content: space-between;
             align-items: center;
             height: $header-height;
-            padding: 0 0 0 $site-padding;
+
+            .page & { padding: 0 0 0 $site-padding; }
         }
 
         .site-title { 
-            height: 55px; 
+            height: 100%; 
             margin: 0;
         }
     }

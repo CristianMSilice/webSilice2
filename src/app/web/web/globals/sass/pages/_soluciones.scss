@@ -4,7 +4,13 @@
     position: relative;
     z-index: 2;
 
-    &-wrapper { justify-content: flex-start; }
+    &-wrapper { 
+        justify-content: flex-start; 
+
+        @include respond-to($site-width) {
+            position: relative;
+        }
+    }
 
     .content-motto {
         @include flex-all($align: center);
@@ -13,10 +19,11 @@
         margin-left: auto;
         text-align: right;
 
-        &__inner { padding: 0 $site-padding; }
+        &__inner { padding: 0 calc(#{$site-padding} + 1rem); }
 
         @include respond-to($site-width) {
-            width: 62%;
+            width:75%;
+            text-align: center;
         }
     }
 

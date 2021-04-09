@@ -4,8 +4,7 @@
         visibility: hidden;
         transform: scale(0)
     }
-    .content-body,
-    .content-body > *,
-    .solutions-wrapper,
-    .soluciones { position: static; }
 }
+.content-body,
+.content-body > *,
+.soluciones { position: static; }

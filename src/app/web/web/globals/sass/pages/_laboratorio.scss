@@ -28,12 +28,15 @@
                     weight: 600;
                 }
                 letter-spacing: 2.33px;
+                line-height: 1.2;
                 color: $c-black;
 
                 strong {
                     font-weight: 600;
                     color: $primary-color;
                 }
+
+                span { font-size: .75rem; }
             }
 
             h3 {
@@ -61,7 +64,7 @@
                 letter-spacing: 1.2px;
                 color: $secondary-color;
 
-                strong { color: $c-black; }
+                strong { color: $primary-color; }
             }
 
             ul li a p {
@@ -90,10 +93,22 @@
         }
 
         @include respond-to($site-width) {
-            .content-body { text-align: right; }
+            .intro {
+                .content-body { 
+                    text-align: right; 
+                }
+
+                .content-body2 { text-align: left; }
+            }
             
             .content-inner {
-                @include flex-all(row-reverse, space-between, center);
+                @include flex-all(row-reverse, space-between, flex-start);
+
+                .content-body {
+                    padding-top: 12rem;
+
+                    h2 { margin-bottom: 1rem; }
+                }
             }
         }
     }
