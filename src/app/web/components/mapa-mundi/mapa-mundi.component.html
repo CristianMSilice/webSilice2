@@ -1,9 +1,7 @@
 <div class="mapaMundiContainer">
 
-  <svg xmlns:mapsvg="http://mapsvg.com" xmlns:dc="http://purl.org/dc/elements/1.1/"
-    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg"
-    xmlns="http://www.w3.org/2000/svg" mapsvg:geoViewBox="-169.110266 83.600842 190.486279 -58.508473"
-    preserveAspectRatio="xMidYMid meet" viewBox="0 0 1009.6727 665.96301" class="mapaMundi" id="mapaMundi">
+    <svg xmlns:mapsvg="http://mapsvg.com" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" mapsvg:geoViewBox="-169.110266 83.600842 190.486279 -58.508473"
+        preserveAspectRatio="xMidYMid meet" viewBox="0 0 1009.6727 665.96301" class="mapaMundi" id="mapaMundi">
 
     <path
       d="m 479.68275,331.6274 -0.077,0.025 -0.258,0.155 -0.147,0.054 -0.134,0.027 -0.105,-0.011 -0.058,-0.091 0.006,-0.139 -0.024,-0.124 -0.02,-0.067 0.038,-0.181 0.086,-0.097 0.119,-0.08 0.188,0.029 0.398,0.116 0.083,0.109 10e-4,0.072 -0.073,0.119 z"
@@ -756,36 +754,35 @@
       title="Zimbabwe" id="ZW" class=" mapsvg-region"></path>
   </svg>
 
-  <div class="data" 
-  [style.transform]="'translate(' + 100 + 'px,'+ 150 + 'px)'"
-  >
-    <section class="presencia content detail-country">
-      <div class="map-details grid-details" *ngFor="let sede of sedes"
-        [ngClass]="{'opacity1':selectedCountry == sede.name }">
-        <div class="title title-details">
-          <img src="assets/images/presencia/{{sede.image}}" alt="{{sede.text}}" />
-          <div class="title-inner">
-            <a href="{{sede.link}}"><strong>Sede {{sede.text}}</strong></a>
-          </div>
-        </div>
-        <div class="summary summary-details">
-          <div class="image image-detail"><img src="assets/images/presencia/{{sede.team.userimage}}"
-              alt="Equipo {{sede.team.userName}}" />
-          </div>
-          <div class="summary-item-list-container">
-            <ul class="items-list summary-item-list">
-              <li *ngFor="let itemCountry of sede.contry">
-                <span class="number">{{itemCountry.item}}</span>
-                <span class="text">{{itemCountry.text}}</span>
-              </li>
-            </ul>
-          </div>
+    <div class="data" id="DetailDataMapaMundi">
+        <section class="presencia content detail-country" *ngFor="let sede of sedes">
+            <ng-container *ngIf="sede.choords.left">
+                <div class="map-details grid-details" [ngClass]="{'selectedCountry':selectedCountry == sede.name }" [style.transform]="myTransform(sede.choords.left,sede.choords.top)" [ngStyle]="{'transform-origin': sede.choords.left + 'px '+ sede.choords.top + 'px'}">
 
-        </div>
-      </div>
-    </section>
-  </div>
+                    <div class="title title-details">
+                        <img src="assets/images/presencia/{{sede.image}}" alt="{{sede.text}}" />
+                        <div class="title-inner">
+                            <a href="{{sede.link}}"><strong>Sede {{sede.text}}</strong></a>
+                        </div>
+                    </div>
+                    <div class="summary summary-details">
+                        <div class="image image-detail"><img src="assets/images/presencia/{{sede.team.userimage}}" alt="Equipo {{sede.team.userName}}" />
+                        </div>
+                        <div class="summary-item-list-container">
+                            <ul class="items-list summary-item-list">
+                                <li *ngFor="let itemCountry of sede.contry">
+                                    <span class="number">{{itemCountry.item}}</span>
+                                    <span class="text">{{itemCountry.text}}</span>
+                                </li>
+                            </ul>
+                        </div>
 
-  <!-- <canvas class="lineCanvas" [ngClass]="{'opacity1':changeCanvas}" id="lineCanvas" width="1000" height="1000"></canvas> -->
+                    </div>
+                </div>
+            </ng-container>
+        </section>
+    </div>
+
+    <!-- <canvas class="lineCanvas" [ngClass]="{'opacity1':changeCanvas}" id="lineCanvas" width="1000" height="1000"></canvas> -->
 
 </div>

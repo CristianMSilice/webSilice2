@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DomSanitizer, SafeStyle } from '@angular/platform-browser';
 import { ChildActivationEnd } from '@angular/router';
 
 @Component({
@@ -8,7 +9,7 @@ import { ChildActivationEnd } from '@angular/router';
 })
 export class MapaMundiComponent implements OnInit {
 
-  constructor() { }
+  constructor(private _sanitizer:DomSanitizer) { }
   countries;
   selectedCountry;
   sedes = [
@@ -17,25 +18,29 @@ export class MapaMundiComponent implements OnInit {
       team: { userimage: 'equipo-jonatan.jpg', userName: 'Jonatan' },
       contry: [
         { item: '+10 años', text: 'proyectos de transformación Digital' },
-        { item: '+15', text: 'Proyectos de Omnicanalidad con servicios a Nivel Nacional' },
+        { item: '+10', text: 'años proyectos de transformación Digital Implementación proyectos tractores de cambio en Entidades Gubernamentales y Sector privado' },
+        { item: '+15', text: 'Proyectos de Omnicanalidad con servicios a Nivel Nacional' }
       ],
-      // choords: {left:'' ,top:''}
+       choords: {left:undefined ,top:undefined}
     },
       {
-        name: 'colombia', text: 'Colombia', image: 'flag-panama.png', link: 'experiencia/sedes',
-        team: { userimage: 'equipo-jonatan.jpg', userName: 'Alvaro' },
+        name: 'colombia', text: 'Colombia', image: 'flag-colombia.png', link: 'experiencia/sedes',
+        team: { userimage: 'equipo-alvaro.jpg', userName: 'Alvaro' },
         contry: [
-          { item: '+10 años', text: 'proyectos de transformación Digital' },
-          { item: '+15', text: 'Proyectos de Omnicanalidad con servicios a Nivel Nacional' }
-        ]
+          { item: '+ de 300', text: 'mil pacientes Covid atendidos' },
+          { item: '+ 800', text: 'mil mensajes de Whatsapp' },                  
+          { item: '+ 150', text: 'mil llamadas robotizadas' }                  
+        ],
+        choords: {left: undefined ,top:undefined}
       },
       {
         name: 'spain', text: 'España', image: 'flag-panama.png', link: 'experiencia/sedes',
-        team: { userimage: 'equipo-jonatan.jpg', userName: 'Jonatan' },
+        team: { userimage: 'equipo-juan.jpg', userName: 'Jonatan' },
         contry: [
           { item: '+10 años', text: 'proyectos de transformación Digital' },
           { item: '+15', text: 'Proyectos de Omnicanalidad con servicios a Nivel Nacional' }
-        ]
+        ],
+        choords: {left:undefined ,top:undefined}
       }
     
   ]
@@ -47,6 +52,7 @@ export class MapaMundiComponent implements OnInit {
   pais(pais: string) {
     // this.drawLine({... this.sedes.filter(e=>e.name==pais)[0]['choords']})
     this.selectedCountry=pais;
+    console.log(pais)
   }
 
   addCountries() {
@@ -99,6 +105,11 @@ export class MapaMundiComponent implements OnInit {
       default:
         break;
     }
+    let detailDataMapaMundi =document.querySelector('#DetailDataMapaMundi').getBoundingClientRect();
+    this.sedes.filter(e=>e.name==name)[0]['choords'].top = _size.top - detailDataMapaMundi.top ;
+    this.sedes.filter(e=>e.name==name)[0]['choords'].left = _size.left - detailDataMapaMundi.left ;
+
+
     // ************ OPEN CANVAS ****************//
     // if(! this.sedes.filter(e=>e.name==name)[0]['choords']) this.sedes.filter(e=>e.name==name)[0]['choords'] = {}
     // this.sedes.filter(e=>e.name==name)[0]['choords'].top = (_size.top*1.163 - offsiteCanvas.top  ) * mh;
@@ -137,4 +148,10 @@ export class MapaMundiComponent implements OnInit {
     }, 600);
     
   }
+
+  myTransform(x,y): SafeStyle {
+    return this._sanitizer.bypassSecurityTrustStyle(`scale(0.1) translate(${x}px,${y}px) `);
+  }
+
+
 }
