@@ -149,15 +149,32 @@
     }
 }
 
+@media (min-width:768px) and (max-width:1600px){
+    .soluciones {
+        .item {
+            max-width: 370px;
+            height: 434px;
+            margin: 1em;
+        }
+        
+        .item-img {
+            justify-content: space-around;
+            height: 100%;
 
+            img:last-child {    
+                display: block;
+                height: 42vh;
+            }
+        }
 
+        .action { font-size: .75rem; }
 
-
-@media (max-width:1600px) and (min-width:768px){
-    .soluciones .item {
-        max-width: 370px;
-        height: 400px;
-        margin: 1em;
+        .features {
+            position: absolute;
+            z-index: 2;
+            top: 0;
+            left: 0;
+        }
     }
 }
 

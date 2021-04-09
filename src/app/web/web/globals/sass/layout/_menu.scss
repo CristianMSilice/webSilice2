@@ -62,7 +62,7 @@
         a {
             display: block;
             width: 100%;
-            padding: .3125rem .5rem;
+            padding: .875rem .5rem;
             text-decoration: none;
             color: $c-text;
             transition: color .2s, background-color .2s;
@@ -81,10 +81,12 @@
     }
 
     @include respond-to($vp-mid) {      
+        line-height: 1;
+
         .toogle-icon-menu { display: none; }
 
         > ul { 
-            @include flex-all($justify: space-around); 
+            @include flex-all($justify: space-between); 
             position: static;
             top: auto;
             left: auto;
@@ -96,12 +98,17 @@
 
             > li { 
                 margin: 0; 
-                padding: .5rem 0;
+                padding: 0;
                 position: relative;
+                line-height: 1;
 
                 &:last-child { margin-right: 0; }
 
-                > a { color: $color-over-primary; }
+                > a { 
+                    padding: 0 0 .5rem;
+                    color: $color-over-primary; 
+                    line-height: 1;
+                }
             }
         }
 
@@ -133,6 +140,7 @@
 
             > li { 
                 margin: 0 2rem 0 0; 
+                padding: .5rem 0;
             }
         }
     }

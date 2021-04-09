@@ -21,11 +21,33 @@
         position: relative;
         text-align: center;
 
-        .content-image img {
-            max-width: 500px;
+        .content-image {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+
+            img { max-width: 375px; }
         }
 
-        @include respond-to($vp-max) {
+        ul {
+            flex: 1;
+            padding: 2rem;
+
+            &:nth-of-type(1) {
+                padding-right: 9rem;
+            }
+
+            &:nth-of-type(2) {
+                padding-left: 9rem;
+
+                li { flex-direction: row-reverse; }
+
+                .item-text { text-align: right; }
+            }
+        }
+
+        @include respond-to($site-width) {
             padding: 0 3rem;
             background: {
                 image: url(assets/images/map-2.jpg);
@@ -34,6 +56,7 @@
             }
 
             ul {
+                flex: none;
                 padding: 2rem 0;
 
                 &:nth-of-type(1) {
@@ -51,14 +74,7 @@
                 }
             }
 
-            .content-image {
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-
-                img { max-width: 700px; }
-            }
+            .content-image img { max-width: 700px; }
         }
     }
 
@@ -123,7 +139,6 @@
 
     .section-3 {
         @include bg-cover;
-        padding: 4rem 0;
         text-align: center;
 
         .content-links { 
@@ -138,6 +153,10 @@
             }
 
             .partners-list { padding: 10rem 0 0; }
+        }
+
+        @include respond-to($site-width) {
+            padding: 4rem 0;
         }
     }
 
@@ -185,7 +204,7 @@
             text-align: center;
         }
 
-        @include respond-to($vp-large) {
+        @include respond-to($site-width) {
             li { margin: 0; }
         }
     }
@@ -204,7 +223,7 @@
             background: {
                 image: url(assets/images/consultoria-robot.jpg);
                 repeat: no-repeat;
-                position: 150% bottom;
+                position: -800% -4%;
             }
 
             .section-title {
@@ -217,6 +236,10 @@
 
                 .action { margin: 0; }
             }
+        }
+
+        @include respond-to($site-width) {            
+            position: 150% bottom;
         }
     }
 

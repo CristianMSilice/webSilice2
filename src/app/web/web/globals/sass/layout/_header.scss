@@ -1,27 +1,39 @@
 .site-header {
+    @include flex-all($align: center);
     position: relative;
     z-index: 999999999;
     width: 100%;
     z-index: 10;
 
-    &__row--inner {
-        @include flex-all($align: center);
+    &__row {
+        width: 100%;
+
+        &--inner {
+            @include flex-all; 
+
+            .page & { 
+                align-items: flex-start; 
+                padding: 0 ($site-padding / 3);
+            }
+        }
     }
 
     .site-title {
         @include flex-all($justify: center, $align: center);
         flex: none;
-        height: 55px;
-        margin: 0;
+        height: 23px;
+        margin: .5rem 0 1rem;
     }
 
-    .logo a {
-        @include image-replace(
-            $header-logo-width,
-            $header-logo-height,
-            $header-logo-image-dark
-        );
-        margin: 0 auto;
+    .logo {
+        a {
+            @include image-replace(
+                $header-logo-width,
+                $header-logo-height,
+                $header-logo-image-dark
+            );
+            margin: 0 auto;
+        }
     }
 
     .site-menu-wrapper {
@@ -31,9 +43,8 @@
 
     @include respond-to($vp-mid) {
         width: 100%;
-        height: 100px;
+        height: 78px;
 
-        .site-title,
         .site-title a {
             margin: 0;
         }
@@ -58,10 +69,14 @@
         &__row--inner {
             flex-direction: row; 
             justify-content: space-between;
+            align-items: center;
             height: $header-height;
             padding: 0 0 0 $site-padding;
         }
 
-        .site-title { height: 75px; }
+        .site-title { 
+            height: 55px; 
+            margin: 0;
+        }
     }
 }

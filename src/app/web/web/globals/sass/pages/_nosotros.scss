@@ -1,6 +1,8 @@
 .nosotros-wrapper {
     position: relative;
 
+    .nosotros { margin-top: -6rem; }
+
     .items-list,
     .items-list > * {
         @include flex-all($justify: center, $wrap: wrap);
@@ -81,6 +83,11 @@
         }
     }
 
+    .action {
+        max-width: 165px;
+        width: 100%;
+    }
+
     @include respond-to($vp-large) {
         .item {
             margin: 0 1rem;
@@ -88,6 +95,8 @@
     }
 
     @include respond-to($site-width) {
+        .nosotros { margin-top: 0; }
+
         .item {
             flex: none;
             width: 16%;
