@@ -17,7 +17,7 @@ export class HomeComponent implements OnInit {
   showModal=false;
   _sliderItems: Array<sliderItem> = [
     {
-      Image: this.Img_url + 'slide-municipio360.jpg', mainText: 'Plataforma de Atención Gubernamental', mainTitle: 'Municipio 360',
+      Image: this.Img_url + 'slide-municipio360.jpg', mainTitle: 'Municipio 360', mainText: 'Plataforma de Atención Gubernamental', 
       button: { text: 'Conocer', callfuncion: 'prueba' },
       title: 'MUNICIPIO 360', text: 'Gobierno inclusivo, transparente, accesible y participativo',
     },
@@ -25,7 +25,7 @@ export class HomeComponent implements OnInit {
     {
       Image: this.Img_url + 'slide-dsp.jpg', mainTitle: 'DSP', mainText: 'Plataforma de gestión de pago',
       button: { text: 'Conocer', callfuncion: 'prueba' },
-      title: '', text: '',
+      title: 'DSP', text: 'Integración y orquestador de procesadores de pago y servicios',
     },
 
 

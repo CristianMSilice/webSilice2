@@ -15,9 +15,9 @@
             <div class="slider-options">
 
                 <ng-container *ngFor="let option of sliderItem; index as i">
-                    <div class="slider-option " [ngClass]="{'selectedOption':selectedOption == i}" (click)="newOptionSelected(i)" [style.transform]="'translate(' + math.cos( ((i*360/ sliderItem.length) - 90 )  * 2 * math.PI / 360) * sliderSize +'px,' + math.sin(((i*360/ sliderItem.length) - 90) * 2 * math.PI / 360)*  sliderSize + 'px)'">
+                    <div class="slider-option " [ngClass]="{'selectedOption':selectedOption == i}" (click)="newOptionSelected(i)" [style.transform]="'translate(' + math.cos( ((i*360/ sliderItem.length) - 90 )  * 2 * math.PI / 360) * sliderSize +'px,' + math.sin(((i*360/ sliderItem.length) - 90) * 2 * math.PI / 360)*  sliderSize+ 'px)'">
                     </div>
-                    <div class="pslider-tooltip" [style.transform]="'translate(' + math.cos( ((i*360/ sliderItem.length) - 90 )  * 2 * math.PI / 360) * (sliderSize + 180) +'px,' + math.sin(((i*360/ sliderItem.length) - 90) * 2 * math.PI / 360)*  (sliderSize + 40) + 'px)'">
+                    <div class="pslider-tooltip" [style.transform]="'translate(' + math.cos( ((i*360/ sliderItem.length) - 90 )  * 2 * math.PI / 360) * (sliderSize + 180) +'px,' + math.sin(((i*360/ sliderItem.length) - 90) * 2 * math.PI / 360)*  (sliderSize + 60) + 'px)'">
                         <div class="content-slider-links">
                             <h2>{{option.title}}</h2>
                             <span>{{option.text}}</span>

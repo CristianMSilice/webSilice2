@@ -47,7 +47,7 @@
             }
             .pslider-tooltip {
                 --sizeTooltip: 170px;
-                --relation-size-width-height: 3;
+                --relation-size-width-height: 2;
                 visibility: hidden;
                 opacity: 0;
                 width: calc(var(--sizeTooltip) * var(--relation-size-width-height));
@@ -83,7 +83,7 @@
                         display: block;
                         text-align: center;
                         letter-spacing: 0px;
-                        line-height: 1em;
+                        line-height: 1.4em;
                     }
                     a.action.action-primary {
                         height: 1.5em;
