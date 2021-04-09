@@ -90,7 +90,10 @@
         }
 
         @include respond-to($site-width) {
-            .content-body { text-align: right; }
+            .intro {
+                .content-body { text-align: right; }
+                .content-body2 { text-align: left; }
+            }
             
             .content-inner {
                 @include flex-all(row-reverse, space-between, center);

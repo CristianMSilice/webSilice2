@@ -1,22 +1,20 @@
-@media (max-width: 1600px) and (min-width: 768px) {
-    .pslider-container,
-    .pslider-container .slider-content {
-        position: static !important;
-    }
-
-    .arrow {
-        top: 0;
-        z-index: 2;
-        width: 50px;
-        height: 110px;
-    }
-
-    .arrow.arrowleft { left: 0; }
-
-    .arrow.arrowright {
-        left: auto;
-        right: 0;
-    }
-
-    .arrow img { transform: scale(.5); }
+.pslider-container,
+.pslider-container .slider-content {
+    position: static !important;
 }
+
+.arrow {
+    top: 0;
+    z-index: 2;
+    width: 50px;
+    height: 110px;
+}
+
+.arrow.arrowleft { left: 0; }
+
+.arrow.arrowright {
+    left: auto;
+    right: 0;
+}
+
+.arrow img { transform: scale(.5); }

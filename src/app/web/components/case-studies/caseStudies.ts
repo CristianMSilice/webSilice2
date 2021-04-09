@@ -5,13 +5,15 @@ export class caseStudies {
     link: _link;
     avatar: avatar;
     imagen: avatar;
-    constructor(tabName: String, company: String, text: String, link: _link, avatar: avatar, imagen: avatar) {
+    chatID: String;
+    constructor(tabName: String, company: String, text: String, link: _link, avatar: avatar, imagen: avatar, chatID: String) {
         this.tabName = tabName;
         this.company = company;
         this.text = text;
         this.link = link;
         this.imagen = imagen;
         this.avatar = avatar;
+        this.chatID = chatID;
     }
 }
 
@@ -44,7 +46,8 @@ export const CASESTUDIES = [
            la satisfacción de los ciudadanos.`,
         new _link('Quiero hablar con Carolina', ''),
         new avatar('carolina.png'),
-        new avatar('image-carolina.jpg')
+        new avatar('image-carolina.jpg'),
+        'caso-carolina'
     ),
 
     new caseStudies(
@@ -58,7 +61,8 @@ export const CASESTUDIES = [
             <p><strong>¡Innovación en el sector salud!</strong></p>`,
         new _link('Quiero hablar con Doctora Clara', ''),
         new avatar('clara.png'),
-        new avatar('image-clara.jpg')
+        new avatar('image-clara.jpg'),
+        'caso-clara'
     ),
 
     new caseStudies(
@@ -67,7 +71,8 @@ export const CASESTUDIES = [
         `<p>El <strong>asistente virtual</strong> Ariel hace  parte del <strong>plan estratégico de transformación digital</strong> de los canales de atención al usuario del Banco Nacional de Panamá.</p><p> Ariel: “Asistente de Respuesta Interactiva en Línea” hace parte de una <strong>plataforma de inteligencia artificial</strong> diseñada para generar conversaciones en vivo por medio de diferentes canales adaptados a las preferencias de los usuarios facilitando y optimizando la labor de los colaboradores y por ende los recursos financieros.</p><p><strong>¡Transformación digital para el sector financiero!</strong></p>`,
         new _link('Quiero hablar con Ariel', ''),
         new avatar('ariel.png', ),
-        new avatar('image-ariel.jpg')
+        new avatar('image-ariel.jpg'),
+        'caso-ariel'
     ),
 
     new caseStudies(
@@ -76,7 +81,8 @@ export const CASESTUDIES = [
         `<p>Dentro de nuestra <strong>alianza estratégica</strong> con Cámara de Comercio de Barranquilla nace Gaby, quien con una identidad completamente tropicalizada al contexto que pertenece se convierte en un <strong>asistente virtual humanizado y cercano a los usuarios.</strong></p><p>Gaby genera respuesta a 20 trámites o servicios de manera <strong>automatizada</strong> y de forma <strong>omnicanal</strong> unificando los canales ofrecidos a la ciudadanía y con un tráfico de más de <strong>4.450.000 mensajes.</strong></p>`,
         new _link('Quiero hablar con Gaby', ''),
         new avatar('gaby.png', ),
-        new avatar('image-gaby.jpg')
+        new avatar('image-gaby.jpg'),
+        'caso-gaby'
     ),
 
     new caseStudies(
@@ -85,7 +91,8 @@ export const CASESTUDIES = [
         `<p>Becky es una <strong>asistente virtual</strong> enfocada en la <strong>atención ciudadana</strong> y para dar respuesta en el sector académico.</p><p>Los usuarios pueden conocer el estatus de alguna solicitud ya sea beca y/o crédito realizada en el instituto.Esto permite al ciudadano obtener esta <strong>información de manera rápida y segura</strong>.</p>`,
         new _link('Quiero hablar con Becky', ''),
         new avatar('becky.png', ),
-        new avatar('image-becky.jpg')
+        new avatar('image-becky.jpg'),
+        'caso-becky'
     ),
 
 ]
