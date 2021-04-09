@@ -16,6 +16,7 @@ import { MailService } from './web/Services/mail.service'
 import { ParticlesModule } from 'angular-particle'
 import { RouterModule, Routes } from '@angular/router'
 import { SiblingsService } from './web/Services/siblings.service'
+import { InlineSVGModule } from 'ng-inline-svg';
 
 
 import { AppComponent } from './app.component'
@@ -99,7 +100,8 @@ const routes: Routes = [
     NgxWebstorageModule.forRoot(),
     ReactiveFormsModule,
     FormsModule,
-    ParticlesModule
+    ParticlesModule,
+    InlineSVGModule
   ],
   declarations: [AppComponent,
     BlogComponent,

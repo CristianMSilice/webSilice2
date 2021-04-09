@@ -17,32 +17,38 @@ export class HomeComponent implements OnInit {
   showModal=false;
   _sliderItems: Array<sliderItem> = [
     {
-      Image: this.Img_url + 'slide-municipio360.jpg', text: 'Plataforma de Atención Gubernamental', title: 'Municipio 360',
-      button: { text: 'Conocer', callfuncion: 'prueba' }
+      Image: this.Img_url + 'slide-municipio360.jpg', mainText: 'Plataforma de Atención Gubernamental', mainTitle: 'Municipio 360',
+      button: { text: 'Conocer', callfuncion: 'prueba' },
+      title: 'MUNICIPIO 360', text: 'Gobierno inclusivo, transparente, accesible y participativo',
     },
 
     {
-      Image: this.Img_url + 'slide-dsp.jpg', title: 'DSP', text: 'Plataforma de gestión de pago',
-      button: { text: 'Conocer', callfuncion: 'prueba' }
+      Image: this.Img_url + 'slide-dsp.jpg', mainTitle: 'DSP', mainText: 'Plataforma de gestión de pago',
+      button: { text: 'Conocer', callfuncion: 'prueba' },
+      title: '', text: '',
     },
 
 
     {
-      Image: this.Img_url + 'slide-omniturno.jpg', title: 'OMNITURNO', text: 'Gestión Omnicanal de Atención de Filas, Turnos y Citas',
-      button: { text: 'Conocer', callfuncion: 'prueba' }
+      Image: this.Img_url + 'slide-omniturno.jpg', mainTitle: 'OMNITURNO', mainText: 'Gestión Omnicanal de Atención de Filas, Turnos y Citas',
+      button: { text: 'Conocer', callfuncion: 'prueba' },
+      title: 'OMNITURNO', text: 'Plataforma inteligente de servicios y trámites',
     },
 
     {
-      Image: this.Img_url + 'slide-pau.jpg', title: 'PAU', text: 'Plataforma Omnicanal de Atención al Usuario',
-      button: { text: 'Conocer', callfuncion: 'prueba' }
+      Image: this.Img_url + 'slide-pau.jpg', mainTitle: 'PAU', mainText: 'Plataforma Omnicanal de Atención al Usuario',
+      button: { text: 'Conocer', callfuncion: 'prueba' },
+      title: 'PAU', text: 'Servicios automatizados y ominicales',
     },
 
     {
-      Image: this.Img_url + 'slide-smallshi.jpg', title: 'SMALLSHI', text: 'Plataforma de Gestión Empresarial',
-      button: { text: 'Conocer', callfuncion: 'prueba' }
+      Image: this.Img_url + 'slide-smallshi.jpg', mainTitle: 'SMALLSHI', mainText: 'Plataforma de Gestión Empresarial',
+      button: { text: 'Conocer', callfuncion: 'prueba' },
+      title: 'SMALLSHI', text: 'Ecosistema para la transformación digital',
     },
 
   ]
+
   ngOnInit() {
     // this.subscribeShowModal();
   }

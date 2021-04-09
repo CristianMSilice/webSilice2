@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SiblingService } from 'src/app/chat/shared/services/sibling.service';
 
 @Component({
   selector: 'features',
@@ -6,8 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./features.component.css']
 })
 export class FeaturesComponent implements OnInit {
-
-  constructor() { }
+  constructor(private SiblingService: SiblingService) {
+  }
 
   ngOnInit() {
   }

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CASESTUDIES, caseStudies } from "./caseStudies";
+import { SiblingService } from 'src/app/chat/shared/services/sibling.service';
+
 @Component({
   selector: 'case-studies',
   templateUrl: './case-studies.component.html',
@@ -7,7 +9,10 @@ import { CASESTUDIES, caseStudies } from "./caseStudies";
 })
 export class CaseStudiesComponent implements OnInit {
   CASESTUDIES: Array<caseStudies>=CASESTUDIES;
-  constructor() { }
+  
+  constructor(private SiblingService: SiblingService) {
+  }
+
   selected=0;
   ngOnInit() {
   }

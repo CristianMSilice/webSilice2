@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { SiblingService } from 'src/app/chat/shared/services/sibling.service';
 
 @Component({
   selector: 'solutions',
@@ -6,6 +7,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./solutions.component.css']
 })
 export class SolutionsComponent {
+  constructor(private SiblingService: SiblingService) {
+  }
 
   data = [
     {
@@ -17,7 +20,8 @@ export class SolutionsComponent {
         {item:"Optimización de los procesos internos y la experiencia de usuario." },
         {item:"Integra  los sistemas de tu organización y llévalos a la mano de tu cliente" },
       ],
-      link: {href:"https://www.pau.zone/" }
+      link: {href:"https://www.pau.zone/" },
+      chatID: "solucion-pau"
     },
     {
       imgLogo:"smallshi-logo.png",
@@ -28,7 +32,8 @@ export class SolutionsComponent {
         {item:"Desarrollo de nuevos mercados." },
         {item:"E-commerce, citas, reservas, marketing, promociones, delivery seguro y eficaz." },
       ],
-      link: {href:"https://www.smallshi.com/" }
+      link: {href:"https://www.smallshi.com/" },
+      chatID: "solucion-smallshi"
     },
     {
       imgLogo:"m360-logo.png",
@@ -39,7 +44,8 @@ export class SolutionsComponent {
         {item:"Enfoque socioeconómico y medioambiental" },
         {item:"Eliminación de la brecha digital." },
       ],
-      link: {href:"http://municipios360.com"}
+      link: {href:"http://municipios360.com"},
+      chatID: "solucion-m360"
     },
     {
       imgLogo:"dsp-logo.png",
@@ -49,7 +55,8 @@ export class SolutionsComponent {
         {item:"Automatización inteligente de procesos de pago." },
         {item:"Plataforma de pagos unificada: E Commerce, QR, asistentes virtuales, aplicaciones móviles." },
       ],
-      link: {href:""}
+      link: {href:""},
+      chatID: "solucion-dsp"
     },
     {
       imgLogo:"omniturno-logo.png",
@@ -60,11 +67,11 @@ export class SolutionsComponent {
         {item:"Trazabilidad 360, histórico de comunicaciones, consola de atención y analítica en tiempo real." },
         {item:"Estrategias de marketing y publicidad." },
       ],
-      link: {href:"" }
+      link: {href:"" },
+      chatID: "solucion-omniturno"
     },
   ]
   selectedOption = 0;
-  constructor() { }
   
   step(num) {
     let step = this.selectedOption + parseInt(num) ;
