@@ -7,7 +7,7 @@ import { SiblingService } from 'src/app/chat/shared/services/sibling.service';
   styleUrls: ['./features.component.css']
 })
 export class FeaturesComponent implements OnInit {
-  constructor(private SiblingService: SiblingService) {
+  constructor(public SiblingService: SiblingService) {
   }
 
   ngOnInit() {
