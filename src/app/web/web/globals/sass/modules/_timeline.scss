@@ -1,6 +1,6 @@
 .timeline {
     &-wrapper {
-        position: relative;
+        position: static;
         overflow: hidden;
         -webkit-overflow-scrolling: touch;
 
@@ -13,6 +13,8 @@
         }
 
         @include respond-to($site-width) {
+            position: relative;
+
             .row {
                 display: flex;
                 align-items: center;

@@ -48,8 +48,8 @@ export class SolutionsComponent {
       chatID: "solucion-m360"
     },
     {
-      imgLogo:"dsp-logo.png",
-      imgCover:"dsp-cover.png",
+      imgLogo:"dsp-logo.jpg",
+      imgCover:"dsp-cover.jpg",
       name:"DSP",
       items: [
         {item:"Automatización inteligente de procesos de pago." },
@@ -60,7 +60,7 @@ export class SolutionsComponent {
     },
     {
       imgLogo:"omniturno-logo.png",
-      imgCover:"omniturno-cover.png",
+      imgCover:"omniturno-cover.jpg",
       name:"Omniturno",
       items: [
         {item:"Solicitud de turnos desde la comodidad del usuario a través de asistentes virtuales." },
