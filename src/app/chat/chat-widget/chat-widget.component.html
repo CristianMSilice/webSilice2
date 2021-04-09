@@ -15,15 +15,13 @@
         <div class="chat-widget-body" #widgetBody>
             <ng-container *ngFor="let message of messages; let i = index">
                 <div class="chat-message" *ngIf="message.text !='' && message.options.show">
-                    <div class="message" [class.message-bot]="message.type === 'received'"
-                        [class.message-user]="message.type === 'sent'" [@fadeIn]>
+                    <div class="message" [class.message-bot]="message.type === 'received'" [class.message-user]="message.type === 'sent'" [@fadeIn]>
                         <div class="message-photo" [class.bot]="message.type === 'received'">
                             <div class="bot" *ngIf="message.type === 'received'"></div>
 
                         </div>
                         <div class="message-text" *ngIf="message.tipo == 1">
-                            <div style="white-space: pre-line" [innerHTML]="paserLink(message.text) "
-                                *ngIf="!esnuestro(message.text)"></div>
+                            <div style="white-space: pre-line" [innerHTML]="paserLink(message.text) " *ngIf="!esnuestro(message.text)"></div>
                         </div>
 
                         <div *ngIf="message.tipo == 2" [ngSwitch]="true">
@@ -55,8 +53,7 @@
                             </div>
 
                             <div *ngSwitchDefault>
-                                <button type="button" class="btn btn-float btn-float-lg btn-outline-pink"
-                                    (click)="goToLink(message.text)">
+                                <button type="button" class="btn btn-float btn-float-lg btn-outline-pink" (click)="goToLink(message.text)">
                                     <i class="fa fa-cloud-download"></i><span>Descargar Fichero<br /> </span>
                                 </button>
                             </div>
@@ -69,16 +66,13 @@
                 <ng-container>
                     <div class="button" *ngIf="message.options.button">
                         <div class="message-buttons-array action-links">
-                            <div class="message-button-option action action-primary" *ngFor="let button of message.options.button"
-                                (click)="buttonMessageClick(button.accion,i + 1 == messages.length,button['hidden'])"
-                                [ngClass]="{'disabled':i + 1 != messages.length,'selectable': false}">
+                            <div class="message-button-option action action-primary" *ngFor="let button of message.options.button" (click)="buttonMessageClick(button.accion,i + 1 == messages.length,button['hidden'])" [ngClass]="{'disabled':i + 1 != messages.length,'selectable': false}">
                                 {{ button.texto }}
                             </div>
                         </div>
                     </div>
                     <div class="super-message" *ngIf="message.options.superMensaje">
-                        <div class="background"
-                            [style.background-image]="'url('+ message.options.superMensaje.Image +')'"></div>
+                        <div class="background" [style.background-image]="'url('+ message.options.superMensaje.Image +')'"></div>
                         <div class="titulo">
                             {{message.options.superMensaje.titulo}}
                         </div>
@@ -88,8 +82,7 @@
                     </div>
                     <ng-container *ngIf="message.options.actions">
                         <div class="actions" *ngFor="let action of message.options.actions">
-                                <a class="background" [attr.href]="action.href" [attr.target]="_black" 
-                                [style.background-image]="'url('+ action.image +')'"></a>
+                            <a class="background" [attr.href]="action.href" [attr.target]="action.target" [style.background-image]="'url('+ action.image +')'"></a>
                         </div>
                     </ng-container>
 
@@ -98,8 +91,7 @@
             </ng-container>
             <div class="powered-by-silice"></div>
         </div>
-        <chat-input (send)="sendMessage($event)" (dismiss)="closeChat()" (toggleAttOptions)="toggleAttOptions()"
-            [focus]="focus" [menuPrincipal]="menuPrincipal" class="chat-widget-wrapper"></chat-input>
+        <chat-input (send)="sendMessage($event)" (dismiss)="closeChat()" (toggleAttOptions)="toggleAttOptions()" [focus]="focus" [menuPrincipal]="menuPrincipal" class="chat-widget-wrapper"></chat-input>
         <app-new-tarjeta [url]="nuestraUrl" [@slideInOut2]="menuStatet2" [deleteHandler]="ocultarTarjetas2"></app-new-tarjeta>
         <chat-footer class="chat-footer"></chat-footer>
     </div>
@@ -107,8 +99,7 @@
     <chat-adjuntos [clientChat]="client.id" (send)="sendFile($event)" class="chat-adjuntos-wrapper"></chat-adjuntos>
 
     <div *ngIf=" ! isMobileResolution">
-        <div class="chatbubble open" #btnbubble (click)="openChat()" *ngIf="!visible && close_able_chat"
-            [@fadeInOut]="!visible"></div>
+        <div class="chatbubble open" #btnbubble (click)="openChat()" *ngIf="!visible && close_able_chat" [@fadeInOut]="!visible"></div>
     </div>
 
 
