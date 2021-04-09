@@ -29,10 +29,16 @@
 .profile .image {
     height: 100%;
 }
+
+article.profile {
+    height: 100%;
+    width: 372px;
+}
+
 @media (min-width: 1360px) and (max-width: 1600px) {
 
     article.profile {
-        height: calc(100% - 3em);
+        height: calc(100% - 11em);
         width: 290px;
     }
 }

@@ -18,12 +18,8 @@
             text-align: center;
 
             h2 {
-                @include scale-font(
-                    $small-ratio: 0.8,
-                    $mid-ratio: 0.75,
-                    $final-size: 1.9375rem
-                );
                 font: {
+                    size: 1.5rem;
                     family: $primary-font;
                     weight: 600;
                 }
@@ -107,7 +103,10 @@
                 .content-body {
                     padding-top: 12rem;
 
-                    h2 { margin-bottom: 1rem; }
+                    h2 { 
+                        margin-bottom: 1rem; 
+                        font-size: 1.9375rem;
+                    }
                 }
             }
         }

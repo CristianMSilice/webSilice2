@@ -351,6 +351,11 @@
     }
 }
 
+.arrow.arrowright {
+
+    img, svg { transform: scale(0.5) rotate(-180deg); }
+}
+
 @media (max-width: 1600px) and (min-width: 768px) {
     .carousel-wrapper-main {
         .content-circles {
