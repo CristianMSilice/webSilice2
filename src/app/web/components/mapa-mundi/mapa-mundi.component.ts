@@ -11,7 +11,7 @@ export class MapaMundiComponent implements OnInit {
 
   constructor(private _sanitizer:DomSanitizer) { }
   countries;
-  selectedCountry;
+  selectedCountry=undefined;
   sedes = [
     {
       name: 'panama', text: 'Panamá', image: 'flag-panama.png', link: 'experiencia/sedes',
@@ -48,7 +48,9 @@ export class MapaMundiComponent implements OnInit {
   changeCanvas=false;
   ngOnInit() {
     this.addCountries()
-    setTimeout(()=>{this.selectedCountry = this.sedes[Math.floor(Math.random()*(this.sedes.length))].name},5000);
+    setTimeout(()=>{
+      if(this.selectedCountry == undefined)this.selectedCountry = this.sedes[Math.floor(Math.random()*(this.sedes.length))].name;
+    },5000);
   }
 
   pais(pais?: string) {
