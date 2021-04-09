@@ -22,7 +22,7 @@
         &__inner { padding: 0 calc(#{$site-padding} + 1rem); }
 
         @include respond-to($site-width) {
-            width:75%;
+            width: 75%;
             text-align: center;
         }
     }
@@ -118,7 +118,13 @@
 
         .icon-plus {
             transform-origin: 50% 50%;
-            transition: transform 1s;
+            transition: all 1s;
+
+            @include hover {
+                svg {
+                   animation: 1.5s rotate-center-scale ease-in-out; 
+                }
+            }
 
             svg {
                 display: block;

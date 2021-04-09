@@ -63,6 +63,18 @@
     }
 }
 
+@keyframes rotate-center-scale {
+    0% {
+        transform: rotate(0) scale(1);
+    }
+    50% {
+        transform: rotate(0) scale(.8);
+    }
+    100% {
+        transform: rotate(359deg) scale(1);
+    }
+}
+
 @keyframes burger-fill-in {
     0% {
         width: 0;
