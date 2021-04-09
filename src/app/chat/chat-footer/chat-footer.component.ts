@@ -16,4 +16,8 @@ export class ChatFooterComponent implements OnInit {
   toggleChatFooter() {
     this.showContent =!this.showContent
   }
+
+  activeChatSetting(active) {
+    console.log(active)
+  }
 }
