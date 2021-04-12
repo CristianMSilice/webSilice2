@@ -10,7 +10,7 @@ export class ExperienciaComponent implements OnInit {
   data = [
     { expected: 12, before: '+', after: '', initial: 1, text: 'países alrededor del mundo.' }
     , { expected: 400, before: '+', after: '', initial: 1, text: 'Ciudades.' }
-    , { expected: 98, before: '', after: '%', initial: 1, text: 'Fusce nec at rhoncus' }
+    , { expected: 15, before: '+ de ', after: 'M', initial: 1, text: ' de atenciones alrededor del mundo' }
     , { expected: 98, before: '', after: '%', initial: 1, text: 'Fusce nec at rhoncus' }
   ]
   constructor() { }

@@ -3,24 +3,21 @@
         <h1 class="title site-title">Presencia</h1>
     </div>
     <div class="site-title-column site-sub-section">
-        <div class="sub-section__inner">
-            <h2 id="tabs_header" class="sub-section-title"><a href="/home/experiencia/contacto">Quiero un demo!</a></h2>
-            <div class="sub-section-content">Primera sesión de consultoría gratuita</div>
-        </div>
+        <section class="presencia content" aria-labelledby="presencia_header">
+            <section class="stats">
+                <h3 class="title">Nuestros <strong>Números</strong></h3>
+                <ul class="items-list">
+                    <li *ngFor="let dato of data">
+                        <span class="number">{{dato.before}} {{dato.initial}} {{dato.after}}</span>
+                        <span class="text">{{dato.text}}</span>
+                    </li>
+                </ul>
+            </section>
+        </section>
     </div>
 </div>
 <div class="relative w100 h100">
-    <section class="presencia content" aria-labelledby="presencia_header">
-        <section class="stats">
-            <h3 class="title">Nuestros <strong>Números</strong></h3>
-            <ul class="items-list">
-                <li *ngFor="let dato of data">
-                    <span class="number">{{dato.before}} {{dato.initial}} {{dato.after}}</span>
-                    <span class="text">{{dato.text}}</span>
-                </li>
-            </ul>
-        </section>
-    </section>
+
 
     <mapa-mundi></mapa-mundi>
 </div>
