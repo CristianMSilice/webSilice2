@@ -21,6 +21,8 @@ import { InlineSVGModule } from 'ng-inline-svg';
 
 import { AppComponent } from './app.component'
 import { BlogComponent } from './web/pages/blog/blog.component'
+import { BlogFeaturesComponent } from './web/components/blog/blog-features/blog-features.component';
+import { BlogHeaderComponent } from './web/components/blog/blog-header/blog-header.component';
 import { CasosComponent } from './web/pages/casos/casos.component'
 import { ContactoComponent } from './web/pages/experiencia/contacto/contacto.component'
 import { CaseStudiesComponent } from "./web/components/case-studies/case-studies.component"
@@ -34,6 +36,7 @@ import { GlobalStatsComponent } from './web/components/global-stats/global-stats
 import { HomeComponent } from './web/pages/home/home.component'
 import { HeaderComponent } from './web/components/header/header.component'
 import { LaboratorioComponent } from './web/pages/laboratorio/laboratorio.component'
+import { LocationsHeaderComponent } from './web/components/locations/locations-header/locations-header.component'
 import { ModalComponent } from './web/components/modal/modal.component'
 import { MapaMundiComponent } from './web/components/mapa-mundi/mapa-mundi.component';
 import { NavComponent } from './web/components/header/nav/nav.component'
@@ -105,6 +108,8 @@ const routes: Routes = [
   ],
   declarations: [AppComponent,
     BlogComponent,
+    BlogFeaturesComponent,
+    BlogHeaderComponent,
     CasosComponent,
     CaseStudiesComponent,
     ContactoComponent,
@@ -128,6 +133,7 @@ const routes: Routes = [
     WebComponent,
     ModalComponent,
     YouTubeVideoComponent,
+    LocationsHeaderComponent,
     PanamaComponent,
     ColombiaComponent,
     EspanaComponent,

@@ -14,11 +14,11 @@
     left: 0; 
 }
 
-.arrow.arrowleft img { transform: scale(.5); }
-
 .arrow.arrowright {
     left: auto;
     right: 0;
 }
+
+.arrow.arrowleft img { transform: scale(.5); }
 
 .arrow.arrowright img { transform: rotate(180deg) scale(.5); }
