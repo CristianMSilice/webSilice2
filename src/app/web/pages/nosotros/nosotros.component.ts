@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SiblingsService } from '../../Services/siblings.service';
 
 @Component({
   selector: 'nosotros',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NosotrosComponent implements OnInit {
 
-  constructor() { }
+  constructor(private siblingsService:SiblingsService) { }
 
   ngOnInit() {
   }
-
+  
+  openModal() {
+    this.siblingsService.modifyModal(true);
+  }
 }

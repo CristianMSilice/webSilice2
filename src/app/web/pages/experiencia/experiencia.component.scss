@@ -1,9 +1,24 @@
 .relative {
     position: relative;
 }
+
 .w100 {
     width: 100%;
 }
-.h100{
+
+.h100 {
     height: 100%;
+}
+
+.presencia .stats {
+    max-width: 790px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: max-content max-content;
+    .title {
+        place-self: center;
+    }
+    .items-list {
+        transform-origin: center;
+    }
 }

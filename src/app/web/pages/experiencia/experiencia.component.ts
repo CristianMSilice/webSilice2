@@ -10,8 +10,8 @@ export class ExperienciaComponent implements OnInit {
   data = [
     { expected: 12, before: '+', after: '', initial: 1, text: 'países alrededor del mundo.' }
     , { expected: 400, before: '+', after: '', initial: 1, text: 'Ciudades.' }
-    , { expected: 98, before: '', after: '%', initial: 1, text: 'Fusce nec at rhoncus' }
-    , { expected: 98, before: '', after: '%', initial: 1, text: 'Fusce nec at rhoncus' }
+    , { expected: 15, before: '+', after: 'M', initial: 1, text: ' de atenciones alrededor del mundo' }
+    , { expected: 7, before: '+', after: '', initial: 1, text: 'sectores económicos' }
   ]
   constructor() { }
 
