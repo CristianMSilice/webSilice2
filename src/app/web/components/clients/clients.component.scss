@@ -10,11 +10,28 @@ h2.title {
 }
 
 .slider-container {
-    list-style: none;
+    --outline: 5px;
     background-color: white;
-    margin: 1em 0em;
     position: relative;
     display: block;
+    margin: 0;
+    left: calc(var(--outline));
+    top: calc(var(--outline));
+    width: calc(100% - var(--outline) * 2);
+    height: calc(100% - var(--outline) * 2);
+    outline: var(--outline) solid hsla(0, 0%, 0%, 20%);
+}
+
+.absolute {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.w100 {
     width: 100%;
+}
+
+.h100 {
     height: 100%;
 }

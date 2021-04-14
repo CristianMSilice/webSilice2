@@ -2,6 +2,12 @@
     position: relative;
 }
 
+.absolute {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
 .w100 {
     width: 100%;
 }
@@ -24,7 +30,7 @@
 }
 
 .relation-map-clients {
-    --clients-heigth: 40px;
+    --clients-heigth: 55px;
     display: grid;
     grid-template-rows: 1fr var(--clients-heigth);
     .hmap {

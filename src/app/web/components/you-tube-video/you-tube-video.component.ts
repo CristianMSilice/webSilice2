@@ -43,7 +43,6 @@ export class YouTubeVideoComponent implements AfterViewInit {
   initVideo() {
     this.reframed = false;
     window['YT'].ready(() => {
-      console.log(`ready id: ${this.video}_${YouTubeVideoComponent.id}`)
       this.player = new window['YT'].Player(`${this.video}_${YouTubeVideoComponent.id}`, {
         videoId: this.video,
         events: {
@@ -52,7 +51,6 @@ export class YouTubeVideoComponent implements AfterViewInit {
         }
       });
     })
-    console.log(this.player)
   }
 
   onPlayerReady(event) {
