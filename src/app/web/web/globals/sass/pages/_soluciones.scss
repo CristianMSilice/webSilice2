@@ -29,7 +29,9 @@
 
     .item {
         flex: none;
-        margin: 1rem 0;
+        width: 424px;
+        height: 52vh;
+        margin: 1rem;
 
         @include hover {                       
             .icon-plus { transition: rotate-center cubic-bezier(0.175, 0.885, 0.32, 1.275) .5s; }
@@ -108,7 +110,7 @@
         position: absolute;
         z-index: 2;
         top: 0;
-        left: 0;
+        right: 0;
         
         li {
             position: absolute;

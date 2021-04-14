@@ -1,5 +1,5 @@
 .contact {
-    margin-left: calc(17vw - (50px * 2));
+    padding-bottom: 8rem;
 
     &-wrapper {
         @include bg-contain;
@@ -95,5 +95,6 @@
 
     @include respond-to($site-width) {     
         margin-left: calc(25vw - (#{$site-padding} * 2));
+        padding-bottom: 0;
     }
 }

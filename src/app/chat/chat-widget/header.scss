@@ -1,14 +1,14 @@
 .chat-widget {
-    --margin-chat: 5px;
+    // --margin-chat: 5px;
     display: grid;
     grid-template-rows: min-content 1fr 7.5vh 7vh;
     width: calc(100% - var(--margin-chat) * 2);
     margin: 0 calc(var(--margin-chat) );
     max-height: 100vh;
     height: 100vh;
-    border-radius: 10px;
     font-family: sans-serif;
     transition: height .2s ease;    
+    background-color: rgb(233, 233, 233);
 }
 
 .chat-widget::-webkit-scrollbar-thumb {
@@ -29,9 +29,11 @@
     display: flex;
     position: relative;
     flex-direction: column;
-    width: 100%;
-    height:200px ;
-    background:var(--headerBackgroundColor);
+    width: calc(100% - 2rem);
+    height:200px;
+    padding: 1rem 1rem 0;
+    margin: 0 auto;
+    // background:var(--headerBackgroundColor);
     justify-content: center;
     align-items: center;
    
@@ -43,14 +45,15 @@
     width: 100%;
     height: calc(100% - var(--Espacio-blanco-superior) + var(--transparencia-chat-widget-header));
     position: absolute;
-    background: linear-gradient(180deg ,var(--chatBackgroundColor) 75% , hsl(0deg 0% 0% / 0%) 100%);
+    // background: linear-gradient(180deg ,var(--chatBackgroundColor) 75% , hsl(0deg 0% 0% / 0%) 100%);
+    background: white;
     bottom: 0;
     border-radius: var(--border-radius) var(--border-radius) 0px 0px;
     top: var(--Espacio-blanco-superior);
     z-index: 150;
 }
 .chat-widget-header-logo{
-    --Margin:15px;
+    // --Margin:15px;
     --size:calc(6.5vmin + 30px);
     width: var(--size);
     height: var(--size);
@@ -58,9 +61,12 @@
     justify-content: center;
     border-radius: 50%;
     position: absolute;
-    margin: var(--Margin);
-    left: calc(50% - (var(--size) / 2) - var(--Margin) );
-    top: calc(var(--Espacio-blanco-superior) - (var(--size) / 2) - var(--Margin));
+    // margin: var(--Margin);
+    // left: calc(50% - (var(--size) / 2) - var(--Margin) );
+    // top: calc(var(--Espacio-blanco-superior) - (var(--size) / 2) - var(--Margin));
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
     z-index: 200;
 }
 .chat-widget-header-logo:before {
@@ -69,8 +75,7 @@
     position: absolute;
     width: calc(100% + var(--margin-radius));
     height: calc(100% + var(--margin-radius));
-    background: var(--headerBackgroundColor);
-    border: 1px solid var(--headerBackgroundColor);
+    background: rgb(233, 233, 233);
     top: calc(0px - var(--margin-radius) / 2) ;
     left: calc(0px - var(--margin-radius) / 2) ;
     border-radius: 50%;

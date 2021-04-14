@@ -244,11 +244,16 @@ body.agent-568bdc7311fbbe5cfe9a0442869172a2 .custom-background-hover:hover {
 
 
 .chat-widget-body {
-    width: 100%;
-    height: 100%;
-    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    width: calc(100% - 2rem);
+    height: calc(100% - 1rem);
+    margin: 0 auto;
+    padding: 0 1rem 1rem;
     overflow-y: auto;
     background-color: var(--chatBackgroundColor); 
+    border-radius: 0 0 30px 30px;
 }
 
 .chat-widget-body::-webkit-scrollbar-thumb {
