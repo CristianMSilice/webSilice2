@@ -41,7 +41,7 @@ export class SolutionsComponent {
       imgLogo:"m360-logo.png",
       imgCover:"m360-cover.png",
       imgSolution:"solucion-m360.png",
-      name:"360",
+      name:"Municipio 360",
       items: [
         {item:"Administraciones electrónicas eficientes y transparentes." },
         {item:"Enfoque socioeconómico y medioambiental" },
