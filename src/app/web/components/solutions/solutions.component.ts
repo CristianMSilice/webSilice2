@@ -14,6 +14,7 @@ export class SolutionsComponent {
     {
       imgLogo:"pau-logo.png",
       imgCover:"pau-cover.png",
+      imgSolution:"solucion-pau.png",
       name:"Pau",
       items: [
         {item:"Transforma tu atención al usuario con servicios automatizados y omnicanales" },
@@ -26,6 +27,7 @@ export class SolutionsComponent {
     {
       imgLogo:"smallshi-logo.png",
       imgCover:"smallshi-cover.png",
+      imgSolution:"solucion-smallshi.png",
       name:"Smallshi",
       items: [
         {item:"Gestión modular, eficiente, flexible y adaptable." },
@@ -38,6 +40,7 @@ export class SolutionsComponent {
     {
       imgLogo:"m360-logo.png",
       imgCover:"m360-cover.png",
+      imgSolution:"solucion-m360.png",
       name:"360",
       items: [
         {item:"Administraciones electrónicas eficientes y transparentes." },
@@ -50,6 +53,7 @@ export class SolutionsComponent {
     {
       imgLogo:"dsp-logo.jpg",
       imgCover:"dsp-cover.jpg",
+      imgSolution:"solucion-dsp.png",
       name:"DSP",
       items: [
         {item:"Automatización inteligente de procesos de pago." },
@@ -61,6 +65,7 @@ export class SolutionsComponent {
     {
       imgLogo:"omniturno-logo.png",
       imgCover:"omniturno-cover.jpg",
+      imgSolution:"solucion-omniturno.png",
       name:"Omniturno",
       items: [
         {item:"Solicitud de turnos desde la comodidad del usuario a través de asistentes virtuales." },

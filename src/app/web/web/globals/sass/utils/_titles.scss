@@ -122,7 +122,7 @@
     
             &:after {
                 top: -280px;
-                left: -178px;
+                left: -214px;
             }
 
             .motto {
@@ -130,7 +130,7 @@
             }
 
             .site-title {
-                font-size: calc(2.7vmin + 1em);
+                font-size: calc(2vmin + 1em);
             }
         }
 
@@ -179,5 +179,22 @@
                 }
             }
         }
+    }
+}
+
+.post-title {
+    padding-bottom: .5rem;
+
+    @include mask {
+        top: 100%;
+        left: 0;
+        width: 0;
+        height: 1px;
+        background-color: $c-black;
+        transition: width .5s;
+    }
+
+    @include hover {
+        &:before { width: 20%; }
     }
 }
