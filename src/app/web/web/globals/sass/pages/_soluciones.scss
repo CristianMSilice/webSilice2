@@ -89,7 +89,8 @@
 
                 .name {
                     margin: 0;
-                    color: $c-black;
+                    text-transform: uppercase;
+                    color: $primary-color;
                 }
 
                 ul { padding: 1rem 0; }
@@ -202,6 +203,7 @@
 
                 .name {
                     font-size: 2em;
+                    text-align:center;
                 }
 
                 .list {
@@ -210,9 +212,14 @@
             }
         }
 
+        .action-links {
+            display: flex;
+            justify-content: center;
+        }
+
         .action { 
             font-size: .7rem; 
-            padding: 0.675rem .75rem;
+            padding: 0.675rem .5rem;
         }
 
         .features {    
