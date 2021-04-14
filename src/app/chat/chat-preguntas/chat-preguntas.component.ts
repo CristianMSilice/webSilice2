@@ -22,7 +22,6 @@ export class ChatPreguntasComponent implements OnInit {
 }
 selectComando(comando) 
 {
-  console.log("entra")
   this.regresarComando(comando);
 }
 

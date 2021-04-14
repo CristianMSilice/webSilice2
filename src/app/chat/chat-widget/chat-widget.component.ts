@@ -117,7 +117,6 @@ export class ChatWidgetComponent implements OnInit {
     this.router.events.subscribe(e => {
       if (e instanceof NavigationEnd) {
         let route = this.router.url.replace(/\//g,"-");
-        console.log(`url: ${route}`)
         this.comunicationWebWidget(`url: ${route}`);
       }
     })
