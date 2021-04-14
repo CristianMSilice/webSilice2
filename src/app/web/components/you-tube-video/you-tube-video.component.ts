@@ -7,23 +7,34 @@ import { SiblingsService } from '../../Services/siblings.service';
   styleUrls: ['./you-tube-video.component.scss']
 })
 export class YouTubeVideoComponent implements OnInit {
+  private static iniciado = false;
   @Input() video: String;
   public player: any;
   public reframed: Boolean = false;
   public videoEvent = undefined;
-  size = {width:window.innerWidth*0.9 ,height:window.innerHeight*0.9}
+  size = { width: window.innerWidth * 0.9, height: window.innerHeight * 0.9 }
   constructor(private siblingsService: SiblingsService) { }
 
   ngOnInit() {
-    window['onYouTubeIframeAPIReady'] = () => this.initVideo();
+    console.log(YouTubeVideoComponent.iniciado)
+    if (!YouTubeVideoComponent.iniciado) {
+      window['onYouTubeIframeAPIReady'] = () => this.initVideo();
+      YouTubeVideoComponent.iniciado = true;
+    }
+    else {
+      this.initVideo();
+    }
     this.reviewIfStartVideo();
-    
   }
   reviewIfStartVideo() {
     this.siblingsService.showModal$.subscribe(show => {
-      (show && this.videoEvent)
-        ?this.videoEvent.target.playVideo()
-        :this.videoEvent.target.pauseVideo();  
+      console.log(this.videoEvent)
+      if (this.videoEvent) {
+        (show)
+          ? this.videoEvent.target.playVideo()
+          : this.videoEvent.target.pauseVideo();
+      }
+
     })
   }
   initVideo() {
@@ -53,7 +64,7 @@ export class YouTubeVideoComponent implements OnInit {
     })
   }
 
-  onPlayerReady(event) { 
+  onPlayerReady(event) {
     this.videoEvent = event;
   }
   onPlayerStateChange() {

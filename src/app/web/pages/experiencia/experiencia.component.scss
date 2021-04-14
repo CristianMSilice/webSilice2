@@ -22,3 +22,19 @@
         transform-origin: center;
     }
 }
+
+.relation-map-clients {
+    --clients-heigth: 40px;
+    display: grid;
+    grid-template-rows: 1fr var(--clients-heigth);
+    .hmap {
+        height: 100%;
+    }
+    .hclients {
+        height: 100%;
+    }
+}
+
+.h100-7em {
+    height: calc(100% - 7.1em);
+}

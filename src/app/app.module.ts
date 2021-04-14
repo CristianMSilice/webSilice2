@@ -57,6 +57,7 @@ import { Noticia3Component } from './web/pages/blog/noticia3/noticia3.component'
 import { Noticia4Component } from './web/pages/blog/noticia4/noticia4.component';
 import { Noticia5Component } from './web/pages/blog/noticia5/noticia5.component';
 import { Noticia6Component } from './web/pages/blog/noticia6/noticia6.component';
+import { ClientsComponent } from './web/components/clients/clients.component';
 
 const routes: Routes = [
   {
@@ -141,6 +142,7 @@ const routes: Routes = [
     Noticia5Component,
     Noticia6Component,
     MapaMundiComponent,
+    ClientsComponent,
   ],
 
   providers: [
