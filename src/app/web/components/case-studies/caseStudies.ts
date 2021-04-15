@@ -81,7 +81,7 @@ export const CASESTUDIES = [
         `ISA, asistente virtual de Do it Center, genera un canal de atención digital a través de WhatsApp, en donde los usuarios tienen posibilidades como: compras, ofertas, cotizaciones, seguimiento de pedidos, preguntas frecuentes, garantías-servicio técnico y más…
         ISA hace parte de un ecosistema digital que va en pro hacia la optimización de la experiencia de usuario y las tendencias de la nueva economía digital.`,
         new _link('Quiero hablar con Isa', 'https://api.whatsapp.com/send?phone=50765507413&text=%C2%A1Hola!'),
-        new avatar('gaby.png', ),
+        new avatar('isa.png', ),
         new avatar('image-gaby.jpg'),
         'caso-gaby'
     ),
