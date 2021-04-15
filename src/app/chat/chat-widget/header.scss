@@ -43,7 +43,8 @@
 .chat-widget-header:before {
     content: '';
     width: 100%;
-    height: calc(100% - var(--Espacio-blanco-superior) + var(--transparencia-chat-widget-header));
+    // height: calc(100% - var(--Espacio-blanco-superior) + var(--transparencia-chat-widget-header));
+    height: calc(100% - var(--Espacio-blanco-superior));
     position: absolute;
     // background: linear-gradient(180deg ,var(--chatBackgroundColor) 75% , hsl(0deg 0% 0% / 0%) 100%);
     background: white;
