@@ -22,7 +22,7 @@ export class GlobalService {
     public static ICON_CANCEL= './assets/cancel.png';
     
     //public static TXT_INICIAL='Hola, soy Eva de Adiper.  ¿Cómo puedo ayudarle?  Le agradecería que me facilite un nickname para dirigirme más fácilmente a usted.';
-    public static TXT_INICIAL=`Hola 🤩Soy Silice, antes de que empecemos a hablar, dime cuál es tu nombre.`;
+    public static TXT_INICIAL=`Hola 🤩 Soy PAU, antes de que empecemos a hablar, dime ¿cuál es tu nombre?.`;
     // *$MARCO$*:{
     //   "button":[
     //     {"color":"#3366cc","texto":"Hidden","accion":"Cristian","hidden":"true"},
