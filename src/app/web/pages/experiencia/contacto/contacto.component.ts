@@ -19,10 +19,10 @@ export class ContactoComponent implements OnInit {
   }
   createForms() {
     this.contactForm = this.FB.group({
-      name: new FormControl('', [Validators.required]),
+      nombre: new FormControl('', [Validators.required]),
       email: new FormControl('', [Validators.compose([Validators.required, Validators.email])]),
-      Asunto: new FormControl('', [Validators.required]),
-      Mensaje: new FormControl('', [Validators.required])
+      asunto: new FormControl('', [Validators.required]),
+      mensaje: new FormControl('', [Validators.required])
     })
     this.subscribeForm = this.FB.group({
       email: new FormControl('', [Validators.compose([Validators.required, Validators.email])]),
@@ -31,11 +31,11 @@ export class ContactoComponent implements OnInit {
 
   }
   sendContactForm() {
+    if(this.contactForm.invalid) return
     this.mailService.postMessage(this.contactForm.value).subscribe(res=>{
       console.log('mail service response')
       console.log(res)
     })
-    console.log(this.contactForm.value)
   }
 
   sendSubscribeForm(){
