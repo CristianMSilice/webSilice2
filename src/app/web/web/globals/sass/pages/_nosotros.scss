@@ -1,7 +1,9 @@
 .nosotros-wrapper {
     position: relative;
 
-    .nosotros { margin-top: -6rem; }
+    // .nosotros { margin-top: -6rem; }
+
+    .content-body { height: 45vh; }
 
     .items-list,
     .items-list > * {
@@ -104,6 +106,8 @@
 
             .icon-hexagon { height: 324px; }
         }
+
+        .content-body { height:auto; }
 
         .content-links {
             // margin-top: 300px;
