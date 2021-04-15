@@ -11,15 +11,57 @@ h2.title {
 
 .slider-container {
     --outline: 5px;
+    --width_margin: 30px;
     background-color: white;
     position: relative;
-    display: block;
     margin: 0;
-    left: calc(var(--outline));
+    left: calc(var(--outline) + var(--width_margin));
     top: calc(var(--outline));
-    width: calc(100% - var(--outline) * 2);
+    width: calc(100% - (var(--outline) + var(--width_margin)) * 2);
     height: calc(100% - var(--outline) * 2);
-    outline: var(--outline) solid hsla(0, 0%, 0%, 20%);
+    display: flex;
+    flex-wrap: nowrap;
+    overflow: hidden;
+    align-items: center;
+    justify-content: flex-start;
+    box-shadow: 0px 0px 40px hsl(0deg 0% 70% / 90%), 0px 0px 40px hsl(0deg 0% 75% / 50%), inset 0px 0px 5px hsl(0deg 0% 75% / 50%);
+    border-radius: 20px;
+    padding: 0;
+    .slider-content {
+        display: flex;
+        flex-grow: 1;
+        flex-shrink: 0;
+        flex-wrap: nowrap;
+        --width-slider-item: 60px;
+        --padding-slider-item: 4em;
+        align-items: center;
+        height: 100%;
+        width: min-content;
+        transition: transform 3s linear;
+        li.slider-item {
+            width: var(--width-slider-item);
+            height: calc(100% - 4px);
+            position: relative;
+            padding: 0em var(--padding-slider-item);
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            img {
+                width: 60px;
+                height: 100%;
+                object-fit: contain;
+                filter: grayscale(1);
+                transition: filter 500ms ease;
+                cursor: pointer;
+            }
+            &:hover {
+                img {
+                    filter: grayscale(0);
+                }
+            }
+        }
+    }
 }
 
 .absolute {
