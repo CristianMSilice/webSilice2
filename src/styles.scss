@@ -77,6 +77,13 @@ body {
     background-color: hsla(0, 0%, 0%, 10%);
 }
 
+.message-button-option.disabled {
+    border: 1px solid rgb(255 255 255);
+    background: transparent;
+    color: #bebebe;
+    box-shadow: 0 10px 30px rgb(211 211 211 / 40%);
+}
+
 .message-button-option.disabled:hover {
     cursor: auto;
     background-color: hsla(0, 0%, 0%, 5%);

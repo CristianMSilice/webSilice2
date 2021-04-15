@@ -5,6 +5,9 @@
 
     @include respond-to($site-width) {
         height: calc(100% - #{$header-subtitle-height});
+
+        .row,
+        .row-inner { height: auto; }
     }
 
     .intro {

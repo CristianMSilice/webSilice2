@@ -51,7 +51,7 @@
                 .title.title-details {
                     grid-row: 1/2;
                     place-content: center;
-                    width: calc(100% - 8em);
+                    width: 230px;
                     place-self: center;
                 }
                 .summary.summary-details {
@@ -107,7 +107,7 @@
                     left: 43%;
                     opacity: 1;
                     transform: scale(1) !important;
-                    top: 4%;
+                    top: 0;
                 }
             }
         }
@@ -143,5 +143,73 @@
 @media (max-width: 1600px) and(min-width:768px) {
     .mapaMundiContainer {
         top: -0.5rem;
+    }
+}
+
+.mapaMundiContainer {
+    height: auto;
+    .data {
+        .detail-country {
+            .grid-details {
+                width: 50%;
+                &.selectedCountry {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: flex-start;
+                    left: auto;
+                    right: 0;
+                }
+                .title.title-details {
+                    display: inline-flex;
+                    place-self: flex-start;
+                    width: 230px;
+                }
+                .summary.summary-details {
+                    display: flex;
+                    height: auto;
+                    .image.image-detail {
+                        flex: none;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        width: 230px;
+                        img {
+                            width: 100%;
+                            height: auto;
+                            border-radius: 20px;
+                            object-fit: contain;
+                        }
+                    }
+                }
+                .summary-item-list-container {
+                    width: auto;
+                    margin: 0 1rem;
+                }
+            }
+        }
+    }
+}
+
+@media all and (max-width: 1559px) {
+    .mapaMundiContainer {
+        top: 0;
+        height: auto;
+        .data {
+            .detail-country {
+                .grid-details {
+                    width: 62%;
+                    &.selectedCountry {
+                        height: 100%;
+                    }
+                    .title.title-details {
+                        position: absolute;
+                        top: 2rem;
+                        transform: translateX(-50%);
+                        right: 100%;
+                    }
+                }
+            }
+        }
     }
 }
