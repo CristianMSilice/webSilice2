@@ -1,10 +1,11 @@
 .relative {
     position: relative;
+    z-index: 2;
 }
 
 .absolute {
     position: absolute;
-    top: 0;
+    top: -15px;
     left: 0;
 }
 
@@ -14,6 +15,14 @@
 
 .h100 {
     height: 100%;
+
+    @media all and (min-width: 1600px) { 
+        height: 100px;
+
+        &.absolute {
+            top: -144px;
+        }
+    }
 }
 
 .presencia .stats {

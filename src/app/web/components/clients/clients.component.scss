@@ -7,6 +7,11 @@ h2.title {
     strong {
         color: var(--headerTextColor);
     }
+
+    @media all and (min-width: 1600px) {
+        font-size: 1.5rem;
+        padding: 1em 2em;
+    }
 }
 
 .slider-container {
@@ -24,7 +29,7 @@ h2.title {
     overflow: hidden;
     align-items: center;
     justify-content: flex-start;
-    box-shadow: 0px 0px 40px hsl(0deg 0% 70% / 90%), 0px 0px 40px hsl(0deg 0% 75% / 50%), inset 0px 0px 5px hsl(0deg 0% 75% / 50%);
+    box-shadow: 0px 0px 80px rgb(225 225 225 / 90%), 0px 0px 80px rgb(204 204 204 / 50%), inset 0px 0px 5px rgb(191 191 191 / 50%);
     border-radius: 20px;
     padding: 0;
     .slider-content {
@@ -51,13 +56,13 @@ h2.title {
                 width: 60px;
                 height: 100%;
                 object-fit: contain;
-                filter: grayscale(1);
+                filter: grayscale(0);
                 transition: filter 500ms ease;
                 cursor: pointer;
             }
             &:hover {
                 img {
-                    filter: grayscale(0);
+                    filter: grayscale(1);
                 }
             }
         }

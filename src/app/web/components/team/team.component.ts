@@ -10,7 +10,7 @@ import { SiblingService } from '../../../../../src/app/chat/shared/services/sibl
 export class TeamComponent implements OnInit {
   sliderItem: Array<any> = [
     { image: "sergio.jpg", name: "Sergio Alvano", position: "CEO", chatID: "nosotros-sergio" },
-    { image: "diana.jpg", name: "Diana Castellanos", position: "Responsable de alianzas estratégica", chatID: "nosotros-diana" },
+    { image: "diana.jpg", name: "Diana Castellanos", position: "Responsable de Alianzas Estratégicas", chatID: "nosotros-diana" },
     { image: "fernando.jpg", name: "Fernando Fernández", position: "Líder de Desarrollo", chatID: "nosotros-fernando" },
     { image: "juan.jpg", name: "Juan Antonio Blanco", position: "Country Manager España", chatID: "nosotros-juan" },
     { image: "alvaro.jpg", name: "Álvaro Andrés Ortíz", position: "Country Manager Colombia", chatID: "nosotros-alvaro" },

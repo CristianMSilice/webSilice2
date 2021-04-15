@@ -1,4 +1,6 @@
-
+:host {
+    display: flex;
+}
 
 .pslider-container,
 .pslider-container .slider-content {
@@ -41,7 +43,8 @@ article.profile {
 @media (min-width: 1360px) and (max-width: 1600px) {
 
     article.profile {
-        height: calc(100% - 11em);
+        // height: calc(100% - 11em);
         width: 290px;
+        height: 60vh;
     }
 }

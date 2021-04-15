@@ -19,6 +19,9 @@
                 display: flex;
                 align-items: center;
             }
+
+            .pslider-container,
+            .pslider-container .slider-content { overflow: visible; }
         }
     }
 
@@ -29,8 +32,9 @@
     .item {
         @include flex-all(column, center);
         flex: none;
-        width: 480px;
-        height: 500px;
+        width: 654px;
+        // width: 480px;
+        // height: 500px;
         margin: 0 3rem 0 2rem;
 
         @include mask {
@@ -50,7 +54,7 @@
             @include flex-all(column, center);
             position: relative;
             z-index: 2;
-            min-height: 350px;
+            min-height: 400px;
             padding: 2rem;
             // border: 10px solid $c-grey-light;
             border-radius: 20px;
@@ -93,17 +97,19 @@
             @include scale-font($small-ratio: 0.5, $mid-ratio: 0.75, $final-size: 7.75rem);
             position: absolute;
             z-index: 1;
-            top: 0;
+            top: -88px;
             left: 0;
             height: 100px;
             color: $c-grey-light;
         }
     }
 
-    .content-body,
-    .content-body > * {
-        @include flex-all($align: center);
-        @include mask {
+    .content-body {
+        @include flex-all($direction: column, $align: center);
+
+        &:before {
+            content: " ";
+            position: absolute;
             top: 50%;
             left: 0;
             width: 100%;
@@ -116,7 +122,7 @@
 
     .content-body > * {
         width: 100% !important;
-        height: 500px !important;
+        // height: 500px !important;
     }
 }
 
@@ -124,9 +130,10 @@
     .timeline {
         .item {
             justify-content: flex-start;
+            width: 480px;
             margin: 1.5em 0 0;
             transform: scale(0.9);
-            height: 455px;
+            // height: 455px;
 
             &::before{
                 left: calc((1rem / 2) - (88px / 2));

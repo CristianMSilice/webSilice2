@@ -23,7 +23,7 @@ export class HomeComponent implements OnInit {
     },
 
     {
-      Image: this.Img_url + 'slide-dsp.jpg', mainTitle: 'DSP', mainText: 'Plataforma de gestión de pago',
+      Image: this.Img_url + 'slide-dsp.jpg', mainTitle: 'DSP', mainText: 'Plataforma de Gestión de Pago',
       button: { text: 'Conocer', callfuncion: 'prueba' },
       title: 'DSP', text: 'Integración y orquestador de procesadores de pago y servicios',
     },
