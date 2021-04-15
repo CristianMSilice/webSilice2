@@ -5,10 +5,10 @@
 
     .items-list,
     .items-list > * {
-        @include flex-all($justify: center, $wrap: wrap);
+        @include flex-all($justify: center, $align: center, $wrap: wrap);
         position: relative;
         width: 100%;
-        padding: 0 0 2rem;
+        // padding: 0 0 2rem;
     }
 
     .item {
@@ -98,9 +98,11 @@
         .nosotros { margin-top: 0; }
 
         .item {
-            flex: none;
-            width: 16%;
-            height: 260px;
+            flex: none;    
+            width: 21%;
+            height: 360px;
+
+            .icon-hexagon { height: 324px; }
         }
 
         .content-links {

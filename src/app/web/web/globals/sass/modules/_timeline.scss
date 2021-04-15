@@ -50,7 +50,7 @@
             @include flex-all(column, center);
             position: relative;
             z-index: 2;
-            min-height: 300px;
+            min-height: 350px;
             padding: 2rem;
             // border: 10px solid $c-grey-light;
             border-radius: 20px;
@@ -140,6 +140,7 @@
             }
         }
         .item-summary{
+            min-height: 300px;
             padding:1.4em;
         }
     }

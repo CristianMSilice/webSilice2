@@ -3,7 +3,9 @@
         overflow-y: scroll;
         justify-content: flex-start;
 
-        &.padding-row .row > .row-inner { padding: 0; }        
+        &.padding-row .row > .row-inner { padding: 0; }      
+        
+        .row, .row-inner { height: auto; }
 
         .item-author {
             @include flex-all($align: center, $inline: true);

@@ -1,3 +1,9 @@
+:host {
+    @media all and (min-width:1600px) {
+        margin-top: 5rem;
+    }
+}
+
 .pslider-container,
 .pslider-container .slider-content {
     position: static !important;
