@@ -19,6 +19,9 @@
                 display: flex;
                 align-items: center;
             }
+
+            .pslider-container,
+            .pslider-container .slider-content { overflow: visible; }
         }
     }
 
@@ -94,7 +97,7 @@
             @include scale-font($small-ratio: 0.5, $mid-ratio: 0.75, $final-size: 7.75rem);
             position: absolute;
             z-index: 1;
-            top: 0;
+            top: -88px;
             left: 0;
             height: 100px;
             color: $c-grey-light;
