@@ -38,12 +38,12 @@ export const CASESTUDIES = [
     new caseStudies(
         'Carolina',
         'Ayuntamiento de Almendralejo',
-        `Carolina, brinda respuestas automáticas a los ciudadanos; está basada en la tecnología de Inteligencia artificial,
+        `<p>Carolina, brinda <strong>respuestas automáticas</strong> a los ciudadanos; está basada en la tecnología de Inteligencia artificial,
          y el desarrollo de motores de lenguaje natural, que le permite al cliente brindar una atención automatizada, 
-         pero al mismo tiempo humanizada ya que nuestros asistentes virtuales tienen la habilidad de interpretar intencionalidad.
-         Esta tecnología ha ganado la versión X de los Premios CNIS en España en la categoría de Participación Ciudadana y al mismo tiempo,
+         pero al mismo tiempo humanizada ya que nuestros asistentes virtuales tienen la habilidad de interpretar intencionalidad.<p>
+         <p>Esta tecnología ha ganado la versión X de los <strong>Premios CNIS</strong> en España en la categoría de Participación Ciudadana y al mismo tiempo,
           nos ha permitido mejorar la eficacia y eficiencia en la atención ciudadana, optimizar los procesos, ahorrar costos y además lograr
-           la satisfacción de los ciudadanos.`,
+           la satisfacción de los ciudadanos.</p>`,
         new _link('Quiero hablar con Carolina', 'https://api.whatsapp.com/send?phone=34669736321&text=%C2%A1Hola!'),
         new avatar('carolina.png'),
         new avatar('image-carolina.jpg'),
@@ -78,8 +78,8 @@ export const CASESTUDIES = [
     new caseStudies(
         'Isa',
         'Do It Center Panamá',
-        `ISA, asistente virtual de Do it Center, genera un canal de atención digital a través de WhatsApp, en donde los usuarios tienen posibilidades como: compras, ofertas, cotizaciones, seguimiento de pedidos, preguntas frecuentes, garantías-servicio técnico y más…
-        ISA hace parte de un ecosistema digital que va en pro hacia la optimización de la experiencia de usuario y las tendencias de la nueva economía digital.`,
+        `<p>ISA, <strong>asistente virtual</strong> de Do it Center, genera un canal de <strong>atención digital</strong> a través de WhatsApp, en donde los usuarios tienen posibilidades como: compras, ofertas, cotizaciones, seguimiento de pedidos, preguntas frecuentes, garantías-servicio técnico y más…</p>
+        <p>ISA hace parte de un <strong>ecosistema digital</strong> que va en pro hacia la optimización de la experiencia de usuario y las tendencias de la nueva economía digital.</p>`,
         new _link('Quiero hablar con Isa', 'https://api.whatsapp.com/send?phone=50765507413&text=%C2%A1Hola!'),
         new avatar('isa.png', ),
         new avatar('image-gaby.jpg'),

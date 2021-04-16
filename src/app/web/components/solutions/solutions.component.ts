@@ -18,39 +18,42 @@ export class SolutionsComponent {
       imgLogo: "pau-logo.png",
       imgCover: "pau-cover.png",
       imgSolution: "solucion-pau.png",
-      name: "Pau",
+      name: "PAU",
       items: [
         { item: "Transforma tu atención al usuario con servicios automatizados y omnicanales" },
         { item: "Optimización de los procesos internos y la experiencia de usuario." },
         { item: "Integra  los sistemas de tu organización y llévalos a la mano de tu cliente" },
       ],
       link: { href: "https://www.pau.zone/" },
+      linkText: "PAU",
       chatID: "solucion-pau"
     },
     {
       imgLogo: "smallshi-logo.png",
       imgCover: "smallshi-cover.png",
       imgSolution: "solucion-smallshi.png",
-      name: "Smallshi",
+      name: "SMALLSHI",
       items: [
         { item: "Gestión modular, eficiente, flexible y adaptable." },
         { item: "Desarrollo de nuevos mercados." },
         { item: "E-commerce, citas, reservas, marketing, promociones, delivery seguro y eficaz." },
       ],
       link: { href: "https://www.smallshi.com/" },
+      linkText: "SMALLSHI",
       chatID: "solucion-smallshi"
     },
     {
       imgLogo: "m360-logo.png",
       imgCover: "m360-cover.png",
       imgSolution: "solucion-m360.png",
-      name: "Municipio 360",
+      name: "MUNICIPIO 360",
       items: [
         { item: "Administraciones electrónicas eficientes y transparentes." },
         { item: "Enfoque socioeconómico y medioambiental" },
         { item: "Eliminación de la brecha digital." },
       ],
       link: { href: "http://municipios360.com" },
+      linkText: "M360",
       chatID: "solucion-m360"
     },
     {
@@ -63,19 +66,21 @@ export class SolutionsComponent {
         { item: "Plataforma de pagos unificada: E Commerce, QR, asistentes virtuales, aplicaciones móviles." },
       ],
       link: { href: "" },
+      linkText: "DSP",
       chatID: "solucion-dsp"
     },
     {
       imgLogo: "omniturno-logo.png",
       imgCover: "omniturno-cover.jpg",
       imgSolution: "solucion-omniturno.png",
-      name: "Omniturno",
+      name: "OMNITURNO",
       items: [
         { item: "Solicitud de turnos desde la comodidad del usuario a través de asistentes virtuales." },
         { item: "Trazabilidad 360, histórico de comunicaciones, consola de atención y analítica en tiempo real." },
         { item: "Estrategias de marketing y publicidad." },
       ],
       link: { href: "" },
+      linkText: "OMNITURNO",
       chatID: "solucion-omniturno"
     },
   ]
