@@ -8,10 +8,10 @@ import { Component, OnInit } from '@angular/core';
 export class ExperienciaComponent implements OnInit {
 
   data = [
-    { expected: 12, before: '+', after: '', initial: 1, text: 'países alrededor del mundo.' }
-    , { expected: 400, before: '+', after: '', initial: 1, text: 'Ciudades.' }
+    { expected: 12, before: '+', after: '', initial: 1, text: 'Países alrededor del mundo' }
+    , { expected: 400, before: '+', after: '', initial: 1, text: 'Ciudades' }
     , { expected: 15, before: '+', after: 'M', initial: 1, text: ' de atenciones alrededor del mundo' }
-    , { expected: 7, before: '+', after: '', initial: 1, text: 'sectores económicos' }
+    , { expected: 7, before: '+', after: '', initial: 1, text: 'Sectores económicos' }
   ]
   constructor() { }
 

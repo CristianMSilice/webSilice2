@@ -59,8 +59,8 @@ body {
 }
 
 .message-button-option.disabled:hover {
-    cursor: auto;
-    background-color: hsla(0, 0%, 0%, 5%);
+    cursor: none;
+    // background-color: hsla(0, 0%, 0%, 5%);
 }
 
 .message-button-option.disabled.selectable {
