@@ -1,0 +1,37 @@
+    .bk-fc-vi-hidden {
+        backface-visibility: hidden;
+        transition: transform 400ms ease-in-out;
+        transform: rotateY(0deg);
+        position: relative;
+        &.selected {
+            transform: rotateY(180deg);
+        }
+        &.item-back-face {
+            transform: rotateY(180deg);
+            position: relative;
+            top: -175px;
+            .name {
+                transform: rotateY(180deg);
+            }
+            &.selected {
+                transform: rotateY(0deg);
+                .name {
+                    transform: rotateY(0deg);
+                }
+            }
+            .backfaceData {
+                font-size: 0.8em;
+                line-height: 1.1em;
+                text-align: center;
+            }
+        }
+    }
+    
+    @media (max-width:1600px) and (min-width:768px) {
+        .item-summary.bk-fc-vi-hidden {
+            top: 40px;
+            &.item-back-face {
+                top: calc(0px - 150px + 40px);
+            }
+        }
+    }
