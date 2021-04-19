@@ -45,6 +45,8 @@ export class YouTubeVideoComponent implements AfterViewInit {
     window['YT'].ready(() => {
       this.player = new window['YT'].Player(`${this.video}_${YouTubeVideoComponent.id}`, {
         videoId: this.video,
+        //  width: this.size.width,
+        //  height: this.size.height,
         events: {
           'onError': this.onPlayerError.bind(this),
           'onReady': this.onPlayerReady.bind(this),
