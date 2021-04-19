@@ -63,7 +63,8 @@ export class TeamComponent implements OnInit {
         (animation) ? this.showedOption = this.showedOption + num : '';
       }, 10)
     }
-    this.offset.value = 0;
+    this.newMovement(num);
+    
     this.showedOption = step;
   }
   fakeRound(step) {
@@ -93,6 +94,13 @@ export class TeamComponent implements OnInit {
       if (Math.abs(this.offset.value + value) >= this.width) { this.step(-1, false) };
       this.offset.value = (this.offset.value + value) % this.width;
     }, 100);
+  }
+
+  newMovement(num){
+    this.offset.value = 0;
+    clearInterval(this.offset.interval)
+    if(num>=0)this.automovement(2);
+    if(num<0)this.automovement(-2);
   }
 
 }
