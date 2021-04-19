@@ -1,8 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { SiblingService } from '../../../../../src/app/chat/shared/services/sibling.service';
 import { DomSanitizer } from '@angular/platform-browser';
-import { Observable } from 'rxjs/Observable';
-import { promise } from 'selenium-webdriver';
 
 @Component({
   selector: 'team',
@@ -13,7 +10,8 @@ import { promise } from 'selenium-webdriver';
 export class TeamComponent implements OnInit {
   sliderItem: Array<any> = [
     {
-      image: "sergio.jpg", name: "Sergio Alvano", position: "CEO", chatID: "nosotros-sergio", linkedin: "https://www.linkedin.com/in/sergio-alvano-8b806642/", email: "sergio.alvano@silice.si", text: `Emprendedor y especialista en el área de Sistemas de Información para la construcción de ecosistemas digitales. Su Objetivo: Cambiar realidades en el Sector Público, Banca y Pymes.`},
+      image: "sergio.jpg", name: "Sergio Alvano", position: "CEO", chatID: "nosotros-sergio", linkedin: "https://www.linkedin.com/in/sergio-alvano-8b806642/", email: "sergio.alvano@silice.si", text: `Emprendedor y especialista en el área de Sistemas de Información para la construcción de ecosistemas digitales. Su Objetivo: Cambiar realidades en el Sector Público, Banca y Pymes.`
+    },
     { image: "diana.jpg", name: "Diana Castellanos", position: "Responsable de Alianzas Estratégicas", chatID: "nosotros-diana", linkedin: `https://www.linkedin.com/in/dianacastellanosh/`, email: `diana.castellanos@silice.si`, text: `Su objetivo es adaptar nuestras soluciones a tus necesidades de manera efectiva` },
     { image: "fernando.jpg", name: "Fernando Fernández", position: "Líder de Desarrollo", chatID: "nosotros-fernando", linkedin: `https://www.linkedin.com/in/fernando-fernandez-3169ba170/`, email: `fernando.fernandez@silice.si`, text: `Su objetivo es crear, optimizar y dirigir el equipo que convierte en realidad soluciones que cambian el mundo.` },
     { image: "pedro.jpg", name: "Pedro Casas", position: "Líder de Plataforma", chatID: "nosotros-pedro", linkedin: `https://www.linkedin.com/in/pedroip/`, email: `pedro.casas@silice.si`, text: `Análisis y desarrollo de aplicaciones e integración Bots.` },
@@ -31,9 +29,7 @@ export class TeamComponent implements OnInit {
   translateFlag = true;
   width = 390
   offset = { interval: null, value: 0 };
-  constructor(
-    private SiblingService: SiblingService
-    , private satanize: DomSanitizer) {
+  constructor(private satanize: DomSanitizer) {
   }
 
 
@@ -54,23 +50,26 @@ export class TeamComponent implements OnInit {
     this.showedOption = - this.itemsShowed;
     this.automovement(-2);
   }
-  
 
-  step(num, animation:boolean) {
-    let step = this.showedOption + parseInt(num);
-    if (step > 0 || step <= - this.sliderItemRealLength - 1) {
-      step = this.fakeRound(step) + (animation)?0:parseInt(num);
-       setTimeout(() => {
-        this.translateFlag=true;
-        (animation)?this.showedOption += parseInt(num):'';
-       },10)
+
+  step(num: number, animation: boolean) {
+    let step = this.showedOption + num;
+    if (step > 0 || step + 1 <= - this.sliderItemRealLength) {
+      (animation)
+        ? step = this.fakeRound(step) + 0
+        : step = this.fakeRound(step) + num;      
+      setTimeout(() => {
+        this.translateFlag = true;
+        (animation) ? this.showedOption = this.showedOption + num : '';
+      }, 10)
     }
+    this.offset.value = 0;
     this.showedOption = step;
   }
   fakeRound(step) {
     this.translateFlag = false;
-    if (step > 0) step = - this.sliderItemRealLength;
-    else if (step <= - this.sliderItemRealLength -1 ) step = 0;
+    if (step + 1 <= - this.sliderItemRealLength) step = 0;
+    else if (step > 0) step = - this.sliderItemRealLength;
     return step;
   }
 
@@ -91,9 +90,9 @@ export class TeamComponent implements OnInit {
   automovement(value) {
     this.offset.value = 0;
     this.offset.interval = setInterval(() => {
-      if (Math.abs(this.offset.value + value) >= this.width) {this.step(-1,false)};
+      if (Math.abs(this.offset.value + value) >= this.width) { this.step(-1, false) };
       this.offset.value = (this.offset.value + value) % this.width;
     }, 100);
   }
-  
+
 }
