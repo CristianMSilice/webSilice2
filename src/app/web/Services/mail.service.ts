@@ -5,17 +5,32 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class MailService {
-  // private apiUrl = "http://81.169.142.158/smallshi-desarrollo/apirest/index.php/"
   private apiUrl = "http://api-siliceweb.smallshi.com/index.php/"
-  headers :HttpHeaders= new HttpHeaders();
+  // headers :HttpHeaders= new HttpHeaders();
   constructor(private http: HttpClient) { 
-    this.headers.append("Content-Type","application/x-www-form-urlencoded");
-    this.headers.append("Authorization","Basic c2lsaWNlcG9zOm1ZUFJ2dVAw");
-    // this.headers.append("Access-Control-Allow-Origin","*");
+    // this.headers.append("Content-Type","application/x-www-form-urlencoded");
+    // this.headers.append("Authorization","Basic c2lsaWNlcG9zOm1ZUFJ2dVAw");
   }
 
   postMessage(data: any) {
-    console.log(data)
-    return this.http.post(`${this.apiUrl}EnviarCorreo/sendEmail`, data, {headers:this.headers })
+    data = this.jsonToFormUrlEncoded(data)
+    var header = {
+      headers: new HttpHeaders()
+        .set('Authorization',  `Basic c2lsaWNlcG9zOm1ZUFJ2dVAw`)
+        .set(`Content-Type`,`application/x-www-form-urlencoded`)
+    }
+    return this.http.post(`${this.apiUrl}EnviarCorreo/sendEmail`, data, header)
+  }
+
+
+  jsonToFormUrlEncoded(obj){
+    var str = [];
+    for (var key in obj) {
+         if (obj.hasOwnProperty(key)) {
+               str.push(encodeURIComponent(key) + "=" + encodeURIComponent(obj[key]))                  
+               console.log(key + " -> " + obj[key]);
+         }
+    }
+    return str.join("&");
   }
 }

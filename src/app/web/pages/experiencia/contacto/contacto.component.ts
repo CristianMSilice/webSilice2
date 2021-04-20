@@ -20,7 +20,7 @@ export class ContactoComponent implements OnInit {
   createForms() {
     this.contactForm = this.FB.group({
       nombre: new FormControl('', [Validators.required]),
-      email: new FormControl('', [Validators.compose([Validators.required, Validators.email])]),
+      email_contacto: new FormControl('', [Validators.compose([Validators.required, Validators.email])]),
       asunto: new FormControl('', [Validators.required]),
       mensaje: new FormControl('', [Validators.required])
     })
@@ -32,8 +32,9 @@ export class ContactoComponent implements OnInit {
   }
   sendContactForm() {
     if(this.contactForm.invalid) return
-    this.mailService.postMessage(this.contactForm.value).subscribe(res=>{
-      console.log('mail service response')
+    let formulario = this.contactForm.value;
+    formulario.email_destino = "marketing@silice.si"
+    this.mailService.postMessage(formulario).subscribe(res=>{
       console.log(res)
     })
   }
