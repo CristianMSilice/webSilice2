@@ -9,11 +9,13 @@ import { SiblingsService } from '../../Services/siblings.service';
 export class ModalComponent implements OnInit {
   showModal: boolean = false;
   @Input() show_internal_close: boolean = true;
+  @Input() _idYoutube: number = 0;
+
   constructor(private siblingsService: SiblingsService) { }
 
   ngOnInit() {
-    this.siblingsService.showModal$.subscribe((value: boolean) => {
-      this.showModal = value;
+    this.siblingsService.showModal$.subscribe(value => {
+      this.showModal = value.value;
     })
   }
   reviewClose($event) {
@@ -21,7 +23,7 @@ export class ModalComponent implements OnInit {
     this.close();
   }
   close() {
-    this.siblingsService.modifyModal(false);
+    this.siblingsService.modifyModal(false,this._idYoutube);
   }
 
 }

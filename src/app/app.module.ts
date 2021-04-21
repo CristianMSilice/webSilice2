@@ -8,6 +8,7 @@ import { NgxLinkifyjsModule } from 'ngx-linkifyjs'
 import { HttpClientModule } from '@angular/common/http'
 import { NgxWebstorageModule } from 'ngx-webstorage'
 import { ReactiveFormsModule, FormsModule } from '@angular/forms'
+import { SharedModule } from './shared/shared/shared.module';
 
 
 import { CookieService } from 'ngx-cookie-service'
@@ -53,7 +54,6 @@ import { TrayectoriaComponent } from './web/pages/nosotros/trayectoria/trayector
 import { TeamComponent } from './web/components/team/team.component';
 import { TimelineComponent } from './web/components/timeline/timeline.component'
 import { WebComponent } from './web/web/web.component';
-import { YouTubeVideoComponent } from './web/components/you-tube-video/you-tube-video.component';
 import { Noticia1Component } from './web/pages/blog/noticia1/noticia1.component';
 import { Noticia2Component } from './web/pages/blog/noticia2/noticia2.component';
 import { Noticia3Component } from './web/pages/blog/noticia3/noticia3.component';
@@ -105,7 +105,8 @@ const routes: Routes = [
     ReactiveFormsModule,
     FormsModule,
     ParticlesModule,
-    InlineSVGModule
+    InlineSVGModule,
+    SharedModule
   ],
   declarations: [AppComponent,
     BlogComponent,
@@ -133,7 +134,6 @@ const routes: Routes = [
     TeamComponent,
     WebComponent,
     ModalComponent,
-    YouTubeVideoComponent,
     LocationsHeaderComponent,
     PanamaComponent,
     ColombiaComponent,
@@ -165,5 +165,6 @@ const routes: Routes = [
     SiblingsService
   ],
   bootstrap: [AppComponent],
+  exports:[]
 })
 export class AppModule { }

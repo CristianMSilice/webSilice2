@@ -11,13 +11,16 @@ export class SliderComponent implements OnInit {
   @Input() width: string;
   @Input() height: string;
   @Input() sliderItem: Array<sliderItem> = [];
-
+  _idVideo:number =0;
   math = Math;
   selectedOption: number = 0
   IntervalTime;
   sliderSize=200;
 
   constructor(private siblingsService: SiblingsService) {
+    this.siblingsService.principalVideo$.subscribe(idYT=>{
+      this._idVideo=idYT
+    })
   }
 
   ngOnInit() {
@@ -38,7 +41,8 @@ export class SliderComponent implements OnInit {
   }
 
   openModal() {
-    this.siblingsService.modifyModal(true);
+    console.log(this._idVideo);
+    this.siblingsService.modifyModal(true,this._idVideo);
   }
 
 }

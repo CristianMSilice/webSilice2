@@ -1,5 +1,8 @@
 import { NgModule } from '@angular/core'
 import { CommonModule } from '@angular/common'
+import { SharedModule } from '../shared/shared/shared.module'
+
+
 import { ChatAvatarComponent } from './chat-avatar/chat-avatar.component'
 import { ChatWidgetComponent } from './chat-widget/chat-widget.component'
 import { ChatInputComponent } from './chat-input/chat-input.component'
@@ -16,7 +19,7 @@ import { EmojiSiliceComponent } from './emojis/emoji-silice/emoji-silice.compone
 import { ChatFooterComponent } from './chat-footer/chat-footer.component'
 
 @NgModule({
-  imports: [CommonModule, AngularDraggableModule, SweetAlert2Module],
+  imports: [CommonModule, AngularDraggableModule, SweetAlert2Module, SharedModule],
   declarations: [
     ChatAvatarComponent,
     ChatWidgetComponent,

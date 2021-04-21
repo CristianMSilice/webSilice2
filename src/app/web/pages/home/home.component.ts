@@ -1,18 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { sliderItem } from '../../models/sliderItem';
-// import { SiblingsService } from '../../Services/siblings.service';
+import { SiblingsService } from '../../Services/siblings.service';
+
 @Component({
   selector: 'home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit {
-
-  constructor(
-    // private siblingsService:SiblingsService
-    ) { }
-  
-  
+export class HomeComponent  {
+  _idYoutube: number=0; 
   Img_url: String = 'assets/images/slider/'
   showModal=false;
   _sliderItems: Array<sliderItem> = [
@@ -48,16 +44,13 @@ export class HomeComponent implements OnInit {
     },
 
   ]
+  constructor(private SiblingsService:SiblingsService){}
+  
 
-  ngOnInit() {
-    // this.subscribeShowModal();
+  idYoutube(data){
+  this._idYoutube = data;
+  this.SiblingsService.principalVideo(this._idYoutube);
   }
-
-  // subscribeShowModal(){
-  //   this.siblingsService.showModal$.subscribe((value)=>{
-  //     this.showModal= value;
-  //   })
-  // }
   
 
   

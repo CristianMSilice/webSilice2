@@ -1,18 +1,11 @@
 <main id="content_main" class="site-content" aria-label="Contenido Principal">
     <div class="site-content__row">
-        <div class="site-content__row--inner carousel-wrapper-main">    
-            <web-slider
-            [width]="'100%'"
-            [height]="'100%'"
-            [sliderItem]="_sliderItems"
-            ></web-slider>
+        <div class="site-content__row--inner carousel-wrapper-main">
+            <web-slider [width]="'100%'" [height]="'100%'" [sliderItem]="_sliderItems"></web-slider>
         </div>
     </div>
 </main>
 
-<modal
-[show_internal_close]="false"
->
-    <you-tube-video
-    [video]="'P6_gX8eiIP0'"></you-tube-video>
+<modal [show_internal_close]="false" [_idYoutube]="_idYoutube">
+    <you-tube-video [video]="'P6_gX8eiIP0'" [width]="'560'" [height]="'315'" (getIdEvent)="idYoutube($event)"></you-tube-video>
 </modal>

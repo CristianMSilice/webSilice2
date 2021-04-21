@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { SiblingsService } from '../../Services/siblings.service';
 
 @Component({
@@ -6,14 +6,20 @@ import { SiblingsService } from '../../Services/siblings.service';
   templateUrl: './nosotros.component.html',
   styleUrls: ['./nosotros.component.scss']
 })
-export class NosotrosComponent implements OnInit {
+export class NosotrosComponent  {
+  _idYoutube:number=0;
+  constructor(private siblingsService:SiblingsService) {
+    this.siblingsService.nosotrosVideo$.subscribe(idYT=>{
+      this._idYoutube=idYT
+    })
+   }
 
-  constructor(private siblingsService:SiblingsService) { }
 
-  ngOnInit() {
+  idYoutube(idYT){
+    this._idYoutube=idYT;
   }
-  
   openModal() {
-    this.siblingsService.modifyModal(true);
+    if(this._idYoutube==0) return
+    this.siblingsService.modifyModal(true,this._idYoutube);
   }
 }

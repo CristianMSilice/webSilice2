@@ -70,7 +70,11 @@ export class ChatInputComponent implements OnInit {
   }
 
   toggleOptions() {
-    this.showOptions = this.showOptions == true ? false : true
+    this.showOptions = !this.showOptions 
+    if(! this.showOptions){
+      this.toggleemojimenu=false;
+      this.showMenuPrincipal=false;
+    }
   }
   toggleAttachedOptions() {
     this.toggleAttOptions.emit()
@@ -82,6 +86,7 @@ export class ChatInputComponent implements OnInit {
 
   toggleMenuPrincipal() {
     this.showMenuPrincipal = !this.showMenuPrincipal
+    
   }
 
   sendOption(message) {
