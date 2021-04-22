@@ -17,9 +17,10 @@ import { SanitizeHtmlPipe } from './pipe/sanitize-html.pipe'
 import { ChatAdjuntosComponent } from './chat-adjuntos/chat-adjuntos.component';
 import { EmojiSiliceComponent } from './emojis/emoji-silice/emoji-silice.component';
 import { ChatFooterComponent } from './chat-footer/chat-footer.component'
+import { RouterModule } from '@angular/router';
 
 @NgModule({
-  imports: [CommonModule, AngularDraggableModule, SweetAlert2Module, SharedModule],
+  imports: [CommonModule, AngularDraggableModule, SweetAlert2Module, SharedModule,RouterModule],
   declarations: [
     ChatAvatarComponent,
     ChatWidgetComponent,

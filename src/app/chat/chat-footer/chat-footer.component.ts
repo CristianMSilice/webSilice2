@@ -27,6 +27,11 @@ export class ChatFooterComponent implements OnInit {
     {text:'Twitter', url:'https://twitter.com/Si_Silice', texturl:'www.twitter.com/Si_Silice', image:'twitter.jpg'},
     {text:'Youtube', url:'https://www.youtube.com/channel/UCI-ZhoL4V3uZorOJZD849dg', texturl:'www.youtube.com/Siice', image:'youtube.jpg'},
   ]
+  sedes=[
+    {image:'assets/images/sedes/flag2-colombia.jpg', link:'home/experiencia/sedes/colombia'},
+    {image:'assets/images/sedes/flag2-españa.jpg', link:'home/experiencia/sedes/espana'},
+    {image:'assets/images/sedes/flag2-panama.jpg', link:'home/experiencia/sedes'}
+  ]
 
   activeChatSetting(event:MouseEvent,active) {
     (this.active == active)
