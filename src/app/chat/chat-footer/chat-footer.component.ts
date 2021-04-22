@@ -4,7 +4,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 @Component({
   selector: 'chat-footer',
   templateUrl: './chat-footer.component.html',
-  styleUrls: ['./chat-footer.component.scss']
+  styleUrls: ['../chat-widget/message.scss','./chat-footer.component.scss']
 })
 export class ChatFooterComponent implements OnInit {
   showContent: boolean = false;
