@@ -24,10 +24,7 @@ export class ContactoComponent implements OnInit {
       asunto: new FormControl('', [Validators.required]),
       mensaje: new FormControl('', [Validators.required])
     })
-    this.subscribeForm = this.FB.group({
-      email: new FormControl('', [Validators.compose([Validators.required, Validators.email])]),
 
-    })
 
   }
   sendContactForm() {

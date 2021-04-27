@@ -70,7 +70,7 @@ const routes: Routes = [
       { path: 'nosotros/trayectoria', component:TrayectoriaComponent},
       { path: 'nosotros/equipo', component:EquipoComponent},
       { path: 'nosotros/presencia', component: ExperienciaComponent },
-      { path: 'nosotros/sedes', component: PagePanamaComponent },
+      { path: 'nosotros/sedes/panama', component: PagePanamaComponent },
       { path: 'nosotros/sedes/colombia', component: PageColombiaComponent },
       { path: 'nosotros/sedes/espana', component: PageEspanaComponent },
       { path: 'laboratorio', component: LaboratorioComponent },
