@@ -9,7 +9,7 @@ import { SiblingsService } from '../../Services/siblings.service';
 export class ModalComponent implements OnInit {
   showModal: boolean = false;
   @Input() show_internal_close: boolean = true;
-  @Input() _idYoutube: number = 0;
+  @Input() _idYoutube: number ;
 
   constructor(private siblingsService: SiblingsService) { }
 

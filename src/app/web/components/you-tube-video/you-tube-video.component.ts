@@ -19,6 +19,7 @@ export class YouTubeVideoComponent implements AfterViewInit {
   public reframed: Boolean = false;
   public videoEvent = undefined;
   id:number;
+  youtubeSubscriber: any;
   constructor(private siblingsService: SiblingsService) {
     YouTubeVideoComponent.id++;
     this.id=YouTubeVideoComponent.id;
@@ -27,21 +28,28 @@ export class YouTubeVideoComponent implements AfterViewInit {
 
   
   ngAfterViewInit() {
-    this.getIdEvent.emit(this.id);
-    if (!YouTubeVideoComponent.iniciado) {
-      window['onYouTubeIframeAPIReady'] = () => this.initVideo();
-      YouTubeVideoComponent.iniciado = true;
-    }
-    else {
-      this.initVideo();
-    }
-    this.reviewIfStartVideo();
+    setTimeout(() => {
+      this.youtubeSubscriber = this.siblingsService.youtubeReady$.subscribe(ready=>{
+        if (! ready) return;
+        this.getIdEvent.emit(this.id);
+        this.initVideo();
+        this.reviewIfStartVideo();
+      })
+    });
+    
+    // if (!YouTubeVideoComponent.iniciado) {
+    //   window['onYouTubeIframeAPIReady'] = () => this.initVideo();
+    //   YouTubeVideoComponent.iniciado = true;
+    // }
+    // else {
+    //   console.log(this.id);
+    //   this.initVideo();
+    // }
+    
   }
   reviewIfStartVideo() {
     this.siblingsService.showModal$.subscribe((data) => {
       if(data.id != this.id)return;
-      console.log(`${data.id} == ${this.id}`)
-      console.log(this.videoEvent)
       if (this.videoEvent) {
         (data.value)
           ? this.videoEvent.target.playVideo()
@@ -54,7 +62,6 @@ export class YouTubeVideoComponent implements AfterViewInit {
     this.reframed = false;
     if( ! window['YT']) return setTimeout(()=>{this.initVideo()}, 1000);
     window['YT'].ready(() => {
-      console.log(`${YouTubeVideoComponent.id} = ${this.id}`)
       this.player = new window['YT'].Player(`${this.video}_${this.id}`, {
         videoId: this.video,
         width: this.width,
