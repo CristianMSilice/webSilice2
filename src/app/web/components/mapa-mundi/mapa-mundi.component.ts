@@ -15,7 +15,17 @@ export class MapaMundiComponent implements OnInit {
   selectedCountry=undefined;
   sedes: Array <countryModel>= [
     {
-      svgName: 'panama', name: 'Panamá', photo: 'colombia.jpg', 
+      svgName: 'Chile', name: 'Chile', photo: 'chile.jpg', 
+      date:'Enero 20, 2001',
+      proyects:[
+        {name:'SIA',resume:'Instalación de PAU en españa',date:'2005'},
+        {name:'SMALLSHI',resume:'resolviendo la necesidad de',date:'2012'},
+        {name:'OMNITURNO',resume:'se instaló en x ciudad de',date:'2020'}
+      ],
+       choords: {left:undefined ,top:undefined}
+    },
+    {
+      svgName: 'Colombia', name: 'Colombia', photo: 'colombia.jpg', 
       date:'',
       proyects:[
         {name:'',resume:'',date:''}
@@ -23,7 +33,47 @@ export class MapaMundiComponent implements OnInit {
        choords: {left:undefined ,top:undefined}
     },
     {
-      svgName: 'colombia', name: 'Colombia', photo: 'colombia.jpg', 
+      svgName: 'Costa Rica', name: 'Costa Rica', photo: 'CostaRica.jpg', 
+      date:'Enero 20, 2001',
+      proyects:[
+        {name:'SIA',resume:'Instalación de PAU en españa',date:'2005'},
+        {name:'SMALLSHI',resume:'resolviendo la necesidad de',date:'2012'},
+        {name:'OMNITURNO',resume:'se instaló en x ciudad de',date:'2020'}
+      ],
+       choords: {left:undefined ,top:undefined}
+    },
+    {
+      svgName: 'Dominican Republic', name: 'Republica Dominicana', photo: 'dominicana.jpg', 
+      date:'Enero 20, 2001',
+      proyects:[
+        {name:'SIA',resume:'Instalación de PAU en españa',date:'2005'},
+        {name:'SMALLSHI',resume:'resolviendo la necesidad de',date:'2012'},
+        {name:'OMNITURNO',resume:'se instaló en x ciudad de',date:'2020'}
+      ],
+       choords: {left:undefined ,top:undefined}
+    },
+    {
+      svgName: 'El Salvador', name: 'El Salvador', photo: 'elSalvador.jpg', 
+      date:'Enero 20, 2001',
+      proyects:[
+        {name:'SIA',resume:'Instalación de PAU en españa',date:'2005'},
+        {name:'SMALLSHI',resume:'resolviendo la necesidad de',date:'2012'},
+        {name:'OMNITURNO',resume:'se instaló en x ciudad de',date:'2020'}
+      ],
+       choords: {left:undefined ,top:undefined}
+    },
+    {
+      svgName: 'Mexico', name: 'México', photo: 'mexico.jpg', 
+      date:'Enero 20, 2001',
+      proyects:[
+        {name:'SIA',resume:'Instalación de PAU en españa',date:'2005'},
+        {name:'SMALLSHI',resume:'resolviendo la necesidad de',date:'2012'},
+        {name:'OMNITURNO',resume:'se instaló en x ciudad de',date:'2020'}
+      ],
+       choords: {left:undefined ,top:undefined}
+    },
+    {
+      svgName: 'Panama', name: 'Panamá', photo: 'colombia.jpg', 
       date:'',
       proyects:[
         {name:'',resume:'',date:''}
@@ -31,7 +81,17 @@ export class MapaMundiComponent implements OnInit {
        choords: {left:undefined ,top:undefined}
     },
     {
-      svgName: 'spain', name: 'España', photo: 'colombia.jpg', 
+      svgName: 'Peru', name: 'Perú', photo: 'peru.jpg', 
+      date:'Enero 20, 2001',
+      proyects:[
+        {name:'SIA',resume:'Instalación de PAU en españa',date:'2005'},
+        {name:'SMALLSHI',resume:'resolviendo la necesidad de',date:'2012'},
+        {name:'OMNITURNO',resume:'se instaló en x ciudad de',date:'2020'}
+      ],
+       choords: {left:undefined ,top:undefined}
+    },
+    {
+      svgName: 'Spain', name: 'España', photo: 'colombia.jpg', 
       date:'Enero 20, 2001',
       proyects:[
         {name:'SIA',resume:'Instalación de PAU en españa',date:'2005'},
@@ -46,6 +106,7 @@ export class MapaMundiComponent implements OnInit {
     this.addCountries()
     setTimeout(()=>{
       if(this.selectedCountry == undefined)this.selectedCountry = this.sedes[Math.floor(Math.random()*(this.sedes.length))].svgName;
+      console.log(this.selectedCountry)
     },5000);
   }
 
@@ -71,7 +132,6 @@ export class MapaMundiComponent implements OnInit {
   }
 
   newSizeDotsContry(child) {
-    console.log(child)
     let web = document.querySelector('web');
     let name = child.getAttribute('title').toLowerCase()
     let size = child.getBoundingClientRect();
@@ -87,13 +147,15 @@ export class MapaMundiComponent implements OnInit {
         _size.top = _size.top - 8;
         _size.left = _size.left + 6;
         break;
-
+        case 'chile':
+          _size.left = _size.left + 31;
+          break;
       default:
         break;
     }
     let detailDataMapaMundi =document.querySelector('#DetailDataMapaMundi').getBoundingClientRect();
-    this.sedes.filter(e=>e.svgName==name)[0]['choords'].top = _size.top - detailDataMapaMundi.top ;
-    this.sedes.filter(e=>e.svgName==name)[0]['choords'].left = _size.left - detailDataMapaMundi.left ;
+    this.sedes.filter(e=>e.svgName.toLowerCase()==name)[0]['choords'].top = _size.top - detailDataMapaMundi.top ;
+    this.sedes.filter(e=>e.svgName.toLowerCase()==name)[0]['choords'].left = _size.left - detailDataMapaMundi.left ;
   
     _size = {
       top: _size.top  - websize.top,

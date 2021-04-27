@@ -20,7 +20,7 @@
     .mapaMundi {
         transform: scale(1);
         width: 100%;
-        height: 100%;
+        height: calc(100% - 4em);
     }
     .data {
         width: 100%;
@@ -37,8 +37,8 @@
             height: 450px;
             .country-content {
                 display: grid;
-                width: 100%;
-                height: calc(100% - 2em);
+                width: calc(100% - 6em);
+                height: calc(100% - 5.5em);
                 position: relative;
                 grid-template-columns: 150px 1fr;
                 transition: top 1s ease, left 1s ease, transform 1s ease, opacity 1s ease;
@@ -49,7 +49,7 @@
                 opacity: 0%;
                 &.selectedCountry {
                     opacity: 100%;
-                    transform: scale(1) translate(480px, 20px) !important;
+                    transform: scale(1) translate(470px, 10px) !important;
                     top: 0;
                 }
                 .country-photo {

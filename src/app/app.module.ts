@@ -108,7 +108,8 @@ const routes: Routes = [
     InlineSVGModule,
     SharedModule
   ],
-  declarations: [AppComponent,
+  declarations: [
+    AppComponent,
     BlogComponent,
     BlogFeaturesComponent,
     BlogHeaderComponent,
