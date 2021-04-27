@@ -26,6 +26,99 @@
         width: 100%;
         height: 100%;
         position: absolute;
+        .contry-container {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left: 0;
+            z-index: 3;
+            width: 600px;
+            height: 450px;
+            .country-content {
+                display: grid;
+                width: 100%;
+                height: calc(100% - 2em);
+                position: relative;
+                grid-template-columns: 150px 1fr;
+                transition: top 1s ease, left 1s ease, transform 1s ease, opacity 1s ease;
+                padding: 2em;
+                background-color: hsl(0deg 0% 100% / 75%);
+                box-shadow: 0px 0px 15px -5px black;
+                border-radius: 10px;
+                opacity: 0%;
+                &.selectedCountry {
+                    opacity: 100%;
+                    transform: scale(1) translate(480px, 20px) !important;
+                    top: 0;
+                }
+                .country-photo {
+                    background-color: black;
+                    box-shadow: 0px 0px 15px -5px gray;
+                    position: relative;
+                    width: 250px;
+                    height: 270px;
+                    border-radius: 30px;
+                    place-self: center;
+                    left: -50%;
+                    filter: hue-rotate(-10deg);
+                    overflow: hidden;
+                    img {
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                    }
+                }
+                .country-data-container {
+                    position: relative;
+                    width: 100%;
+                    height: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+                    .country-title {
+                        display: flex;
+                        justify-content: space-between;
+                        .contry-name {
+                            font-size: 2em;
+                            color: var(--headerTextColor);
+                            position: relative;
+                            left: -40px;
+                            text-shadow: 0px 0px 2px hsl(0deg 0% 50%);
+                            font-weight: bold;
+                        }
+                        .contry-date {
+                            font-size: 0.9em;
+                            color: hsl(0deg 0% 65%);
+                        }
+                    }
+                    .country-data {
+                        width: 100%;
+                        height: 75px;
+                        box-shadow: 0px 10px 11px -16px hsl(0deg 0% 40%);
+                        margin: 1em 0em;
+                        border-bottom-right-radius: 38px;
+                        display: grid;
+                        grid-template-columns: 1fr min-content;
+                        grid-template-rows: min-content 1fr;
+                        .name {
+                            color: var(--headerTextColor);
+                            font-weight: bold;
+                        }
+                        .resume {
+                            font-size: 0.8em;
+                            color: hsl(0deg 0% 50%);
+                            line-height: 1em;
+                            align-self: center;
+                        }
+                        .date {
+                            color: hsl(0, 0%, 80%);
+                            text-shadow: 0px 0px 2px hsl(0deg 0% 80%);
+                        }
+                    }
+                }
+            }
+        }
         .detail-country {
             position: absolute;
             top: 0;
@@ -102,12 +195,6 @@
                             place-self: center;
                         }
                     }
-                }
-                &.selectedCountry {
-                    left: 43%;
-                    opacity: 1;
-                    transform: scale(1) !important;
-                    top: 0;
                 }
             }
         }

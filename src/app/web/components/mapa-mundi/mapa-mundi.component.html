@@ -754,35 +754,57 @@
       title="Zimbabwe" id="ZW" class=" mapsvg-region"></path>
   </svg>
 
+    <!-- <div class="data" id="DetailDataMapaMundi"> -->
+    <!-- <section class="presencia content detail-country" *ngFor="let sede of sedes" (click)="pais()"> -->
+    <!-- <ng-container *ngIf="sede.choords.left"> -->
+    <!-- <div class="map-details grid-details" [ngClass]="{'selectedCountry':selectedCountry == sede.name }" [style.transform]="myTransform(sede.choords.left,sede.choords.top,0.1)" [ngStyle]="{'transform-origin': sede.choords.left + 'px '+ sede.choords.top + 'px'}"> -->
+
+    <!-- <div class="title title-details"> -->
+    <!-- <div class="title-inner"> -->
+    <!-- <strong>Sede {{sede.name}}</strong> -->
+    <!-- </div> -->
+    <!-- </div> -->
+    <!-- <div class="summary summary-details"> -->
+    <!-- <div class="image image-detail"><img src="assets/images/presencia/{{sede.photo}}" alt="Equipo {{sede.name}}" /> -->
+    <!-- </div> -->
+    <!-- <div class="summary-item-list-container"> -->
+    <!-- <ul class="items-list summary-item-list"> -->
+    <!-- <li *ngFor="let itemCountry of sede.proyects"> -->
+    <!-- <span class="text">{{itemCountry.name}}</span> -->
+    <!-- </li> -->
+    <!-- </ul> -->
+    <!-- </div> -->
+
+    <!-- </div> -->
+    <!-- </div> -->
+    <!-- </ng-container> -->
+    <!-- </section> -->
+    <!--  <div class="dotCountry" *ngFor="let sede of sedes" (click)="pais(sede.name)" [style.top.px]="sede.choords.top" [style.left.px]="sede.choords.left"></div> -->
+    <!-- </div> -->
+
     <div class="data" id="DetailDataMapaMundi">
-        <section class="presencia content detail-country" *ngFor="let sede of sedes" (click)="pais()">
+        <section class="contry-container" *ngFor="let sede of sedes" (click)="pais()">
             <ng-container *ngIf="sede.choords.left">
-                <div class="map-details grid-details" [ngClass]="{'selectedCountry':selectedCountry == sede.name }" [style.transform]="myTransform(sede.choords.left,sede.choords.top,0.1)" [ngStyle]="{'transform-origin': sede.choords.left + 'px '+ sede.choords.top + 'px'}">
+                <div class="country-content" [ngClass]="{'selectedCountry':selectedCountry == sede.name }" [style.transform]="myTransform(sede.choords.left,sede.choords.top ,0.08)" [ngStyle]="{'transform-origin': sede.choords.left + 'px '+ sede.choords.top + 'px'}">
 
-                    <div class="title title-details">
-                        <img src="assets/images/presencia/{{sede.image}}" alt="{{sede.text}}" />
-                        <div class="title-inner">
-                            <a href="{{sede.link}}"><strong>Sede {{sede.text}}</strong></a>
-                        </div>
+                    <div class="country-photo">
+                        <img src="/assets/images/sedes/flags/{{sede.photo}}" alt="{{sede.name}}">
                     </div>
-                    <div class="summary summary-details">
-                        <div class="image image-detail"><img src="assets/images/presencia/{{sede.team.userimage}}" alt="Equipo {{sede.team.userName}}" />
+                    <div class="country-data-container">
+                        <div class="country-title">
+                            <div class="contry-name">{{sede.name}}</div>
+                            <div class="contry-date">{{sede.date}}</div>
                         </div>
-                        <div class="summary-item-list-container">
-                            <ul class="items-list summary-item-list">
-                                <li *ngFor="let itemCountry of sede.contry">
-                                    <!-- <span class="number"></span> -->
-                                    <span class="text"><strong>{{itemCountry.item}}</strong> {{itemCountry.text}}</span>
-                                </li>
-                            </ul>
+                        <div class="country-data" *ngFor="let proyect of sede.proyects">
+                            <div class="name">{{proyect.name}}</div>
+                            <div class="date">{{proyect.date}}</div>
+                            <div class="resume">{{proyect.resume}}</div>
                         </div>
-
                     </div>
                 </div>
             </ng-container>
         </section>
         <div class="dotCountry" *ngFor="let sede of sedes" (click)="pais(sede.name)" [style.top.px]="sede.choords.top" [style.left.px]="sede.choords.left"></div>
     </div>
-
 
 </div>
