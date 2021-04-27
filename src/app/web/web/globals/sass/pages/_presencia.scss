@@ -2,7 +2,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-
     &-wrapper {
         justify-content: flex-start;
         position: relative;
@@ -11,8 +10,10 @@
             repeat: no-repeat;
             position: center 100px;
         }
-
-        .row, .row-inner { height: auto; }
+        .row,
+        .row-inner {
+            height: auto;
+        }
     }
     .stats {
         position: relative;
@@ -60,7 +61,8 @@
                 size: 1.9375rem;
                 weight: 700;
             }
-            color: $c-black;
+            // color: $c-black;
+            color: var(--headerTextColor);
         }
         .text {
             font-size: .875rem;
@@ -169,8 +171,9 @@
                     background-color: $c-white;
                     // box-shadow: 0 0 55px rgba($c-black, .1);
                     border-bottom: 1px solid rgba(85, 85, 85, 0.1);
-
-                    &:last-child { border-bottom: 0; }
+                    &:last-child {
+                        border-bottom: 0;
+                    }
                 }
                 .number {
                     @include flex-all($justify: center, $align: center);
@@ -199,6 +202,7 @@
         }
     }
 }
+
 .dotCountry {
     --size-dot-country: 8px;
     --border-dot-country: 3px;
@@ -232,7 +236,6 @@
         display: flex;
         justify-content: center;
     }
-
     .presencia .stats .title {
         margin: 0.5rem;
     }
@@ -240,15 +243,16 @@
         width: 80%;
         // transform: scale(0.7);
         // transform-origin: top;
-
         li {
             padding: 1rem 0;
             font-size: .65rem;
-            height:73px;
-
-            .number { font-size: 1.9375em; }
-
-            .text{ font-size: 1em; }
+            height: 73px;
+            .number {
+                font-size: 1.9375em;
+            }
+            .text {
+                font-size: 1em;
+            }
         }
     }
     .presencia .map-details {

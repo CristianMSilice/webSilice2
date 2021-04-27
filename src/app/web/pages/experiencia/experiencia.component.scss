@@ -15,10 +15,8 @@
 
 .h100 {
     height: 100%;
-
-    @media all and (min-width: 1600px) { 
+    @media all and (min-width: 1600px) {
         height: 100px;
-
         &.absolute {
             top: -144px;
         }
@@ -26,12 +24,9 @@
 }
 
 .presencia .stats {
-    // max-width: 790px;
-    // margin: auto;
-    // display: grid;
-    // grid-template-columns: max-content max-content;
     .title {
         place-self: center;
+        padding-right: 3em;
     }
     .items-list {
         transform-origin: center;
