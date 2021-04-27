@@ -15,12 +15,19 @@ export class MapaMundiComponent implements OnInit {
   selectedCountry=undefined;
   sedes: Array <countryModel>= [
     {
+      svgName: 'Bolivia', name: 'Bolivia', photo: 'bolivia.jpg', 
+      date:' ',
+      proyects:[
+        {name:'',resume:'',date:''},
+      ],
+       choords: {left:undefined ,top:undefined}
+    },
+    {
       svgName: 'Chile', name: 'Chile', photo: 'chile.jpg', 
       date:'Enero 20, 2001',
       proyects:[
-        {name:'SIA',resume:'Instalación de PAU en españa',date:'2005'},
-        {name:'SMALLSHI',resume:'resolviendo la necesidad de',date:'2012'},
-        {name:'OMNITURNO',resume:'se instaló en x ciudad de',date:'2020'}
+        {name:'Evertec ',resume:'',date:''},
+        
       ],
        choords: {left:undefined ,top:undefined}
     },
@@ -28,7 +35,9 @@ export class MapaMundiComponent implements OnInit {
       svgName: 'Colombia', name: 'Colombia', photo: 'colombia.jpg', 
       date:'',
       proyects:[
-        {name:'',resume:'',date:''}
+        {name:'CCB',resume:'',date:''},
+        {name:'ETB',resume:'',date:''},
+        {name:'Alfred Itto',resume:'',date:''}
       ],
        choords: {left:undefined ,top:undefined}
     },
@@ -36,9 +45,9 @@ export class MapaMundiComponent implements OnInit {
       svgName: 'Costa Rica', name: 'Costa Rica', photo: 'CostaRica.jpg', 
       date:'Enero 20, 2001',
       proyects:[
-        {name:'SIA',resume:'Instalación de PAU en españa',date:'2005'},
-        {name:'SMALLSHI',resume:'resolviendo la necesidad de',date:'2012'},
-        {name:'OMNITURNO',resume:'se instaló en x ciudad de',date:'2020'}
+        {name:'PAU-Evertec',resume:'',date:''},
+        {name:'',resume:'',date:''},
+        {name:'',resume:'',date:''}
       ],
        choords: {left:undefined ,top:undefined}
     },
@@ -46,9 +55,9 @@ export class MapaMundiComponent implements OnInit {
       svgName: 'Dominican Republic', name: 'Republica Dominicana', photo: 'dominicana.jpg', 
       date:'Enero 20, 2001',
       proyects:[
-        {name:'SIA',resume:'Instalación de PAU en españa',date:'2005'},
-        {name:'SMALLSHI',resume:'resolviendo la necesidad de',date:'2012'},
-        {name:'OMNITURNO',resume:'se instaló en x ciudad de',date:'2020'}
+        {name:'SDCC',resume:'Santo Domingo Country Club',date:''},
+        {name:'CARDNET',resume:'',date:''},
+        {name:'EDESUR',resume:'',date:''}
       ],
        choords: {left:undefined ,top:undefined}
     },
@@ -56,27 +65,27 @@ export class MapaMundiComponent implements OnInit {
       svgName: 'El Salvador', name: 'El Salvador', photo: 'elSalvador.jpg', 
       date:'Enero 20, 2001',
       proyects:[
-        {name:'SIA',resume:'Instalación de PAU en españa',date:'2005'},
-        {name:'SMALLSHI',resume:'resolviendo la necesidad de',date:'2012'},
-        {name:'OMNITURNO',resume:'se instaló en x ciudad de',date:'2020'}
+        {name:'Smallshi ',resume:'Punto de Venta y gestión de inventarios POS by Smallshi para Tigo',date:''},
       ],
        choords: {left:undefined ,top:undefined}
     },
     {
       svgName: 'Mexico', name: 'México', photo: 'mexico.jpg', 
-      date:'Enero 20, 2001',
+      date:'2019',
       proyects:[
-        {name:'SIA',resume:'Instalación de PAU en españa',date:'2005'},
-        {name:'SMALLSHI',resume:'resolviendo la necesidad de',date:'2012'},
-        {name:'OMNITURNO',resume:'se instaló en x ciudad de',date:'2020'}
+        {name:'Becky',resume:'',date:''},
+        {name:'SIMCA',resume:'',date:''},
+        {name:'',resume:'Asistente Virtual del Instituto de Becas y Créditos en Sonora',date:''}
       ],
        choords: {left:undefined ,top:undefined}
     },
     {
-      svgName: 'Panama', name: 'Panamá', photo: 'colombia.jpg', 
-      date:'',
+      svgName: 'Panama', name: 'Panamá', photo: 'panama.jpg', 
+      date:'Sep, 2000',
       proyects:[
-        {name:'',resume:'',date:''}
+        {name:'PAU ',resume:'',date:''},
+        {name:'Multibank ',resume:'',date:''},
+        {name:'Vale Panamá ',resume:'',date:''},
       ],
        choords: {left:undefined ,top:undefined}
     },
@@ -84,19 +93,19 @@ export class MapaMundiComponent implements OnInit {
       svgName: 'Peru', name: 'Perú', photo: 'peru.jpg', 
       date:'Enero 20, 2001',
       proyects:[
-        {name:'SIA',resume:'Instalación de PAU en españa',date:'2005'},
-        {name:'SMALLSHI',resume:'resolviendo la necesidad de',date:'2012'},
-        {name:'OMNITURNO',resume:'se instaló en x ciudad de',date:'2020'}
+        {name:'',resume:'',date:''},
+        {name:'',resume:'',date:''},
+        {name:'',resume:'',date:''}
       ],
        choords: {left:undefined ,top:undefined}
     },
     {
-      svgName: 'Spain', name: 'España', photo: 'colombia.jpg', 
-      date:'Enero 20, 2001',
+      svgName: 'Spain', name: 'España', photo: 'españa.jpg', 
+      date:' 2001',
       proyects:[
-        {name:'SIA',resume:'Instalación de PAU en españa',date:'2005'},
-        {name:'SMALLSHI',resume:'resolviendo la necesidad de',date:'2012'},
-        {name:'OMNITURNO',resume:'se instaló en x ciudad de',date:'2020'}
+        {name:'Asiste Virtual Carolina',resume:'Plataforma ganadora de los premios CNIS a la mejor solución de Participación Ciudadana',date:''},
+        {name:'Solución señalética ',resume:'Solución de señalética diseñada junto a Telefónica e Iurban para el Hospital Perpetuo Socorro de Las Palmas de Gran Canaria ',date:''},
+        {name:'Gestión de Turnos y Cita Previa',resume:'Gestión de Turnos y Cita Previa junto a Telefónica e Iurban para el Servicio Extremeño Público de empleo',date:''}
       ],
        choords: {left:undefined ,top:undefined}
     },   

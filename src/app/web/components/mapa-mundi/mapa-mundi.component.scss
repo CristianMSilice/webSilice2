@@ -20,7 +20,7 @@
     .mapaMundi {
         transform: scale(1);
         width: 100%;
-        height: calc(100% - 4em);
+        height: calc(100% - 8em);
     }
     .data {
         width: 100%;
@@ -34,22 +34,24 @@
             left: 0;
             z-index: 3;
             width: 600px;
-            height: 450px;
+            --contry-container-heigth: 450px;
+            height: var(--contry-container-heigth);
             .country-content {
                 display: grid;
                 width: calc(100% - 6em);
                 height: calc(100% - 5.5em);
                 position: relative;
                 grid-template-columns: 150px 1fr;
+                grid-template-rows: 50px 1fr;
+                padding: 10px;
                 transition: top 1s ease, left 1s ease, transform 1s ease, opacity 1s ease;
-                padding: 2em;
                 background-color: hsl(0deg 0% 100% / 75%);
                 box-shadow: 0px 0px 15px -5px black;
                 border-radius: 10px;
                 opacity: 0%;
                 &.selectedCountry {
                     opacity: 100%;
-                    transform: scale(1) translate(470px, 10px) !important;
+                    transform: scale(1) translate(500px, 10px) !important;
                     top: 0;
                 }
                 .country-photo {
@@ -63,10 +65,36 @@
                     left: -50%;
                     filter: hue-rotate(-10deg);
                     overflow: hidden;
+                    grid-column: 1/2;
+                    grid-row: 2/3;
                     img {
                         width: 100%;
                         height: 100%;
                         object-fit: cover;
+                    }
+                }
+                .country-title {
+                    display: flex;
+                    grid-column: 1/3;
+                    grid-row: 1/2;
+                    justify-content: space-between;
+                    position: absolute;
+                    width: 100%;
+                    place-self: center;
+                    .contry-name {
+                        font-size: 1.8em;
+                        padding-left: 1em;
+                        color: var(--headerTextColor);
+                        position: relative;
+                        text-shadow: 0px 0px 2px hsl(0deg 0% 50%);
+                        font-weight: bold;
+                    }
+                    .contry-date {
+                        display: grid;
+                        font-size: 0.9em;
+                        color: hsl(0deg 0% 65%);
+                        align-content: center;
+                        flex-shrink: 0
                     }
                 }
                 .country-data-container {
@@ -76,44 +104,39 @@
                     display: flex;
                     flex-direction: column;
                     justify-content: space-between;
-                    .country-title {
-                        display: flex;
-                        justify-content: space-between;
-                        .contry-name {
-                            font-size: 2em;
-                            color: var(--headerTextColor);
-                            position: relative;
-                            left: -40px;
-                            text-shadow: 0px 0px 2px hsl(0deg 0% 50%);
-                            font-weight: bold;
-                        }
-                        .contry-date {
-                            font-size: 0.9em;
-                            color: hsl(0deg 0% 65%);
-                        }
-                    }
-                    .country-data {
+                    grid-column: 2/3;
+                    grid-row: 2/3;
+                    .country-data-content {
                         width: 100%;
-                        height: 75px;
-                        box-shadow: 0px 10px 11px -16px hsl(0deg 0% 40%);
-                        margin: 1em 0em;
-                        border-bottom-right-radius: 38px;
-                        display: grid;
-                        grid-template-columns: 1fr min-content;
-                        grid-template-rows: min-content 1fr;
-                        .name {
-                            color: var(--headerTextColor);
-                            font-weight: bold;
-                        }
-                        .resume {
-                            font-size: 0.8em;
-                            color: hsl(0deg 0% 50%);
-                            line-height: 1em;
-                            align-self: center;
-                        }
-                        .date {
-                            color: hsl(0, 0%, 80%);
-                            text-shadow: 0px 0px 2px hsl(0deg 0% 80%);
+                        height: calc(var(--contry-container-heigth) - 10em);
+                        position: relative;
+                        overflow-y: auto;
+                        max-width: 100%;
+                        top: 1em;
+                        .country-data {
+                            width: 100%;
+                            height: 75px;
+                            box-shadow: 0px 10px 11px -16px hsl(0deg 0% 40%);
+                            margin: 1em 0em;
+                            border-bottom-right-radius: 38px;
+                            display: grid;
+                            grid-template-columns: 1fr min-content;
+                            grid-template-rows: min-content 1fr;
+                            .name {
+                                color: var(--headerTextColor);
+                                font-weight: bold;
+                                line-height: 1.1em;
+                            }
+                            .resume {
+                                font-size: 0.8em;
+                                color: hsl(0deg 0% 50%);
+                                line-height: 1em;
+                                align-self: center;
+                            }
+                            .date {
+                                color: hsl(0, 0%, 80%);
+                                text-shadow: 0px 0px 2px hsl(0deg 0% 80%);
+                            }
                         }
                     }
                 }
