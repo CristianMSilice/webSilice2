@@ -6,12 +6,11 @@
     height: 100%;
 }
 
-.item { 
-    flex: 1; 
+.item {
+    flex: 1;
     display: block;
     height: 100%;
     cursor: pointer;
-
     .item-inner {
         display: flex;
         justify-content: center;
@@ -21,7 +20,6 @@
         width: 100%;
         height: 100%;
         background-color: #fff;
-
         &:before {
             content: "";
             position: absolute;
@@ -29,18 +27,16 @@
             right: 0;
             width: 1px;
             height: 20%;
-            background-color: rgba(0,0,0,.2);
+            background-color: rgba(0, 0, 0, .2);
             transform: translateY(-50%);
         }
     }
-
     &:hover,
     &:focus {
         .item-svg svg {
             fill: #000;
         }
     }
-
     &.active {
         .item-content {
             transform: translateY(0);
@@ -49,7 +45,7 @@
 }
 
 .item-svg {
-    svg { 
+    svg {
         fill: var(--headerTextColor);
         transition: fill .5s;
     }
@@ -63,14 +59,12 @@
     height: 93vh;
     overflow-y: auto;
     color: white;
-    background-color: rgba(0,0,0,.9);
+    background-color: hsl(0deg 0% 26% / 90%);
     transform: translateY(calc(100% + 1px));
     transition: transform .5s;
-
     .item-content-inner {
         padding: 2rem;
     }
-
     .title {
         margin: 0;
         padding: 0 0 2rem;
@@ -86,27 +80,21 @@
     .option {
         margin: 0 0 2rem;
     }
-
     .option-text {
         line-height: 1.5;
-
-        > * {
+        >* {
             display: block;
         }
-
         .first-line {
             font-size: 1rem;
         }
-
         .second-line {
             font-size: .875rem;
             opacity: .6;
         }
     }
-
     .option-checkbox {
         margin-bottom: .5rem;
-
         .toggle {
             position: relative;
             width: 110px;
@@ -117,7 +105,6 @@
             border-radius: 30px;
             cursor: pointer;
             background-color: black;
-
             &:before {
                 content: "Off";
                 position: absolute;
@@ -126,7 +113,6 @@
                 color: white;
                 transform: translateY(-50%);
             }
-
             span {
                 display: flex;
                 justify-content: center;
@@ -141,14 +127,13 @@
                 background-color: var(--headerTextColor);
                 transition: all 0.2s cubic-bezier(0.8, 0.4, 0.3, 1.25), background 0.15s ease;
             }
-
             &.active {
-                span { 
+                span {
                     background: white;
-                    transform: translateX(50px); 
+                    transform: translateX(50px);
                 }
             }
-        }      
+        }
     }
 }
 
@@ -157,7 +142,6 @@
         .image {
             display: flex;
             align-items: center;
-
             img {
                 display: block;
                 flex: none;
@@ -166,16 +150,13 @@
                 height: 20vh;
                 object-fit: cover;
             }
-
             .image-caption {
                 flex: 1;
-                padding: 0 1rem; 
-    
-                > * { 
-                    display: block; 
+                padding: 0 1rem;
+                >* {
+                    display: block;
                     letter-spacing: .1em;
                 }
-
                 .first-line {
                     min-height: 50px;
                     font: {
@@ -183,7 +164,6 @@
                         weight: 500;
                     }
                 }
-
                 .second-line {
                     margin-bottom: .125rem;
                     font: {
@@ -191,7 +171,6 @@
                         weight: 300;
                     }
                 }
-
                 .third-line {
                     font: {
                         size: .75rem;
@@ -202,7 +181,6 @@
             }
         }
     }
-
     .audio-option {
         display: flex;
         justify-content: space-between;
@@ -213,19 +191,15 @@
         padding: 1rem;
         color: white;
         background-color: #1E1E1E;
-
         .text {
             flex: 1;
-
-            > * {
+            >* {
                 display: block;
             }
-
             .first-line {
                 font-weight: 500;
                 letter-spacing: .125em;
             }
-
             .second-line {
                 font: {
                     size: .875rem;
@@ -234,28 +208,28 @@
                 opacity: .5;
             }
         }
-
         .btn-audio {
             flex: none;
             border: 0;
             background-color: transparent;
             cursor: pointer;
-
             .btn-audio-circle {
                 fill: white;
                 opacity: .7;
                 transition: fill .5s;
             }
-
             .btn-audio-play {
                 fill: black;
                 transition: fill .5s;
             }
-
             &:hover,
             &:focus {
-                .btn-audio-circle { fill: var(--headerTextColor); }
-                .btn-audio-play { fill: white; }
+                .btn-audio-circle {
+                    fill: var(--headerTextColor);
+                }
+                .btn-audio-play {
+                    fill: white;
+                }
             }
         }
     }
@@ -264,7 +238,6 @@
 .videos {
     .video {
         margin: 0 0 1rem;
-
         iframe,
         video {
             display: block;
@@ -273,7 +246,6 @@
             opacity: .5;
             transition: all .5s;
         }
-
         &.active {
             iframe,
             video {
@@ -281,7 +253,6 @@
                 opacity: 1;
             }
         }
-
         &:hover,
         &:focus {
             iframe,
@@ -296,7 +267,6 @@
     .link {
         position: relative;
         margin-bottom: 1rem;
-
         &:hover,
         &:focus {
             .image img {
@@ -304,12 +274,10 @@
             }
         }
     }
-
     .image {
         display: flex;
         align-items: center;
         height: 100px;
-
         img {
             display: block;
             width: 100px;
@@ -319,20 +287,18 @@
             object-fit: cover;
             transition: all .5s;
         }
-
         .image-caption {
-            > * { 
-                display: block; 
+            >* {
+                display: block;
                 letter-spacing: .125em;
             }
-
-            .first-line { font-weight: 600; }
-
+            .first-line {
+                font-weight: 600;
+            }
             a {
                 font-size: .875rem;
                 color: white;
                 text-decoration: none;
-
                 &:hover,
                 &:focus {
                     color: var(--headerTextColor);

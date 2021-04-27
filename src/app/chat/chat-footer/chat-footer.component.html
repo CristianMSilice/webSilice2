@@ -17,16 +17,27 @@
 
             </div>
         </div>
-        <div class="item-content settings">
+        <div class="item-content links">
             <div class="item-content-inner">
-                <h2 class="title">Nuestras sedes</h2>
-
-                <div class="option" *ngFor="let sede of sedes">
+                <h2 class="title">¡VE DIRECTO A NUESTRAS SEDES!</h2>
+                <div class="links-list">
+                    <div class="link active" *ngFor="let sede of sedes">
+                        <figure class="image">
+                            <img src="{{sede.image}}" alt="">
+                            <figcaption class="image-caption">
+                                <span class="first-line">SILICE {{sede.name}}</span>
+                                <a [routerLink]="sede.link" routerLinkActive="active" target="_self">{{sede.city}}</a>
+                            </figcaption>
+                        </figure>
+                    </div>
+                </div>
+                <!-- 
+                <div class="option" >
+                    
                     <div class="actions">
                         <a class="background" [routerLink]="sede.link" routerLinkActive="active" target="_self" [style.background-image]="'url('+ sede.image +')'"></a>
                     </div>
-                </div>
-
+                </div> -->
             </div>
         </div>
     </div>
@@ -129,7 +140,6 @@
                             </figcaption>
                         </figure>
                     </div>
-
                 </div>
             </div>
         </div>

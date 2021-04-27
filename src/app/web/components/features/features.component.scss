@@ -1,37 +1,100 @@
-    .bk-fc-vi-hidden {
-        backface-visibility: hidden;
+.item {
+    filter: drop-shadow(0px 0px 8px hsl(0, 0%, 91%));
+    height: 200px;
+    .bk-fc {
         transition: transform 400ms ease-in-out;
-        transform: rotateY(0deg);
         position: relative;
-        &.selected {
+        backface-visibility: hidden;
+        &.bk-fc0 {
+            transform: rotateY(0deg);
+        }
+        &.bk-fc1 {
             transform: rotateY(180deg);
         }
-        &.item-back-face {
-            transform: rotateY(180deg);
-            position: relative;
-            top: -175px;
+        &.backfaceData {
+            font-size: 0.75em;
+            line-height: 1.1em;
+            text-align: center;
             .name {
-                transform: rotateY(180deg);
+                font-size: 1em;
             }
-            &.selected {
-                transform: rotateY(0deg);
-                .name {
-                    transform: rotateY(0deg);
+        }
+    }
+    .item-summary {
+        clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
+        background-color: hsl(0deg 0% 100%);
+        position: relative;
+        width: 100%;
+        height: 100%;
+        transform: rotateY(0deg);
+        transition: transform 400ms ease-in-out;
+        .face {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            &.d-flex {
+                display: flex;
+                flex-direction: column;
+            }
+            .icon {
+                margin: 1.5em auto 0em auto;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            .name {
+                place-self: center;
+                justify-self: center;
+            }
+            .shadow {
+                width: 50%;
+                height: 38%;
+                float: right;
+                shape-margin: 5px;
+                &.shadow-top-left,
+                &.shadow-bottom-left {
+                    float: left;
+                }
+                &.shadow-top-right {
+                    shape-outside: polygon(0% 0, 100% 0, 100% 100%);
+                }
+                &.shadow-top-left {
+                    shape-outside: polygon(100% 0%, 0% 0%, 0% 100%);
+                }
+                &.shadow-bottom-right {
+                    shape-outside: polygon(64% 100%, 100% 100%, 100% 0%);
+                    height: 62%;
+                }
+                &.shadow-bottom-left {
+                    shape-outside: polygon(36% 100%, 0 100%, 0 0%);
+                    height: 62%;
                 }
             }
-            .backfaceData {
-                font-size: 0.8em;
-                line-height: 1.1em;
-                text-align: center;
+        }
+        &.selected {
+            transform: rotateY(360deg);
+            .bk-fc {
+                &.bk-fc0 {
+                    transform: rotateY(180deg);
+                }
+                &.bk-fc1 {
+                    transform: rotate(0deg);
+                    .name {
+                        transform: rotate(0deg);
+                    }
+                }
             }
         }
     }
-    
-    @media (max-width:1600px) and (min-width:768px) {
-        .item-summary.bk-fc-vi-hidden {
-            top: 40px;
-            &.item-back-face {
-                top: calc(0px - 150px + 40px);
-            }
+}
+
+@media (max-width:1600px) and (min-width:768px) {
+    .item-summary.bk-fc-vi-hidden {
+        top: 40px;
+        &.item-back-face {
+            top: calc(0px - 150px + 40px);
         }
     }
+}

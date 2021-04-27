@@ -1,5 +1,5 @@
 <nav class="primary-menu" aria-labelledby="primary_menu_header">
-    <button class="toogle-icon-menu" >
+    <button class="toogle-icon-menu">
         <!-- onClick={() => setOpen(!open)} -->
         <div id="hamburger" > 
             <!-- class={`hamburglar ${open ? 'is-open' : 'is-closed'}`} -->
@@ -36,13 +36,19 @@
             <a routerLink="nosotros">Nosotros</a>
             <ul class="sub-menu">
                 <li>
+                    <a routerLink="nosotros/equipo">Equipo</a>
+                </li>
+                <li>
+                    <a routerLink="nosotros/presencia">Presencia</a>
+                </li>
+                <li>
+                    <a routerLink="nosotros/sedes">Sedes</a>
+                </li>
+                <li>
                     <a routerLink="nosotros">Somos</a>
                 </li>
                 <li>
                     <a routerLink="nosotros/trayectoria">Trayectoria</a>
-                </li>
-                <li>
-                    <a routerLink="nosotros/equipo">Equipo</a>
                 </li>
             </ul>
         </li>
@@ -59,18 +65,7 @@
             <a routerLink="blog">Blog</a>
         </li>
         <li class="menu-item-has-children">
-            <a routerLink="experiencia">Experiencia</a>
-            <ul class="sub-menu">
-                <li>
-                    <a routerLink="experiencia">Presencia</a>
-                </li>
-                <li>
-                    <a routerLink="experiencia/sedes">Sedes</a>
-                </li>
-                <li>
-                    <a routerLink="experiencia/contacto">Contacto</a>
-                </li>
-            </ul>
-        </li> 
+            <a routerLink="experiencia/contacto">Contacto</a>
+        </li>
     </ul>
 </nav>

@@ -14,7 +14,7 @@ export class MapaMundiComponent implements OnInit {
   selectedCountry=undefined;
   sedes = [
     {
-      name: 'panama', text: 'Panamá', image: 'flag-panama.png', link: 'experiencia/sedes',
+      name: 'panama', text: 'Panamá', image: 'flag-panama.png', link: 'nosotros/sedes',
       team: { userimage: 'equipo-jonatan.jpg', userName: 'Jonatan' },
       contry: [
         { item: '+10 años', text: 'proyectos de transformación Digital' },
@@ -24,7 +24,7 @@ export class MapaMundiComponent implements OnInit {
        choords: {left:undefined ,top:undefined}
     },
       {
-        name: 'colombia', text: 'Colombia', image: 'flag-colombia.png', link: 'experiencia/sedes',
+        name: 'colombia', text: 'Colombia', image: 'flag-colombia.png', link: 'nosotros/sedes',
         team: { userimage: 'equipo-alvaro.jpg', userName: 'Alvaro' },
         contry: [
           { item: '+ de 300', text: 'mil pacientes Covid atendidos' },
@@ -34,7 +34,7 @@ export class MapaMundiComponent implements OnInit {
         choords: {left: undefined ,top:undefined}
       },
       {
-        name: 'spain', text: 'España', image: 'flag-spain.png', link: 'experiencia/sedes',
+        name: 'spain', text: 'España', image: 'flag-spain.png', link: 'nosotros/sedes',
         team: { userimage: 'equipo-juan.jpg', userName: 'Jonatan' },
         contry: [
           { item: '+ de 20', text: 'años de trayectoria' },

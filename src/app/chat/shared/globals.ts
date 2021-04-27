@@ -22,8 +22,14 @@ export class GlobalService {
     public static ICON_CANCEL= './assets/cancel.png';
     
     //public static TXT_INICIAL='Hola, soy Eva de Adiper.  ¿Cómo puedo ayudarle?  Le agradecería que me facilite un nickname para dirigirme más fácilmente a usted.';
-    public static TXT_INICIAL=`Hola 🤩 Soy PAU, antes de que empecemos a hablar, dime ¿cuál es tu nombre?.`;
-    // *$MARCO$*:{
+    public static TXT_INICIAL=`
+    *$MARCO$*:{
+      "superMensaje":{
+          "titulo":"Hola Bienvenido 🤩",
+          "mensaje":"Soy PAU, estoy aqui para ayudarte dime tu nombre o como gustarias que te llame 😊",
+          "Image":"https://silice.si/temp/avPau/1.jpg"
+        }
+      }`;
     //   "button":[
     //     {"color":"#3366cc","texto":"Hidden","accion":"Cristian","hidden":"true"},
     //     {"color":"#3366cc","texto":"Normal","accion":"Cristian"}
@@ -32,11 +38,7 @@ export class GlobalService {
     //     {"texto":"conoce a Alfredito","accion":"Alfredito"},
     //     {"texto":"Iniciemos una conversacion","accion":"nueva conversacion"}
     //   ],
-    //   "superMensaje":{
-    //     "titulo":"Prueba",
-    //     "mensaje":"Prueba",
-    //     "Image":"https://silice.si/temp/business/templatesBusiness_1_cajaAhorrosTarjetaMetrocopia8.png"
-    //   },
+
     //   "actions":[
     //     {
     //       "image":"https://as.com/deporteyvida/imagenes/2018/02/28/portada/1519830649_122505_1519830777_noticia_normal.jpg",
