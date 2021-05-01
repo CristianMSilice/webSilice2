@@ -1,4 +1,4 @@
-import { BrowserModule } from '@angular/platform-browser'
+import { BrowserModule, Title } from '@angular/platform-browser'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { NgModule } from '@angular/core'
 import { ElementModule } from './element.module'
@@ -163,7 +163,8 @@ const routes: Routes = [
     },
     EncsessionService,
     MailService,
-    SiblingsService
+    SiblingsService,
+    Title
   ],
   bootstrap: [AppComponent],
   exports:[]

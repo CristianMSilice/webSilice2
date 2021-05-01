@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core'
+import { Title } from '@angular/platform-browser'
 
 @Component({
   selector: 'app-root',
@@ -134,6 +135,12 @@ export class AppComponent implements OnInit {
     },
     "retina_detect": true
   };
+
+  public constructor(private titleService: Title) { }
+
+  public setTitle(newTitle: string) {
+    this.titleService.setTitle(newTitle);
+  }
   
   ngOnInit() {
     this.loadYT_API()
