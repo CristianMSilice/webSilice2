@@ -4,6 +4,8 @@
 
 export const environment = {
   production: false,
+  mobileURL: "http://silicemobile.smallshi.com/" // TEST
+  
 }
 
 /*

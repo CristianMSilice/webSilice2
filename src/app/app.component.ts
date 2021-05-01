@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core'
-
+import { environment } from './../environments/environment';
 @Component({
   selector: 'app-root',
   template: `
@@ -10,6 +10,9 @@ import { Component, OnInit } from '@angular/core'
   `,
 })
 export class AppComponent implements OnInit {
+  constructor(){
+    if(window.innerWidth<769)location.replace(environment.mobileURL);
+  }
   public theme = 'red'
   public YT: any;
   width: number = 100;
