@@ -103,7 +103,7 @@ export class MapaMundiComponent implements OnInit {
       svgName: 'Spain', name: 'España', photo: 'españa.jpg', 
       date:' 2001',
       proyects:[
-        {name:'Asiste Virtual Carolina',resume:'Plataforma ganadora de los premios CNIS a la mejor solución de Participación Ciudadana',date:''},
+        {name:'Asistente Virtual Carolina',resume:'Plataforma ganadora de los premios CNIS a la mejor solución de Participación Ciudadana',date:''},
         {name:'Solución señalética ',resume:'Solución de señalética diseñada junto a Telefónica e Iurban para el Hospital Perpetuo Socorro de Las Palmas de Gran Canaria ',date:''},
         {name:'Gestión de Turnos y Cita Previa',resume:'Gestión de Turnos y Cita Previa junto a Telefónica e Iurban para el Servicio Extremeño Público de empleo',date:''}
       ],

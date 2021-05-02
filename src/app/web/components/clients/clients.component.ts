@@ -11,7 +11,7 @@ export class ClientsComponent implements AfterViewInit {
   clients: { 'photo': string }[] = [
     { photo: 'logo (1).png' },
     { photo: 'logo (2).png' },
-    { photo: 'logo (3).png' },
+    { photo: 'nuevo_logo2.png' },
     { photo: 'logo (4).png' },
     { photo: 'logo (5).png' },
     { photo: 'logo (6).png' },

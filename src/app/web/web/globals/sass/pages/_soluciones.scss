@@ -40,9 +40,11 @@
         }
         &-img {
             @include flex-all(column, center, center);
+            height: 100%;
             img {
                 width: 90%;
-                object-fit: cover;
+                height: 100%;
+                object-fit: contain;
             }
         }
         &-row {
@@ -86,6 +88,8 @@
                     padding: 1rem 0;
                 }
                 li {
+                    display: flex;
+                    
                     &:before {
                         content: url(assets/images/svgs/icon-check.svg);
                         margin-right: .25rem;

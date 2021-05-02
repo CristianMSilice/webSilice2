@@ -13,7 +13,7 @@ export class GlobalService {
     //public static AVATAR_CAB='/assets/bankblanco.png';
 
     
-    public static AVATAR_CAB='./assets/logobanco.png';
+    public static AVATAR_CAB='./assets/logoAnimation.gif';
     public static ICON_PDF='./assets/pdfIcon.svg';
     public static ICON_SEND='./assets/sendIcon.svg';
     public static ICON_ATTAC='./assets/attachedIcon.svg';

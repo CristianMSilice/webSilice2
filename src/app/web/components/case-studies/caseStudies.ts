@@ -82,8 +82,8 @@ export const CASESTUDIES = [
         <p>ISA hace parte de un <strong>ecosistema digital</strong> que va en pro hacia la optimización de la experiencia de usuario y las tendencias de la nueva economía digital.</p>`,
         new _link('Quiero hablar con Isa', 'https://api.whatsapp.com/send?phone=50765507413&text=%C2%A1Hola!'),
         new avatar('isa.png', ),
-        new avatar('image-gaby.jpg'),
-        'caso-gaby'
+        new avatar('image-isa.jpg'),
+        'caso-isa'
     ),
 
     new caseStudies(

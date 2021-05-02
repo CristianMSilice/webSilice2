@@ -20,9 +20,9 @@ export class SolutionsComponent {
       imgSolution: "1.jpg",
       name: "PAU",
       items: [
-        { item: "Transforma tu atención al usuario con servicios automatizados y omnicanales" },
+        { item: "Transforma tu atención al usuario con servicios automatizados y omnicanales." },
         { item: "Optimización de los procesos internos y la experiencia de usuario." },
-        { item: "Integra  los sistemas de tu organización y llévalos a la mano de tu cliente" },
+        { item: "Integra  los sistemas de tu organización y llévalos a la mano de tu cliente." },
       ],
       link: { href: "https://www.pau.zone/" },
       linkText: "PAU",
@@ -49,7 +49,7 @@ export class SolutionsComponent {
       name: "MUNICIPIO 360",
       items: [
         { item: "Administraciones electrónicas eficientes y transparentes." },
-        { item: "Enfoque socioeconómico y medioambiental" },
+        { item: "Enfoque socioeconómico y medioambiental." },
         { item: "Eliminación de la brecha digital." },
       ],
       link: { href: "http://municipios360.com" },

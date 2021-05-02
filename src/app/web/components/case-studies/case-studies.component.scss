@@ -116,6 +116,22 @@
                         }
                     }
                 }
+
+                &.caso-isa {
+                    .case-content-image .case-avatar img {
+                        left: -50px;
+                        top: 8px;
+                    }
+                }
+
+                &.caso-clara {
+                    .case-content-image .case-avatar img {
+                        width: 80%;
+                        height: 80%;
+                        top: 0;
+                        left: 0;
+                    }
+                }
             }
         }
 
