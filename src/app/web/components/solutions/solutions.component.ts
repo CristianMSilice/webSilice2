@@ -85,36 +85,42 @@ export class SolutionsComponent {
     },
   ]
   selectedOption = 0;
+  offset = { interval: null, value: 0 };
+  velocity = { direction: -1, value: 1.5 }
+  size = null;
   changing = false;
-  mouseMovement = { down: undefined, up: undefined, over: undefined }
-  offset = 0;
+
+
+  ngAfterViewInit() {
+    this.size = document.querySelector('#articulo_1').getBoundingClientRect().width;
+    if (this.size) this.automovement();
+  }
+
   step(num) {
     let step = this.selectedOption + parseInt(num);
     if (step < 0 || step > this.data.length - 1) return
     this.selectedOption = step;
   }
 
-  mouseover(event: MouseEvent) {
-    if (!this.changing) return
-    this.mouseMovement.over = event.pageX;
-    this.offset = (this.mouseMovement.down - event.pageX);
+  reviewIfOverLoad(data) {
+    // devuelve true si se sale del slider
+    return data < 0 || data > this.data.length - 1
   }
-  mousedown(event: MouseEvent) {
-    this.mouseMovement.down = event.pageX;
-    this.changing = true;
-  }
+  automovement() {
+    this.offset.interval = setInterval(() => {
+      const a = this.selectedOption - this.velocity.direction ;
+      if (this.reviewIfOverLoad(a))this.velocity.direction *= -1;
+        if (Math.abs(this.offset.value + this.velocity.value) > this.size) {
+          this.offset.value = 0;
+          this.step(this.velocity.direction);
+        } else {
+          this.offset.value += this.velocity.value * this.velocity.direction;
+        }
 
-  mouseup(event: MouseEvent) {
-    this.changing = false;
-    let width = document.querySelector('#articulo_0').getBoundingClientRect().width;
-    this.selectedOption += Math.floor(this.offset / width)
-    if (this.selectedOption < 0) this.selectedOption = 0;
-    if (this.selectedOption > this.data.length - 1) this.selectedOption = this.data.length - 1;
-    this.offset = 0;
-
+    }, 150)
   }
 
-  translate() {
-    return this.sanitizer.bypassSecurityTrustStyle(`translate( calc(${-100 * this.selectedOption}% - ${this.offset}px),0px)`)
+  movement() {
+    return this.sanitizer.bypassSecurityTrustStyle(`translate( calc(${-100 * this.selectedOption}% + ${this.offset.value}px),0px)`)
   }
 }
