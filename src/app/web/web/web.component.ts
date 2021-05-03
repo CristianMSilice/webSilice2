@@ -21,7 +21,7 @@ export class WebComponent implements OnInit {
 
   changeClassIfHome(){
     this.isHome=false;
-    if(this.router.url !== '/home' && this.router.url !== '/home/home')return
+    if(this.router.url !== '/home' && this.router.url !== '/home')return
     this.isHome=true;
   }
 

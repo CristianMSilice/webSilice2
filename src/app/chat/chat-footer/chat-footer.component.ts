@@ -28,9 +28,9 @@ export class ChatFooterComponent implements OnInit {
     {text:'Youtube', url:'https://www.youtube.com/channel/UCI-ZhoL4V3uZorOJZD849dg', texturl:'www.youtube.com/Siice', image:'youtube.jpg'},
   ]
   sedes=[
-    {image:'assets/images/sedes/flag2-españa.jpg', link:'home/nosotros/sedes/espana', name:'España', city:'Extremadura'},
-    {image:'assets/images/sedes/flag2-colombia.jpg', link:'home/nosotros/sedes/colombia', name:'Colombia', city:'Bogotá'},
-    {image:'assets/images/sedes/flag2-panama.jpg', link:'home/nosotros/sedes/panama', name:'Panamá', city:'Ciudad de Panamá'}
+    {image:'assets/images/sedes/flag2-españa.jpg', link:'nosotros/sedes/espana', name:'España', city:'Extremadura'},
+    {image:'assets/images/sedes/flag2-colombia.jpg', link:'nosotros/sedes/colombia', name:'Colombia', city:'Bogotá'},
+    {image:'assets/images/sedes/flag2-panama.jpg', link:'nosotros/sedes/panama', name:'Panamá', city:'Ciudad de Panamá'}
   ]
 
   activeChatSetting(event:MouseEvent,active) {

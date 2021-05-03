@@ -42,7 +42,7 @@ export class GlobalService {
     //   "actions":[
     //     {
     //       "image":"https://as.com/deporteyvida/imagenes/2018/02/28/portada/1519830649_122505_1519830777_noticia_normal.jpg",
-    //       "href":"/home/laboratorio",
+    //       "href":"/laboratorio",
     //       "target": "_self"
     //     },
     //     {
@@ -51,7 +51,7 @@ export class GlobalService {
     //       "target": "_blank"
     //     }
     //   ],
-    //   "redirect":"/home/laboratorio"
+    //   "redirect":"/laboratorio"
     // }
     // `; 
      public static API_ENDPOINT='https://node1.smallshi.com/api-widget/';

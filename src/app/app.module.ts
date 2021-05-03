@@ -61,10 +61,10 @@ import { Noticia4Component } from './web/pages/blog/noticia4/noticia4.component'
 import { Noticia5Component } from './web/pages/blog/noticia5/noticia5.component';
 import { Noticia6Component } from './web/pages/blog/noticia6/noticia6.component';
 import { ClientsComponent } from './web/components/clients/clients.component';
-
+ 
 const routes: Routes = [
   {
-    path: 'home', component: WebComponent,
+    path: '', component: WebComponent,
     children: [
       { path: 'nosotros', component: NosotrosComponent, },
       { path: 'nosotros/trayectoria', component:TrayectoriaComponent},
@@ -86,10 +86,10 @@ const routes: Routes = [
       { path: 'blog/por-que-la-comunicacion-digital-es-indispensable-dentro-de-tu-estrategia-de-transformacion-digital', component: Noticia6Component },
       { path: 'casos', component: CasosComponent },
       { path: 'home', component: HomeComponent },
-      { path: '**', redirectTo: '/home/home', pathMatch: 'full' }
+      { path: '**', redirectTo: 'home', pathMatch: 'full' }
     ]
   },
-  { path: '**', redirectTo: '/home/home', pathMatch: 'full' }
+  { path: '**', redirectTo: 'home', pathMatch: 'full' }
 ]
 
 @NgModule({
