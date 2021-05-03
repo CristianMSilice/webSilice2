@@ -105,7 +105,7 @@
     }
 
     .content-body {
-        @include flex-all($direction: column, $align: center);
+        display: grid;
 
         &:before {
             content: " ";
@@ -121,7 +121,7 @@
     }
 
     .content-body > * {
-        width: 100% !important;
+        // width: 100% !important;
         // height: 500px !important;
     }
 }
