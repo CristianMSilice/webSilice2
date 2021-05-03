@@ -264,7 +264,6 @@ export class ChatWidgetComponent implements OnInit {
     if (text != undefined && (text.includes(clave)) && type == 'received') {
       let stringify = text.substring(text.lastIndexOf(clave) + clave.length);
       options = JSON.parse(stringify);
-      console.log(options)
       text = text.substring(0, text.lastIndexOf(clave))
     }
     let redirect = false

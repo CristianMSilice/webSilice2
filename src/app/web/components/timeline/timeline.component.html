@@ -1,7 +1,7 @@
 <div class="pslider-container" [style.width]="'100%'" [style.height]="'100%'">
     <div class="slider-content">
-        <div *ngFor="let option of data" class="translate ajust-width" [style.transform]="'translate('+ -100 * selectedOption +'%,0px)'">
-            <article class="item">
+        <div *ngFor="let option of data; index as i" class="translate ajust-width" [style.transform]="movement()">
+            <article [id]="'container'+ i" class="item">
                 <span class="time">{{option.time}}
                     <time data-time="">{{option.time}}</time>
                 </span>
