@@ -73,7 +73,7 @@ const routes: Routes = [
       { path: 'nosotros/sedes/panama', component: PagePanamaComponent },
       { path: 'nosotros/sedes/colombia', component: PageColombiaComponent },
       { path: 'nosotros/sedes/espana', component: PageEspanaComponent },
-      { path: 'laboratorio', component: LaboratorioComponent },
+      { path: 'experiencia/itm', component: LaboratorioComponent },
       { path: 'soluciones', component: SolucionesComponent },
       { path: 'casos', component: CasosComponent },
       { path: 'experiencia/contacto', component: ContactoComponent },
@@ -84,7 +84,6 @@ const routes: Routes = [
       { path: 'blog/a-buen-emprendedor-decisiones-valientes', component: Noticia4Component },
       { path: 'blog/un-evolutivo-que-ha-cambiado-las-reglas-de-juego-de-la-era-digital-de-manera-definitiva', component: Noticia5Component },
       { path: 'blog/por-que-la-comunicacion-digital-es-indispensable-dentro-de-tu-estrategia-de-transformacion-digital', component: Noticia6Component },
-      { path: 'casos', component: CasosComponent },
       { path: 'home', component: HomeComponent },
       { path: '**', redirectTo: 'home', pathMatch: 'full' }
     ]
