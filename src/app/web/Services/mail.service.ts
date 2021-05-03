@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class MailService {
-  private apiUrl = "http://api-siliceweb.smallshi.com/index.php/"
+  private apiUrl = "http://servicios.silice.si"
   // headers :HttpHeaders= new HttpHeaders();
   constructor(private http: HttpClient) { 
     // this.headers.append("Content-Type","application/x-www-form-urlencoded");

@@ -31,25 +31,28 @@
     </button>
     <h2 id="primary_menu_header" class="title hidden">Menu Primario</h2>
     <ul class="menu">
+        <li class="menu-item-has-children">
+            <a routerLink="/">Inicio</a>
+        </li>
         <!-- style={{transform: open ? "translateX(0)" : "translateX(-100%)"}} -->
         <li class="menu-item-has-children">
             <a routerLink="nosotros">Nosotros</a>
             <ul class="sub-menu">
-                <li>
-                    <a routerLink="nosotros/equipo">Equipo</a>
-                </li>
-                <li>
-                    <a routerLink="nosotros/presencia">Presencia</a>
-                </li>
-                <li>
-                    <a routerLink="nosotros/sedes/espana">Sedes</a>
-                </li>
                 <li>
                     <a routerLink="nosotros">Somos</a>
                 </li>
                 <li>
                     <a routerLink="nosotros/trayectoria">Trayectoria</a>
                 </li>
+                <li>
+                    <a routerLink="nosotros/equipo">Equipo</a>
+                </li>
+                <li>
+                    <a routerLink="nosotros/sedes/espana">Sedes</a>
+                </li>
+                <li>
+                    <a routerLink="nosotros/presencia">Presencia</a>
+                </li>                
             </ul>
         </li>
         <li class="menu-item-has-children">

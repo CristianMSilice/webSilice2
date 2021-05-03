@@ -20,7 +20,7 @@
                                 </div>
                             </div>
                             <div class="action-links">
-                                <a href="{{item.link.href}}" class="action action-primary" target="_blank">¡Quiero conocer a {{item.linkText}}!</a>
+                                <a href="{{item.link.href}}" class="action action-primary" target="_blank"  *ngIf="item.link.href.length > 0">¡Quiero conocer a {{item.linkText}}!</a>
                             </div>
                         </div>
                     </div>

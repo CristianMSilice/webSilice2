@@ -35,7 +35,7 @@
                 <section class="list-news">
                     <div class="list-news__header">
                         <h2 id="featured_news_header">
-                            <span class="first-line main-color">Más recientes...</span>
+                            <span class="first-line main-color">Más recientes:</span>
                         </h2>
                         <!-- <div class="action-links">
                             <a href="#" class="action action-link">Todas las entradas <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><g transform="translate(-2.5 -2.5)"><path d="M22,12.5A9.5,9.5,0,1,1,12.5,3,9.5,9.5,0,0,1,22,12.5Z" fill="none" stroke="#ff6c2b" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1"/><path d="M18,19.6l3.8-3.8L18,12" transform="translate(-5.5 -3.3)" fill="none" stroke="#ff6c2b" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1"/><path d="M12,18h7.6" transform="translate(-3.3 -5.5)" fill="none" stroke="#ff6c2b" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1"/></g></svg></a>
@@ -90,14 +90,6 @@
                                 <li><a href="https://www.linkedin.com/company/si-silice/?viewAsMember=true" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="46" height="46" viewBox="0 0 46 46"><path d="M7901-7395a22.847,22.847,0,0,1-16.262-6.737A22.849,22.849,0,0,1,7878-7418a22.846,22.846,0,0,1,6.737-16.262A22.846,22.846,0,0,1,7901-7441a22.849,22.849,0,0,1,16.264,6.737A22.847,22.847,0,0,1,7924-7418a22.849,22.849,0,0,1-6.737,16.264A22.851,22.851,0,0,1,7901-7395Zm3.681-23.327c2.309,0,2.309,2.189,2.309,3.788v6.962h4.433l0-7.857c0-3.535-.645-6.806-5.322-6.806a4.7,4.7,0,0,0-4.2,2.311h-.062v-1.951h-4.26v14.3h4.437v-7.082C7902.015-7416.472,7902.332-7418.327,7904.68-7418.327Zm-14.327-3.552v14.3h4.443v-14.3Zm2.22-7.122a2.575,2.575,0,0,0-2.574,2.571,2.589,2.589,0,0,0,2.574,2.6,2.587,2.587,0,0,0,2.571-2.6A2.574,2.574,0,0,0,7892.573-7429Z" transform="translate(-7878 7441)"/></svg> <span class="hidden">Linkedin</span></a></li>
                                 <li><a href="https://www.youtube.com/channel/UCI-ZhoL4V3uZorOJZD849dg" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="46" height="46" viewBox="0 0 46 46"><path d="M7901-7395a22.847,22.847,0,0,1-16.262-6.737A22.849,22.849,0,0,1,7878-7418a22.846,22.846,0,0,1,6.737-16.262A22.846,22.846,0,0,1,7901-7441a22.849,22.849,0,0,1,16.264,6.737A22.847,22.847,0,0,1,7924-7418a22.849,22.849,0,0,1-6.737,16.264A22.851,22.851,0,0,1,7901-7395Zm0-31.932c-.083,0-8.262.006-10.3.553a3.319,3.319,0,0,0-2.331,2.347,35.041,35.041,0,0,0-.549,6.383,35.046,35.046,0,0,0,.549,6.384,3.252,3.252,0,0,0,2.331,2.309c2.033.546,10.213.553,10.3.553s8.267-.006,10.3-.553a3.252,3.252,0,0,0,2.331-2.309,35.046,35.046,0,0,0,.549-6.384,35.041,35.041,0,0,0-.549-6.383,3.319,3.319,0,0,0-2.331-2.347C7909.266-7426.925,7901.082-7426.932,7901-7426.932Zm-2.695,13.2v-7.837l6.889,3.919-6.888,3.917Z" transform="translate(-7878 7441)"/></svg> <span class="hidden">Youtube</span></a></li>
                             </ul>
-                            <div class="subscribe">
-                                <form class="form" [formGroup]="subscribeForm">
-                                    <input type="text" formControlName="email" placeholder="Correo Electrónico" />
-                                    <input type="submit" value="Suscribirse" (click)="sendForm()" />
-                                </form>
-                            </div>
-
-
                         </div>
                     </div>
                     <div class="widget viewed">
@@ -133,6 +125,19 @@
                                     </div>
                                 </li>
                             </ul>
+                        </div>
+                    </div>
+                    <div class="widget social">
+                        <div class="widget-inner">
+                            <h3 class="main-color">Suscríbete</h3>
+                            <div class="subscribe">
+                                <form class="form" [formGroup]="subscribeForm">
+                                    <input type="text" formControlName="email" placeholder="Correo Electrónico" />
+                                    <input type="submit" value="Suscribirse" (click)="sendForm()" />
+                                </form>
+                            </div>
+
+
                         </div>
                     </div>
                 </aside>

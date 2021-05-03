@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core'
 import { environment } from './../environments/environment';
+import { Title } from '@angular/platform-browser'
+
 @Component({
   selector: 'app-root',
   template: `
@@ -10,7 +12,7 @@ import { environment } from './../environments/environment';
   `,
 })
 export class AppComponent implements OnInit {
-  constructor(){
+  constructor(private titleService: Title){
     if(window.innerWidth<769)location.replace(environment.mobileURL);
   }
   public theme = 'red'
@@ -137,6 +139,11 @@ export class AppComponent implements OnInit {
     },
     "retina_detect": true
   };
+
+
+  public setTitle(newTitle: string) {
+    this.titleService.setTitle(newTitle);
+  }
   
   ngOnInit() {
     this.loadYT_API()

@@ -17,7 +17,7 @@ export class SolutionsComponent {
     {
       imgLogo: "pau-logo.png",
       imgCover: "pau-cover.png",
-      imgSolution: "solucion-pau.png",
+      imgSolution: "1.jpg",
       name: "PAU",
       items: [
         { item: "Transforma tu atención al usuario con servicios automatizados y omnicanales" },
@@ -31,7 +31,7 @@ export class SolutionsComponent {
     {
       imgLogo: "smallshi-logo.png",
       imgCover: "smallshi-cover.png",
-      imgSolution: "solucion-smallshi.png",
+      imgSolution: "2.jpg",
       name: "SMALLSHI",
       items: [
         { item: "Gestión modular, eficiente, flexible y adaptable." },
@@ -45,7 +45,7 @@ export class SolutionsComponent {
     {
       imgLogo: "m360-logo.png",
       imgCover: "m360-cover.png",
-      imgSolution: "solucion-m360.png",
+      imgSolution: "3.jpg",
       name: "MUNICIPIO 360",
       items: [
         { item: "Administraciones electrónicas eficientes y transparentes." },
@@ -59,7 +59,7 @@ export class SolutionsComponent {
     {
       imgLogo: "dsp-logo.jpg",
       imgCover: "dsp-cover.jpg",
-      imgSolution: "solucion-dsp.png",
+      imgSolution: "4.jpg",
       name: "DSP",
       items: [
         { item: "Automatización inteligente de procesos de pago." },
@@ -72,7 +72,7 @@ export class SolutionsComponent {
     {
       imgLogo: "omniturno-logo.png",
       imgCover: "omniturno-cover.jpg",
-      imgSolution: "solucion-omniturno.png",
+      imgSolution: "5.jpg",
       name: "OMNITURNO",
       items: [
         { item: "Solicitud de turnos desde la comodidad del usuario a través de asistentes virtuales." },
