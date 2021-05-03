@@ -15,7 +15,7 @@ export class MapaMundiComponent implements OnInit {
   selectedCountry=undefined;
   sedes: Array <countryModel>= [
     {
-      svgName: 'Bolivia', name: 'Bolivia', photo: 'bolivia.jpg', 
+      svgName: 'Bolivia', name: 'Bolivia', photo: 'bolivia-min.jpg', 
       date:' ',
       proyects:[
         {name:'',resume:'',date:''},
@@ -23,7 +23,7 @@ export class MapaMundiComponent implements OnInit {
        choords: {left:undefined ,top:undefined}
     },
     {
-      svgName: 'Chile', name: 'Chile', photo: 'chile.jpg', 
+      svgName: 'Chile', name: 'Chile', photo: 'chile-min.jpg', 
       date:'Enero 20, 2001',
       proyects:[
         {name:'Evertec ',resume:'',date:''},
@@ -32,7 +32,7 @@ export class MapaMundiComponent implements OnInit {
        choords: {left:undefined ,top:undefined}
     },
     {
-      svgName: 'Colombia', name: 'Colombia', photo: 'colombia.jpg', 
+      svgName: 'Colombia', name: 'Colombia', photo: 'colombia-min.jpg', 
       date:'',
       proyects:[
         {name:'CCB',resume:'',date:''},
@@ -42,7 +42,7 @@ export class MapaMundiComponent implements OnInit {
        choords: {left:undefined ,top:undefined}
     },
     {
-      svgName: 'Costa Rica', name: 'Costa Rica', photo: 'CostaRica.jpg', 
+      svgName: 'Costa Rica', name: 'Costa Rica', photo: 'CostaRica-min.jpg', 
       date:'Enero 20, 2001',
       proyects:[
         {name:'PAU-Evertec',resume:'',date:''},
@@ -52,7 +52,7 @@ export class MapaMundiComponent implements OnInit {
        choords: {left:undefined ,top:undefined}
     },
     {
-      svgName: 'Dominican Republic', name: 'Republica Dominicana', photo: 'dominicana.jpg', 
+      svgName: 'Dominican Republic', name: 'Republica Dominicana', photo: 'dominicana-min.jpg', 
       date:'Enero 20, 2001',
       proyects:[
         {name:'SDCC',resume:'Santo Domingo Country Club',date:''},
@@ -62,7 +62,7 @@ export class MapaMundiComponent implements OnInit {
        choords: {left:undefined ,top:undefined}
     },
     {
-      svgName: 'El Salvador', name: 'El Salvador', photo: 'elSalvador.jpg', 
+      svgName: 'El Salvador', name: 'El Salvador', photo: 'elSalvador-min.jpg', 
       date:'Enero 20, 2001',
       proyects:[
         {name:'Smallshi ',resume:'Punto de Venta y gestión de inventarios POS by Smallshi para Tigo',date:''},
@@ -70,7 +70,7 @@ export class MapaMundiComponent implements OnInit {
        choords: {left:undefined ,top:undefined}
     },
     {
-      svgName: 'Mexico', name: 'México', photo: 'mexico.jpg', 
+      svgName: 'Mexico', name: 'México', photo: 'mexico-min.jpg', 
       date:'2019',
       proyects:[
         {name:'Becky',resume:'',date:''},
@@ -80,7 +80,7 @@ export class MapaMundiComponent implements OnInit {
        choords: {left:undefined ,top:undefined}
     },
     {
-      svgName: 'Panama', name: 'Panamá', photo: 'panama.jpg', 
+      svgName: 'Panama', name: 'Panamá', photo: 'panama-min.jpg', 
       date:'Sep, 2000',
       proyects:[
         {name:'PAU ',resume:'',date:''},
@@ -90,7 +90,7 @@ export class MapaMundiComponent implements OnInit {
        choords: {left:undefined ,top:undefined}
     },
     {
-      svgName: 'Peru', name: 'Perú', photo: 'peru.jpg', 
+      svgName: 'Peru', name: 'Perú', photo: 'peru-min.jpg', 
       date:'Enero 20, 2001',
       proyects:[
         {name:'',resume:'',date:''},
@@ -100,7 +100,7 @@ export class MapaMundiComponent implements OnInit {
        choords: {left:undefined ,top:undefined}
     },
     {
-      svgName: 'Spain', name: 'España', photo: 'españa.jpg', 
+      svgName: 'Spain', name: 'España', photo: 'españa-min.jpg', 
       date:' 2001',
       proyects:[
         {name:'Asistente Virtual Carolina',resume:'Plataforma ganadora de los premios CNIS a la mejor solución de Participación Ciudadana',date:''},
