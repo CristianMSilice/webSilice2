@@ -57,22 +57,9 @@ export class SolutionsComponent {
       chatID: "solucion-m360"
     },
     {
-      imgLogo: "dsp-logo.jpg",
-      imgCover: "dsp-cover.jpg",
-      imgSolution: "4.jpg",
-      name: "DSP",
-      items: [
-        { item: "Automatización inteligente de procesos de pago." },
-        { item: "Plataforma de pagos unificada: E Commerce, QR, asistentes virtuales, aplicaciones móviles." },
-      ],
-      link: { href: "" },
-      linkText: "DSP",
-      chatID: "solucion-dsp"
-    },
-    {
       imgLogo: "omniturno-logo.png",
       imgCover: "omniturno-cover.jpg",
-      imgSolution: "5.jpg",
+      imgSolution: "4.jpg",
       name: "OMNITURNO",
       items: [
         { item: "Solicitud de turnos desde la comodidad del usuario a través de asistentes virtuales." },
@@ -83,6 +70,20 @@ export class SolutionsComponent {
       linkText: "OMNITURNO",
       chatID: "solucion-omniturno"
     },
+    {
+      imgLogo: "dsp-logo.jpg",
+      imgCover: "dsp-cover.jpg",
+      imgSolution: "5.jpg",
+      name: "DSP",
+      items: [
+        { item: "Automatización inteligente de procesos de pago." },
+        { item: "Plataforma de pagos unificada: E Commerce, QR, asistentes virtuales, aplicaciones móviles." },
+      ],
+      link: { href: "" },
+      linkText: "DSP",
+      chatID: "solucion-dsp"
+    },
+    
   ]
   selectedOption = 0;
   offset = { interval: null, value: 0 };
