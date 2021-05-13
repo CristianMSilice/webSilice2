@@ -25,8 +25,8 @@ export class GlobalService {
     public static TXT_INICIAL=`
     *$MARCO$*:{
       "superMensaje":{
-          "titulo":"Hola Bienvenido 🤩",
-          "mensaje":"Soy PAU, estoy aqui para ayudarte dime tu nombre o como gustarias que te llame 😊",
+        "titulo":"¡Hola bienvenido soy PAU!😀",
+        "mensaje":"Estoy aqui para ayudarte en este recorrido digital. Dime tu nombre para empezar.",
           "Image":"https://silice.si/temp/avPau/1.jpg"
         }
       }`;

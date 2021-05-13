@@ -1,3 +1,5 @@
+.chat-widget-body .chat-message:first-of-type { display: none; }
+
 .chat-message {
     margin: 1em;
     display: flex;
@@ -7,7 +9,8 @@
 
     .message-photo {
         &.bot {
-            background-image: url("/assets/iconobanco.png");
+            // background-image: url("/assets/iconobanco.png");
+            background-color: var(--headerTextColor);
         }
     }
 }
@@ -30,7 +33,7 @@
         
         .message-photo {
             right: calc(0px - var(--with-photo) / 2);
-            background-image: url("/assets/user.svg");
+            background-image: url("/assets/dots-chat.jpg");
         }
         
         .message-time {
@@ -143,8 +146,8 @@
     
     .titulo{
         position: relative;
-        padding: 12px;
-        font-size: 1.6em;
+        padding: 12px 12px 0;
+        font-size: 1.4em;
         font-weight: bold;
         color: var(--headerTextColor);
     }
@@ -152,7 +155,8 @@
     .contenido{
         position: relative;
         color: hsl(0deg 0% 100%);
-        padding: 0em 1em 1em 1em;
+        padding: 0 12px 12px;
+        font-size: .875em;
         font-weight: bold;
     }
 }

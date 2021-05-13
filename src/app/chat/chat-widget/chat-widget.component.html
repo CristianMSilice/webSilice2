@@ -14,13 +14,13 @@
 
         <div class="chat-widget-body" #widgetBody>
             <ng-container *ngFor="let message of messages; let i = index">
-                <div class="chat-message" *ngIf="message.text !='' && message.options.show">
+                <div class="chat-message" *ngIf="message.text != '' && message.options.show">
                     <div class="message" [class.message-bot]="message.type === 'received'" [class.message-user]="message.type === 'sent'" [@fadeIn]>
                         <div class="message-photo" [class.bot]="message.type === 'received'">
                             <div class="bot" *ngIf="message.type === 'received'"></div>
 
                         </div>
-                        <div class="message-text" *ngIf="message.tipo == 1">
+                        <div class="message-text" *ngIf="message.tipo == 1 && message.text != ''">
                             <div style="white-space: pre-line" [innerHTML]="paserLink(message.text) " *ngIf="!esnuestro(message.text)"></div>
                         </div>
 
