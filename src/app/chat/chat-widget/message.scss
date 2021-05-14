@@ -33,7 +33,7 @@
         
         .message-photo {
             right: calc(0px - var(--with-photo) / 2);
-            background-image: url("/assets/dots-chat.jpg");
+            background-image: url("/assets/user.svg");
         }
         
         .message-time {
@@ -52,6 +52,7 @@
 
         .message-photo {
             right: calc(100% - (var(--with-photo) / 2));
+            background-image: url("/assets/dots-chat.jpg");
         }
 
         .message-time {
