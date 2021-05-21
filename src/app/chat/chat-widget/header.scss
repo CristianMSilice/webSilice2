@@ -53,12 +53,12 @@
 }
 .chat-widget-header-logo{
     // --Margin:15px;
-    --size:calc(7.5vmin);
+    --size:calc(8.5vmin);
     width: var(--size);
     height: var(--size);
     display: flex;
     justify-content: center;
-    // border-radius: 50%;
+    border-radius: 50%;
     position: absolute;
     // margin: var(--Margin);
     // left: calc(50% - (var(--size) / 2) - var(--Margin) );
@@ -67,26 +67,37 @@
     left: 50%;
     transform: translateX(-50%);
     z-index: 200;
+    border: 10px solid #e9e9e9;
 }
 .chat-widget-header-logo:before {
     content: '';
     display: block;
     position: absolute;
-    width: calc(100% + var(--margin-radius));
-    height: calc(100% + var(--margin-radius));
+    width: calc(100% - var(--margin-radius));
+    height: calc(100% - var(--margin-radius));
     background: rgb(233, 233, 233);
     top: calc(0px - var(--margin-radius) / 2) ;
     left: calc(0px - var(--margin-radius) / 2) ;
-    // border-radius: 50%;
+    border-radius: 50%;
+    // transform: scale(.8);
 }
 
-.chat-widget-header-logo * {
-    object-fit: cover;
-    min-width: 100%;
-    min-height: 100%;
-    // border-radius: 50%;
+.img-silice-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
     position: relative;
+    background-color: white;
 
+}
+
+.img-silice {
+    object-fit: cover;
+    width: 70%;
+    height: 70%;
 }
 
 .chat-widget-header-name {

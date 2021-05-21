@@ -19,16 +19,16 @@
                                 <h2 class="form-title">¿Estás listo para llevar tu negocio al siguiente nivel? <strong>¡Contáctanos!</strong></h2>
 
                                 <div class="form-item">
-                                    <input type="text" formControlName="nombre" name="nombre" placeholder="Nombre" />
-                                    <input type="email" formControlName="email_contacto" name="email_contacto" placeholder="Email" />
+                                    <input type="text" formControlName="nombre" name="nombre" placeholder="Nombre" required/>
+                                    <input type="email" formControlName="email_contacto" name="email_contacto" placeholder="Email" required/>
                                 </div>
 
                                 <div class="form-item">
-                                    <input type="text" formControlName="asunto" name="asunto" placeholder="Asunto" />
+                                    <input type="text" formControlName="asunto" name="asunto" placeholder="Asunto" required/>
                                 </div>
 
                                 <div class="form-item">
-                                    <input type="text" formControlName="mensaje" name="mensaje" placeholder="Mensaje" />
+                                    <input type="text" formControlName="mensaje" name="mensaje" placeholder="Mensaje" required/>
                                 </div>
 
                                 <div class="form-item action-links">
@@ -36,6 +36,12 @@
                                 </div>
                             </div>
                         </form>
+                        <div class="message message-success" *ngIf="alert">
+                            <button (click)="closeAlert()" class="btn-close">
+                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false" width="20" height="20" style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);" preserveAspectRatio="xMidYMid meet" viewBox="0 0 512 512"><path d="M448 256c0-106-86-192-192-192S64 150 64 256s86 192 192 192s192-86 192-192z" fill="none" stroke="#ffffff" stroke-miterlimit="10" stroke-width="32"/><path fill="none" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M320 320L192 192"/><path fill="none" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M192 320l128-128"/></svg>
+                            </button>
+                            Hemos recibido tu solicitud, en breve nos pondremos en contacto contigo
+                        </div>
                     </div>
 
                     <!-- <div class="content-newsletter">

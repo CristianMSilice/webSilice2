@@ -5,6 +5,7 @@ export class sliderItem {
     mainTitle: String;
     mainText: String;
     button:buttonSliderItem;
+    link: String;
 }
 
 class buttonSliderItem{

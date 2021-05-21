@@ -11,6 +11,7 @@ export class ContactoComponent implements OnInit {
 
   contactForm: FormGroup;
   subscribeForm: FormGroup;
+  alert: boolean = false;
   constructor(private FB: FormBuilder, private mailService:MailService) { }
 
   ngOnInit() {
@@ -34,10 +35,16 @@ export class ContactoComponent implements OnInit {
     this.mailService.postMessage(formulario).subscribe(res=>{
       console.log(res)
     })
+    this.alert = true;
+    this.contactForm.reset({})
   }
 
   sendSubscribeForm(){
     console.log(this.subscribeForm.value)
+  }
+
+  closeAlert() {
+    this.alert = false;
   }
 
 }

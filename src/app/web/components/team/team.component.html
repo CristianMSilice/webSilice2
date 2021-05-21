@@ -18,6 +18,7 @@
     <div class="person-content" *ngIf="selectedOption.image">
         <div class="photo" [style.background-image]="'url(assets/images/equipo/equipo-' + selectedOption.image + ')'"></div>
         <div class="content">
+            <h4 class="name">{{selectedOption.name}}</h4>
             <div class="position">{{selectedOption.position}}</div>
             <div class="text">{{selectedOption.text}}</div>
         </div>

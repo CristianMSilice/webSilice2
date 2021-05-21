@@ -101,7 +101,7 @@
             }
             
             .content-inner {
-                @include flex-all(row-reverse, space-between, flex-start);
+                @include flex-all(row-reverse, center, flex-start);
 
                 .content-body {
                     padding-top: 12rem;

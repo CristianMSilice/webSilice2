@@ -107,7 +107,7 @@
         .info { 
             flex: 1; 
             padding: 1rem 0;
-            text-align: center;
+            text-align: left;
         }
 
         @include respond-to($site-width) {

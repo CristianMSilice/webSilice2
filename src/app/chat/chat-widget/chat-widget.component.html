@@ -2,7 +2,9 @@
     <div class="chat-widget" [@fadeInOut]="visible" [ngClass]="{'movile':isMobileResolution, 'close':visible}">
         <div class="chat-widget-header">
             <div class="chat-widget-header-logo" (click)="closeChat($event)">
-                <img src="{{ avatar_cab }}" class="img-silice" />
+                <figure class="img-silice-wrapper">
+                    <img src="{{ avatar_cab }}" class="img-silice" />
+                </figure>
             </div>
             <div class="chat-widget-header-name" *ngIf="  ! isMobileResolution">
                 <strong>{{ texto_cab }}</strong>

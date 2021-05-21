@@ -8,5 +8,9 @@
     }
     .fixed-row {
         height:100%;
+    }   
+
+    .content-navigation {
+        padding-bottom: 8rem;
     }
 }

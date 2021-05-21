@@ -4,6 +4,7 @@
         width: 100%;
         height: 100vh;
         background-color: hsla(0, 0%, 0%, 30%);
+        pointer-events: none;
         .slider-options {
             --size-slider: 400px;
             position: absolute;
@@ -13,6 +14,7 @@
             border-radius: 50%;
             left: calc(50% - var(--size-slider) / 2);
             top: calc(50vh - var(--size-slider) / 2);
+            pointer-events: all;
             .slider-option {
                 --size-slider-option: 23px;
                 width: var(--size-slider-option);
@@ -121,6 +123,17 @@
             text-transform: uppercase;
             font-size: 2.5em;
             // text-shadow: 0px 0px 7px var(--headerTextColor);
+
+            a {
+                display: block;
+                color: inherit;
+                text-decoration: none;
+
+                &:hover,
+                &:focus {
+                    color: white;
+                }
+            }
         }
         .text-description {
             font-weight: 500;

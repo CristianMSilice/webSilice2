@@ -26,7 +26,7 @@ export class GlobalService {
     *$MARCO$*:{
       "superMensaje":{
         "titulo":"¡Hola bienvenido soy PAU!😀",
-        "mensaje":"Estoy aqui para ayudarte en este recorrido digital. Dime tu nombre para empezar.",
+        "mensaje":"Estoy aquí para ayudarte en este recorrido digital. Dime tu nombre para empezar.",
           "Image":"https://silice.si/temp/avPau/1.jpg"
         }
       }`;

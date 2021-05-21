@@ -5,3 +5,9 @@
 .news.list-news__wrapper .list-news a {
     color: var(--headerTextColor);
 }
+
+@media (max-width: 1600px) and(min-width:768px) {
+    .widget.social {
+        margin-bottom: 8rem;
+    }
+}

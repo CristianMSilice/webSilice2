@@ -17,7 +17,7 @@ export class ClientsComponent implements AfterViewInit {
     { photo: 'logo (6).png' },
     { photo: 'logo (7).png' },
     { photo: 'logo (8).png' },
-    { photo: 'logo (9).jpg' },
+    // { photo: 'logo (9).jpg' },
     { photo: 'logo (10).jpg' },
     { photo: 'logo (11).jpg' },
     { photo: 'logo (12).jpg' },

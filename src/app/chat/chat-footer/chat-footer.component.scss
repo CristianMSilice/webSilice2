@@ -244,6 +244,7 @@
 .videos {
     .video {
         margin: 0 0 1rem;
+        text-align: center;
         iframe,
         video {
             display: block;
@@ -283,11 +284,11 @@
     .image {
         display: flex;
         align-items: center;
-        height: 100px;
+        height: 80px;
         img {
             display: block;
-            width: 100px;
-            height: 100px;
+            width: 80px;
+            height: 80px;
             margin-right: 1rem;
             border-radius: 50%;
             object-fit: cover;

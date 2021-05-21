@@ -218,14 +218,14 @@
 
         .item-image,
         .item-image img {
-            height: 100%;
+            height: 300px;
         }
 
         @include respond-to($vp-large) {
             .content-list { flex-direction: column; }
             .item { 
                 margin: .5rem 0;
-                height: 260px; 
+                // height: 200px; 
             }
 
             .item-summary {
@@ -239,7 +239,6 @@
     &.list-news__wrapper {
         @include flex-all($justify: space-between);
         padding: $site-padding;
-        padding-bottom: 20rem;
         background-color: #F1F1F1;
     
         .list-news {

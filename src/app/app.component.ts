@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core'
+import { Router, NavigationEnd } from '@angular/router'
 import { environment } from './../environments/environment';
 import { Title } from '@angular/platform-browser'
+import { filter } from 'rxjs/operators'
+
+declare var gtag;
 
 @Component({
   selector: 'app-root',
@@ -12,8 +16,21 @@ import { Title } from '@angular/platform-browser'
   `,
 })
 export class AppComponent implements OnInit {
-  constructor(private titleService: Title){
+  constructor(
+    private titleService: Title,
+    private router: Router
+  ){
     if(window.innerWidth<769)location.replace(environment.mobileURL);
+
+    const navEndEvents$ = this.router.events
+    .pipe(
+      filter(event => event instanceof NavigationEnd)
+    )
+    navEndEvents$.subscribe((event: NavigationEnd) => {
+      gtag('config', 'G-CQ99S4W8JV', {
+        'page_path': event.urlAfterRedirects
+      })
+    })
   }
   public theme = 'red'
   public YT: any;
@@ -156,7 +173,4 @@ export class AppComponent implements OnInit {
     firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
   }
-
-
-
 }

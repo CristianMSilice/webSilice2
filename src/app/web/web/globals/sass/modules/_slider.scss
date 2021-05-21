@@ -43,6 +43,7 @@
             border: 1px solid transparent;
             background-color: transparent;
             transform: translate(-50%, -50%);
+            pointer-events: none;
 
             &:before {
                 content: "";

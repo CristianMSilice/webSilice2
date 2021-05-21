@@ -6,7 +6,8 @@ export class caseStudies {
     avatar: avatar;
     imagen: avatar;
     chatID: String;
-    constructor(tabName: String, company: String, text: String, link: _link, avatar: avatar, imagen: avatar, chatID: String) {
+    video: String;
+    constructor(tabName: String, company: String, text: String, link: _link, avatar: avatar, imagen: avatar, chatID: String, video: String) {
         this.tabName = tabName;
         this.company = company;
         this.text = text;
@@ -14,6 +15,7 @@ export class caseStudies {
         this.imagen = imagen;
         this.avatar = avatar;
         this.chatID = chatID;
+        this.video = video;
     }
 }
 
@@ -47,7 +49,8 @@ export const CASESTUDIES = [
         new _link('Quiero hablar con Carolina', 'https://api.whatsapp.com/send?phone=34669736321&text=%C2%A1Hola!'),
         new avatar('carolina.png'),
         new avatar('image-carolina.jpg'),
-        'caso-carolina'
+        'caso-carolina',
+        'carolina.mp4'
     ),
 
     new caseStudies(
@@ -62,7 +65,8 @@ export const CASESTUDIES = [
         new _link('Quiero hablar con Doctora Clara', 'http://api.whatsapp.com/send?phone=573058168975'),
         new avatar('clara.png'),
         new avatar('image-clara.jpg'),
-        'caso-clara'
+        'caso-clara',
+        'clara.mp4'
     ),
 
     new caseStudies(
@@ -72,7 +76,8 @@ export const CASESTUDIES = [
         new _link('Quiero hablar con Ariel', 'http://api.whatsapp.com/send?phone=50765095151'),
         new avatar('ariel.png', ),
         new avatar('image-ariel.jpg'),
-        'caso-ariel'
+        'caso-ariel',
+        'ariel.mp4'
     ),
 
     new caseStudies(
@@ -83,7 +88,8 @@ export const CASESTUDIES = [
         new _link('Quiero hablar con Isa', 'https://api.whatsapp.com/send?phone=50765507413&text=%C2%A1Hola!'),
         new avatar('isa.png', ),
         new avatar('image-isa.jpg'),
-        'caso-isa'
+        'caso-isa',
+        'isa.mp4'
     ),
 
     new caseStudies(
@@ -93,7 +99,8 @@ export const CASESTUDIES = [
         new _link('Quiero hablar con Becky', 'https://api.whatsapp.com/send?phone=5216629361843&text=%C2%A1Hola!'),
         new avatar('becky.png', ),
         new avatar('image-becky.jpg'),
-        'caso-becky'
+        'caso-becky',
+        'becky.mp4'
     ),
 
 ]
