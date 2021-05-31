@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DataWpService } from '../../../services/datawp.service';
 
 @Component({
   selector: 'espana',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EspanaComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    // private dataWpService: DataWpService
+  ) {}
+
+  data = []
 
   ngOnInit() {
+    // this.dataWpService.dataSedeSpain().subscribe((data: any[]) => {
+    //   this.data = data;
+    // })
   }
 
 }

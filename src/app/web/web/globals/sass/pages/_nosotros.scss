@@ -78,6 +78,9 @@
         max-width: 165px;
         width: 100%;
     }
+
+    p strong { color: $primary-color; }
+
     @include respond-to($vp-large) {
         .item {
             margin: 0 1rem;

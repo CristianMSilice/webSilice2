@@ -8,82 +8,76 @@ import { NgxLinkifyjsModule } from 'ngx-linkifyjs'
 import { HttpClientModule } from '@angular/common/http'
 import { NgxWebstorageModule } from 'ngx-webstorage'
 import { ReactiveFormsModule, FormsModule } from '@angular/forms'
-import { SharedModule } from './shared/shared/shared.module';
+import { SharedModule } from './shared/shared/shared.module'
 
 
 import { CookieService } from 'ngx-cookie-service'
-import { EncsessionService } from './chat/shared/helpers/encsession.service';
-import { MailService } from './web/Services/mail.service'
+import { EncsessionService } from './chat/shared/helpers/encsession.service'
+import { MailService } from './web/services/mail.service'
 import { ParticlesModule } from 'angular-particle'
 import { RouterModule, Routes } from '@angular/router'
-import { SiblingsService } from './web/Services/siblings.service'
-import { InlineSVGModule } from 'ng-inline-svg';
+import { SiblingsService } from './web/services/siblings.service'
+import { InlineSVGModule } from 'ng-inline-svg'
 
 
 import { AppComponent } from './app.component'
 import { BlogComponent } from './web/pages/blog/blog.component'
-import { BlogFeaturesComponent } from './web/components/blog/blog-features/blog-features.component';
-import { BlogHeaderComponent } from './web/components/blog/blog-header/blog-header.component';
-import { CasosComponent } from './web/pages/casos/casos.component'
+import { PageCasosComponent } from './web/pages/casos/page-casos.component'
 import { ContactoComponent } from './web/pages/experiencia/contacto/contacto.component'
-import { CaseStudiesComponent } from "./web/components/case-studies/case-studies.component"
 import { ColombiaComponent } from './web/components/locations/colombia/colombia.component'
-import { EncabezadosComponent } from './web/encabezados/encabezados.component'
-import { EquipoComponent } from './web/pages/nosotros/equipo/equipo.component'
-import { ExperienciaComponent } from './web/pages/experiencia/experiencia.component'
-import { EspanaComponent } from './web/components/locations/espana/espana.component';
-import { FeaturesComponent } from './web/components/features/features.component'
-import { GlobalStatsComponent } from './web/components/global-stats/global-stats.component'
+import { PageEquipoComponent } from './web/pages/nosotros/equipo/page-equipo.component'
+import { EspanaComponent } from './web/components/locations/espana/espana.component'
 import { HomeComponent } from './web/pages/home/home.component'
-import { HeaderComponent } from './web/components/header/header.component'
 import { LaboratorioComponent } from './web/pages/laboratorio/laboratorio.component'
 import { LocationsHeaderComponent } from './web/components/locations/locations-header/locations-header.component'
 import { ModalComponent } from './web/components/modal/modal.component'
-import { MapaMundiComponent } from './web/components/mapa-mundi/mapa-mundi.component';
-import { NavComponent } from './web/components/header/nav/nav.component'
-import { NosotrosComponent } from './web/pages/nosotros/nosotros.component'
-import { NoticiasComponent } from './web/pages/noticias/noticias.component'
+import { MapaMundiComponent } from './web/components/mapa-mundi/mapa-mundi.component'
 import { PanamaComponent } from './web/components/locations/panama/panama.component'
-import { PageEspanaComponent } from './web/pages/experiencia/sedes/page-espana/page-espana.component';
-import { PageColombiaComponent } from './web/pages/experiencia/sedes/page-colombia/page-colombia.component';
+import { PageEspanaComponent } from './web/pages/experiencia/sedes/page-espana/page-espana.component'
+import { PageColombiaComponent } from './web/pages/experiencia/sedes/page-colombia/page-colombia.component'
 import { PagePanamaComponent } from './web/pages/experiencia/sedes/page-panama/page-panama.component'
-import { SolucionesComponent } from './web/pages/soluciones/soluciones.component'
+import { PageSolucionesComponent } from './web/pages/soluciones/page-soluciones.component'
 import { SliderComponent } from './web/components/principalSlider/slider/slider.component'
-import { SolutionsComponent } from './web/components/solutions/solutions.component'
-import { TrayectoriaComponent } from './web/pages/nosotros/trayectoria/trayectoria.component'
-import { TeamComponent } from './web/components/team/team.component';
-import { TimelineComponent } from './web/components/timeline/timeline.component'
-import { WebComponent } from './web/web/web.component';
-import { Noticia1Component } from './web/pages/blog/noticia1/noticia1.component';
-import { Noticia2Component } from './web/pages/blog/noticia2/noticia2.component';
-import { Noticia3Component } from './web/pages/blog/noticia3/noticia3.component';
-import { Noticia4Component } from './web/pages/blog/noticia4/noticia4.component';
-import { Noticia5Component } from './web/pages/blog/noticia5/noticia5.component';
-import { Noticia6Component } from './web/pages/blog/noticia6/noticia6.component';
-import { ClientsComponent } from './web/components/clients/clients.component';
+import { PageTrayectoriaComponent } from './web/pages/nosotros/trayectoria/page-trayectoria.component'
+import { WebComponent } from './web/web/web.component'
+import { ClientsComponent } from './web/components/clients/clients.component'
+import { NosotrosSomosComponent } from './web/components/somos/somos.component'
+import { NosotrosTrayectoriaComponent } from './web/components/trayectoria/trayectoria.component'
+import { NosotrosEquipoComponent } from './web/components/equipo/equipo.component'
+import { NosotrosPresenciaComponent } from './web/components/presencia/presencia.component'
+import { PageSomosComponent } from './web/pages/nosotros/somos/page-somos.component'
+import { PagePresenciaComponent } from './web/pages/nosotros/presencia/page-presencia.component'
+import { NosotrosInfografiaComponent } from './web/components/infografia/infografia.component'
+import { SolucionesComponent } from './web/components/soluciones/soluciones.component'
+import { CasosComponent } from './web/components/casos/casos.component'
+import { FooterComponent } from './web/layout/footer/footer.component'
+import { MainMenuComponent } from './web/layout/menu/menu.component'
+import { MainHeaderComponent } from './web/layout/header/header.component'
+import { BlogDestacadosComponent } from './web/pages/blog/blog-destacados/blog-destacados.component'
+import { BlogPrincipalComponent } from './web/pages/blog/blog-principal/blog-principal.component'
+import { BlogGeneralComponent } from './web/pages/blog/blog-general/blog-general.component'
+import { BlogVistosComponent } from './web/pages/blog/blog-vistos/blog-vistos.component'
+import { SingleComponent } from './web/pages/blog/single/single.component'
+import { BlogHeaderComponent } from './web/pages/blog/blog-header/blog-header.component'
+import { TeamComponent } from './web/components/team/team.component'
  
 const routes: Routes = [
   {
     path: '', component: WebComponent,
     children: [
-      { path: 'nosotros', component: NosotrosComponent, },
-      { path: 'nosotros/trayectoria', component:TrayectoriaComponent},
-      { path: 'nosotros/equipo', component:EquipoComponent},
-      { path: 'nosotros/presencia', component: ExperienciaComponent },
+      { path: 'nosotros', component: PageSomosComponent, },
+      { path: 'nosotros/trayectoria', component:PageTrayectoriaComponent},
+      { path: 'nosotros/equipo', component:PageEquipoComponent},
+      { path: 'nosotros/presencia', component: PagePresenciaComponent },
       { path: 'nosotros/sedes/panama', component: PagePanamaComponent },
       { path: 'nosotros/sedes/colombia', component: PageColombiaComponent },
       { path: 'nosotros/sedes/espana', component: PageEspanaComponent },
       { path: 'experiencia/itm', component: LaboratorioComponent },
-      { path: 'soluciones', component: SolucionesComponent },
-      { path: 'casos', component: CasosComponent },
+      { path: 'soluciones', component: PageSolucionesComponent },
+      { path: 'casos', component: PageCasosComponent },
       { path: 'experiencia/contacto', component: ContactoComponent },
       { path: 'blog', component: BlogComponent },
-      { path: 'blog/reinventarse-a-traves-de-la-innovacion-el-nuevo-reto-de-la-humanidad-en-el-2021', component: Noticia1Component },
-      { path: 'blog/covid19-motor-de-la-innovacion-en-el-sector-salud', component: Noticia2Component },
-      { path: 'blog/por-que-es-indispensable-para-tu-negocio-dar-el-paso-a-la-omnicanalidad', component: Noticia3Component },
-      { path: 'blog/a-buen-emprendedor-decisiones-valientes', component: Noticia4Component },
-      { path: 'blog/un-evolutivo-que-ha-cambiado-las-reglas-de-juego-de-la-era-digital-de-manera-definitiva', component: Noticia5Component },
-      { path: 'blog/por-que-la-comunicacion-digital-es-indispensable-dentro-de-tu-estrategia-de-transformacion-digital', component: Noticia6Component },
+      { path: 'blog/:id', component: SingleComponent },
       { path: 'home', component: HomeComponent },
       { path: '**', redirectTo: 'home', pathMatch: 'full' }
     ]
@@ -110,28 +104,16 @@ const routes: Routes = [
   declarations: [
     AppComponent,
     BlogComponent,
-    BlogFeaturesComponent,
-    BlogHeaderComponent,
-    CasosComponent,
-    CaseStudiesComponent,
+    PageCasosComponent,
     ContactoComponent,
-    EncabezadosComponent,
-    EquipoComponent,
-    ExperienciaComponent,
-    GlobalStatsComponent,
-    HeaderComponent,
+    PageEquipoComponent,
+    MainHeaderComponent,
+    MainMenuComponent,
     HomeComponent,
     LaboratorioComponent,
-    NosotrosComponent,
-    FeaturesComponent,
-    NavComponent,
-    NoticiasComponent,
-    SolucionesComponent,
-    SolutionsComponent,
+    PageSolucionesComponent,
     SliderComponent,
-    TrayectoriaComponent,
-    TimelineComponent,
-    TeamComponent,
+    PageTrayectoriaComponent,
     WebComponent,
     ModalComponent,
     LocationsHeaderComponent,
@@ -141,14 +123,26 @@ const routes: Routes = [
     PageEspanaComponent,
     PageColombiaComponent,
     PagePanamaComponent,
-    Noticia1Component,
-    Noticia2Component,
-    Noticia3Component,
-    Noticia4Component,
-    Noticia5Component,
-    Noticia6Component,
     MapaMundiComponent,
     ClientsComponent,
+    TeamComponent,
+    NosotrosSomosComponent,
+    NosotrosTrayectoriaComponent,
+    NosotrosEquipoComponent,
+    NosotrosPresenciaComponent,
+    PageSomosComponent,
+    PagePresenciaComponent,
+    NosotrosInfografiaComponent,
+    SolucionesComponent,
+    CasosComponent,
+    FooterComponent,
+    MainMenuComponent,
+    BlogDestacadosComponent,
+    BlogPrincipalComponent,
+    BlogGeneralComponent,
+    BlogVistosComponent,
+    BlogHeaderComponent,
+    SingleComponent
   ],
 
   providers: [

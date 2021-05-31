@@ -54,6 +54,11 @@
                 &:last-child:before {
                     content: none;
                 }
+
+                p {
+                    margin: 0;
+                    line-height: 1.2;
+                }
             }
         }
         .number {

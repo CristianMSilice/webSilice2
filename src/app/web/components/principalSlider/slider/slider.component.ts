@@ -1,5 +1,5 @@
 import { Component, Input, OnInit, EventEmitter, Output } from '@angular/core';
-import { SiblingsService } from 'src/app/web/Services/siblings.service';
+import { SiblingsService } from '../../../services/siblings.service';
 import { sliderItem } from "../../../models/sliderItem";
 
 @Component({

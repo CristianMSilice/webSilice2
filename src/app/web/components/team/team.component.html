@@ -1,22 +1,22 @@
-<ng-container *ngFor="let option of sliderItem; index as i">
+<ng-container *ngFor="let item of data">
     <article class="profile" [ngClass]="{'translate': translateFlag}" [style.transform]="movementCarousel()">
         <div class="summary-wrapper">
-            <figure class="image"><img src="assets/images/equipo/equipo-{{option.image}}" alt="{{option.name}}" />
+            <figure class="image"><img src="{{item.image}}" alt="{{item.text}" />
             </figure>
             <div class="summary">
-                <h4 class="name">{{option.name}}</h4>
-                <div class="position">{{option.position}}</div>
+                <h4 class="name">{{item.name}}</h4>
+                <div class="position">{{item.text}}</div>
             </div>
             <div class="content-links">
-                <button class="action action-primary" (click)="showResume(option.chatID)">Ver más</button>
+                <button class="action action-primary" (click)="showResume(item.id)">Ver más</button>
             </div>
         </div>
     </article>
-</ng-container>
+</ng-container> 
 <div *ngIf="selectedOption" class="absolute person-container" [ngClass]="{'show':selectedOption.show}">
     <div class="close" (click)="selectedOption.show=false">&#10006;</div>
     <div class="person-content" *ngIf="selectedOption.image">
-        <div class="photo" [style.background-image]="'url(assets/images/equipo/equipo-' + selectedOption.image + ')'"></div>
+        <div class="photo" [style.background-image]="'url(selectedOption.image)'"></div>
         <div class="content">
             <h4 class="name">{{selectedOption.name}}</h4>
             <div class="position">{{selectedOption.position}}</div>

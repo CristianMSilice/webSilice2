@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
-import { MailService } from 'src/app/web/Services/mail.service';
+import { MailService } from '../../../services/mail.service';
 
 @Component({
   selector: 'contacto',

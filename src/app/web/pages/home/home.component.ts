@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { sliderItem } from '../../models/sliderItem';
-import { SiblingsService } from '../../Services/siblings.service';
+import { SiblingsService } from '../../services/siblings.service';
 
 @Component({
   selector: 'home',

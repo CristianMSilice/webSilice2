@@ -12,74 +12,12 @@
     <div class="row">
         <div class="row-inner">
 
-            <section class="news top-news content" aria-labelledby="top_news_header">
-                <h2 id="top_news_header" class="hidden">Noticias Principales</h2>
-                <div class="content-list">
-                    <article class="item" aria-labelledby="top_news_item_header_1">
-                        <div class="item-summary">
-                            <time>mayo 28, 2021</time>
-                            <h2 id="top_news_item_header_1" class="post-title "><a routerLink="/blog/reinventarse-a-traves-de-la-innovacion-el-nuevo-reto-de-la-humanidad-en-el-2021" routerLinkActive="active">Reinventarse a través de la innovación, el nuevo reto de la humanidad en la nueva normalidad.</a></h2>
-                            <p>Sin duda el año 2020 fue complicado para la mayoría de las personas a nivel mundial, pero, concentrándonos en las oportunidades</p>
-                        </div>
-
-                        <div class="item-image">
-                            <img src="assets/images/blog/news-1.jpg" alt="Reinventarse a través de la innovación, el nuevo reto de la humanidad en la nueva normalidad." />
-                        </div>
-                    </article>
-                </div>
-            </section>
-
-            <blog-features></blog-features>
+            <blog-principal></blog-principal>
+            <blog-destacados></blog-destacados>
 
             <div class="news list-news__wrapper">
-                <section class="list-news">
-                    <div class="list-news__header">
-                        <h2 id="featured_news_header">
-                            <span class="first-line main-color">Más recientes:</span>
-                        </h2>
-                        <!-- <div class="action-links">
-                            <a href="#" class="action action-link">Todas las entradas <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><g transform="translate(-2.5 -2.5)"><path d="M22,12.5A9.5,9.5,0,1,1,12.5,3,9.5,9.5,0,0,1,22,12.5Z" fill="none" stroke="#ff6c2b" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1"/><path d="M18,19.6l3.8-3.8L18,12" transform="translate(-5.5 -3.3)" fill="none" stroke="#ff6c2b" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1"/><path d="M12,18h7.6" transform="translate(-3.3 -5.5)" fill="none" stroke="#ff6c2b" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1"/></g></svg></a>
-                        </div> -->
-                    </div>
+                <blog-general></blog-general>
 
-                    <div class="items-list">
-                        <article class="item" aria-labelledby="list_news_header_1">
-                            <figure class="item-image">
-                                <img src="assets/images/blog/news-5.jpg" alt="Un evolutivo que ha cambiado las reglas de juego de la era digital de manera definitiva" />
-                            </figure>
-                            <div class="item-summary">
-                                <time>mayo 28, 2021</time>
-                                <h2 id="list_news_header_1" class="post-title"><a routerLink="/blog/un-evolutivo-que-ha-cambiado-las-reglas-de-juego-de-la-era-digital-de-manera-definitiva" routerLinkActive="active">Un evolutivo que ha cambiado las reglas de juego de la era digital de manera definitiva</a></h2>
-                                <p>Los esfuerzos hasta la segunda década del siglo XXI para transformar el mundo desde la tecnología surgían de iniciativas generadas por grandes fabricantes, que en procesos muy completos definían los focos para desarrollar
-                                    los negocios.</p>
-                                <div class="item-author">
-                                    <img src="assets/images/blog/autor-fabian.jpg" alt="Fabián Enrique Villalobos" />
-                                    <div class="author">
-                                        <span class="author-name">Fabián Enrique Villalobos</span>
-                                        <span class="author-position">Director de preventa ETB Colombia</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </article>
-                        <article class="item" aria-labelledby="list_news_header_2">
-                            <figure class="item-image">
-                                <img src="assets/images/blog/news-6.jpg" alt="¿Por qué la Comunicación digital es indispensable dentro de tu estrategia de transformación digital?" />
-                            </figure>
-                            <div class="item-summary">
-                                <time>mayo 28, 2021</time>
-                                <h2 id="list_news_header_2" class="post-title "><a routerLink="/blog/por-que-la-comunicacion-digital-es-indispensable-dentro-de-tu-estrategia-de-transformacion-digital" routerLinkActive="active">¿Por qué la Comunicación digital es indispensable dentro de tu estrategia de transformación digital?</a></h2>
-                                <p>La comunicación digital es uno de los elementos indispensables dentro de la construcción del ecosistema digital desarrollado para transformar estratégicamente un negocio, organización o emprendimiento.</p>
-                                <div class="item-author">
-                                    <img src="assets/images/blog/autor-catalina.png" alt="Catalina Moreno" />
-                                    <div class="author">
-                                        <span class="author-name">Catalina Moreno</span>
-                                        <span class="author-position">Marketing SILICE</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </article>
-                    </div>
-                </section>
                 <aside class="widgets-news">
                     <div class="widget social">
                         <div class="widget-inner">
@@ -92,43 +30,9 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="widget viewed">
-                        <div class="widget-inner">
-                            <h3 class="main-color">Más Vistos</h3>
-                            <ul class="items-list">
-                                <li>
-                                    <div class="item">
-                                        <img src="assets/images/blog/news-1.jpg" alt="Widget Reinventarse a través de la innovación, el nuevo reto de la humanidad en la nueva normalidad." />
-                                        <div class="summary">
-                                            <h4><a routerLink="/blog/reinventarse-a-traves-de-la-innovacion-el-nuevo-reto-de-la-humanidad-en-el-2021" routerLinkActive="active">Reinventarse a través de la innovación, el nuevo reto de la humanidad en la nueva normalidad.</a></h4>
-                                            <time>mayo 28, 2021</time>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="item">
-                                        <img src="assets/images/blog/news-2.jpg" alt="Widget COVID19 ¿Motor de la innovación en el Sector Salud?" />
-                                        <div class="summary">
-                                            <h4><a routerLink="/blog/covid19-motor-de-la-innovacion-en-el-sector-salud" routerLinkActive="active">COVID19 ¿Motor de la innovación en el Sector Salud?</a></h4>
-                                            <time>mayo 28, 2021</time>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="item">
-                                        <img src="assets/images/blog/news-3.jpg" alt="Widget ¿Por qué es indispensable para tu negocio dar el paso a la omnicanalidad?" />
-                                        <div class="summary">
-                                            <h4><a routerLink="/blog/por-que-es-indispensable-para-tu-negocio-dar-el-paso-a-la-omnicanalidad" routerLinkActive="active">¿Por qué es indispensable para tu negocio dar el paso a la omnicanalidad?</a></h4>
-                                            <time>mayo 28, 2021</time>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
+                    <blog-vistos></blog-vistos>
                 </aside>
             </div>
-
             
             <div class="widget social">
                 <div class="widget-inner">

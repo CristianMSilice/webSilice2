@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { SiblingsService } from '../../Services/siblings.service';
+import { SiblingsService } from '../../services/siblings.service';
 
 @Component({
   selector: 'modal',

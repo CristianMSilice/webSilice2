@@ -92,6 +92,8 @@
         text-align: right;
         color: $c-black;
 
+        p { margin: 0; }
+
         time {
             @include flex-all($align: flex-end);
             @include scale-font($small-ratio: 0.5, $mid-ratio: 0.75, $final-size: 7.75rem);
