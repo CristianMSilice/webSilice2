@@ -115,13 +115,19 @@
                         top: 1em;
                         .country-data {
                             width: 100%;
-                            height: 75px;
+                            // height: 75px;
+                            height: auto;
+                            margin-bottom: 1rem;
+                            padding: 1rem 0;
                             box-shadow: 0px 10px 11px -16px hsl(0deg 0% 40%);
                             margin: 1em 0em;
                             border-bottom-right-radius: 38px;
-                            display: grid;
-                            grid-template-columns: 1fr min-content;
-                            grid-template-rows: min-content 1fr;
+                            // display: grid;
+                            // grid-template-columns: 1fr min-content;
+                            // grid-template-rows: min-content 1fr;
+                            display: flex;
+                            flex-direction: column;
+                        
                             .name {
                                 color: var(--headerTextColor);
                                 font-weight: bold;
@@ -130,11 +136,12 @@
                             .resume {
                                 font-size: 0.8em;
                                 color: hsl(0deg 0% 50%);
-                                line-height: 1em;
+                                line-height: 1.5em;
                                 align-self: center;
                             }
                             .date {
-                                color: hsl(0, 0%, 80%);
+                                color: black;
+                                font-size: .75rem;
                                 text-shadow: 0px 0px 2px hsl(0deg 0% 80%);
                             }
                         }
