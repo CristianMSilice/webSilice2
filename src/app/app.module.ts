@@ -59,7 +59,6 @@ import { BlogGeneralComponent } from './web/pages/blog/blog-general/blog-general
 import { BlogVistosComponent } from './web/pages/blog/blog-vistos/blog-vistos.component'
 import { SingleComponent } from './web/pages/blog/single/single.component'
 import { BlogHeaderComponent } from './web/pages/blog/blog-header/blog-header.component'
-import { TeamComponent } from './web/components/team/team.component'
  
 const routes: Routes = [
   {
@@ -125,7 +124,6 @@ const routes: Routes = [
     PagePanamaComponent,
     MapaMundiComponent,
     ClientsComponent,
-    TeamComponent,
     NosotrosSomosComponent,
     NosotrosTrayectoriaComponent,
     NosotrosEquipoComponent,
