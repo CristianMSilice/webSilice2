@@ -262,3 +262,10 @@
         }
     }
 }
+
+.wp-block-buttons {
+    .wp-block-button__link { 
+        @extend .action-primary; 
+        text-decoration: none;
+    }
+}

@@ -10,4 +10,5 @@ interface proyect {
     name:string;
     resume:string;
     date:string;
+    type?:string;
 }

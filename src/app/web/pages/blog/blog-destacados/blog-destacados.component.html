@@ -11,7 +11,7 @@
             </div>
             <div class="item-summary">
                 <time>{{item.date | date: 'MMM d, y' }}</time>
-                <h3 id="featured_item_header_1" class="post-title"><a [routerLink]="['/blog/', item.id]" routerLinkActive="active">{{item.title.rendered}}</a></h3>
+                <h3 id="featured_item_header_1" class="post-title"><a href="/blog/{{item.id}}">{{item.title.rendered}}</a></h3>
             </div>
         </article>
     </div>
