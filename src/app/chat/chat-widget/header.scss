@@ -109,6 +109,7 @@
     position: absolute;
     z-index: 200;
     top: calc( var(--Espacio-blanco-superior) + var(--border-radius) + var(--margin-radius) / 2 + var(--transparencia-chat-widget-header) / 3);
+    margin-top: 1rem;
 
     > strong {
         font-size: 2em;
@@ -167,6 +168,10 @@
         &:before {
            height: calc(100% - var(--Espacio-blanco-superior));
         }
+    }
+
+    .chat-widget-header-name {
+        margin-top: 0;
     }
 
     .chat-widget-header-logo {
