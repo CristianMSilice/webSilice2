@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Somos, Trayectoria, Equipo, Presencia, Infografia, Soluciones, Casos, Blog } from '../models';
 import { Observable } from 'rxjs';
 
-const SERVER_URL = "http://34.95.197.164/wp-json/wp/v2/";
+const SERVER_URL = "https://cms-portal.silice.si/wp-json/wp/v2/";
 
 @Injectable({  
 	providedIn: 'root'  

@@ -14,7 +14,7 @@ export class BlogVistosComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.dataWpService.getAll('posts?categories=5', 6).subscribe(res => this.data = res)
+    this.dataWpService.getAll('posts?categories=4', 6).subscribe(res => this.data = res)
   }
 
 }

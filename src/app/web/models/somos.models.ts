@@ -13,18 +13,18 @@ export interface Somos {
     content:               Content;
     featured_media:        number;
     template:              string;
-    better_featured_image: BetterFeaturedImage;
+    better_featured_image: BetterFeaturedImage | null;
     acf:                   any[];
     _links:                Links;
 }
 
 interface Links {
-    self:               About[];
-    collection:         About[];
-    about:              About[];
-    "wp:featuredmedia": WpFeaturedmedia[];
-    "wp:attachment":    About[];
-    curies:             Cury[];
+    self:                About[];
+    collection:          About[];
+    about:               About[];
+    "wp:attachment":     About[];
+    curies:              Cury[];
+    "wp:featuredmedia"?: WpFeaturedmedia[];
 }
 
 interface About {

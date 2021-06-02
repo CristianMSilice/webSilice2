@@ -14,7 +14,7 @@ export class BlogGeneralComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.dataWpService.getAll('posts?categories=6', 2).subscribe(res => this.data = res)
+    this.dataWpService.getAll('posts?categories=2', 2).subscribe(res => this.data = res)
   }
 
 }

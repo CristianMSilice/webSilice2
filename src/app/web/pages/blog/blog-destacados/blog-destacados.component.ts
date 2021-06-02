@@ -14,7 +14,7 @@ export class BlogDestacadosComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.dataWpService.getAll('posts?categories=4', 3).subscribe(res => this.data = res)
+    this.dataWpService.getAll('posts?categories=3', 3).subscribe(res => this.data = res)
   }
 
 }
