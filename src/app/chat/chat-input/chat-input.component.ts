@@ -67,6 +67,7 @@ export class ChatInputComponent implements OnInit {
     this.send.emit(message)
     this.clearMessage()
     this.focusMessage()
+    message.value = ''
   }
 
   toggleOptions() {
