@@ -1,34 +1,30 @@
 import {
   Component,
   ElementRef,
-  HostListener,
-  Input,
-  OnInit,
-  ViewChild,
-  NgZone,
+  HostListener, Inject, Input,
+
+
+  NgZone, OnInit, SecurityContext, ViewChild
 } from '@angular/core'
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser'
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router'
+import { CookieService } from 'ngx-cookie-service'
+import { NgxLinkifyjsService } from 'ngx-linkifyjs'
 import { Subject } from 'rxjs'
+import swal from 'sweetalert2'
 import { fadeIn, fadeInOut } from '../animations'
-import { Inject } from '@angular/core'
+import { ChatAdjuntosComponent } from '../chat-adjuntos/chat-adjuntos.component'
 import { GlobalService } from '../shared/globals'
-import { SocketService } from '../shared/services/socket.service'
+import { EncsessionService } from '../shared/helpers/encsession.service'
 import { Action } from '../shared/model/action'
 import { Event } from '../shared/model/event'
+import { messageCookieService } from "../shared/model/messageOptions"
 import { TOKEN } from '../shared/services/config'
-import { SlideInOutAnimation } from './animations'
-import { DomSanitizer, SafeUrl } from '@angular/platform-browser'
-import { SecurityContext } from '@angular/core'
-import { SafeHtml } from '@angular/platform-browser'
-import { CookieService } from 'ngx-cookie-service'
-import swal from 'sweetalert2'
-import { NgxLinkifyjsService } from 'ngx-linkifyjs'
-
-
 import { SiblingService } from '../shared/services/sibling.service'
-import { EncsessionService } from '../shared/helpers/encsession.service'
-import { ChatAdjuntosComponent } from '../chat-adjuntos/chat-adjuntos.component'
-import { messageOptions, messageCookieService } from "../shared/model/messageOptions";
-import { ActivatedRoute, NavigationEnd, Router } from '@angular/router'
+import { SocketService } from '../shared/services/socket.service'
+import { SlideInOutAnimation } from './animations'
+
+
 @Component({
   selector: 'chat-widget',
   templateUrl: './chat-widget.component.html',

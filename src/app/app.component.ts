@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core'
-import { Router, NavigationEnd } from '@angular/router'
+import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
+import { NavigationEnd, Router } from '@angular/router';
+import { filter } from 'rxjs/operators';
 import { environment } from './../environments/environment';
-import { Title } from '@angular/platform-browser'
-import { filter } from 'rxjs/operators'
 
 declare var gtag;
 

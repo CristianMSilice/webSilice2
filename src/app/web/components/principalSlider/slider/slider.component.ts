@@ -1,6 +1,6 @@
-import { Component, Input, OnInit, EventEmitter, Output } from '@angular/core';
-import { SiblingsService } from '../../../services/siblings.service';
+import { Component, Input, OnInit } from '@angular/core';
 import { sliderItem } from "../../../models/sliderItem";
+import { SiblingsService } from '../../../services/siblings.service';
 
 @Component({
   selector: 'web-slider',

@@ -1,4 +1,4 @@
-import { Component, AfterViewInit } from '@angular/core';
+import { AfterViewInit, Component } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({

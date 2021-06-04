@@ -1,14 +1,11 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { Injectable } from '@angular/core'
 import { Observable } from 'rxjs/Observable'
-import { Observer } from 'rxjs/Observer'
-import { Message } from '../model/message'
-import { Event } from '../model/event'
-import { Http, Response } from '@angular/http'
-import { GlobalService } from '../../shared/globals'
-import { HttpClient } from '@angular/common/http'
-import { HttpHeaders, HttpParams } from '@angular/common/http'
-
 import * as socketIo from 'socket.io-client'
+import { GlobalService } from '../../shared/globals'
+import { Event } from '../model/event'
+import { Message } from '../model/message'
+
 
 const SERVER_URL = GlobalService.SOCKET_ENDPOINT
 const SERVER_URL2 = GlobalService.API_ENDPOINT

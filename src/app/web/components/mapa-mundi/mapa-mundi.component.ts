@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer, SafeStyle } from '@angular/platform-browser';
-import { ChildActivationEnd } from '@angular/router';
 import { countryModel } from './country-model';
 
 @Component({

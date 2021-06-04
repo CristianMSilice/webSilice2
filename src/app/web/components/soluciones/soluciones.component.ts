@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { SiblingsService } from '../../services/siblings.service';
 import { DomSanitizer } from "@angular/platform-browser";
 import { DataWpService } from '../../services/datawp.service';
+import { SiblingsService } from '../../services/siblings.service';
 
 @Component({
   selector: 'soluciones',

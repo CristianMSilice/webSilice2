@@ -1,26 +1,19 @@
-import { Component, ElementRef, HostListener, Input, OnInit, ViewChild } from '@angular/core'
-import { DomSanitizer,SafeResourceUrl} from '@angular/platform-browser';
-import {   SimpleChanges } from '@angular/core';
+import { Component, Input, SimpleChanges } from '@angular/core';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 @Component({
   selector: 'app-new-tarjeta',
   templateUrl: './new-tarjeta.component.html',
   styleUrls: ['./new-tarjeta.component.scss']
 })
-export class NewTarjetaComponent    implements OnInit {
+export class NewTarjetaComponent  {
   iframeURL:SafeResourceUrl;
   @Input() url: string;
   @Input()
   deleteHandler: Function;
   constructor(private sanitizer: DomSanitizer  ) { 
-  
-     
-  
+
   }
  
-  ngOnInit() {
-//  console.log(this.url)  
-     
-}
 
 goBack() {
   this.deleteHandler();

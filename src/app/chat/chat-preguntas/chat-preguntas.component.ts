@@ -1,13 +1,12 @@
-import { Component, OnInit,ViewChild ,EventEmitter} from '@angular/core';
+import { Component, Input } from '@angular/core';
  
-import {  Output,  Input } from '@angular/core'; 
 @Component({
   selector: 'app-chat-preguntas',
   templateUrl: './chat-preguntas.component.html',
   styleUrls: ['./chat-preguntas.component.scss'],
  
 })
-export class ChatPreguntasComponent implements OnInit {
+export class ChatPreguntasComponent   {
   @Input()
   regresarComando:Function;
   @Input()
@@ -16,10 +15,7 @@ export class ChatPreguntasComponent implements OnInit {
 
   constructor( 
   ) { } 
-  ngOnInit(){
-     
- 
-}
+    
 selectComando(comando) 
 {
   this.regresarComando(comando);

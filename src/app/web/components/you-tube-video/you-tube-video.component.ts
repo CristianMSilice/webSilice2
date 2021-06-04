@@ -1,4 +1,4 @@
-import { Component, Input, AfterViewInit, Output, EventEmitter, } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, Input, Output } from '@angular/core';
 import { SiblingsService } from '../../services/siblings.service';
 
 @Component({
@@ -7,7 +7,6 @@ import { SiblingsService } from '../../services/siblings.service';
   styleUrls: ['./you-tube-video.component.scss']
 })
 export class YouTubeVideoComponent implements AfterViewInit {
-  private static iniciado = false;
   public static id:number =0;
 
   YouTubeVideoComponent=YouTubeVideoComponent;
@@ -37,14 +36,7 @@ export class YouTubeVideoComponent implements AfterViewInit {
       })
     });
     
-    // if (!YouTubeVideoComponent.iniciado) {
-    //   window['onYouTubeIframeAPIReady'] = () => this.initVideo();
-    //   YouTubeVideoComponent.iniciado = true;
-    // }
-    // else {
-    //   console.log(this.id);
-    //   this.initVideo();
-    // }
+
     
   }
   reviewIfStartVideo() {

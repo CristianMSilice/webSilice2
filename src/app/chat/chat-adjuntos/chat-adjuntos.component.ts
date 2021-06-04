@@ -6,12 +6,12 @@ import {
   Input,
   Output,
   SimpleChanges,
-  ViewChild,
+  ViewChild
 } from '@angular/core'
-import { reviewFile } from './utils/reviewfile'
-import { SocketService } from '../shared/services/socket.service'
-import { TOKEN } from '../shared/services/config'
 import { GlobalService } from '../shared/globals'
+import { TOKEN } from '../shared/services/config'
+import { SocketService } from '../shared/services/socket.service'
+import { reviewFile } from './utils/reviewfile'
 
 @Component({
   selector: 'chat-adjuntos',

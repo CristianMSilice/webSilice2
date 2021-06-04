@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataWpService } from '../../services/datawp.service';
-import { SiblingsService } from '../../services/siblings.service';
+
 
 @Component({
   selector: 'casos',
@@ -12,7 +12,7 @@ export class CasosComponent implements OnInit {
 
   constructor(
     private dataWpService: DataWpService,
-    private SiblingService: SiblingsService
+
   ) { }
 
   ngOnInit() {

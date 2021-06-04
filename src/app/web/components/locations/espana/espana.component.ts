@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { DataWpService } from '../../../services/datawp.service';
 
 @Component({
   selector: 'espana',

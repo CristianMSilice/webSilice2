@@ -1,15 +1,15 @@
-import { BrowserModule } from '@angular/platform-browser'
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
-import { Injector, NgModule } from '@angular/core'
 import { HttpClientModule } from '@angular/common/http';
-import { createCustomElement } from '@angular/elements'
-import { ChatModule, ChatWidgetComponent, ChatConfigComponent } from './chat/'
-import { ConfigFactory, ConfigService, TOKEN } from './chat/shared/services/config';
+import { Injector, NgModule } from '@angular/core';
+import { createCustomElement } from '@angular/elements';
 import { HttpModule } from '@angular/http';
- 
-import { NgxWebstorageModule } from 'ngx-webstorage';
-import { EncsessionService } from './chat/shared/helpers/encsession.service';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxLinkifyjsModule } from 'ngx-linkifyjs';
+import { NgxWebstorageModule } from 'ngx-webstorage';
+import { ChatConfigComponent, ChatModule, ChatWidgetComponent } from './chat/';
+import { EncsessionService } from './chat/shared/helpers/encsession.service';
+import { ConfigFactory, ConfigService, TOKEN } from './chat/shared/services/config';
+ 
 @NgModule({
   imports: [BrowserModule, BrowserAnimationsModule, ChatModule,HttpClientModule,HttpModule,NgxLinkifyjsModule.forRoot(),
     NgxWebstorageModule.forRoot()],

@@ -6,12 +6,10 @@ import {
   OnInit,
   Output,
   ViewChild,
-  ViewEncapsulation,
-} from '@angular/core'
-import { selector } from 'rxjs-compat/operator/publish'
-import { GlobalService } from '../shared/globals'
+  ViewEncapsulation
+} from '@angular/core';
+import { GlobalService } from '../shared/globals';
 import { SiblingService } from '../shared/services/sibling.service';
-import { Subscription } from 'rxjs/Subscription'
 
 @Component({
   selector: 'chat-input',
