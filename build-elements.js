@@ -30,9 +30,6 @@ const concat = require('concat');
     await fs.copy('./src/assets/te.png', './dist/elements/assets/te.png')
     await fs.copy('./src/assets/me.png', './dist/elements/assets/me.png')
     await fs.copy('./src/assets/BotBody.svg', './dist/elements/assets/BotBody.svg')
-    await fs.copy('./src/assets/silice-09.png', './dist/elements/assets/silice-09.png')
-
-
 
     console.info('Elements created successfully!')
 
