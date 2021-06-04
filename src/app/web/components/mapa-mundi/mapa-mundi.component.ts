@@ -15,7 +15,7 @@ export class MapaMundiComponent implements OnInit {
   selectedCountry=undefined;
   sedes: Array <countryModel>= [
     {
-      svgName: 'Chile', name: 'Chile', photo: 'chile-min.jpg', 
+      svgName: 'Chile', name: 'Chile', photo: 'chile.webp', 
       date:'Enero 20, 2001',
       proyects:[
         {name:'Evertec',type: 'Banca', resume:'Aliado estratégico SILICE.Nuestro énfasis en desarrollo es el envío masivo de SMS y notificaciones de Whatsapp.',date:''}        
@@ -23,7 +23,7 @@ export class MapaMundiComponent implements OnInit {
        choords: {left:undefined ,top:undefined}
     },
     {
-      svgName: 'Colombia', name: 'Colombia', photo: 'colombia-min.jpg', 
+      svgName: 'Colombia', name: 'Colombia', photo: 'colombia.webp', 
       date:'2018',
       proyects:[
         {name:'ETB',type: '', resume:'Aliados estratégicos en proyectos y desarrollos de Ciudad Omnicanal.',date:'Julio 2020'},
@@ -35,7 +35,7 @@ export class MapaMundiComponent implements OnInit {
        choords: {left:undefined ,top:undefined}
     },
     {
-      svgName: 'Costa Rica', name: 'Costa Rica', photo: 'CostaRica-min.jpg', 
+      svgName: 'Costa Rica', name: 'Costa Rica', photo: 'costaRica.webp', 
       date:'Marzo 2019',
       proyects:[
         {name:'Evertec-PAU',type: 'Banca',resume:'En alianza estratégica trabajamos desde la tecnología de PAU Proactive para la gestión de envío masivo de notificaciones vía SMS Y Whatsap.',date:''}
@@ -43,7 +43,7 @@ export class MapaMundiComponent implements OnInit {
        choords: {left:undefined ,top:undefined}
     },
     {
-      svgName: 'Dominican Republic', name: 'República Dominicana', photo: 'dominicana-min.jpg', 
+      svgName: 'Dominican Republic', name: 'República Dominicana', photo: 'dominicana.webp', 
       date:'',
       proyects:[
         {name:'SDCC',type: '', resume:'Desarrollamos el asistente virtual Rosa para dinamizar los trámites y reservas de los usuarios del club. Además implementamos el carrito de compras y los pedidos digitales omnicanales para optimizar la experiencia de usuario.',date:'12 Febrero 2020'},
@@ -52,7 +52,7 @@ export class MapaMundiComponent implements OnInit {
        choords: {left:undefined ,top:undefined}
     },
     {
-      svgName: 'Mexico', name: 'México', photo: 'mexico-min.jpg', 
+      svgName: 'Mexico', name: 'México', photo: 'mexico.webp', 
       date:'2019',
       proyects:[
         {name:'IBYCESS',type: '', resume:'a través del asistente virtual Becky el Instituto de Becas y Créditos educativos en Sonora méxico, apoya y moderniza la gestión y trámites de los usuarios.',date:''},
@@ -61,7 +61,7 @@ export class MapaMundiComponent implements OnInit {
        choords: {left:undefined ,top:undefined}
     },
     {
-      svgName: 'Panama', name: 'Panamá', photo: 'panama-min.jpg', 
+      svgName: 'Panama', name: 'Panamá', photo: 'panama.webp', 
       date:'Sep, 2000',
       proyects:[
         {name:'ROSA',type: '', resume:'Asistente virtual que realiza un triaje digital y permite conocer, centralizar y distribuir los casos COVID10 positivos a través de una derivación inteligente.',date:'Febrero de 2020'},
@@ -83,7 +83,7 @@ export class MapaMundiComponent implements OnInit {
        choords: {left:undefined ,top:undefined}
     },
     {
-      svgName: 'Spain', name: 'España', photo: 'españa-min.jpg', 
+      svgName: 'Spain', name: 'España', photo: 'españa.webp', 
       date:' 2001',
       proyects:[
         {name:'Asistente Virtual Carolina',type: '', resume:'Plataforma ganadora de los premios CNIS a la mejor solución de Participación Ciudadana',date:''},
