@@ -1,0 +1,39 @@
+.containerModalAndKey {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1000000;
+    background: rgba(0, 0, 0, 0.904);
+    top: 0;
+    left: 0;
+    place-content: center;
+    visibility: hidden;
+    display: none;
+    transition: filter 200ms ease;
+    transition-delay: 50ms;
+    filter: opacity(0);
+    &.showModal {
+        visibility: visible;
+        display: grid;
+        filter: opacity(1);
+    }
+    .content {
+        width: min-content;
+        height: min-content;
+        border-radius: 20px;
+        // box-shadow: 0px 0px 50px -11px var(--headerTextColor);
+        position: relative;
+        overflow: hidden;
+    }
+}
+
+.close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    color: white;
+    background-color: hsl(0deg 0% 22%);
+    padding: 0px 7px;
+    font-size: 14px;
+    border-top-right-radius: inherit;
+}

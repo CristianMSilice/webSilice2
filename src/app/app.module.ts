@@ -4,12 +4,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { HttpModule } from '@angular/http'
 import { BrowserModule, Title } from '@angular/platform-browser'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
-import { RouterModule, Routes } from '@angular/router'
+import { Routes } from '@angular/router'
 import { ParticlesModule } from 'angular-particle'
 import { InlineSVGModule } from 'ng-inline-svg'
 import { CookieService } from 'ngx-cookie-service'
 import { NgxLinkifyjsModule } from 'ngx-linkifyjs'
 import { NgxWebstorageModule } from 'ngx-webstorage'
+import { AppRoutingModule } from './app-routing.module'
 import { AppComponent } from './app.component'
 import { EncsessionService } from './chat/shared/helpers/encsession.service'
 import { ConfigFactory, ConfigService, TOKEN } from './chat/shared/services/config'
@@ -58,36 +59,9 @@ import { SiblingsService } from './web/services/siblings.service'
 import { WebComponent } from './web/web/web.component'
 
 
-
-
- 
-const routes: Routes = [
-  {
-    path: '', component: WebComponent,
-    children: [
-      { path: 'nosotros', component: PageSomosComponent, },
-      { path: 'nosotros/trayectoria', component:PageTrayectoriaComponent},
-      { path: 'nosotros/equipo', component:PageEquipoComponent},
-      { path: 'nosotros/presencia', component: PagePresenciaComponent },
-      { path: 'nosotros/sedes/panama', component: PagePanamaComponent },
-      { path: 'nosotros/sedes/colombia', component: PageColombiaComponent },
-      { path: 'nosotros/sedes/espana', component: PageEspanaComponent },
-      { path: 'experiencia/itm', component: LaboratorioComponent },
-      { path: 'soluciones', component: PageSolucionesComponent },
-      { path: 'casos', component: PageCasosComponent },
-      { path: 'experiencia/contacto', component: ContactoComponent },
-      { path: 'blog', component: BlogComponent },
-      { path: 'blog/:id', component: SingleComponent },
-      { path: 'home', component: HomeComponent },
-      { path: '**', redirectTo: 'home', pathMatch: 'full' }
-    ]
-  },
-  { path: '**', redirectTo: 'home', pathMatch: 'full' }
-]
-
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes),
+    AppRoutingModule,
     BrowserModule,
     BrowserAnimationsModule,
     ElementModule,
