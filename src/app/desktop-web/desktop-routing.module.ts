@@ -4,6 +4,7 @@ import { HomeComponent } from '../desktop-web/pages/home/home.component';
 import { DesktopWebComponent } from './desktop-web/desktop-web.component';
 import { EquipoComponent } from './pages/equipo/equipo.component';
 import { PresenciaComponent } from './pages/somos/presencia/presencia.component';
+import { SedeColombiaComponent } from './pages/somos/sedes/colombia/sede-colombia.component';
 import { sedeEspanaComponent } from './pages/somos/sedes/espana/sede-espana.component';
 import { SomosComponent } from './pages/somos/somos/somos.component';
 import { TrayectoriaComponent } from './pages/trayectoria/trayectoria.component';
@@ -18,7 +19,7 @@ const routes: Routes = [
       { path: 'nosotros/equipo', component:EquipoComponent},
       { path: 'nosotros/presencia', component: PresenciaComponent },
       // { path: 'nosotros/sedes/panama', component: PagePanamaComponent },
-      // { path: 'nosotros/sedes/colombia', component: PageColombiaComponent },
+      { path: 'nosotros/sedes/colombia', component: SedeColombiaComponent },
       { path: 'nosotros/sedes/espana', component: sedeEspanaComponent },
       // { path: 'experiencia/itm', component: LaboratorioComponent },
       // { path: 'soluciones', component: PageSolucionesComponent },
