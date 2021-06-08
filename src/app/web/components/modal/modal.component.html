@@ -1,7 +1,0 @@
-<div class="containerModalAndKey" [ngClass]="{'showModal':showModal}" (click)="reviewClose($event)">
-    <div class="close" (click)="close()">X</div>
-    <div class="content" [style.background]="'hsl(0deg 0% 96% / 0%)'">
-        <div class="close" *ngIf="show_internal_close" (click)="close()">X</div>
-        <ng-content></ng-content>
-    </div>
-</div>
