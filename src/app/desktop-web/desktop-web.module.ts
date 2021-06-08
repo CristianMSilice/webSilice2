@@ -32,6 +32,13 @@ import { CasosComponent } from './components/casos/casos.component';
 import { ContactoComponent } from './pages/experiencia/contacto/contacto.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LaboratorioComponent } from './pages/experiencia/laboratorio/laboratorio.component';
+import { BlogComponent } from './pages/blog/blog.component';
+import { BlogDestacadosComponent } from './pages/blog/blog-destacados/blog-destacados.component';
+import { BlogGeneralComponent } from './pages/blog/blog-general/blog-general.component';
+import { BlogHeaderComponent } from './pages/blog/blog-header/blog-header.component';
+import { BlogPrincipalComponent } from './pages/blog/blog-principal/blog-principal.component';
+import { BlogVistosComponent } from './pages/blog/blog-vistos/blog-vistos.component';
+import { SingleComponent } from './pages/blog/single/single.component';
 
 
 
@@ -66,7 +73,15 @@ import { LaboratorioComponent } from './pages/experiencia/laboratorio/laboratori
     PageCasosComponent,
     CasosComponent,
     ContactoComponent,
-    LaboratorioComponent],
+    LaboratorioComponent,
+    BlogComponent,
+    BlogDestacadosComponent,
+    BlogGeneralComponent,
+    BlogHeaderComponent,
+    BlogPrincipalComponent,
+    BlogVistosComponent,
+    SingleComponent,
+    ],
   imports: [
     CommonModule,
     DesktopRoutingModule,

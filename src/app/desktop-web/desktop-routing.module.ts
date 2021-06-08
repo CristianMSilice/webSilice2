@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from '../desktop-web/pages/home/home.component';
 import { DesktopWebComponent } from './desktop-web/desktop-web.component';
+import { BlogComponent } from './pages/blog/blog.component';
+import { SingleComponent } from './pages/blog/single/single.component';
 import { EquipoComponent } from './pages/equipo/equipo.component';
 import { ContactoComponent } from './pages/experiencia/contacto/contacto.component';
 import { LaboratorioComponent } from './pages/experiencia/laboratorio/laboratorio.component';
@@ -30,8 +32,8 @@ const routes: Routes = [
       { path: 'casos', component: PageCasosComponent },
       { path: 'experiencia/contacto', component: ContactoComponent },
       { path: 'experiencia/itm', component: LaboratorioComponent },
-      // { path: 'blog', component: BlogComponent },
-      // { path: 'blog/:id', component: SingleComponent },
+      { path: 'blog', component: BlogComponent },
+      { path: 'blog/:id', component: SingleComponent },
       { path: '**', redirectTo: '/home',  }
     ]
   },

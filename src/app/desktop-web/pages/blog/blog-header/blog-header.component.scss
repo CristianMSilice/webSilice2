@@ -1,0 +1,7 @@
+.site-title-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    &:before { content: none; }
+}
