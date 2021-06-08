@@ -1,0 +1,19 @@
+.message {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    padding: 2rem;
+    color: white;
+    background-color: #ff6c2b;
+}
+
+.btn-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background-color: transparent;
+    cursor: pointer;
+}

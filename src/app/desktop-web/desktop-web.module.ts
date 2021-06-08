@@ -29,6 +29,8 @@ import { PageSolucionesComponent } from './pages/page-soluciones/page-soluciones
 import { SolucionesComponent } from './components/soluciones/soluciones.component';
 import { PageCasosComponent } from './pages/page-casos/page-casos.component';
 import { CasosComponent } from './components/casos/casos.component';
+import { ContactoComponent } from './pages/experiencia/contacto/contacto.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -61,10 +63,12 @@ import { CasosComponent } from './components/casos/casos.component';
     PageSolucionesComponent,
     SolucionesComponent,
     PageCasosComponent,
-    CasosComponent],
+    CasosComponent,
+    ContactoComponent],
   imports: [
     CommonModule,
-    DesktopRoutingModule
+    DesktopRoutingModule,
+    ReactiveFormsModule
   ]
 })
 export class DesktopWebModule { }
