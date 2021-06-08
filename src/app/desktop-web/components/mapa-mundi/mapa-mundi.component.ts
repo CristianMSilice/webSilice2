@@ -140,7 +140,8 @@ export class MapaMundiComponent implements OnInit {
         _size.left = _size.left + 6;
         break;
         case 'chile':
-          _size.left = _size.left + 31;
+          _size.top = _size.top - 30;
+          _size.left = _size.left + 45;
           break;
       default:
         break;
