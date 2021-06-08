@@ -31,6 +31,7 @@ import { PageCasosComponent } from './pages/page-casos/page-casos.component';
 import { CasosComponent } from './components/casos/casos.component';
 import { ContactoComponent } from './pages/experiencia/contacto/contacto.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { LaboratorioComponent } from './pages/experiencia/laboratorio/laboratorio.component';
 
 
 
@@ -64,7 +65,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     SolucionesComponent,
     PageCasosComponent,
     CasosComponent,
-    ContactoComponent],
+    ContactoComponent,
+    LaboratorioComponent],
   imports: [
     CommonModule,
     DesktopRoutingModule,
