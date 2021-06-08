@@ -1,0 +1,41 @@
+<ng-container *ngFor="let option of sliderItem; index as i">
+    <article class="profile" [ngClass]="{'translate': translateFlag}" [style.transform]="movementCarousel()">
+        <div class="summary-wrapper">
+            <figure class="image"><img src="assets/images/equipo/equipo-{{option.image}}" alt="{{option.name}}" />
+            </figure>
+            <div class="summary">
+                <h4 class="name">{{option.name}}</h4>
+                <div class="position">{{option.position}}</div>
+            </div>
+            <div class="content-links">
+                <button class="action action-primary" (click)="showResume(option.chatID)">Ver más</button>
+            </div>
+        </div>
+    </article>
+</ng-container>
+<div *ngIf="selectedOption" class="absolute person-container" [ngClass]="{'show':selectedOption.show}">
+    <div class="close" (click)="selectedOption.show=false">&#10006;</div>
+    <div class="person-content" *ngIf="selectedOption.image">
+        <div class="photo" [style.background-image]="'url(assets/images/equipo/equipo-' + selectedOption.image + ')'"></div>
+        <div class="content">
+            <div class="position">{{selectedOption.position}}</div>
+            <div class="text">{{selectedOption.text}}</div>
+        </div>
+        <div class="links">
+            <div class="icon-link">
+                <a href="mailto:{{selectedOption.email}}" target="_blank" rel="noopener noreferrer"><img src="assets/images/svgs/icon-email-circle.svg" alt="email"></a>
+            </div>
+            <div class="icon-link">
+                <a href="{{selectedOption.linkedin}}" target="_blank"><img src="assets/images/svgs/icon-linkdin-in-circle.svg" alt="linkedIn"></a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- <div class="controls"> -->
+<div class="arrow arrowleft" (click)="step(1, true)">
+    <img src="assets/images/svgs/arrowIcon.png" alt="left">
+</div>
+<div class="arrow arrowright" (click)="step(-1,true)">
+    <img src="assets/images/svgs/arrowIcon.png" alt="right">
+</div>
+<!-- </div> -->

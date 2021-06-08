@@ -1,0 +1,14 @@
+<section class="absolute w100 h100">
+    <h2 class="title">Hemos <strong>trabajado con:</strong></h2>
+    <ul class="slider-container">
+        <div class="slider-content" [style.transform]="translatexs()">
+            <li class="slider-item" *ngFor="let client of clients">
+                <img src="/assets/images/clients/{{client.photo}}">
+            </li>
+        </div>
+    </ul>
+    <div class="slider-controls">
+        <div class="slider-arrow-left"></div>
+        <div class="slider-arrow-rigth"></div>
+    </div>
+</section>

@@ -1,0 +1,84 @@
+h2.title {
+    font-size: 10pt;
+    font-weight: 500;
+    position: absolute;
+    bottom: 100%;
+    padding: 1em;
+    strong {
+        color: var(--headerTextColor);
+    }
+
+    @media all and (min-width: 1600px) {
+        font-size: 1.5rem;
+        padding: 1em 2em;
+    }
+}
+
+.slider-container {
+    --outline: 5px;
+    --width_margin: 30px;
+    background-color: white;
+    position: relative;
+    margin: 0;
+    left: calc(var(--outline) + var(--width_margin));
+    top: calc(var(--outline));
+    width: calc(100% - (var(--outline) + var(--width_margin)) * 2);
+    height: calc(100% - var(--outline) * 2);
+    display: flex;
+    flex-wrap: nowrap;
+    overflow: hidden;
+    align-items: center;
+    justify-content: flex-start;
+    box-shadow: 0px 0px 80px rgb(225 225 225 / 90%), 0px 0px 80px rgb(204 204 204 / 50%), inset 0px 0px 5px rgb(191 191 191 / 50%);
+    border-radius: 20px;
+    padding: 0;
+    .slider-content {
+        display: flex;
+        flex-grow: 1;
+        flex-shrink: 0;
+        flex-wrap: nowrap;
+        --width-slider-item: 60px;
+        --padding-slider-item: 4em;
+        align-items: center;
+        height: 100%;
+        width: min-content;
+        transition: transform 3s linear;
+        li.slider-item {
+            width: var(--width-slider-item);
+            height: calc(100% - 4px);
+            position: relative;
+            padding: 0em var(--padding-slider-item);
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            img {
+                width: 60px;
+                height: 100%;
+                object-fit: contain;
+                filter: grayscale(0);
+                transition: filter 500ms ease;
+                cursor: pointer;
+            }
+            &:hover {
+                img {
+                    filter: grayscale(1);
+                }
+            }
+        }
+    }
+}
+
+.absolute {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.w100 {
+    width: 100%;
+}
+
+.h100 {
+    height: 100%;
+}

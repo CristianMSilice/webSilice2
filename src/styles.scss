@@ -9,7 +9,10 @@ body {
     margin: 0;
     width: 100vw;
     height: 100vh;
+    font-family: 'Montserrat', sans-serif;
+    font-display: fallback;
     overflow: hidden;
+
     --main-color: #636365;
     --attachedFilesTitle: #636365;
     --buttonsColor: #636365;
@@ -29,10 +32,6 @@ body {
 
 }
 
-body {
-    font-family: 'Montserrat', sans-serif;
-    font-display: fallback;
-}
 
 * {
     box-sizing: border-box;
@@ -99,6 +98,10 @@ body {
 }
 
 web.web-view{
+    width: calc(100vw - var(--width-chat-widget));
+}
+
+desktop-web.web-view{
     width: calc(100vw - var(--width-chat-widget));
 }
 

@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
-import { DataWpService } from '../../services/datawp.service';
+import { DataWpService } from '../../services/data-wp.service';
 
 @Component({
-  selector: 'trayectoria',
-  templateUrl: './trayectoria.component.html',
-  styleUrls: ['./trayectoria.component.scss']
+  selector: 'c-trayectoria',
+  templateUrl: './c-trayectoria.component.html',
+  styleUrls: ['./c-trayectoria.component.scss']
 })
-export class NosotrosTrayectoriaComponent implements OnInit {
+export class cTrayectoriaComponent implements OnInit {
+
   public data: any
   selectedOption = 0;
   offset = { interval: null, value: 0 };
