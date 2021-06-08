@@ -1,0 +1,10 @@
+@media (max-width:1600px) and (min-width:768px){
+    .md-hidden{
+        position: absolute;
+        visibility: hidden;
+        transform: scale(0)
+    }
+}
+.content-body,
+.content-body > *,
+.soluciones { position: static; }

@@ -3,6 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from '../desktop-web/pages/home/home.component';
 import { DesktopWebComponent } from './desktop-web/desktop-web.component';
 import { EquipoComponent } from './pages/equipo/equipo.component';
+import { PageCasosComponent } from './pages/page-casos/page-casos.component';
+import { PageSolucionesComponent } from './pages/page-soluciones/page-soluciones.component';
 import { PresenciaComponent } from './pages/somos/presencia/presencia.component';
 import { SedeColombiaComponent } from './pages/somos/sedes/colombia/sede-colombia.component';
 import { sedeEspanaComponent } from './pages/somos/sedes/espana/sede-espana.component';
@@ -23,8 +25,8 @@ const routes: Routes = [
       { path: 'nosotros/sedes/colombia', component: SedeColombiaComponent },
       { path: 'nosotros/sedes/espana', component: sedeEspanaComponent },
       // { path: 'experiencia/itm', component: LaboratorioComponent },
-      // { path: 'soluciones', component: PageSolucionesComponent },
-      // { path: 'casos', component: PageCasosComponent },
+      { path: 'soluciones', component: PageSolucionesComponent },
+      { path: 'casos', component: PageCasosComponent },
       // { path: 'experiencia/contacto', component: ContactoComponent },
       // { path: 'blog', component: BlogComponent },
       // { path: 'blog/:id', component: SingleComponent },

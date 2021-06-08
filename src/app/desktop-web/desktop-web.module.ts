@@ -25,6 +25,10 @@ import { sedeEspanaComponent } from './pages/somos/sedes/espana/sede-espana.comp
 import { SedePanamaComponent } from './pages/somos/sedes/sede-panama/sede-panama.component';
 import { SomosComponent } from './pages/somos/somos/somos.component';
 import { TrayectoriaComponent } from './pages/trayectoria/trayectoria.component';
+import { PageSolucionesComponent } from './pages/page-soluciones/page-soluciones.component';
+import { SolucionesComponent } from './components/soluciones/soluciones.component';
+import { PageCasosComponent } from './pages/page-casos/page-casos.component';
+import { CasosComponent } from './components/casos/casos.component';
 
 
 
@@ -53,7 +57,11 @@ import { TrayectoriaComponent } from './pages/trayectoria/trayectoria.component'
     EspanaComponent,
     ColombiaComponent,
     SedePanamaComponent,
-    PanamaComponent],
+    PanamaComponent,
+    PageSolucionesComponent,
+    SolucionesComponent,
+    PageCasosComponent,
+    CasosComponent],
   imports: [
     CommonModule,
     DesktopRoutingModule

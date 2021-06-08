@@ -1,0 +1,37 @@
+<div class="case-tabs">
+    <div class="case-tabs-container">
+        <div class="case-tabs-body">
+            <ng-container *ngFor="let item of data; index as i">
+                <article class="case-tab-option {{item.id}}" [ngClass]="{'selected':selected==i}">
+                    <div class="case-content-content">
+                        <div class="case-content-summary">
+                            <h3 class="case-name">{{item.title.rendered}}</h3>
+                            <h5 class="case-company">{{item.company}}</h5>
+                            <div class="case-text">
+                                <div [innerHTML]="item.content.rendered"></div>
+                            </div>                            
+                            <div>
+                                <div class="case-content-links">
+                                    <a href="{{item.acf.enlace_casos.url}}" target="{{item.acf.enlace_casos.target}}" class="action action-primary">{{item.acf.enlace_casos.title}}</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="case-content-image">
+                        <div class="case-avatar">
+                            <img src="{{item.acf.avatar_casos.url}}" alt="{{item.acf.avatar_casos.url}}" />
+                        </div>
+                        <div class="case-image">
+                            <img src="{{item.better_featured_image.source_url}}" alt="{{item.better_featured_image.alt_text}} Portada" />
+                        </div>
+                    </div>
+                </article>
+            </ng-container>
+        </div>
+        <ul class="case-tab-list-controller" role="tablist">
+            <ng-container *ngFor="let item of data;index as i">
+                <li class="case-tab" (click)="selectNewTab(i); SiblingService.sendClick(item.id)">{{item.title.rendered}}</li>
+            </ng-container>
+        </ul>
+    </div>
+</div>
