@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { sliderItem } from 'src/app/web/models/sliderItem';
+import { sliderItem } from '../../models/sliderItem';
 import { SiblingsService } from '../../services/sibling.service';
 
 

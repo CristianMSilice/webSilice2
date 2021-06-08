@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Title } from '@angular/platform-browser';
+import { Component } from '@angular/core';
+import { Title,Meta } from '@angular/platform-browser';
 import { NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import { environment } from './../environments/environment';
@@ -15,23 +15,9 @@ declare var gtag;
      
   `,
 })
-export class AppComponent implements OnInit {
-  constructor(
-    private titleService: Title,
-    private router: Router
-  ){
-    if(window.innerWidth<769)location.replace(environment.mobileURL);
+export class AppComponent  {
 
-    const navEndEvents$ = this.router.events
-    .pipe(
-      filter(event => event instanceof NavigationEnd)
-    )
-    navEndEvents$.subscribe((event: NavigationEnd) => {
-      gtag('config', 'G-CQ99S4W8JV', {
-        'page_path': event.urlAfterRedirects
-      })
-    })
-  }
+  
   public theme = 'red'
   public YT: any;
   width: number = 100;
@@ -157,14 +143,34 @@ export class AppComponent implements OnInit {
     "retina_detect": true
   };
 
+  constructor(
+    private titleService: Title,
+    private meta :Meta,
+    private router: Router,
+    
+  ){
+    if(window.innerWidth<769)location.replace(environment.mobileURL);
+
+    const navEndEvents$ = this.router.events
+    .pipe(
+      filter(event => event instanceof NavigationEnd)
+    )
+    navEndEvents$.subscribe((event: NavigationEnd) => {
+      gtag('config', 'G-CQ99S4W8JV', {
+        'page_path': event.urlAfterRedirects
+      })
+    })
+
+    this.loadYT_API()
+  }
+
+ 
 
   public setTitle(newTitle: string) {
     this.titleService.setTitle(newTitle);
   }
   
-  ngOnInit() {
-    this.loadYT_API()
-  }
+
 
   loadYT_API() {
     var tag = document.createElement('script');

@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { YouTubeVideoComponent } from 'src/app/web/components/you-tube-video/you-tube-video.component';
+import { YouTubeVideoComponent } from 'src/app/shared/shared/you-tube-video/you-tube-video.component';
 
 
 

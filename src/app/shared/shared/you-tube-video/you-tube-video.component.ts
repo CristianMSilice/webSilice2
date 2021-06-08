@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, EventEmitter, Input, Output } from '@angular/core';
-import { SiblingsService } from '../../services/siblings.service';
+import { SiblingsService } from 'src/app/desktop-web/services/sibling.service';
 
 @Component({
   selector: 'you-tube-video',

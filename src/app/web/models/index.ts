@@ -1,8 +1,0 @@
-export { Somos } from './somos.models'
-export { Trayectoria } from './trayectoria.models'
-export { Equipo } from './equipo.models'
-export { Presencia } from './presencia.models'
-export { Infografia } from './infografia.models'
-export { Soluciones } from './soluciones.models'
-export { Casos } from './casos.models'
-export { Blog } from './blog.models'

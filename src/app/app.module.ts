@@ -15,8 +15,6 @@ import { EncsessionService } from './chat/shared/helpers/encsession.service'
 import { ConfigFactory, ConfigService, TOKEN } from './chat/shared/services/config'
 import { ElementModule } from './element.module'
 import { SharedModule } from './shared/shared/shared.module'
-import { MailService } from './web/services/mail.service'
-import { SiblingsService } from './web/services/siblings.service'
 
 
 @NgModule({
@@ -49,8 +47,6 @@ import { SiblingsService } from './web/services/siblings.service'
       deps: [ConfigService, 'CONFIGPATH', 'APIURL-VAR']
     },
     EncsessionService,
-    MailService,
-    SiblingsService,
     Title
   ],
   bootstrap: [AppComponent],

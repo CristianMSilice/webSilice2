@@ -14,7 +14,6 @@ import { NosotrosComponent } from './components/nosotros/nosotros.component';
 import { SliderComponent } from './components/slider/slider.component';
 import { TeamComponent } from './components/team/team.component';
 import { cTrayectoriaComponent } from './components/trayectoria/trayectoria.component';
-import { YouTubeVideoComponent } from './components/you-tube-video/you-tube-video.component';
 import { DesktopRoutingModule } from './desktop-routing.module';
 import { DesktopWebComponent } from './desktop-web/desktop-web.component';
 import { EquipoComponent } from './pages/equipo/equipo.component';
@@ -39,6 +38,7 @@ import { BlogHeaderComponent } from './pages/blog/blog-header/blog-header.compon
 import { BlogPrincipalComponent } from './pages/blog/blog-principal/blog-principal.component';
 import { BlogVistosComponent } from './pages/blog/blog-vistos/blog-vistos.component';
 import { SingleComponent } from './pages/blog/single/single.component';
+import { SharedModule } from '../shared/shared/shared.module';
 
 
 
@@ -47,7 +47,6 @@ import { SingleComponent } from './pages/blog/single/single.component';
   declarations: [HomeComponent,
     SliderComponent,
     ModalComponent,
-    YouTubeVideoComponent,
     DesktopWebComponent,
     HeaderComponent,
     MainMenuComponent,
@@ -85,7 +84,8 @@ import { SingleComponent } from './pages/blog/single/single.component';
   imports: [
     CommonModule,
     DesktopRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SharedModule
   ]
 })
 export class DesktopWebModule { }

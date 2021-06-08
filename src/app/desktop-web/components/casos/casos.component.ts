@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { DataWpService } from 'src/app/web/services/datawp.service';
+import { DataWpService } from '../../services/data-wp.service';
+
 
 @Component({
   selector: 'casos',
