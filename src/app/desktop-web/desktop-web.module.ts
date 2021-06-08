@@ -18,6 +18,9 @@ import { PresenciaComponent } from './pages/somos/presencia/presencia.component'
 import { InfografiaComponent } from './components/infografia/infografia.component';
 import { MapaMundiComponent } from './components/mapa-mundi/mapa-mundi.component';
 import { ClientsComponent } from './components/clients/clients.component';
+import { sedeEspanaComponent } from './pages/somos/sedes/espana/sede-espana.component';
+import { LocationsHeaderComponent } from './components/locations-header/locations-header.component';
+import { EspanaComponent } from './components/locations/espana/espana.component';
 
 
 
@@ -39,7 +42,10 @@ import { ClientsComponent } from './components/clients/clients.component';
     PresenciaComponent,
     InfografiaComponent,
     MapaMundiComponent,
-    ClientsComponent],
+    ClientsComponent,
+    sedeEspanaComponent,
+    LocationsHeaderComponent,
+    EspanaComponent],
   imports: [
     CommonModule,
     DesktopRoutingModule
