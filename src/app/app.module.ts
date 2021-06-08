@@ -15,17 +15,8 @@ import { EncsessionService } from './chat/shared/helpers/encsession.service'
 import { ConfigFactory, ConfigService, TOKEN } from './chat/shared/services/config'
 import { ElementModule } from './element.module'
 import { SharedModule } from './shared/shared/shared.module'
-import { NosotrosSomosComponent } from './web/components/somos/somos.component'
-import { TeamComponent } from './web/components/team/team.component'
-import { NosotrosTrayectoriaComponent } from './web/components/trayectoria/trayectoria.component'
-import { FooterComponent } from './web/layout/footer/footer.component'
-import { MainHeaderComponent } from './web/layout/header/header.component'
-import { MainMenuComponent } from './web/layout/menu/menu.component'
-import { ContactoComponent } from './web/pages/experiencia/contacto/contacto.component'
-import { LaboratorioComponent } from './web/pages/laboratorio/laboratorio.component'
 import { MailService } from './web/services/mail.service'
 import { SiblingsService } from './web/services/siblings.service'
-import { WebComponent } from './web/web/web.component'
 
 
 @NgModule({
@@ -46,16 +37,6 @@ import { WebComponent } from './web/web/web.component'
   ],
   declarations: [
     AppComponent,
-    ContactoComponent,
-    MainHeaderComponent,
-    MainMenuComponent,
-    LaboratorioComponent,
-    WebComponent,
-    NosotrosSomosComponent,
-    NosotrosTrayectoriaComponent,
-    FooterComponent,
-    MainMenuComponent,
-    TeamComponent
   ],
 
   providers: [
