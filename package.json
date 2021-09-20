@@ -12,7 +12,11 @@
         "postbuild:elements": "node ./build-elements.js",
         "test": "ng test",
         "lint": "ng lint",
-        "e2e": "ng e2e"
+        "e2e": "ng e2e",
+        "compile:server": "webpack --config webpack.server.config.js --progress --colors",
+        "serve:ssr": "node dist/server",
+        "build:ssr": "npm run build:client-and-server-bundles && npm run compile:server",
+        "build:client-and-server-bundles": "ng build --prod && ng run angular-universal-crud:server:production --bundleDependencies all"
     },
     "private": true,
     "dependencies": {
@@ -31,6 +35,8 @@
         "@angular/platform-browser-dynamic": "^8.0.0",
         "@angular/platform-server": "^8.0.0",
         "@angular/router": "^8.0.0",
+        "@nguniversal/express-engine": "^8.1.1",
+        "@nguniversal/module-map-ngfactory-loader": "^8.1.1",
         "@sweetalert2/ngx-sweetalert2": "^5.0.1",
         "@types/jquery": "^3.3.30",
         "@webcomponents/custom-elements": "^1.1.0",
@@ -49,7 +55,7 @@
         "ngx-webstorage": "^4.0.1",
         "rxjs": "^6.2.1",
         "rxjs-compat": "^6.2.1",
-        "socket.io": "^2.0.3",
+        "socket.io": "^2.4.1",
         "sweetalert2": "^8.8.7",
         "zone.js": "^0.8.26"
     },
